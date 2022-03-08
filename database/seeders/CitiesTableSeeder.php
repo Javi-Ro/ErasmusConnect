@@ -23,7 +23,7 @@ class CitiesTableSeeder extends Seeder
                 'country_id' => 1
             ]
         );
-            
+
         DB::table('cities')->insert(
             [
                 'id' => 2,
@@ -31,15 +31,15 @@ class CitiesTableSeeder extends Seeder
                 'country_id' => 2
             ]
         );
-            
+
         DB::table('cities')->insert(
             [
                 'id' => 3,
                 'name' => 'Budapest',
                 'country_id' => 3
             ]
-        );  
-            
+        );
+
         DB::table('cities')->insert(
             [
                 'id' => 4,
@@ -47,13 +47,13 @@ class CitiesTableSeeder extends Seeder
                 'country_id' => 4
             ]
         );
-            
+
         DB::table('cities')->insert(
             [
                 'id' => 5,
                 'name' => 'Gdansk',
                 'country_id' => 5
             ]
-        );   
+        );
     }
 }
