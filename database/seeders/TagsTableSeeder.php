@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use App\Models\Tag;
 
 class TagsTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class TagsTableSeeder extends Seeder
     {
         DB::table('tags')->delete();
 
-        DB::table('tags')->insert(
+        Tag::create(
             [
                 'id' => 1,
                 'name' => "comida",
@@ -24,7 +25,7 @@ class TagsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('tags')->insert(
+        Tag::create(
             [
                 'id' => 2,
                 'name' => "fiesta",
@@ -32,7 +33,7 @@ class TagsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('tags')->insert(
+        Tag::create(
             [
                 'id' => 3,
                 'name' => "deporte",
@@ -40,7 +41,7 @@ class TagsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('tags')->insert(
+        Tag::create(
             [
                 'id' => 4,
                 'name' => "noche",

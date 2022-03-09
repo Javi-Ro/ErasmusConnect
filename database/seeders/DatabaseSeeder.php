@@ -21,13 +21,19 @@ class DatabaseSeeder extends Seeder
         $this->call(CitiesTableSeeder::class);
         $this->command->info('Cities table seeded!');
 
-        $this->call(ApartmentsTableSeeder::class);
-        $this->command->info('Apartments table seeded!');
-
         $this->call(UsersTableSeeder::class);
         $this->command->info('User table seeded!');
 
+        $this->call(ApartmentsTableSeeder::class);
+        $this->command->info('Apartments table seeded!');
+
         $this->call(FriendsTableSeeder::class);
         $this->command->info('Friends table seeded!');
+
+        $this->call(PostsTableSeeder::class);
+        $this->command->info('Posts table seeded!');
+
+        $this->call(TagsTableSeeder::class);
+        $this->command->info('Tags table seeded!');
     }
 }
