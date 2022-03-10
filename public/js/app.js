@@ -30859,7 +30859,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_img_mapa_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Estilo de como se ve el mapa */\n#mapa {\n    display: flex;  \n    background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n    background-repeat: no-repeat;\n    background-size: 100% 700px;\n    /* Necesita mínimo para que sea visible */\n    min-width: 1200px;\n    min-height: 700px;\n    opacity: 0.5;\n    position: relative;\n    /* Afectan al eslogan */\n    align-items: center;\n    justify-content: center;\n    flex-direction: column;\n}\n/* Estilo de como se ve el eslogan */\n#eslogan {\n    display: flex;\n    background-color: white;\n    border: 1px solid #000;\n    /* position: absolute; */\n    min-width: 1250px;\n    min-height: 250px;\n    margin: 0 0 5% 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n/* Estilo de como se ve el mapa */\n.mapa {\n    position: relative; \n    height: 700px;\n    width: 1200px;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    flex-flow: column;\n}\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa::before {    \n      content: \"\";\n      background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n      background-size: cover;\n      position: absolute;\n      top: 0px;\n      right: 0px;\n      bottom: 0px;\n      left: 0px;\n      opacity: 0.5;\n}\n/* background-image: url('~@../../../public/img/mapa.png'); */\n/* Estilo de como se ve el eslogan */\n.eslogan {\n    display: flex;\n    background-color: white;\n    border: 1px solid #000;\n    /* position: absolute; */\n    position: relative;\n    min-width: 1250px;\n    min-height: 250px;\n    margin: 0 0 5% 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -48971,12 +48971,12 @@ var render = function () {
       attrs: { id: "landing" },
     },
     [
-      _c("div", { attrs: { id: "mapa" } }, [
-        _c("div", { attrs: { id: "eslogan" } }),
+      _c("div", { staticClass: "mapa" }, [
+        _c("div", { staticClass: "eslogan" }),
         _vm._v(" "),
         _c(
           "div",
-          { staticStyle: { display: "flex" }, attrs: { id: "botonPrincipal" } },
+          { staticClass: "botonPrincipal", staticStyle: { display: "flex" } },
           [
             _c(
               "b-button",

@@ -1,9 +1,9 @@
 <template>
 <div id="landing" style="display: flex; justify-content: center; padding: 2% 0 0 0;">
-    <div id="mapa">
-        <div id="eslogan">
+    <div class="mapa">
+        <div class="eslogan">
         </div>
-        <div id="botonPrincipal" style="display: flex;">
+        <div class="botonPrincipal" style="display: flex;">
             <b-button type="is-info is-large" style="opacity:100%">Info</b-button>
         </div>
         <!-- <b-image
@@ -17,27 +17,35 @@
 </template>
 <style>
 /* Estilo de como se ve el mapa */
-#mapa {
-    display: flex;  
-    background-image: url('~@../../../public/img/mapa.png');
-    background-repeat: no-repeat;
-    background-size: 100% 700px;
-    /* Necesita mínimo para que sea visible */
-    min-width: 1200px;
-    min-height: 700px;
-    opacity: 0.5;
-    position: relative;
-    /* Afectan al eslogan */
+.mapa {
+    position: relative; 
+    height: 700px;
+    width: 1200px;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
+    flex-flow: column;
 }
+/* Para evitar que la opacidad afecte al resto de elementos */
+.mapa::before {    
+      content: "";
+      background-image: url('~@../../../public/img/mapa.png');
+      background-size: cover;
+      position: absolute;
+      top: 0px;
+      right: 0px;
+      bottom: 0px;
+      left: 0px;
+      opacity: 0.5;
+}
+/* background-image: url('~@../../../public/img/mapa.png'); */
 /* Estilo de como se ve el eslogan */
-#eslogan {
+.eslogan {
     display: flex;
     background-color: white;
     border: 1px solid #000;
     /* position: absolute; */
+    position: relative;
     min-width: 1250px;
     min-height: 250px;
     margin: 0 0 5% 0;
