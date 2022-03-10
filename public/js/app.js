@@ -5390,6 +5390,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "HorizontalCollapse",
@@ -5443,8 +5467,11 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       isActive: false,
+      // Valores originales:
+      // itemMinWidth: 150,
+      // itemMaxWidth: 500
       itemMinWidth: 150,
-      itemMaxWidth: 500
+      itemMaxWidth: 800
     };
   },
   methods: {
@@ -31005,7 +31032,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: red;\n}\n.horizontal-collapse__item--2 {\n  background-color: green;\n}\n.horizontal-collapse__item--3 {\n  background-color: blue;\n}\n.horizontal-collapse__item--4 {\n  background-color: purple;\n}\n.horizontal-collapse__item--5 {\n  background-color: orange;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-rl;\n      writing-mode: vertical-rl;\n  text-orientation: mixed;\n  transform: rotate(180deg);\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: #fff;\n  border: 10px solid #00309a;\n  color: #000;\n  margin: 0 10px 0 10px;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-rl;\n      writing-mode: vertical-rl;\n  text-orientation: mixed;\n  transform: rotate(180deg);\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n  margin-left: 2.7rem;\n}\n.horizontal-collapse__heading__active {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -49459,7 +49486,17 @@ var render = function () {
                 { staticClass: "horizontal-collapse__inactive-content" },
                 [
                   _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _vm._v("One inactive"),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          color: "#ffcd00",
+                          "font-weight": "bold",
+                        },
+                      },
+                      [_vm._v("R")]
+                    ),
+                    _vm._v("\n          entings\n          "),
                   ]),
                 ]
               ),
@@ -49468,9 +49505,11 @@ var render = function () {
                 "div",
                 { staticClass: "horizontal-collapse__active-content" },
                 [
-                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _vm._v("One active"),
-                  ]),
+                  _c(
+                    "h2",
+                    { staticClass: "horizontal-collapse__heading__active" },
+                    [_vm._v("Rentings")]
+                  ),
                   _vm._v(" "),
                   _c("p", { staticClass: "horizontal-collapse__body" }, [
                     _vm._v(
@@ -49484,14 +49523,24 @@ var render = function () {
           _vm._v(" "),
           _c(
             "HorizontalCollapseItem",
-            { attrs: { className: "horizontal-collapse__item--2" } },
+            { attrs: { className: "horizontal-collapse__item--1" } },
             [
               _c(
                 "div",
                 { staticClass: "horizontal-collapse__inactive-content" },
                 [
                   _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _vm._v("Two inactive"),
+                    _c(
+                      "span",
+                      {
+                        staticStyle: {
+                          color: "#ffcd00",
+                          "font-weight": "bold",
+                        },
+                      },
+                      [_vm._v("R")]
+                    ),
+                    _vm._v("\n          eviews\n          "),
                   ]),
                 ]
               ),
@@ -49501,7 +49550,7 @@ var render = function () {
                 { staticClass: "horizontal-collapse__active-content" },
                 [
                   _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _vm._v("Two active"),
+                    _vm._v("Reviews"),
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "horizontal-collapse__body" }, [
@@ -49516,7 +49565,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "HorizontalCollapseItem",
-            { attrs: { className: "horizontal-collapse__item--3" } },
+            { attrs: { className: "horizontal-collapse__item--1" } },
             [
               _c(
                 "div",
@@ -49548,7 +49597,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "HorizontalCollapseItem",
-            { attrs: { className: "horizontal-collapse__item--4" } },
+            { attrs: { className: "horizontal-collapse__item--1" } },
             [
               _c(
                 "div",
@@ -49580,7 +49629,7 @@ var render = function () {
           _vm._v(" "),
           _c(
             "HorizontalCollapseItem",
-            { attrs: { className: "horizontal-collapse__item--5" } },
+            { attrs: { className: "horizontal-collapse__item--1" } },
             [
               _c(
                 "div",

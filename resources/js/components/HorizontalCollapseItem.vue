@@ -31,8 +31,11 @@ export default {
   data() {
     return {
       isActive: false,
+      // Valores originales:
+      // itemMinWidth: 150,
+      // itemMaxWidth: 500
       itemMinWidth: 150,
-      itemMaxWidth: 500
+      itemMaxWidth: 800
     };
   },
   methods: {
