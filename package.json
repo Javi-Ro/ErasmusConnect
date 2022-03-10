@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "buefy": "^0.9.19",
-        "vue-clickaway": "^2.2.2"
+        "vue-clickaway": "^2.2.2",
+        "bcrypt": "^5.0.1"
     }
 }

@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use App\Models\Country;
 
 class CountriesTableSeeder extends Seeder
 {
@@ -17,34 +18,10 @@ class CountriesTableSeeder extends Seeder
 
         DB::table('countries')->delete();
 
-        DB::table('countries')->insert(
-            [
-                'name' => 'Czech Republic'
-            ]
-        );
-
-        DB::table('cities')->insert(
-            [
-                'name' => 'Italy'
-            ]
-        );
-
-        DB::table('cities')->insert(
-            [
-                'name' => 'Hungary'
-            ]
-        );
-
-        DB::table('cities')->insert(
-            [
-                'name' => 'Germany'
-            ]
-        );
-
-        DB::table('cities')->insert(
-            [
-                'name' => 'Poland'
-            ]
-        );
+        Country::create(['name' => 'Czech Republic']);
+        Country::create(['name' => 'Italy']);
+        Country::create(['name' => 'Hungary']);
+        Country::create(['name' => 'Germany']);
+        Country::create(['name' => 'Poland']);
     }
 }

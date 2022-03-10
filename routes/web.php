@@ -13,10 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Auth::routes();
+
 Route::get('/', function () {
     return view('home');
 });
 
-Auth::routes();
+Route::group(['prefix' => 'api'], function () {
+    Route::get('/users/{user}',  'App\Http\Controllers\UserController@get');
+    Route::post('/users', 'App\Http\Controllers\UserController@create');
+    Route::get('/get_countries', 'App\Http\Controllers\CountryController@getCountries');
+    Route::post('/get_cities', 'App\Http\Controllers\CityController@getCitiesByCountry');
+});
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/example', function() {
+    return view('auth/register');
+});

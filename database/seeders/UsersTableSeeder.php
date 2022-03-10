@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 
 class UsersTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class UsersTableSeeder extends Seeder
     {
         DB::table('users')->delete();
 
-        DB::table('users')->insert(
+        User::create(
             [
                 'id' => 1,
                 'name' => 'User1',
@@ -29,7 +30,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
             
-        DB::table('users')->insert(
+        User::create(
             [
                 'id' => 2,
                 'name' => 'User2',
@@ -42,7 +43,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
             
-        DB::table('users')->insert(
+        User::create(
             [
                 'id' => 3,
                 'name' => 'User3',
@@ -55,7 +56,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
             
-        DB::table('users')->insert(
+        User::create(
             [
                 'id' => 4,
                 'name' => 'User4',
@@ -68,7 +69,7 @@ class UsersTableSeeder extends Seeder
             ]
         );
             
-        DB::table('users')->insert(
+        User::create(
             [
                 'id' => 5,
                 'name' => 'User5',

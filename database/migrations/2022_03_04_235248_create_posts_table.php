@@ -17,7 +17,6 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('text')->nullable();
-            $table->date('date_of_publication');
             $table->string('img_url')->nullable();
             $table->integer('likes')->nullable();
             $table->foreignId('post_id')->nullable()->constrained();
