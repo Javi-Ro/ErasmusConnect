@@ -5282,6 +5282,181 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HorizontalCollapseItem__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HorizontalCollapseItem */ "./resources/js/components/HorizontalCollapseItem.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "HorizontalCollapse",
+  components: {
+    HorizontalCollapseItem: _HorizontalCollapseItem__WEBPACK_IMPORTED_MODULE_0__["default"]
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var vue_clickaway__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-clickaway */ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: "HorizontalCollapseItem",
+  mixins: [vue_clickaway__WEBPACK_IMPORTED_MODULE_0__.mixin],
+  data: function data() {
+    return {
+      isActive: false,
+      itemMinWidth: 150,
+      itemMaxWidth: 500
+    };
+  },
+  methods: {
+    away: function away() {
+      this.isActive = false;
+    }
+  },
+  props: ["className"]
+});
+
+/***/ }),
+
 /***/ "./resources/js/app.js":
 /*!*****************************!*\
   !*** ./resources/js/app.js ***!
@@ -5315,6 +5490,7 @@ Vue.use(buefy__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
 Vue.component('example-component', (__webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]));
 Vue.component('landing', (__webpack_require__(/*! ./components/landingPage.vue */ "./resources/js/components/landingPage.vue")["default"]));
+Vue.component('HorizontalCollapse', (__webpack_require__(/*! ./components/HorizontalCollapse.vue */ "./resources/js/components/HorizontalCollapse.vue")["default"]));
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -30812,6 +30988,30 @@ var Plugin = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: red;\n}\n.horizontal-collapse__item--2 {\n  background-color: green;\n}\n.horizontal-collapse__item--3 {\n  background-color: blue;\n}\n.horizontal-collapse__item--4 {\n  background-color: purple;\n}\n.horizontal-collapse__item--5 {\n  background-color: orange;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-rl;\n      writing-mode: vertical-rl;\n  text-orientation: mixed;\n  transform: rotate(180deg);\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true&":
 /*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true& ***!
@@ -30835,7 +31035,7 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_img_mapa_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  position: relative;\n  height: 700px;\n  width: 1200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa[data-v-094d5d4b]::before {\n  content: \"\";\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  opacity: 0.5;\n}\n\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  min-width: 1250px;\n  min-height: 250px;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  display: inline-block;\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------MAPA----------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  position: relative;\n  height: 700px;\n  width: 1200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa[data-v-094d5d4b]::before {\n  content: \"\";\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  opacity: 0.5;\n}\n\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  min-width: 1250px;\n  min-height: 250px;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  display: inline-block;\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}\n\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------YU-GI-OH------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n#cartas[data-v-094d5d4b] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -48420,6 +48620,36 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&":
+/*!********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& ***!
+  \********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true&":
 /*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true& ***!
@@ -48759,6 +48989,99 @@ module.exports = function (list, options) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-clickaway/dist/vue-clickaway.common.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-clickaway/dist/vue-clickaway.common.js ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
+
+"use strict";
+
+
+var Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+Vue = 'default' in Vue ? Vue['default'] : Vue;
+
+var version = '2.2.2';
+
+var compatible = (/^2\./).test(Vue.version);
+if (!compatible) {
+  Vue.util.warn('VueClickaway ' + version + ' only supports Vue 2.x, and does not support Vue ' + Vue.version);
+}
+
+
+
+// @SECTION: implementation
+
+var HANDLER = '_vue_clickaway_handler';
+
+function bind(el, binding, vnode) {
+  unbind(el);
+
+  var vm = vnode.context;
+
+  var callback = binding.value;
+  if (typeof callback !== 'function') {
+    if (true) {
+      Vue.util.warn(
+        'v-' + binding.name + '="' +
+        binding.expression + '" expects a function value, ' +
+        'got ' + callback
+      );
+    }
+    return;
+  }
+
+  // @NOTE: Vue binds directives in microtasks, while UI events are dispatched
+  //        in macrotasks. This causes the listener to be set up before
+  //        the "origin" click event (the event that lead to the binding of
+  //        the directive) arrives at the document root. To work around that,
+  //        we ignore events until the end of the "initial" macrotask.
+  // @REFERENCE: https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/
+  // @REFERENCE: https://github.com/simplesmiler/vue-clickaway/issues/8
+  var initialMacrotaskEnded = false;
+  setTimeout(function() {
+    initialMacrotaskEnded = true;
+  }, 0);
+
+  el[HANDLER] = function(ev) {
+    // @NOTE: this test used to be just `el.containts`, but working with path is better,
+    //        because it tests whether the element was there at the time of
+    //        the click, not whether it is there now, that the event has arrived
+    //        to the top.
+    // @NOTE: `.path` is non-standard, the standard way is `.composedPath()`
+    var path = ev.path || (ev.composedPath ? ev.composedPath() : undefined);
+    if (initialMacrotaskEnded && (path ? path.indexOf(el) < 0 : !el.contains(ev.target))) {
+      return callback.call(vm, ev);
+    }
+  };
+
+  document.documentElement.addEventListener('click', el[HANDLER], false);
+}
+
+function unbind(el) {
+  document.documentElement.removeEventListener('click', el[HANDLER], false);
+  delete el[HANDLER];
+}
+
+var directive = {
+  bind: bind,
+  update: function(el, binding) {
+    if (binding.value === binding.oldValue) return;
+    bind(el, binding);
+  },
+  unbind: unbind,
+};
+
+var mixin = {
+  directives: { onClickaway: directive },
+};
+
+exports.version = version;
+exports.directive = directive;
+exports.mixin = mixin;
+
+/***/ }),
+
 /***/ "./resources/js/components/ExampleComponent.vue":
 /*!******************************************************!*\
   !*** ./resources/js/components/ExampleComponent.vue ***!
@@ -48794,6 +49117,86 @@ var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__
 /* hot reload */
 if (false) { var api; }
 component.options.__file = "resources/js/components/ExampleComponent.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapse.vue":
+/*!********************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapse.vue ***!
+  \********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HorizontalCollapse.vue?vue&type=template&id=25cf391c& */ "./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c&");
+/* harmony import */ var _HorizontalCollapse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HorizontalCollapse.vue?vue&type=script&lang=js& */ "./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js&");
+/* harmony import */ var _HorizontalCollapse_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& */ "./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+;
+
+
+/* normalize component */
+
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _HorizontalCollapse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__.render,
+  _HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/HorizontalCollapse.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapseItem.vue":
+/*!************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapseItem.vue ***!
+  \************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf& */ "./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf&");
+/* harmony import */ var _HorizontalCollapseItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./HorizontalCollapseItem.vue?vue&type=script&lang=js& */ "./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _HorizontalCollapseItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__.render,
+  _HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/HorizontalCollapseItem.vue"
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
 
 /***/ }),
@@ -48853,6 +49256,51 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapse.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js&":
+/*!*************************************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js& ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapseItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapseItem.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapseItem_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& ***!
+  \******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_dist_cjs_js_node_modules_css_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_2_node_modules_sass_loader_dist_cjs_js_clonedRuleSet_12_0_rules_0_use_3_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_style_index_0_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader/dist/cjs.js!../../../node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!../../../node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapse.vue?vue&type=style&index=0&lang=scss& */ "./node_modules/style-loader/dist/cjs.js!./node_modules/css-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[1]!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[2]!./node_modules/sass-loader/dist/cjs.js??clonedRuleSet-12[0].rules[0].use[3]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=style&index=0&lang=scss&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true&":
 /*!***********************************************************************************************************!*\
   !*** ./resources/js/components/landingPage.vue?vue&type=style&index=0&id=094d5d4b&lang=scss&scoped=true& ***!
@@ -48879,6 +49327,40 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c& ***!
+  \***************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapse_vue_vue_type_template_id_25cf391c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapse.vue?vue&type=template&id=25cf391c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf&":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf& ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_HorizontalCollapseItem_vue_vue_type_template_id_3b4274cf___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf&");
 
 
 /***/ }),
@@ -48944,6 +49426,271 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c&":
+/*!******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapse.vue?vue&type=template&id=25cf391c& ***!
+  \******************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "section",
+    { staticClass: "js-horizontal-collapse  horizontal-collapse" },
+    [
+      _c(
+        "ul",
+        { staticClass: "horizontal-collapse__inner" },
+        [
+          _c(
+            "HorizontalCollapseItem",
+            { attrs: { className: "horizontal-collapse__item--1" } },
+            [
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__inactive-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("One inactive"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__active-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("One active"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "horizontal-collapse__body" }, [
+                    _vm._v(
+                      "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates\n          modi laudantium facere aut, nemo praesentium, labore doloremque,\n          porro ipsam qui nihil animi ea maiores. Ut excepturi quae veritatis.\n          Recusandae, cupiditate? Lorem ipsum dolor sit amet consectetur\n          adipisicing elit. Voluptates modi laudantium facere aut, nemo\n          praesentium, labore doloremque, porro ipsam qui nihil animi ea\n          maiores. Ut excepturi quae veritatis. Recusandae, cupiditate?\n        "
+                    ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "HorizontalCollapseItem",
+            { attrs: { className: "horizontal-collapse__item--2" } },
+            [
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__inactive-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Two inactive"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__active-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Two active"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "horizontal-collapse__body" }, [
+                    _vm._v(
+                      "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates\n          modi laudantium facere aut, nemo praesentium, labore doloremque,\n          porro ipsam qui nihil animi ea maiores. Ut excepturi quae veritatis.\n          Recusandae, cupiditate? Lorem ipsum dolor sit amet consectetur\n          adipisicing elit. Voluptates modi laudantium facere aut, nemo\n          praesentium, labore doloremque, porro ipsam qui nihil animi ea\n          maiores. Ut excepturi quae veritatis. Recusandae, cupiditate?\n        "
+                    ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "HorizontalCollapseItem",
+            { attrs: { className: "horizontal-collapse__item--3" } },
+            [
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__inactive-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Three inactive"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__active-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Three active"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "horizontal-collapse__body" }, [
+                    _vm._v(
+                      "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates\n          modi laudantium facere aut, nemo praesentium, labore doloremque,\n          porro ipsam qui nihil animi ea maiores. Ut excepturi quae veritatis.\n          Recusandae, cupiditate? Lorem ipsum dolor sit amet consectetur\n          adipisicing elit. Voluptates modi laudantium facere aut, nemo\n          praesentium, labore doloremque, porro ipsam qui nihil animi ea\n          maiores. Ut excepturi quae veritatis. Recusandae, cupiditate?\n        "
+                    ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "HorizontalCollapseItem",
+            { attrs: { className: "horizontal-collapse__item--4" } },
+            [
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__inactive-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Four inactive"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__active-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Four active"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "horizontal-collapse__body" }, [
+                    _vm._v(
+                      "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates\n          modi laudantium facere aut, nemo praesentium, labore doloremque,\n          porro ipsam qui nihil animi ea maiores. Ut excepturi quae veritatis.\n          Recusandae, cupiditate? Lorem ipsum dolor sit amet consectetur\n          adipisicing elit. Voluptates modi laudantium facere aut, nemo\n          praesentium, labore doloremque, porro ipsam qui nihil animi ea\n          maiores. Ut excepturi quae veritatis. Recusandae, cupiditate?\n        "
+                    ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+          _vm._v(" "),
+          _c(
+            "HorizontalCollapseItem",
+            { attrs: { className: "horizontal-collapse__item--5" } },
+            [
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__inactive-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Five inactive"),
+                  ]),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "horizontal-collapse__active-content" },
+                [
+                  _c("h2", { staticClass: "horizontal-collapse__heading" }, [
+                    _vm._v("Five active"),
+                  ]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "horizontal-collapse__body" }, [
+                    _vm._v(
+                      "\n          Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates\n          modi laudantium facere aut, nemo praesentium, labore doloremque,\n          porro ipsam qui nihil animi ea maiores. Ut excepturi quae veritatis.\n          Recusandae, cupiditate? Lorem ipsum dolor sit amet consectetur\n          adipisicing elit. Voluptates modi laudantium facere aut, nemo\n          praesentium, labore doloremque, porro ipsam qui nihil animi ea\n          maiores. Ut excepturi quae veritatis. Recusandae, cupiditate?\n        "
+                    ),
+                  ]),
+                ]
+              ),
+            ]
+          ),
+        ],
+        1
+      ),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf&":
+/*!**********************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/HorizontalCollapseItem.vue?vue&type=template&id=3b4274cf& ***!
+  \**********************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function () {
+  var _obj
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "li",
+    {
+      directives: [
+        {
+          name: "on-clickaway",
+          rawName: "v-on-clickaway",
+          value: _vm.away,
+          expression: "away",
+        },
+      ],
+      staticClass: "js-horizontal-collapse-item  horizontal-collapse__item",
+      class:
+        ((_obj = { "is-active": _vm.isActive }),
+        (_obj[_vm.className] = true),
+        _obj),
+      style:
+        "width: " +
+        (_vm.isActive ? _vm.itemMaxWidth : _vm.itemMinWidth) +
+        "px;min-width: " +
+        _vm.itemMinWidth +
+        "px;max-width: " +
+        _vm.itemMaxWidth +
+        "px",
+      attrs: { tabindex: "0", role: "button" },
+      on: {
+        click: function ($event) {
+          _vm.isActive = !_vm.isActive
+        },
+      },
+    },
+    [
+      _c(
+        "div",
+        {
+          staticClass:
+            "js-horizontal-collapse-item-inner  horizontal-collapse__item-inner",
+          style: "width: " + _vm.itemMaxWidth + "px",
+        },
+        [_vm._t("default")],
+        2
+      ),
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=template&id=094d5d4b&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/landingPage.vue?vue&type=template&id=094d5d4b&scoped=true& ***!
@@ -48960,53 +49707,60 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c(
+    "div",
+    {
+      staticStyle: {
+        display: "flex",
+        "justify-content": "center",
+        "align-items": "center",
+        "flex-flow": "column",
+        padding: "2% 0 0 0",
+      },
+      attrs: { id: "landing" },
+    },
+    [
+      _vm._m(0),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticStyle: { padding: "4% 0 0 0" }, attrs: { id: "cartas" } },
+        [_c("HorizontalCollapse")],
+        1
+      ),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      {
-        staticStyle: {
-          display: "flex",
-          "justify-content": "center",
-          padding: "2% 0 0 0",
-        },
-        attrs: { id: "landing" },
-      },
-      [
-        _c("div", { staticClass: "mapa" }, [
-          _c("div", { staticClass: "eslogan" }, [
-            _c("p", [
-              _vm._v("\n                Eslogan espectacular\n            "),
+    return _c("div", { staticClass: "mapa" }, [
+      _c("div", { staticClass: "eslogan" }, [
+        _c("p", [
+          _vm._v("\n                Eslogan espectacular\n            "),
+        ]),
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "botonPrincipal", staticStyle: { display: "flex" } },
+        [
+          _c("button", { staticClass: "btn pulse-button" }, [
+            _c("p", { staticStyle: { padding: "0 10px 0 10px" } }, [
+              _vm._v("\n                    ¿No sabes dónde "),
+              _c(
+                "span",
+                { staticStyle: { color: "#ffcd00", "font-weight": "bold" } },
+                [_vm._v("viajar")]
+              ),
+              _vm._v("? ¡Déjanos ayudarte!\n                "),
             ]),
           ]),
-          _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "botonPrincipal", staticStyle: { display: "flex" } },
-            [
-              _c("button", { staticClass: "btn pulse-button" }, [
-                _c("p", { staticStyle: { padding: "0 10px 0 10px" } }, [
-                  _vm._v("\n                    ¿No sabes dónde "),
-                  _c(
-                    "span",
-                    {
-                      staticStyle: { color: "#ffcd00", "font-weight": "bold" },
-                    },
-                    [_vm._v("viajar")]
-                  ),
-                  _vm._v("? ¡Déjanos ayudarte!\n                "),
-                ]),
-              ]),
-            ]
-          ),
-        ]),
-      ]
-    )
+        ]
+      ),
+    ])
   },
 ]
 render._withStripped = true

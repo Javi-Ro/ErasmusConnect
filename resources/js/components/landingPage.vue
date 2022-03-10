@@ -1,5 +1,10 @@
 <template>
-<div id="landing" style="display: flex; justify-content: center; padding: 2% 0 0 0;">
+<div id="landing" style=
+    "display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-flow: column;
+    padding: 2% 0 0 0;">
     <div class="mapa">
         <div class="eslogan">
             <p>
@@ -20,10 +25,18 @@
             style = "opacity: 0.5; display:flex; justify-content: center; "
         ></b-image> -->
     </div>
+    <div id="cartas" style="padding: 4% 0 0 0;">
+        <HorizontalCollapse />
+    </div>
 </div>
 </template>
+
+
 <style lang="scss" scoped>
 /* background-image: url('~@../../../public/img/mapa.png'); */
+/*--------------------------------------------------------------------------------------------------*/
+/*------------------------------------------MAPA----------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------*/
 /* Estilo de como se ve el mapa */
 .mapa {
     position: relative; 
@@ -87,8 +100,7 @@
     letter-spacing: .15rem;
 }
 // Detiene la animación cuando esta el cursor encima
-.pulse-button:hover 
-{
+.pulse-button:hover {
     -webkit-animation: none;-moz-animation: none;-ms-animation: none;animation: none;
 }
 
@@ -137,4 +149,13 @@ $color: #00309a;
 	}
 }
 
+/*--------------------------------------------------------------------------------------------------*/
+/*------------------------------------------YU-GI-OH------------------------------------------------*/
+/*--------------------------------------------------------------------------------------------------*/
+
+#cartas {
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
 </style>
