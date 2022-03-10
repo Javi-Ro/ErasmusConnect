@@ -86,10 +86,6 @@
     export default {
         data() {
             return {
-                post: {
-                    title: 'Prueba Mario',
-                    user_id: 1
-                },
                 form: {
                     name: '',
                     nickname: '',
@@ -163,9 +159,6 @@
 
         created() {
             this.getCountries()
-            axios.post(`/api/posts`, this.post).then(response => {
-            }).catch(error => {
-            });
         }
     }
 </script>
