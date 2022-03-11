@@ -4,5 +4,12 @@
 // Variables
 @import 'variables';
 
+// Third party
+@import 'buefy/dist/buefy.css';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+
+// Layout
+@import 'Layout/navbar';

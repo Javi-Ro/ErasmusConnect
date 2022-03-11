@@ -24,6 +24,7 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
-        "bcrypt": "^5.0.1"
+        "bcrypt": "^5.0.1",
+        "buefy": "^0.9.19"
     }
 }
