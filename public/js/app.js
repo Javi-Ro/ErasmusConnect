@@ -5349,6 +5349,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
+      post: {
+        title: 'Prueba Mario',
+        user_id: 1
+      },
       form: {
         name: '',
         nickname: '',
@@ -5420,6 +5424,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   created: function created() {
     this.getCountries();
+    axios.post("/api/posts", this.post).then(function (response) {})["catch"](function (error) {});
   }
 });
 
