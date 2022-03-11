@@ -63,7 +63,7 @@
 .container-1 {
     display:flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     flex-flow: column;
     z-index: 2;
     width: 100%;
@@ -166,6 +166,10 @@ $color: #00309a;
     .eslogan {
         font-size: 2rem;
     }
+    .container-1 {
+        margin-top: 15%;
+        justify-content: flex-start;
+    }
 }
 @media screen and (max-width: 496px) {
     .eslogan {
@@ -173,6 +177,14 @@ $color: #00309a;
     }
     .pulse-button {
         font-size: 0.75rem;
+    }
+}
+@media screen and (max-width: 425px) {
+    .eslogan {
+        font-size: 1rem;
+    }
+    .pulse-button {
+        font-size: 0.5rem;
     }
 }
 .botonPrincipal {
