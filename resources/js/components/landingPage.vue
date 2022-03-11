@@ -1,33 +1,44 @@
 <template>
-<div id="landing" style=
-    "display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    flex-flow: column;
-    padding: 2% 0 0 0;">
+<div class="landing">
     <div class="mapa">
-        <div class="eslogan">
-            <p>
-                Eslogan espectacular
-            </p>
-        </div>
-        <div class="botonPrincipal" style="display: flex;">
-            <button class="btn pulse-button">
-                <p style="padding: 0 10px 0 10px">
-                    ¿No sabes dónde <span style="color: #ffcd00; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
+        <div class="container-1">
+            <div class="eslogan">
+                <p>
+                    Eslogan espectacular
                 </p>
-            </button>
+            </div>
+            <div class="botonPrincipal">
+                <button class="btn pulse-button">
+                    <p style="padding: 0 10px 0 10px">
+                        ¿No sabes dónde <span style="color: #ffcd00; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
+                    </p>
+                </button>
+            </div>
+            <b-image
+                id="europe"
+                :src="require('@../../../public/images/mapa2.png').default"
+                alt="Mapa unión europea"
+                >
+                <!-- <div class="eslogan" style="display:flex; ">
+                <p>
+                    Eslogan espectacular
+                </p>
+                </div>
+                <div class="botonPrincipal" style="display: flex;">
+                    <button class="btn pulse-button">
+                        <p style="padding: 0 10px 0 10px">
+                            ¿No sabes dónde <span style="color: #ffcd00; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
+                        </p>
+                    </button>
+                </div> -->
+            </b-image>
         </div>
-        <!-- <b-image
-            id="europe"
-            :src="require('@../../../public/img/mapa.png').default"
-            alt="Mapa unión europea"
-            style = "opacity: 0.5; display:flex; justify-content: center; "
-        ></b-image> -->
     </div>
-    <div id="cartas" style="padding: 4% 0 0 0;">
+    <div class="cartas">
+    </div>
+    <!-- <div id="cartas" style="padding: 4% 0 0 0;">
         <HorizontalCollapse />
-    </div>
+    </div> -->
 </div>
 </template>
 
@@ -37,28 +48,71 @@
 /*--------------------------------------------------------------------------------------------------*/
 /*------------------------------------------MAPA----------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
-/* Estilo de como se ve el mapa */
-.mapa {
-    position: relative; 
-    height: 700px;
-    width: 1200px;
+
+.botonPrincipal {
     display: flex;
+    z-index: 2;
+}
+
+#europe {
+    // opacity: 0.5; 
+    display:flex; 
+    justify-content: center; 
+    position:absolute;
+    z-index: 1;
+    
+}
+.landing {
+    height: 100%;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    flex-flow: column;
+    padding: 2% 0 0 0;
+}
+
+img {
+    width: auto;
+    height: 100%;
+}
+
+.container-1 {
+    display:flex;
     align-items: center;
     justify-content: center;
     flex-flow: column;
+    z-index: 2;
+}
+
+/* Estilo de como se ve el mapa */
+.mapa {
+    // height: 700px;
+    // width: 1200px;
+    // min-height: 700px;
+    // min-width: 1200px;
+    // background-image: url('/images/mapa2.png');
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    height: 100%;
+
 }
 /* Para evitar que la opacidad afecte al resto de elementos */
-.mapa::before {    
-      content: "";
-      background-image: url('/images/mapa.png');
-      background-size: cover;
-      position: absolute;
-      top: 0px;
-      right: 0px;
-      bottom: 0px;
-      left: 0px;
-      opacity: 0.5;
-}
+// .landing::before {
+//     content: "";
+//     background-image: url('/images/mapa.png');
+//     // background-size: 100% auto;
+//     // background-size: cover;
+//     position: absolute;
+//     top: 0px;
+//     right: 0px;
+//     bottom: 0px;
+//     left: 0px;
+//     opacity: 0.5;
+// }
 /* Estilo de como se ve el eslogan */
 .eslogan {
     display: flex;
@@ -66,8 +120,8 @@
     border: 1px solid #000;
     /* position: absolute; */
     position: relative;
-    min-width: 1250px;
-    min-height: 250px;
+    // min-width: 1250px;
+    // min-height: 250px;
     margin: 0 0 5% 0;
     justify-content: center;
     align-items: center;
@@ -77,6 +131,7 @@
     font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
     text-transform: uppercase;
     letter-spacing: .15rem;
+    z-index: 2;
 }
 // Se encarga de hacer la animación de pulsaciones
 .pulse-button {
@@ -112,7 +167,7 @@
 // Se encarga de hacer la transición del hover
 $color: #00309a;
 .btn {
-	display: inline-block;
+	// display: inline-block;
 	padding: .75rem 1.25rem;
 	border-radius: 10rem;
 	transition: all .3s;

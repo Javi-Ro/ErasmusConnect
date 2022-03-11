@@ -31173,7 +31173,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: #fff;\n  border: 5px solid #00309a;\n  color: #000;\n  margin: 0 10px 0 10px;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-lr;\n      writing-mode: vertical-lr;\n  text-orientation: upright;\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n  margin-left: 2.7rem;\n}\n.horizontal-collapse__heading__active {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-wrap: wrap;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: #fff;\n  border: 5px solid #00309a;\n  color: #000;\n  margin: 0 10px 0 10px;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-lr;\n      writing-mode: vertical-lr;\n  text-orientation: upright;\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n  margin-left: 2.7rem;\n}\n.horizontal-collapse__heading__active {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31197,7 +31197,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------MAPA----------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  position: relative;\n  height: 700px;\n  width: 1200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa[data-v-094d5d4b]::before {\n  content: \"\";\n  background-image: url(\"/images/mapa.png\");\n  background-size: cover;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  opacity: 0.5;\n}\n\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  min-width: 1250px;\n  min-height: 250px;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  display: inline-block;\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}\n\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------YU-GI-OH------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n#cartas[data-v-094d5d4b] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------MAPA----------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n.botonPrincipal[data-v-094d5d4b] {\n  display: flex;\n  z-index: 2;\n}\n#europe[data-v-094d5d4b] {\n  display: flex;\n  justify-content: center;\n  position: absolute;\n  z-index: 1;\n}\n.landing[data-v-094d5d4b] {\n  height: 100%;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  flex-flow: column;\n  padding: 2% 0 0 0;\n}\nimg[data-v-094d5d4b] {\n  width: auto;\n  height: 100%;\n}\n.container-1[data-v-094d5d4b] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n  z-index: 2;\n}\n\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 80%;\n  height: 100%;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n  z-index: 2;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}\n\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------YU-GI-OH------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n#cartas[data-v-094d5d4b] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31301,6 +31301,21 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
+
+/***/ }),
+
+/***/ "./public/images/mapa2.png":
+/*!*********************************!*\
+  !*** ./public/images/mapa2.png ***!
+  \*********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/mapa2.png?bad38b5f9aec02a11c84cb23f3b00fa7");
 
 /***/ }),
 
@@ -50166,59 +50181,58 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    {
-      staticStyle: {
-        display: "flex",
-        "justify-content": "center",
-        "align-items": "center",
-        "flex-flow": "column",
-        padding: "2% 0 0 0",
-      },
-      attrs: { id: "landing" },
-    },
-    [
-      _vm._m(0),
-      _vm._v(" "),
+  return _c("div", { staticClass: "landing" }, [
+    _c("div", { staticClass: "mapa" }, [
       _c(
         "div",
-        { staticStyle: { padding: "4% 0 0 0" }, attrs: { id: "cartas" } },
-        [_c("HorizontalCollapse")],
+        { staticClass: "container-1" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._m(1),
+          _vm._v(" "),
+          _c("b-image", {
+            attrs: {
+              id: "europe",
+              src: (__webpack_require__(/*! @../../../public/images/mapa2.png */ "./public/images/mapa2.png")["default"]),
+              alt: "Mapa unión europea",
+            },
+          }),
+        ],
         1
       ),
-    ]
-  )
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "cartas" }),
+  ])
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mapa" }, [
-      _c("div", { staticClass: "eslogan" }, [
-        _c("p", [
-          _vm._v("\n                Eslogan espectacular\n            "),
+    return _c("div", { staticClass: "eslogan" }, [
+      _c("p", [
+        _vm._v("\n                    Eslogan espectacular\n                "),
+      ]),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "botonPrincipal" }, [
+      _c("button", { staticClass: "btn pulse-button" }, [
+        _c("p", { staticStyle: { padding: "0 10px 0 10px" } }, [
+          _vm._v("\n                        ¿No sabes dónde "),
+          _c(
+            "span",
+            { staticStyle: { color: "#ffcd00", "font-weight": "bold" } },
+            [_vm._v("viajar")]
+          ),
+          _vm._v("? ¡Déjanos ayudarte!\n                    "),
         ]),
       ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "botonPrincipal", staticStyle: { display: "flex" } },
-        [
-          _c("button", { staticClass: "btn pulse-button" }, [
-            _c("p", { staticStyle: { padding: "0 10px 0 10px" } }, [
-              _vm._v("\n                    ¿No sabes dónde "),
-              _c(
-                "span",
-                { staticStyle: { color: "#ffcd00", "font-weight": "bold" } },
-                [_vm._v("viajar")]
-              ),
-              _vm._v("? ¡Déjanos ayudarte!\n                "),
-            ]),
-          ]),
-        ]
-      ),
     ])
   },
 ]

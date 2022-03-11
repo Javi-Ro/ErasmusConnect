@@ -135,6 +135,7 @@ $transitionDurationMs: 0.5s;
   width: 100%;
   margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   margin-bottom: 5rem;

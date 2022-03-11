@@ -79,3 +79,20 @@
     </div>
 </body>
 </html>
+<style lang="scss" scoped>
+    html {
+        width: 100%;
+        height: 100%;
+    }
+    body {
+        display: flex;
+        width: 100%;
+        height: 100%;
+    }
+    #app {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        height: 100%;
+    }
+</style>
