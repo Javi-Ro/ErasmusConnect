@@ -5555,8 +5555,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "HorizontalCollapse",
@@ -31175,7 +31173,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: #fff;\n  border: 10px solid #00309a;\n  color: #000;\n  margin: 0 10px 0 10px;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-rl;\n      writing-mode: vertical-rl;\n  text-orientation: mixed;\n  transform: rotate(180deg);\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n  margin-left: 2.7rem;\n}\n.horizontal-collapse__heading__active {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".horizontal-collapse {\n  width: 100%;\n  margin: 0 auto;\n  display: flex;\n  flex-direction: row;\n  justify-content: center;\n  margin-bottom: 5rem;\n  color: #fff;\n}\n.horizontal-collapse *,\n.horizontal-collapse *:before,\n.horizontal-collapse *:after {\n  box-sizing: border-box;\n}\n.horizontal-collapse__inner {\n  padding: 0;\n  margin: 0;\n  display: flex;\n  flex-direction: row;\n}\n.horizontal-collapse__item {\n  min-height: 42rem;\n  list-style: none;\n  padding: 0;\n  overflow: hidden;\n  min-width: 10rem;\n  max-width: 40rem;\n  position: relative;\n  transition: width 0.5s;\n}\n.horizontal-collapse__item--1 {\n  background-color: #fff;\n  border: 5px solid #00309a;\n  color: #000;\n  margin: 0 10px 0 10px;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__inactive-content {\n  opacity: 0;\n}\n.horizontal-collapse__item.is-active .horizontal-collapse__active-content {\n  opacity: 1;\n}\n.horizontal-collapse__item-inner {\n  padding: 3rem;\n}\n.horizontal-collapse__inactive-content {\n  opacity: 1;\n  transition: opacity 0.5s;\n  position: absolute;\n  bottom: 2rem;\n  left: 1rem;\n}\n.horizontal-collapse__inactive-content .horizontal-collapse__heading {\n  -webkit-user-select: none;\n     -moz-user-select: none;\n      -ms-user-select: none;\n          user-select: none;\n  cursor: default;\n  font-size: 3rem;\n  line-height: 0;\n  margin-bottom: 0;\n  -ms-writing-mode: tb-lr;\n      writing-mode: vertical-lr;\n  text-orientation: upright;\n}\n.horizontal-collapse__active-content {\n  opacity: 0;\n  transition: opacity 0.5s;\n  cursor: default;\n}\n.horizontal-collapse__heading {\n  margin-top: 0;\n  margin-bottom: 2rem;\n  margin-left: 2.7rem;\n}\n.horizontal-collapse__heading__active {\n  margin-top: 0;\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__body {\n  margin-bottom: 2rem;\n}\n.horizontal-collapse__link {\n  display: inline-block;\n  background-color: #fff;\n  color: #333;\n  text-decoration: none;\n  line-height: 1;\n  padding: 1rem 2rem;\n  border-radius: 2rem;\n  font-size: 1.7rem;\n  font-weight: bold;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31195,17 +31193,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
 /* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/getUrl.js */ "./node_modules/css-loader/dist/runtime/getUrl.js");
-/* harmony import */ var _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _public_img_mapa_png__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../public/img/mapa.png */ "./public/img/mapa.png");
 // Imports
 
-
-
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
-var ___CSS_LOADER_URL_REPLACEMENT_0___ = _node_modules_css_loader_dist_runtime_getUrl_js__WEBPACK_IMPORTED_MODULE_1___default()(_public_img_mapa_png__WEBPACK_IMPORTED_MODULE_2__["default"]);
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------MAPA----------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  position: relative;\n  height: 700px;\n  width: 1200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa[data-v-094d5d4b]::before {\n  content: \"\";\n  background-image: url(" + ___CSS_LOADER_URL_REPLACEMENT_0___ + ");\n  background-size: cover;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  opacity: 0.5;\n}\n\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  min-width: 1250px;\n  min-height: 250px;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  display: inline-block;\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}\n\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------YU-GI-OH------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n#cartas[data-v-094d5d4b] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* background-image: url('~@../../../public/img/mapa.png'); */\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------MAPA----------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n/* Estilo de como se ve el mapa */\n.mapa[data-v-094d5d4b] {\n  position: relative;\n  height: 700px;\n  width: 1200px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  flex-flow: column;\n}\n\n/* Para evitar que la opacidad afecte al resto de elementos */\n.mapa[data-v-094d5d4b]::before {\n  content: \"\";\n  background-image: url(\"/images/mapa.png\");\n  background-size: cover;\n  position: absolute;\n  top: 0px;\n  right: 0px;\n  bottom: 0px;\n  left: 0px;\n  opacity: 0.5;\n}\n\n/* Estilo de como se ve el eslogan */\n.eslogan[data-v-094d5d4b] {\n  display: flex;\n  background-color: white;\n  border: 1px solid #000;\n  /* position: absolute; */\n  position: relative;\n  min-width: 1250px;\n  min-height: 250px;\n  margin: 0 0 5% 0;\n  justify-content: center;\n  align-items: center;\n  /* Modifica el texto de dentro */\n  color: #000;\n  font-size: 3rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b] {\n  width: auto;\n  height: 65px;\n  border: none;\n  box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);\n  background-color: #00309a;\n  background-size: cover;\n  background-repeat: no-repeat;\n  cursor: pointer;\n  -webkit-animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  animation: pulse-data-v-094d5d4b 3s infinite cubic-bezier(0.66, 0, 0, 1);\n  /* Modifica el texto de dentro */\n  color: #fff;\n  font-size: 1rem;\n  font-family: Arial, Helvetica, sans-serif;\n  /* TODO: Cambiar? */\n  text-transform: uppercase;\n  letter-spacing: 0.15rem;\n}\n.pulse-button[data-v-094d5d4b]:hover {\n  -webkit-animation: none;\n  animation: none;\n}\n@-webkit-keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n@keyframes pulse-data-v-094d5d4b {\nto {\n    box-shadow: 0 0 0 15px rgba(232, 76, 61, 0);\n}\n}\n.btn[data-v-094d5d4b] {\n  display: inline-block;\n  padding: 0.75rem 1.25rem;\n  border-radius: 10rem;\n  transition: all 0.3s;\n  position: relative;\n  overflow: hidden;\n  z-index: 1;\n}\n.btn[data-v-094d5d4b]:after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #00309a;\n  border-radius: 10rem;\n  z-index: -2;\n}\n.btn[data-v-094d5d4b]:before {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0%;\n  height: 100%;\n  background-color: #00184e;\n  transition: all 0.3s;\n  border-radius: 10rem;\n  z-index: -1;\n}\n.btn[data-v-094d5d4b]:hover:before {\n  width: 100%;\n}\n\n/*--------------------------------------------------------------------------------------------------*/\n/*------------------------------------------YU-GI-OH------------------------------------------------*/\n/*--------------------------------------------------------------------------------------------------*/\n#cartas[data-v-094d5d4b] {\n  display: flex;\n  width: 100%;\n  height: 100%;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -31309,65 +31301,6 @@ module.exports = function (cssWithMappingToString) {
 
   return list;
 };
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/dist/runtime/getUrl.js":
-/*!********************************************************!*\
-  !*** ./node_modules/css-loader/dist/runtime/getUrl.js ***!
-  \********************************************************/
-/***/ ((module) => {
-
-"use strict";
-
-
-module.exports = function (url, options) {
-  if (!options) {
-    // eslint-disable-next-line no-param-reassign
-    options = {};
-  } // eslint-disable-next-line no-underscore-dangle, no-param-reassign
-
-
-  url = url && url.__esModule ? url.default : url;
-
-  if (typeof url !== "string") {
-    return url;
-  } // If url is already wrapped in quotes, remove them
-
-
-  if (/^['"].*['"]$/.test(url)) {
-    // eslint-disable-next-line no-param-reassign
-    url = url.slice(1, -1);
-  }
-
-  if (options.hash) {
-    // eslint-disable-next-line no-param-reassign
-    url += options.hash;
-  } // Should url be wrapped?
-  // See https://drafts.csswg.org/css-values-3/#urls
-
-
-  if (/["'() \t\n]/.test(url) || options.needQuotes) {
-    return "\"".concat(url.replace(/"/g, '\\"').replace(/\n/g, "\\n"), "\"");
-  }
-
-  return url;
-};
-
-/***/ }),
-
-/***/ "./public/img/mapa.png":
-/*!*****************************!*\
-  !*** ./public/img/mapa.png ***!
-  \*****************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ("/images/mapa.png?51eaea42c35f59265aae73f07768b1c5");
 
 /***/ }),
 
@@ -49983,17 +49916,7 @@ var render = function () {
                 { staticClass: "horizontal-collapse__inactive-content" },
                 [
                   _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _c(
-                      "span",
-                      {
-                        staticStyle: {
-                          color: "#ffcd00",
-                          "font-weight": "bold",
-                        },
-                      },
-                      [_vm._v("R")]
-                    ),
-                    _vm._v("\n          entings\n          "),
+                    _vm._v("\n          Rentings\n        "),
                   ]),
                 ]
               ),
@@ -50027,17 +49950,7 @@ var render = function () {
                 { staticClass: "horizontal-collapse__inactive-content" },
                 [
                   _c("h2", { staticClass: "horizontal-collapse__heading" }, [
-                    _c(
-                      "span",
-                      {
-                        staticStyle: {
-                          color: "#ffcd00",
-                          "font-weight": "bold",
-                        },
-                      },
-                      [_vm._v("R")]
-                    ),
-                    _vm._v("\n          eviews\n          "),
+                    _vm._v("\n          Reviews\n        "),
                   ]),
                 ]
               ),

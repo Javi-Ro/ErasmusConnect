@@ -50,7 +50,7 @@
 /* Para evitar que la opacidad afecte al resto de elementos */
 .mapa::before {    
       content: "";
-      background-image: url('~@../../../public/img/mapa.png');
+      background-image: url('/images/mapa.png');
       background-size: cover;
       position: absolute;
       top: 0px;

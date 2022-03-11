@@ -6,11 +6,10 @@
       <!--Primera carta-->
       <HorizontalCollapseItem className="horizontal-collapse__item--1">
         <!--Primer div cuando está inactivo, se muestra la cabecera-->
-        <div class="horizontal-collapse__inactive-content">
+        <div class="horizontal-collapse__inactive-content" >
           <h2 class="horizontal-collapse__heading">
-            <span style="color: #ffcd00; font-weight: bold;">R</span>
-            entings
-            </h2>
+            Rentings
+          </h2>
         </div>
         <!--Segundo div contenido desplegado-->
         <div class="horizontal-collapse__active-content">
@@ -32,9 +31,8 @@
         <!--Primer div cuando está inactivo, se muestra la cabecera-->
         <div class="horizontal-collapse__inactive-content">
           <h2 class="horizontal-collapse__heading">
-            <span style="color: #ffcd00; font-weight: bold;">R</span>
-            eviews
-            </h2>
+            Reviews
+          </h2>
         </div>
         <!--Segundo div contenido desplegado-->
         <div class="horizontal-collapse__active-content">
@@ -170,14 +168,18 @@ $transitionDurationMs: 0.5s;
     // Donde se personaliza la primera tarjeta
     &--1 {
       background-color: #fff;
-      border: 10px solid #00309a;
+      border: 5px solid #00309a;
       color: #000;
       margin: 0 10px 0 10px;
     }
 
     // Todas van a tener el mismo formato así que van a ser de tipo '--1' (Se dejan por si acaso)
+    // Fondo azul y borde de color negro
     // &--2 {
-    //   background-color: green;
+    //   background-color: #00309a;
+    //   border: 5px solid #000;
+    //   color: #fff;
+    //   margin: 0 10px 0 10px;
     // }
 
     // &--3 {
@@ -223,9 +225,10 @@ $transitionDurationMs: 0.5s;
       font-size: 3rem;
       line-height: 0;
       margin-bottom: 0;
-      writing-mode: vertical-rl;
-      text-orientation: mixed;
-      transform: rotate(180deg);
+      writing-mode: vertical-lr;
+      text-orientation: upright;
+      // transform: rotate(180deg);
+      // align-self: flex-start;
     }
   }
   // .horizontal-collapse__active-content
