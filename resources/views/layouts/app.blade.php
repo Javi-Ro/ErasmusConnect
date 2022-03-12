@@ -21,7 +21,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm fixed-navbar">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -82,17 +82,23 @@
 <style lang="scss" scoped>
     html {
         width: 100%;
-        height: 100%;
+        height: auto;
     }
     body {
         display: flex;
         width: 100%;
-        height: 100%;
+        height: auto;
     }
     #app {
         display: flex;
         width: 100%;
         flex-direction: column;
         height: 100%;
+    }
+    .fixed-navbar {
+        position: fixed;
+        z-index: 99;
+        display: block;
+        width: 100%;
     }
 </style>

@@ -25,6 +25,7 @@ Vue.use(Buefy);
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('landing', require('./components/landingPage.vue').default);
 Vue.component('HorizontalCollapse', require('./components/HorizontalCollapse.vue').default);
+Vue.component('InfoCards', require('./components/InfoCards.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

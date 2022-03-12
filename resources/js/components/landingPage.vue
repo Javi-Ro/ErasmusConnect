@@ -15,20 +15,19 @@
                     </p>
                 </button>
             </div>
-            <div class="imagenMapa">
+            <!-- <div class="imagenMapa">
                 <b-image
                     id="europe"
                     :src="require('@../../../public/images/mapa2.png').default"
                     alt="Mapa unión europea"
-                    style="opacity: 0.5"
+                    style="opacity: 0.5; background-size: cover;"
                 >
                 </b-image>
-            </div>
+            </div> -->
         </div>
     </div>
     <!-- Fin de la primera parte -->
-    <div class="cartas">
-    </div>
+    <InfoCards/>
     <!-- <div id="cartas" style="padding: 4% 0 0 0;">
         <HorizontalCollapse />
     </div> -->
@@ -45,7 +44,12 @@
     justify-content: center; 
     align-items: center; 
     flex-flow: column;
-    padding: 2% 0 0 0;
+    flex: 1;
+    min-height: 0px; 
+    // 68px es la anchura del navbar
+    padding: 68px 0 0 0;
+    margin-top: 2%;
+
 }
 /*--------------------------------------------------------------------------------------------------*/
 /*------------------------------------------MAPA----------------------------------------------------*/
@@ -67,7 +71,10 @@
     flex-flow: column;
     z-index: 2;
     width: 100%;
-    height: 100%;
+    background-image: url('/images/mapa1620.png'); 
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 80vh
 }
 
 /* Estilo de como se ve el eslogan */
@@ -94,7 +101,7 @@
 // Se encarga de hacer la animación de pulsaciones
 .pulse-button {
     width: auto;
-    height: 65px;
+    // height: 65px;
     border: none;
     box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);
     background-color: #00309a;
@@ -167,16 +174,28 @@ $color: #00309a;
         font-size: 2rem;
     }
     .container-1 {
-        margin-top: 15%;
+        margin-top: 10%;
+        padding-top: 10%;
         justify-content: flex-start;
-    }
-}
-@media screen and (max-width: 496px) {
-    .eslogan {
-        font-size: 1.5rem;
+        background-image: url('/images/mapa992.png'); 
+        height: 50vh
     }
     .pulse-button {
         font-size: 0.75rem;
+    }
+}
+@media screen and (max-width: 425px) {
+    .eslogan {
+        font-size: 0.5rem;
+    }
+    .container-1 {
+        background-image: url('/images/mapa425.png'); 
+        height: 40vh;
+        margin-top: 15%;
+        padding-top: 20%;
+    }
+    .pulse-button {
+        font-size: 0.45rem;
     }
 }
 @media screen and (max-width: 425px) {
@@ -214,9 +233,4 @@ $color: #00309a;
 /*------------------------------------------YU-GI-OH------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
 
-#cartas {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
 </style>
