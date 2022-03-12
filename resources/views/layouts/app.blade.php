@@ -95,12 +95,6 @@
         flex-direction: column;
         height: 100%;
     }
-    .fixed-navbar {
-        position: fixed;
-        z-index: 99;
-        display: block;
-        width: 100%;
-    }
     p {
         text-align: justify;
     }
