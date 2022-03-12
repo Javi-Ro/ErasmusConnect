@@ -22,7 +22,6 @@ Vue.use(Buefy);
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('landing', require('./components/landingPage.vue').default);
 Vue.component('InfoCards', require('./components/InfoCards.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
