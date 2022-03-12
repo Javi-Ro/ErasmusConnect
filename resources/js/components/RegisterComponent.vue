@@ -3,7 +3,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">EJEMPLO -> formulario de registro con Vue y acceso a BBDD</div>
+                    <div class="card-header">Formulario de registro</div>
 
                     <div class="card-body">
                         <form action="" v-on:submit.prevent="newUser()">
@@ -123,7 +123,7 @@
             },
 
             getCountries() {
-                axios.get(`/api/get_countries`)
+                axios.get(`/api/countries`)
                     .then(response => {
                         this.countries = response.data
                     }).catch(error => {

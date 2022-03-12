@@ -20,12 +20,27 @@ Route::get('/', function () {
 });
 
 Route::group(['prefix' => 'api'], function () {
+
+    //USERS
     Route::get('/users/{user}',  'App\Http\Controllers\UserController@get');
+    Route::get('/users', 'App\Http\Controllers\UserController@getUsers');
     Route::post('/users', 'App\Http\Controllers\UserController@create');
-    Route::get('/get_countries', 'App\Http\Controllers\CountryController@getCountries');
-    Route::post('/get_cities', 'App\Http\Controllers\CityController@getCitiesByCountry');
+    Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
+
+
+    //Countries/cities
+    Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
+    Route::post('/get_cities', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
+    Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
+
+
+    //POSTS
+    Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
+    Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
+    Route::post('/posts', 'App\Http\Controllers\PostController@create');
+    Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
 });
 
-Route::get('/example', function() {
+Route::get('/register', function () {
     return view('auth/register');
 });

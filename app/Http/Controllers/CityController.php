@@ -8,9 +8,15 @@ use App\Models\Country;
 
 class CityController extends Controller
 {
-    public function getCitiesByCountry(Request $data) {
+    public function getCitiesByCountry(Request $data)
+    {
         $cities = City::whereCountryId($data->country_id)->get();
+        return response()->json(['cities' => $cities]);
+    }
 
+    public function getCities()
+    {
+        $cities = City::all();
         return response()->json(['cities' => $cities]);
     }
 }
