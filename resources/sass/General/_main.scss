@@ -1,0 +1,9 @@
+.main-container{
+    padding: 0 15px;
+
+    @media (min-width: 769px){
+        padding: 0 75px;
+        position: relative;
+    }
+}
+

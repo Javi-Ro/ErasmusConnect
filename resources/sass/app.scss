@@ -2,9 +2,15 @@
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 
 // Variables
-@import 'variables';
+@import 'General/variables';
+
+// General
+@import 'General/helpers';
+@import 'General/overrides';
+@import 'General/main';
 
 // Third party
+@import '~bulma';
 @import 'buefy/dist/buefy.css';
 
 // Bootstrap
@@ -12,4 +18,4 @@
 
 
 // Layout
-@import 'Layout/navbar';
+@import 'Layout/footer';

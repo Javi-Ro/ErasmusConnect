@@ -28,6 +28,7 @@ Vue.use(Buefy)
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
+Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

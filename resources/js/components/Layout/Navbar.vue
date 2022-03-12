@@ -9,20 +9,14 @@
             </b-navbar-item>
         </template>
         <template #start>
-            <b-navbar-item href="#">
-                Home
-            </b-navbar-item>
-            <b-navbar-item href="#">
-                Documentation
-            </b-navbar-item>
-            <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
-                    About
-                </b-navbar-item>
-                <b-navbar-item href="#">
-                    Contact
+            <b-navbar-dropdown :label="getSelected(selected)">
+                <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
+                    {{city}}
                 </b-navbar-item>
             </b-navbar-dropdown>
+            <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
+                {{option.name}}
+            </b-navbar-item>
         </template>
 
         <template #end>
@@ -44,7 +38,21 @@
   export default {
     props: {},
     data() {
-      return {}
+      return {
+          availableCities: [
+              "Madrid",
+              "Budapest",
+              "Praga",
+              "Gdansk"
+          ],
+          selected: 0,
+          menu: [
+              { name: "Foro", link: "#"},
+              { name: "Renting", link: "#"},
+              { name: "Chats", link: "#"},
+              { name: "Eventos", link: "#"},
+          ]
+      }
     },
     watch: {
       data: {
@@ -56,7 +64,15 @@
       },
     },
     computed: {},
-    methods: {},
+    methods: {
+        getSelected() {
+            return this.availableCities[this.selected];
+        },
+        setSelected(option) {
+            this.selected = option;
+            //window.location.reload(); //TODO: Esto hara recargar página entera de filtros
+        }
+    },
     mounted() {}
   }
 </script>

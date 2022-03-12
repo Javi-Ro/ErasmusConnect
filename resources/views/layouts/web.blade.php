@@ -14,6 +14,9 @@
 <body>
     <div id="app">
         @include('partials.navbar')
-        @yield('content')
+        <main class="main-container">
+            @yield('content')
+        </main>
+        @include('partials.footer')
     </div>
 </body>

@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "bcrypt": "^5.0.1",
-        "buefy": "^0.9.19"
+        "buefy": "^0.9.19",
+        "bulma": "^0.9.3"
     }
 }
