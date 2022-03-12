@@ -28,9 +28,60 @@
     </div>
     <!-- Fin de la primera parte -->
     <InfoCards/>
-    <!-- <div id="cartas" style="padding: 4% 0 0 0;">
-        <HorizontalCollapse />
-    </div> -->
+    <!-- Tarjeta que explica los Reviews/Valoraciones -->
+    <div class="tarjeta" id="tarjeta-1">
+        <div class="contenido-tarjeta">
+            <b-image
+                id="img-tarjeta"
+                :src="require('@../../../public/images/placeholder.png').default"
+                alt="placeholder"
+            ></b-image>
+            <div class="texto" id="texto-1">
+                <div class="titulo-cartas">
+                    <p>Valoraciones</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tarjeta que explica los Rentings -->
+    <div class="tarjeta" id="tarjeta-2">
+        <div class="contenido-tarjeta">
+            <div class="texto" id="texto-2">
+                <div class="titulo-cartas">
+                    <p>Alquileres</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                </p>
+            </div>
+            <b-image
+                id="img-tarjeta"
+                :src="require('@../../../public/images/placeholder.png').default"
+                alt="placeholder"
+            ></b-image>
+        </div>
+    </div>
+
+    <!-- Tarjeta que explica los Beerbuddies -->
+    <div class="tarjeta" id="tarjeta-3">
+        <div class="contenido-tarjeta">
+            <b-image
+                id="img-tarjeta"
+                :src="require('@../../../public/images/placeholder.png').default"
+                alt="placeholder"
+            ></b-image>
+            <div class="texto" id="texto-3">
+                <div class="titulo-cartas">
+                    <p>Quedadas</p>
+                </div>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                </p>
+            </div>
+        </div>
+    </div>
+
 </div>
 </template>
 
@@ -216,8 +267,6 @@ $color: #00309a;
     position: absolute;
     display: flex;
     justify-content: center;
-    // height: 80%;
-    // width: 60%;
 }
 /*Modifica la b-image que contiene la imagen del mapa de europa*/
 #europe {
@@ -226,11 +275,79 @@ $color: #00309a;
     justify-content: center; 
     height: 100%;
     width: 60%
-    // position:absolute;
 }
 
 /*--------------------------------------------------------------------------------------------------*/
 /*------------------------------------------YU-GI-OH------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
+// Le ponemos mas margen para que sea equivalente en distancia al resto
+#tarjeta-1 {
+    margin-top: 4%;
+}
+.tarjeta {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    height: 100%;
+    width: 95%;
+    margin: 2% 0 2% 0;
+    padding: 3% 3% 3% 3%;
+}
 
+#img-tarjeta {
+    display:flex;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    justify-content: center; 
+    height: 100%;
+    width: 60%
+}
+
+.contenido-tarjeta {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+.texto {
+    flex-direction: column;
+    display:flex;
+    max-width: 70%;
+    padding: 0 0 0 3%;
+}
+
+// Aquí van los textos en filas pares
+#texto-2 {
+    padding: 0 3% 0 0;
+    // padding-left: 0%;
+    // padding-right: 3%;
+}
+
+.titulo-cartas {
+    display:flex;
+    align-items: center;
+    margin: 0 0 2% 0;
+    color:#00309a;
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 1100px) {
+    // .tarjeta {
+    //     justify-content: center;
+    // }
+    .contenido-tarjeta {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .texto {
+        padding: 3% 0 0 0;
+    }
+    #texto-2 {
+    padding: 3% 0 0 0;
+    }
+    #tarjeta-2 > .contenido-tarjeta{
+        flex-direction: column-reverse;
+    }
+}
 </style>

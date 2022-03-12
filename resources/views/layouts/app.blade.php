@@ -101,4 +101,7 @@
         display: block;
         width: 100%;
     }
+    p {
+        text-align: justify;
+    }
 </style>
