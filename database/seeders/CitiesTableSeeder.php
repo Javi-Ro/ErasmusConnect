@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use DB;
 use Illuminate\Database\Seeder;
+use App\Models\City;
 
 class CitiesTableSeeder extends Seeder
 {
@@ -16,7 +17,7 @@ class CitiesTableSeeder extends Seeder
     {
         DB::table('cities')->delete();
 
-        DB::table('cities')->insert(
+        City::create(
             [
                 'id' => 1,
                 'name' => 'Prague',
@@ -24,7 +25,7 @@ class CitiesTableSeeder extends Seeder
             ]
         );
 
-        DB::table('cities')->insert(
+        City::create(
             [
                 'id' => 2,
                 'name' => 'Milan',
@@ -32,7 +33,7 @@ class CitiesTableSeeder extends Seeder
             ]
         );
 
-        DB::table('cities')->insert(
+        City::create(
             [
                 'id' => 3,
                 'name' => 'Budapest',
@@ -40,7 +41,7 @@ class CitiesTableSeeder extends Seeder
             ]
         );
 
-        DB::table('cities')->insert(
+        City::create(
             [
                 'id' => 4,
                 'name' => 'Berlin',
@@ -48,7 +49,7 @@ class CitiesTableSeeder extends Seeder
             ]
         );
 
-        DB::table('cities')->insert(
+        City::create(
             [
                 'id' => 5,
                 'name' => 'Gdansk',

@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use DB;
 use Illuminate\Database\Seeder;
+use App\Models\Apartment;
 
 class ApartmentsTableSeeder extends Seeder
 {
@@ -13,9 +15,9 @@ class ApartmentsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('cities')->delete();
+        DB::table('apartments')->delete();
 
-        DB::table('countries')->insert(
+        Apartment::create(
             [
                 'title' => 'Charles Bridge Apartments',
                 'description' => 'Centrally located in Prague 1, Charles Bridge Palace is just 492 feet from the famous Charles Bridge and a 10-minute walk to the Old Town Square',
@@ -31,7 +33,7 @@ class ApartmentsTableSeeder extends Seeder
                 'city_id' => 1
             ]
         );
-        DB::table('countries')->insert(
+        Apartment::create(
             [
                 'title' => 'COZY APARTMENT 2 MINUTES FROM IL DUOMO',
                 'description' => 'Ideally located in the heart of the city and perfect for students',
@@ -48,7 +50,7 @@ class ApartmentsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('countries')->insert(
+        Apartment::create(
             [
                 'title' => 'The room you where looking for in Budapest',
                 'description' => 'Single room suitable for university students. Shared toilet and kitchen',
@@ -65,7 +67,7 @@ class ApartmentsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('countries')->insert(
+        Apartment::create(
             [
                 'title' => 'Room university flat in Berlin with elevator and storage room, great for medium and long stays',
                 'description' => 'Single room suitable for university students. Shared toilet and kitchen',
@@ -82,7 +84,7 @@ class ApartmentsTableSeeder extends Seeder
             ]
         );
 
-        DB::table('countries')->insert(
+        Apartment::create(
             [
                 'title' => 'Beautiful 2 bedroom Apartment in Gdansk - pets allowed',
                 'description' => 'Beautiful apartment located 600 feet from the city center',
