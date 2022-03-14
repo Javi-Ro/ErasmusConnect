@@ -12,7 +12,7 @@ class UserController extends Controller
         return response()->json(['user' => $user]);
     }
 
-    public function getAll()
+    public function getUsers()
     {
         $users = User::all();
         return response()->json(['user' => $users]);

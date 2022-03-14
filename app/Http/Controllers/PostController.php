@@ -13,7 +13,7 @@ class PostController extends Controller
         return response()->json(['post' => $post]);
     }
 
-    public function getAll()
+    public function getPosts()
     {
         $posts = Post::all();
         return response()->json(['posts' => $posts]);

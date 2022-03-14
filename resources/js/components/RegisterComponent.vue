@@ -123,7 +123,7 @@
             },
 
             getCountries() {
-                axios.get(`/api/get_countries`)
+                axios.get(`/api/countries`)
                     .then(response => {
                         this.countries = response.data
                     }).catch(error => {
