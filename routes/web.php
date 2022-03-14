@@ -41,6 +41,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
 });
 
-Route::get('/example', function () {
+Route::get('/register', function () {
     return view('auth/register');
 });
