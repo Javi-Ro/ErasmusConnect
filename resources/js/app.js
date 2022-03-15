@@ -7,6 +7,9 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
+Vue.use(Buefy);
 
 /**
  * The following block of code may be used to automatically register your
@@ -19,6 +22,8 @@ window.Vue = require('vue').default;
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+Vue.component('landing', require('./components/landingPage.vue').default);
+Vue.component('InfoCards', require('./components/InfoCards.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 
 /**

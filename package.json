@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "buefy": "^0.9.19",
+        "vue-clickaway": "^2.2.2",
         "bcrypt": "^5.0.1"
     }
 }
