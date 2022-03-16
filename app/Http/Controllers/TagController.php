@@ -38,17 +38,4 @@ class TagController extends Controller
         return response()->json(['success' => false]);
     }
 
-    /*
-
-    public function delete(User $user)
-    {
-
-        if (User::whereId($user->id)->count()) {
-            $user->delete();
-            return response()->json(['success' => true, 'user' => $user]);
-        }
-
-        return response()->json(['success' => false]);
-    }
-    */
 }
