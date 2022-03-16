@@ -14,7 +14,7 @@ class CityController extends Controller
         return response()->json(['cities' => $cities]);
     }
 
-    public function getAll()
+    public function getCities()
     {
         $cities = City::all();
         return response()->json(['cities' => $cities]);

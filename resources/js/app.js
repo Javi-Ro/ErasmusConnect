@@ -7,6 +7,7 @@
 require('./bootstrap');
 
 window.Vue = require('vue').default;
+<<<<<<< HEAD
 import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
@@ -14,6 +15,11 @@ import 'buefy/dist/buefy.css'
 Vue.use(Buefy)
 
 
+=======
+import Buefy from 'buefy';
+import 'buefy/dist/buefy.css';
+Vue.use(Buefy);
+>>>>>>> develop
 
 /**
  * The following block of code may be used to automatically register your
@@ -26,9 +32,15 @@ Vue.use(Buefy)
 // const files = require.context('./', true, /\.vue$/i)
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+<<<<<<< HEAD
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
 Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
+=======
+Vue.component('landing', require('./components/landingPage.vue').default);
+Vue.component('InfoCards', require('./components/InfoCards.vue').default);
+Vue.component('register-component', require('./components/RegisterComponent.vue').default);
+>>>>>>> develop
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
