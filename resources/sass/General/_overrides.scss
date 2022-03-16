@@ -19,13 +19,18 @@ a.navbar-link:focus{
     border-color: $main-color !important;
 }
 
-.button.is-primary{
+// BOTON SIGN UP NAVBAR
+.button.is-primario{
     background-color: $main-color !important;
+    color: white;
 }
 
-.button.is-primary:hover{
+.button.is-primario:hover{
     background-color: #0051C6 !important;
+    color: white;
 }
+
+//
 
 @media screen and (min-width: 1024px){
     .navbar{

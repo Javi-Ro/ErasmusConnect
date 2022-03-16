@@ -2,7 +2,7 @@
   <footer class="footer-container">
     <div class="footer-container-main">
       <div class="footer-container-img">
-          <img src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png" width="100px">
+          <img src="images/logo2.png" width="100px">
       </div>
       <div class="footer-container-slogan">
           Boost your erasmus life.
