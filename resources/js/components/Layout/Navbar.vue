@@ -1,56 +1,21 @@
 <template>
-    <!-- <b-navbar style="widht: 50%">
-        <template #brand>
-            <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img
-                    src="https://raw.githubusercontent.com/buefy/buefy/dev/static/img/buefy-logo.png"
-                    alt="Lightweight UI components for Vue.js based on Bulma"
-                >
-            </b-navbar-item>
-        </template>
-        <template #start>
-            <b-navbar-item href="#">
-                Home
-            </b-navbar-item>
-            <b-navbar-item href="#">
-                Documentation
-            </b-navbar-item>
-            <b-navbar-dropdown label="Info">
-                <b-navbar-item href="#">
-                    About
-                </b-navbar-item>
-                <b-navbar-item href="#">
-                    Contact
-                </b-navbar-item>
-            </b-navbar-dropdown>
-        </template>
-
-        <template #end>
-            <b-navbar-item tag="div">
-                <div class="buttons">
-                    <a class="button is-primary">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
-                </div>
-            </b-navbar-item>
-        </template>
-    </b-navbar> -->
-    
     <div class="navbar">
         <!-- Logo -->
         <div class="brand">
-            <a class="nav-item">
+            <a class="nav-item" tag="router-link" :to="{ path: '/' }">
                 <img
                     class="brand-img"
                     src="/images/logo.png"
                     alt="Erasmus Connect"
                 >
             </a>
+            <!-- Botón para desplegar el menú, aparece cuando desaparece el menú -->
+            <a class="navurguesa" @click="openMenu()" id="navurguesa">
+                <font-awesome-icon id="openIcon" icon="fa-solid fa-bars" style="width:30px; height:30px"/>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" style="width:30px; height:30px"/>
+            </a>
         </div>
-        <div class="menu">
+        <div class="menu" id="menu">
             <!-- Utilidades -->
             <div class="menu-start">
                 <b-dropdown
@@ -63,26 +28,22 @@
                     <template #trigger>
                         <a
                             class="navbar-item"
-                            role="button">
+                            role="button"
+                            style="padding-left: 20px;"
+                            >
                             <span style="margin-right: 10px;">{{getSelected(selected)}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>
                     </template>
 
                     <b-dropdown-item custom aria-role="listitem">
-                      <b-input v-model="searchTerm" placeholder="Buscar..." expanded />
-                  </b-dropdown-item>
-
-                    <!-- <b-dropdown-item 
-                    v-for="(city, index) in availableCities" :key="index"
-                    @click="setSelected(index)" 
-                    aria-role="listitem"
-                    >
-                        {{city}}
-                    </b-dropdown-item> -->
+                        <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
+                        <!-- <b-input id="buscador" v-model="searchTerm" placeholder="Buscar..." expanded /> -->
+                    </b-dropdown-item>
+                    <!-- Se le pasa la ciudad debido a un bug relacionado con usar index (más explicado abajo) -->
                     <b-dropdown-item 
-                    v-for="(city, index) in filteredData" :key="city" 
-                    @click="setSelected(index)" 
+                    v-for="city in filteredData" :key="city" 
+                    @click="setSelected(city)" 
                     aria-role="listitem">
                         {{city}}
                     </b-dropdown-item>
@@ -133,32 +94,34 @@
     props: {},
     data() {
       return {
-          searchTerm: '', // Para buscar una ciudad
-          availableCities: [
-              "Madrid",
-              "Budapest",
-              "Praga",
-              "Gdansk"
-          ],
-          selected: 0,
-          // Nombre cambiado
-          publicMenu: [
-              { name: "Foro", link: "#"},
-              { name: "Alquileres", link: "#"},
-              { name: "Eventos", link: "#"},
-            //   { name: "Chats", link: "#"}, Esto en la vista privada
-              { name: "Sobre nosotros", link: "#"},
-          ]
+            searchTerm: '', // Para buscar una ciudad
+            availableCities: [
+                "Madrid",
+                "Budapest",
+                "Praga",
+                "Gdansk"
+            ],
+            // Ahora se almacena directamente el nombre de la ciudad, el index daba problemas con la lista filtrada
+            // Se cambiaba el index porque se cambiaba el tamaño de la lista
+            selected: "Madrid",
+            // Nombre cambiado
+            publicMenu: [
+                { name: "Foro", link: "#"},
+                { name: "Alquileres", link: "#"},
+                { name: "Eventos", link: "#"},
+                //   { name: "Chats", link: "#"}, Esto en la vista privada
+                { name: "Sobre nosotros", link: "#"},
+            ]
       }
     },
     watch: {
       data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
+            immediate: true,
+            deep: true,
+            handler(val, oldVal) {
+            //do something
+            }
+        },
     },
     computed: {
         // Sirve para filtrar una ciudad entre todas las que tenemos
@@ -168,11 +131,29 @@
     },
     methods: {
         getSelected() {
-            return this.availableCities[this.selected];
+            // Directamente devolvemos el seleccionado
+            return this.selected;
         },
         setSelected(option) {
             this.selected = option;
             //window.location.reload(); //TODO: Esto hara recargar página entera de filtros
+        },
+        openMenu() {
+            var menu = document.getElementById("menu");
+            var open = document.getElementById("openIcon");
+            var close = document.getElementById("closeIcon");
+            // Cerrar menú
+            if (menu.style.display === "block") {
+                menu.style.display = "none";
+                open.style.display = "flex";
+                close.style.display = "none";
+            }
+            // Abrir menú 
+            else {
+                menu.style.display = "block";
+                open.style.display = "none";
+                close.style.display = "flex";
+            }
         }
     },
     mounted() {}
@@ -181,6 +162,9 @@
 <style lang="scss" scoped>
 $blue: #00309a;
 $yellow: #ffcd00;
+#closeIcon {
+    display: none;
+}
 .navbar {
     display: flex;
     flex-direction: row;
@@ -246,8 +230,52 @@ $yellow: #ffcd00;
 .navbar-item {
     color: $blue;
 }
-.dropdown-item:active{
+.dropdown-item:active {
     background-color: transparent;
+}
+// Para cambiarle el borde a los input text
+.input:focus{
+    border-color: $blue !important;
+    -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+}
+// -------------------------------------------------------------
+// Collapse navbar
+// -------------------------------------------------------------
+.navurguesa {
+    display: none;
+}
+@media screen and (max-width: 1074px) {
+    .menu {
+        display: none;
+        flex-direction: column;
+        padding: 10px 35px !important;
+    }
+    .brand {
+        justify-content: space-between;
+        width: 100%;
+        padding: 10px 35px !important;
+    }
+    .navurguesa {
+        color: #4a4a4a;
+        cursor: pointer;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        position: relative;
+        margin-left: auto;
+    }
+    .menu-start {
+        justify-content: flex-start;
+        flex-direction: column;
+        margin-right: none;
+    }
+    // Botones de iniciar sesión y registrarse
+    .menu-end {
+        justify-content: flex-start;
+        margin: 0 0.5rem 0 0.5rem;
+        padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+    }
 }
 </style>
 
