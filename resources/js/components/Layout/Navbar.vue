@@ -127,6 +127,10 @@
         // Sirve para filtrar una ciudad entre todas las que tenemos
         filteredData() {
             return this.availableCities.filter((item) => item.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+        },
+        resizeNavbar() {
+            var width = window.innerWidth; 
+            console.log(width);
         }
     },
     methods: {
@@ -143,14 +147,17 @@
             var open = document.getElementById("openIcon");
             var close = document.getElementById("closeIcon");
             // Cerrar menú
-            if (menu.style.display === "block") {
-                menu.style.display = "none";
+            console.log(menu.classList.value)
+            if (menu.classList.value != "menu") {
+                // menu.style.display = "none";
+                menu.classList.remove("is-active");
                 open.style.display = "flex";
                 close.style.display = "none";
             }
             // Abrir menú 
             else {
-                menu.style.display = "block";
+                menu.classList.add("is-active");
+                // menu.style.display = "block";
                 open.style.display = "none";
                 close.style.display = "flex";
             }
@@ -168,7 +175,7 @@ $yellow: #ffcd00;
 .navbar {
     display: flex;
     flex-direction: row;
-    // width: 100%;
+    flex-wrap: nowrap;
     min-height: 3.25rem;
     justify-content: flex-start;
     background-color: whitesmoke;
@@ -230,6 +237,9 @@ $yellow: #ffcd00;
 .navbar-item {
     color: $blue;
 }
+a.navbar-item:hover {
+    background-color: transparent;
+}
 .dropdown-item:active {
     background-color: transparent;
 }
@@ -243,18 +253,22 @@ $yellow: #ffcd00;
 // Collapse navbar
 // -------------------------------------------------------------
 .navurguesa {
-    display: none;
+    display: none;   
+}
+.menu.is-active {
+    display: block;
+    flex-direction: column;
 }
 @media screen and (max-width: 1074px) {
+    .navbar {
+        flex-wrap: wrap;
+    }
     .menu {
         display: none;
-        flex-direction: column;
-        padding: 10px 35px !important;
     }
     .brand {
         justify-content: space-between;
         width: 100%;
-        padding: 10px 35px !important;
     }
     .navurguesa {
         color: #4a4a4a;
@@ -277,41 +291,108 @@ $yellow: #ffcd00;
         padding: 0.5rem 0.75rem 0.75rem 0.75rem;
     }
 }
+//-----------------------------
+// Hover de los botones del menú
+//-----------------------------
+.btn-start {
+  display: block;
+  padding: 15px;
+  text-decoration: none;
+  color: #00309a;
+}
+.btn-start,
+.btn-start:after,
+.btn-start:before {
+  transition: all .5s;
+}
+.btn-start:hover {
+  color: #555;
+}
+
+
+.btn-start {
+  position: relative;
+}
+.btn-start:after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 0%;
+  content: '.';
+  color: transparent;
+  background: #aaa;
+  height: 1px;
+}
+
+.btn-start {
+  transition: all 2s;
+}
+
+.btn-start:after {
+  text-align: left;
+  content: '.';
+  margin: 0;
+  opacity: 0;
+}
+.btn-start:hover {
+  color: #fff;
+  z-index: 1;
+}
+.btn-start:hover:after {
+  z-index: -10;
+  animation: fill 1s forwards;
+  -webkit-animation: fill 1s forwards;
+  -moz-animation: fill 1s forwards;
+  opacity: 1;
+}
+
+/* SHIFT */
+nav.shift ul li a {
+  position:relative;
+  z-index: 1;
+}
+nav.shift ul li a:hover {
+  color: #00309a;
+}
+nav.shift ul li a:after {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  width: 100%;
+  height: 1px;
+  content: '.';
+  color: transparent;
+  background: #00309a;
+  visibility: none;
+  opacity: 0;
+  z-index: -1;
+}
+nav.shift ul li a:hover:after {
+  opacity: 1;
+  visibility: visible;
+  height: 100%;
+}
+
+/* Keyframes */
+@-webkit-keyframes fill {
+  0% {
+    width: 0%;
+    height: 1px;
+  }
+  50% {
+    width: 100%;
+    height: 1px;
+  }
+  100% {
+    width: 100%;
+    height: 100%;
+    background: #00309a;
+  }
+}
 </style>
-
-
-
-
-    <!-- <b-navbar class="navbar-container">
-        <template #brand>
-            <b-navbar-item tag="router-link" :to="{ path: '/' }">
-                <img class="img-container"
-                    src="images/logo2.png"
-                    alt="ErasmusConnect Logo"
-                >
-            </b-navbar-item>
-        </template>
-        <template #start>
-            <b-navbar-dropdown :label="getSelected(selected)">
-                <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
-                    {{city}}
-                </b-navbar-item>
-            </b-navbar-dropdown>
-            <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
-                {{option.name}}
-            </b-navbar-item>
-        </template>
-
-        <template #end>
-            <b-navbar-item tag="div">
-                <div class="buttons">
-                    <a class="button is-primario">
-                        <strong>Sign up</strong>
-                    </a>
-                    <a class="button is-light">
-                        Log in
-                    </a>
-                </div>
-            </b-navbar-item>
-        </template>
-    </b-navbar> -->

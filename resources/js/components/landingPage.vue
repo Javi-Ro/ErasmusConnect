@@ -88,8 +88,8 @@
     flex-flow: column;
     flex: 1;
     min-height: 0px; 
-    // 68px es la anchura del navbar
-    padding: 68px 0 0 0;
+    // 100px es la anchura del navbar
+    padding: 100px 0 0 0;
     margin-top: 2%;
 
 }
@@ -224,6 +224,9 @@ $color: #00309a;
     }
     .pulse-button {
         font-size: 0.75rem;
+    }
+    .landing {
+        padding: 0 0 0 0;
     }
 }
 @media screen and (max-width: 425px) {
