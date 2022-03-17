@@ -246,8 +246,8 @@ $yellow: #ffcd00;
 .navbar-item {
     color: $blue;
 }
-.dropdown-item:hover {
-    color: #fff;
+.dropdown-item:active{
+    background-color: transparent;
 }
 </style>
 

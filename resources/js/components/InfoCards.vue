@@ -8,7 +8,7 @@
             class="btn-2" 
             type="is-link" 
             outlined>
-            Valoraciones</b-button>
+            Foro</b-button>
             <b-button 
             class="btn-2" 
             type="is-link" 
@@ -18,7 +18,7 @@
             class="btn-2" 
             type="is-link" 
             outlined>
-            Quedadas</b-button>
+            Eventos</b-button>
             <b-button 
             class="btn-2" 
             type="is-link" 
