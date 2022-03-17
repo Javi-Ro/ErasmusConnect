@@ -21633,27 +21633,27 @@ MIT (https://github.com/Wikiki/bulma-steps/blob/master/LICENSE)
 }
 
 a.navbar-item:hover {
-  color: #2779F0 !important;
+  color: #00309a !important;
 }
 
 a.navbar-item:focus {
-  color: #2779F0 !important;
+  color: #00309a !important;
 }
 
 a.navbar-link:hover {
-  color: #2779F0 !important;
+  color: #00309a !important;
 }
 
 a.navbar-link:focus {
-  color: #2779F0 !important;
+  color: #00309a !important;
 }
 
 .navbar-link:not(.is-arrowless)::after {
-  border-color: #2779F0 !important;
+  border-color: #00309a !important;
 }
 
 .button.is-primario {
-  background-color: #2779F0 !important;
+  background-color: #00309a !important;
   color: white;
 }
 

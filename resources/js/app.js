@@ -11,6 +11,18 @@ import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 
+/* import the fontawesome core */
+import { library } from '@fortawesome/fontawesome-svg-core'
+
+/* import specific icons */
+import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+
+/* import font awesome icon component */
+import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
+library.add(faCaretDown)
+Vue.component('font-awesome-icon', FontAwesomeIcon)
+
+
 Vue.use(Buefy)
 
 
