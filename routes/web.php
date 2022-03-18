@@ -29,7 +29,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
     //APARTMENTS
-    Route::get('/aprtments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
+    Route::get('/apartments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
     Route::get('/apartments', 'App\Http\Controllers\ApartmentController@getApartments');
     Route::post('/apartments', 'App\Http\Controllers\ApartmentController@create');
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
