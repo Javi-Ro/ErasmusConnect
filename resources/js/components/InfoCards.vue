@@ -6,22 +6,22 @@
         <div class="botones">
             <b-button 
             class="btn-2" 
-            type="is-primary" 
+            type="is-link" 
             outlined>
-            Valoraciones</b-button>
+            Foro</b-button>
             <b-button 
             class="btn-2" 
-            type="is-primary" 
+            type="is-link" 
             outlined>
             Alquileres</b-button>
             <b-button 
             class="btn-2" 
-            type="is-primary" 
+            type="is-link" 
             outlined>
-            Quedadas</b-button>
+            Eventos</b-button>
             <b-button 
             class="btn-2" 
-            type="is-primary" 
+            type="is-link" 
             outlined>
             Outlined-4</b-button>
             <!-- <b-button 
