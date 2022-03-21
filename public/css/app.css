@@ -43341,3 +43341,105 @@ textarea.form-control-lg {
     padding: 20px 75px;
   }
 }
+
+.main-vp-publicacion {
+  display: flex;
+  background-color: red;
+  width: 100%;
+  height: 500px;
+  position: relative;
+}
+.main-vp-publicacion .centered-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: green;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+.main-vp-publicacion .centered-container .content-main {
+  display: flex;
+  height: 48.5%;
+  width: 100%;
+  background-color: blue;
+}
+.main-vp-publicacion .centered-container .information {
+  display: flex;
+  height: 48.5%;
+  width: 95%;
+  background-color: blue;
+  flex-flow: column nowrap;
+}
+.main-vp-publicacion .centered-container .information .information-personal {
+  height: 25%;
+  width: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-img {
+  height: 100%;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-img img {
+  height: 100%;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data {
+  padding-left: 10px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main {
+  display: flex;
+  flex-flow: row wrap;
+  height: 49%;
+  justify-content: center;
+  align-items: center;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button {
+  font-size: 0.7rem;
+  margin-left: 15px;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-date {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1%;
+  height: 49%;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.main-vp-publicacion .centered-container .information .information-description {
+  height: 33%;
+  width: auto;
+}
+.main-vp-publicacion .centered-container .information .information-options {
+  height: 33%;
+  width: auto;
+}
+@media (min-width: 1024px) {
+  .main-vp-publicacion {
+    width: 800px;
+    height: 700px;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-vp-publicacion .centered-container {
+    width: 90%;
+    height: 90%;
+  }
+}
+
+.main-foro {
+  padding-top: 20px;
+  display: flex;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+}
+@media (min-width: 1024px) {
+  .main-foro {
+    padding: 100px 0 0 0;
+  }
+}

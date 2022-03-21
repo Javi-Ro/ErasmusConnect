@@ -1,0 +1,12 @@
+.main-foro{
+    padding-top: 20px;
+    display: flex;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+
+    @media(min-width: $media-desktop-min){
+        padding: 100px 0 0 0;
+        
+    }
+}

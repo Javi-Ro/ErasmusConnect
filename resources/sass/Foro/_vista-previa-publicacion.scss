@@ -1,0 +1,100 @@
+.main-vp-publicacion{
+    display: flex;
+    background-color: red;
+    width: 100%;
+    height: 500px;
+    position: relative;
+
+    .centered-container{
+        display: flex;
+        justify-content: space-between;
+        background-color: green;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: auto;
+        align-items: center;
+
+        .content-main{
+            display: flex;
+            height: 48.5%;
+            width: 100%;
+            background-color: blue;
+        }
+
+        .information{
+            display: flex;
+            height: 48.5%;
+            width: 95%;
+            background-color: blue;
+            flex-flow: column nowrap;
+
+            .information-personal{
+                height: 25%;
+                width: auto;
+                display: flex;
+                flex-flow: row wrap;
+                .information-personal-img{
+                    height: 100%;
+                    img{
+                        height: 100%;
+                    }
+                }
+                .information-personal-data{
+                    padding-left: 10px;
+                    height: 100%;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    align-items: flex-start;
+                    .information-personal-data-main{
+                        display: flex;
+                        flex-flow: row wrap;
+                        height: 49%;
+                        justify-content: center;
+                        align-items: center;
+                        .button{
+                            font-size: 0.7rem;
+                            margin-left: 15px;
+                        }
+                    }
+                    .information-personal-data-date{
+                        display: flex;
+                        align-items: flex-start;
+                        margin-top: 1%;
+                        height: 49%;
+                        font-weight: 200;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+            .information-description{
+                height: 33%;
+                width: auto;
+            }
+            .information-options{
+                height: 33%;
+                width: auto;
+            }
+        }
+    }
+
+    @media(min-width: $media-desktop-min){
+        width: 800px;
+        height: 700px;
+        justify-content: center;
+        align-items: center;
+
+        .centered-container{
+            width: 90%;
+            height: 90%;
+
+            .content{
+
+            }
+
+            .information{
+            }
+
+        }
+    }
+}

@@ -19,6 +19,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+
+Route::get('/foro', function () {
+    return view('foro');
+});
+
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
