@@ -10,6 +10,6 @@ class CountryController extends Controller
     public function getCountries() {
         $countries = Country::all();
 
-        return response()->json($countries);
+        return response()->json(['countries' => $countries]);
     }
 }

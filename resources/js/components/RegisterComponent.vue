@@ -125,7 +125,7 @@
             getCountries() {
                 axios.get(`/api/countries`)
                     .then(response => {
-                        this.countries = response.data
+                        this.countries = response.data.countries
                     }).catch(error => {
                         console.info(error)
                     });

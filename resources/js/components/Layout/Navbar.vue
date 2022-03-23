@@ -11,7 +11,7 @@
         <template #start>
             <b-navbar-dropdown :label="getSelected(selected)">
                 <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
-                    {{city}}
+                    {{city.name}}
                 </b-navbar-item>
             </b-navbar-dropdown>
             <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
@@ -39,12 +39,7 @@
     props: {},
     data() {
       return {
-          availableCities: [
-              "Madrid",
-              "Budapest",
-              "Praga",
-              "Gdansk"
-          ],
+          availableCities: [],
           selected: 0,
           menu: [
               { name: "Foro", link: "#"},
@@ -65,14 +60,27 @@
     },
     computed: {},
     methods: {
+        getCities() {
+                axios.get(`/api/cities`)
+                    .then(response => {
+                        this.availableCities = response.data.cities
+                    }).catch(error => {
+                        console.info(error)
+                    });
+                    
+            },
+
         getSelected() {
-            return this.availableCities[this.selected];
+            return this.availableCities[this.selected].name;
         },
         setSelected(option) {
             this.selected = option;
             //window.location.reload(); //TODO: Esto hara recargar página entera de filtros
         }
     },
-    mounted() {}
+    mounted() {},
+    created() {
+        this.getCities();
+    }
   }
 </script>
