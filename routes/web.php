@@ -28,6 +28,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
 
 
+    //APARTMENTS
+    Route::get('/apartments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
+    Route::get('/apartments', 'App\Http\Controllers\ApartmentController@getApartments');
+    Route::post('/apartments', 'App\Http\Controllers\ApartmentController@create');
+    Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
+
+
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
     Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
