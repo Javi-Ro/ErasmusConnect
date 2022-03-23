@@ -43,7 +43,7 @@ class CityCountryTest extends TestCase
             'country_id' => 1
         ];
 
-        $response = $this->post('api/get_cities', $data);
+        $response = $this->post('api/get_cities_by_country', $data);
 
         $response->assertStatus(200);
     }

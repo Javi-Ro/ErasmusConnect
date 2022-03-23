@@ -100,7 +100,7 @@
             // Ahora se almacena directamente el nombre de la ciudad, el index daba problemas con la lista filtrada
             // Se cambiaba el index porque se cambiaba el tamaño de la lista
             selected: 1,
-            selectedCity: '',
+            selectedCity: 'Select City',
             // Nombre cambiado
             publicMenu: [
                 { name: "Foro", link: "#"},
@@ -135,7 +135,7 @@
         getCities() {
                 axios.get(`/api/cities`)
                     .then(response => {
-                        this.availableCities = response.data.cities
+                        this.availableCities = response.data.cities;
                     }).catch(error => {
                         console.info(error)
                     });
@@ -146,7 +146,7 @@
                     id: selected
                 })
                     .then(response => {
-                        this.selected = response.data.city.id; // Id de la clase seleccionada
+                        this.selected = response.data.city.id; // ID de la clase seleccionada
                         this.selectedCity = response.data.city.name;
                     }).catch(error => {
                         console.info(error)
@@ -180,7 +180,6 @@
     mounted() {},
     created() {
         this.getCities();
-        this.getSelected(1);
     }
   }
 </script>
