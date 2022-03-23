@@ -2,21 +2,25 @@
 
 Enlace al tablero [Trello](https://trello.com/b/TOL6RU01/1b)
 
-# REVIEWERS
+# REVIEWERS 
+## [FRONTEND]
 ```
-ROSA --> RAUL 
+RAUL --> MADANI
 
-ILYAN --> ROSA
+MADANI --> JAVI
+
+JAVI --> ROSA
+
+ROSA --> RAUL
+```
+## [BACKEND]
+``` 
+ILYAN --> ADRI
+
+ADRI --> MARIO
 
 MARIO --> ILYAN
 
-JAVI --> MARIO
-
-ADRI --> JAVI
-
-MADANI --> ADRI
-
-RAUL --> MADANI
 ```
 
 ### ¿Como empezar a trabajar?
