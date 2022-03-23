@@ -4,26 +4,17 @@
     <div class="mapa">
         <div class="container-1">
             <div class="eslogan">
-                <p id="textoEslogan">
+                <p id="textoEslogan" style="text-align: center;">
                     Eslogan espectacular
                 </p>
             </div>
             <div class="botonPrincipal">
                 <button class="btn pulse-button">
-                    <p style="padding: 0 10px 0 10px">
+                    <p style="padding: 0 10px 0 10px; text-align: center;">
                         ¿No sabes dónde <span style="color: #ffcd00; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
                     </p>
                 </button>
             </div>
-            <!-- <div class="imagenMapa">
-                <b-image
-                    id="europe"
-                    :src="require('@../../../public/images/mapa2.png').default"
-                    alt="Mapa unión europea"
-                    style="opacity: 0.5; background-size: cover;"
-                >
-                </b-image>
-            </div> -->
         </div>
     </div>
     <!-- Fin de la primera parte -->
@@ -38,7 +29,7 @@
             ></b-image>
             <div class="texto" id="texto-1">
                 <div class="titulo-cartas">
-                    <p>Valoraciones</p>
+                    <p>Foro</p>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
                 </p>
@@ -74,7 +65,7 @@
             ></b-image>
             <div class="texto" id="texto-3">
                 <div class="titulo-cartas">
-                    <p>Quedadas</p>
+                    <p>Eventos</p>
                 </div>
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
                 </p>
@@ -97,8 +88,8 @@
     flex-flow: column;
     flex: 1;
     min-height: 0px; 
-    // 68px es la anchura del navbar
-    padding: 68px 0 0 0;
+    // 100px es la anchura del navbar
+    padding: 100px 0 0 0;
     margin-top: 2%;
 
 }
@@ -233,6 +224,9 @@ $color: #00309a;
     }
     .pulse-button {
         font-size: 0.75rem;
+    }
+    .landing {
+        padding: 0 0 0 0;
     }
 }
 @media screen and (max-width: 425px) {
