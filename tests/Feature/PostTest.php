@@ -53,7 +53,7 @@ class PostTest extends TestCase
                         ->latest('id')
                         ->first();
 
-        $post->delete();
+        
 
         $response->assertStatus(200);
     }

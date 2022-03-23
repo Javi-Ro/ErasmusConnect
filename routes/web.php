@@ -35,10 +35,16 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
 
 
-    //Countries/cities
+    //COUNTRIES
+    Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
     Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
+    Route::post('/countries', 'App\Http\Controllers\CountryController@create');
+    Route::delete('/countries/{country}', 'App\Http\Controllers\CountryController@delete');
+
+    //CITIES
     Route::post('/get_cities', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
     Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
+    Route::post('/get_city_by_id', 'App\Http\Controllers\CityController@getCityById');
 
 
     //POSTS

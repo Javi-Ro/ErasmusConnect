@@ -19,4 +19,9 @@ class CityController extends Controller
         $cities = City::all();
         return response()->json(['cities' => $cities]);
     }
+
+    public function getCityById(Request $data) {
+        $city = City::whereId($data->id)->first();
+        return response()->json(['city' => $city]);
+    }
 }
