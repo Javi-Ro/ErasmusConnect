@@ -19,6 +19,10 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::get('/profile/{nickname}', function() {
+    return view('profile');
+});
+
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
