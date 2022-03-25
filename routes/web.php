@@ -27,6 +27,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
 
+    //TAGS
+    Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
+    Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
+    Route::post('/tags', 'App\Http\Controllers\TagController@create');
+    Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
+
 
     //APARTMENTS
     Route::get('/apartments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
