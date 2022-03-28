@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->string('description')->nullable();
-            $table->string('img_url')->nullable();
+            $table->string('img_url')->default("default.jpg");
             $table->foreignId('city_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();
