@@ -49,8 +49,11 @@ Route::group(['prefix' => 'api'], function () {
 
     //CITIES
     Route::post('/get_cities_by_country', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
-    Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
     Route::post('/get_city_by_id', 'App\Http\Controllers\CityController@getCityById');
+    Route::get('cities/{city}', 'App\Http\Controllers\CityController@get');
+    Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
+    Route::post('/cities', 'App\Http\Controllers\CityController@create');
+    Route::delete('/countries/{country}', 'App\Http\Controllers\CityController@delete');
 
 
     //POSTS
