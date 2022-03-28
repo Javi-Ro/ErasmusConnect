@@ -58,8 +58,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
+
+    Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
 
 Route::get('/register', function () {
     return view('auth/register');
 });
+
+Route::post('/logout', 'App\Http\Controllers\UserController@logout');

@@ -16,14 +16,18 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* import specific icons */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
+import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
+import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 library.add(faCaretDown)
+library.add(faUser)
 library.add(faBars)
 library.add(faX)
+library.add(faArrowRightFromBracket)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
