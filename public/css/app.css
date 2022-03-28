@@ -43344,15 +43344,12 @@ textarea.form-control-lg {
 
 .main-vp-publicacion {
   display: flex;
-  background-color: red;
   width: 100%;
-  height: 500px;
   position: relative;
 }
 .main-vp-publicacion .centered-container {
   display: flex;
   justify-content: space-between;
-  background-color: green;
   flex-flow: column nowrap;
   width: 100%;
   height: auto;
@@ -43360,19 +43357,16 @@ textarea.form-control-lg {
 }
 .main-vp-publicacion .centered-container .content-main {
   display: flex;
-  height: 48.5%;
   width: 100%;
-  background-color: blue;
+  margin-bottom: 20px;
 }
 .main-vp-publicacion .centered-container .information {
   display: flex;
-  height: 48.5%;
   width: 95%;
-  background-color: blue;
   flex-flow: column nowrap;
 }
 .main-vp-publicacion .centered-container .information .information-personal {
-  height: 25%;
+  min-height: 25%;
   width: auto;
   display: flex;
   flex-flow: row wrap;
@@ -43401,6 +43395,16 @@ textarea.form-control-lg {
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button {
   font-size: 0.7rem;
   margin-left: 15px;
+  border-color: #00309a;
+  color: #00309a;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:hover {
+  background-color: #00309a;
+  color: white;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:focus {
+  background-color: #00309a;
+  color: white;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-date {
   display: flex;
@@ -43411,23 +43415,46 @@ textarea.form-control-lg {
   font-size: 0.8rem;
 }
 .main-vp-publicacion .centered-container .information .information-description {
-  height: 33%;
-  width: auto;
+  padding: 10px 5px;
+  font-size: 14px;
 }
 .main-vp-publicacion .centered-container .information .information-options {
-  height: 33%;
-  width: auto;
+  display: flex;
+  justify-content: row wrap;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-right: 15px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data {
+  line-height: 1;
+  padding-left: 10px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data strong {
+  font-size: 12px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data p {
+  font-size: 14px;
 }
 @media (min-width: 1024px) {
   .main-vp-publicacion {
     width: 800px;
-    height: 700px;
     justify-content: center;
     align-items: center;
   }
   .main-vp-publicacion .centered-container {
-    width: 90%;
-    height: 90%;
+    align-items: flex-start;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+  }
+  .main-vp-publicacion .centered-container .information {
+    padding-left: 16px;
+    padding-bottom: 25px;
+  }
+  .main-vp-publicacion .centered-container .information .information-description {
+    font-size: 16px;
   }
 }
 

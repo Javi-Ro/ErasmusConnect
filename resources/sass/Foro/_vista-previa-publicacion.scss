@@ -1,14 +1,11 @@
 .main-vp-publicacion{
     display: flex;
-    background-color: red;
     width: 100%;
-    height: 500px;
     position: relative;
 
     .centered-container{
         display: flex;
         justify-content: space-between;
-        background-color: green;
         flex-flow: column nowrap;
         width: 100%;
         height: auto;
@@ -16,20 +13,17 @@
 
         .content-main{
             display: flex;
-            height: 48.5%;
             width: 100%;
-            background-color: blue;
+            margin-bottom: 20px;
         }
 
         .information{
             display: flex;
-            height: 48.5%;
             width: 95%;
-            background-color: blue;
             flex-flow: column nowrap;
 
             .information-personal{
-                height: 25%;
+                min-height: 25%;
                 width: auto;
                 display: flex;
                 flex-flow: row wrap;
@@ -55,6 +49,18 @@
                         .button{
                             font-size: 0.7rem;
                             margin-left: 15px;
+                            border-color: #00309a;
+                            color: #00309a;
+                        }
+
+                        .button:hover{
+                            background-color: #00309a;
+                            color: white;
+                        }
+
+                        .button:focus{
+                            background-color: #00309a;
+                            color: white;
                         }
                     }
                     .information-personal-data-date{
@@ -68,31 +74,54 @@
                 }
             }
             .information-description{
-                height: 33%;
-                width: auto;
+                padding: 10px 5px;
+                font-size: 14px;
             }
             .information-options{
-                height: 33%;
-                width: auto;
+                display: flex;
+                justify-content: row wrap;
+                .information-options-option{
+                    display: flex;
+                    flex-flow: row wrap;
+                    align-items: center;
+                    padding-right: 15px;
+
+                    .information-options-option-data{
+                        line-height: 1;
+                        padding-left: 10px;
+                        strong{
+                            font-size: 12px;
+                        }
+                        p{
+                            font-size: 14px;
+                        }
+                    }
+                }
             }
         }
     }
 
     @media(min-width: $media-desktop-min){
         width: 800px;
-        height: 700px;
         justify-content: center;
         align-items: center;
 
         .centered-container{
-            width: 90%;
-            height: 90%;
-
+            align-items: flex-start;
+            //background-color: rgba(var(--b3f,250,250,250),1);
+            background-color: white;
+            border: 1px solid #dbdbdb;
             .content{
 
             }
 
             .information{
+                padding-left: 16px;
+                padding-bottom: 25px;
+
+                .information-description{
+                    font-size: 16px;
+                }
             }
 
         }
