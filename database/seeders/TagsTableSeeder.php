@@ -48,5 +48,29 @@ class TagsTableSeeder extends Seeder
                 'post' => false
             ]
         );
+
+        Tag::create(
+            [
+                'id' => 5,
+                'name' => "plancha",
+                'post' => false
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 6,
+                'name' => "lavavajillas",
+                'post' => false
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 7,
+                'name' => "lavadora",
+                'post' => false
+            ]
+        );
     }
 }
