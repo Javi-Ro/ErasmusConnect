@@ -90,8 +90,7 @@
     flex: 1;
     min-height: 0px; 
     // 100px es la anchura del navbar
-    padding: 100px 0 0 0;
-    margin-top: 2%;
+    margin-top: 130px;
 
 }
 /*--------------------------------------------------------------------------------------------------*/
@@ -227,7 +226,7 @@ $color: #00309a;
         font-size: 0.75rem;
     }
     .landing {
-        padding: 0 0 0 0;
+        margin-top: 0;
     }
 }
 @media screen and (max-width: 425px) {

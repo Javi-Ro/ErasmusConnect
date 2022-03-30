@@ -31,6 +31,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
 
+    //TAGS
+    Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
+    Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
+    Route::post('/tags', 'App\Http\Controllers\TagController@create');
+    Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
+
 
     //APARTMENTS
     Route::get('/apartments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
@@ -47,8 +53,11 @@ Route::group(['prefix' => 'api'], function () {
 
     //CITIES
     Route::post('/get_cities_by_country', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
-    Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
     Route::post('/get_city_by_id', 'App\Http\Controllers\CityController@getCityById');
+    Route::get('cities/{city}', 'App\Http\Controllers\CityController@get');
+    Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
+    Route::post('/cities', 'App\Http\Controllers\CityController@create');
+    Route::delete('/countries/{country}', 'App\Http\Controllers\CityController@delete');
 
 
     //POSTS
@@ -56,8 +65,12 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
+
+    Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
 
 Route::get('/register', function () {
     return view('auth/register');
 });
+
+Route::post('/logout', 'App\Http\Controllers\UserController@logout');
