@@ -122,12 +122,24 @@ export default {
     // }
 }
 </script>
+<style lang="scss">
+    .tabs li.is-active a {
+    border-bottom-color: #00309a !important;
+    color: #00309a !important;
+    }
+</style>
 <style lang="scss" scoped>
 $blue: #00309a;
 $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+
+// .tabs li.is-active a {
+//   border-bottom-color: #00309a !important;
+//   color: #00309a !important;
+// }
+
 #perfil {
     display: flex;
     margin: 92px 0 0 0;

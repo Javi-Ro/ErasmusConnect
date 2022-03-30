@@ -6702,15 +6702,15 @@ label.panel-block:hover {
   vertical-align: top;
 }
 .tabs a:hover {
-  border-bottom-color: #00309a !important;
+  border-bottom-color: #363636;
   color: #363636;
 }
 .tabs li {
   display: block;
 }
 .tabs li.is-active a {
-  border-bottom-color: #00309a !important;
-  color: #00309a !important;
+  border-bottom-color: #7957d5;
+  color: #7957d5;
 }
 .tabs ul {
   -webkit-box-align: center;
