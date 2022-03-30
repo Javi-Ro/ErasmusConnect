@@ -41,32 +41,17 @@ class PostController extends Controller
     }
 
     public function order(Request $data) {
-        $posts = Post::all();
+        $posts = Post::all()->toArray();
 
         if ($data->criteria == 0) {
-            $posts = $posts->sortByDesc(function($post) {
-                return $post->created_at->get();
-            });
-            //$posts = Post::orderBy('created_at', 'DESC')->get();
+            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? 1 : -1;});
         } elseif ($data->criteria == 1) {
-            $posts = $posts->sortBy(function($post) {
-                return $post->created_at->get();
-            });
-            //$posts = Post::orderBy('created_at', 'ASC')->get();
-        } 
-        elseif ($data->criteria == 2) {
-            $posts = $posts->sortBy(function($post) {
-                return $post->likes;
-            });
-            //$posts = Post::orderBy('likes', 'ASC')->get();
-        }
-        elseif ($data->criteria == 3) {
-            $posts = $posts->sortByDesc(function($post) {
-                return $post->likes;
-            });
-            //$posts = Post::orderBy('likes', 'DESC')->get();
-        }
-        else {
+            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? -1 : 1;});
+        } elseif ($data->criteria == 2) {
+            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? 1 : -1;});
+        } elseif ($data->criteria == 3) {
+            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? -1 : 1;});
+        } else {
             $posts = Post::all();
         }
         return response()->json(['success' => true, 'posts' => $posts]);
