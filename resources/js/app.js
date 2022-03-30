@@ -51,6 +51,7 @@ Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
 Vue.component('landing', require('./components/landingPage.vue').default);
 Vue.component('InfoCards', require('./components/InfoCards.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
+Vue.component('foro', require('./components/Foro.vue').default);
 Vue.component('filter-bar', require('./components/filterBar.vue').default);
 
 /**

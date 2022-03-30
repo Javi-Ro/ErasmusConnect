@@ -134,7 +134,7 @@
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
-                { name: "Foro", link: "#"},
+                { name: "Foro", link: "/foro"},
                 { name: "Alquileres", link: "#"},
                 { name: "Eventos", link: "#"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada

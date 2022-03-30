@@ -61,6 +61,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
+    Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
@@ -70,3 +71,7 @@ Route::get('/register', function () {
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout');
+
+Route::get('/foro', function() {
+    return view('foro.foro');
+});
