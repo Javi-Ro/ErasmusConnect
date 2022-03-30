@@ -2,14 +2,16 @@
     <div class="container" style="margin-top:100px">
         <div class="row justify-content-center">
             <select @change="sortBy(sortingBy)" v-model="sortingBy">
-                <option value="-1" selected >Default</option>
+                <option value="-1" selected > Select an option</option>
                 <option value="0">Ordena de mas reciente a mas antiguo</option>
                 <option value="1">Ordena de mas antiguo a mas reciente</option>
+                <option value="2">Ordena por mayor popularidad</option>
+                <option value="3">Ordena por menor popularidad</option>
             </select>
             <div class="col-md-8 info">
                 
                 <div class="post" v-for='post in posts' :key='post.id'>
-                    {{post.title}} {{post.created_at}}
+                    {{post.title}} {{post.likes}} {{post.created_at}}
                 </div>
             </div>
         </div>
@@ -33,7 +35,8 @@
         data() {
             return {
                 sortingBy: null,
-                posts: []
+                posts: [],
+
             }
         },
 

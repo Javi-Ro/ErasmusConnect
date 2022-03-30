@@ -35,5 +35,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(TagsTableSeeder::class);
         $this->command->info('Tags table seeded!');
+
+        $this->call(LikesTableSeeder::class);
+        $this->command->info('Likes table seeded!');
     }
 }

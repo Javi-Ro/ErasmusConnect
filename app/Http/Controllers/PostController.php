@@ -41,11 +41,32 @@ class PostController extends Controller
     }
 
     public function order(Request $data) {
+        $posts = Post::all();
+
         if ($data->criteria == 0) {
-            $posts = Post::orderBy('created_at', 'DESC')->get();
+            $posts = $posts->sortByDesc(function($post) {
+                return $post->created_at->get();
+            });
+            //$posts = Post::orderBy('created_at', 'DESC')->get();
         } elseif ($data->criteria == 1) {
-            $posts = Post::orderBy('created_at', 'ASC')->get();
-        } else {
+            $posts = $posts->sortBy(function($post) {
+                return $post->created_at->get();
+            });
+            //$posts = Post::orderBy('created_at', 'ASC')->get();
+        } 
+        elseif ($data->criteria == 2) {
+            $posts = $posts->sortBy(function($post) {
+                return $post->likes;
+            });
+            //$posts = Post::orderBy('likes', 'ASC')->get();
+        }
+        elseif ($data->criteria == 3) {
+            $posts = $posts->sortByDesc(function($post) {
+                return $post->likes;
+            });
+            //$posts = Post::orderBy('likes', 'DESC')->get();
+        }
+        else {
             $posts = Post::all();
         }
         return response()->json(['success' => true, 'posts' => $posts]);
