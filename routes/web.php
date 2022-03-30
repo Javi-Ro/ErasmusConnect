@@ -18,6 +18,9 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/admin', function () {
+    return view('/admin/home');
+});
 
 Route::group(['prefix' => 'api'], function () {
 
