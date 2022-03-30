@@ -1,8 +1,8 @@
 <template>
     <div class="navbar">
         <!-- Logo -->
-        <div class="brand">
-            ADMINISTRADOR
+        <div class="brand" style="align-items: center">
+            <p>ADMINISTRADOR</p>
             <a class="nav-item" tag="router-link" :to="{ path: '/' }">
                 <img
                     class="brand-img"
@@ -10,70 +10,15 @@
                     alt="Erasmus Connect"
                 >
             </a>
-            <!-- Botón para desplegar el menú, aparece cuando desaparece el menú -->
-            <a class="navurguesa" @click="openMenu()" id="navurguesa">
-                <font-awesome-icon id="openIcon" icon="fa-solid fa-bars" style="width:30px; height:30px"/>
-                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" style="width:30px; height:30px"/>
-            </a>
         </div>
         <div class="menu" id="menu">
             <!-- Utilidades -->
             <div class="menu-start">
-                <b-dropdown
-                    append-to-body
-                    aria-role="menu"
-                    scrollable
-                    max-height="200"
-                    trap-focus
-                >
-                    <template #trigger>
-                        <a
-                            class="navbar-item"
-                            role="button"
-                            style="padding-left: 20px;"
-                            >
-                            <span style="margin-right: 10px;">{{selectedCity}}</span>
-                            <font-awesome-icon icon="fa-solid fa-caret-down" />
-                        </a>
-                    </template>
-
-                    <b-dropdown-item custom aria-role="listitem">
-                        <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
-                        <!-- <b-input id="buscador" v-model="searchTerm" placeholder="Buscar..." expanded /> -->
-                    </b-dropdown-item>
-                    <!-- Se le pasa la ciudad debido a un bug relacionado con usar index (más explicado abajo) -->
-                    <b-dropdown-item 
-                    v-for="city in filteredData" :key="city[1]" 
-                    @click="setSelected(city[1])"
-                    aria-role="listitem">
-                        {{city[0]}}
-                    </b-dropdown-item>
-                </b-dropdown>
-                <!-- <b-navbar-dropdown :label="getSelected(selected)">
-                    <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
-                        {{city}}
-                    </b-navbar-item>
-                </b-navbar-dropdown> -->
-                <!-- <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
-                    {{option.name}}
-                </b-navbar-item> -->
                 <a class="nav-item btn-start" 
                 v-for="(option,index) in publicMenu" :key="index" :href="option.link"
                 >
                     {{option.name}}
                 </a>
-                <!-- <a class="nav-item btn-start" href="#">
-                    Foro
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Alquileres
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Eventos
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Sobre nosotros
-                </a> -->
             </div>
             <!-- Usuario ya registrado -->
             <div v-if="auth">
@@ -101,17 +46,6 @@
                     <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
                     </b-dropdown-item>
                 </b-dropdown>
-            </div>
-            </div>
-            <!-- Login y register -->   
-            <div v-else class="menu-end">
-                <div class="buttons-menu-end">
-                    <a href="/register" class="button is-primary" id="register">
-                        <strong>Registrarse</strong>
-                    </a>
-                    <a href="/login" class="button is-light" id="login">
-                        Iniciar sesión
-                    </a>
                 </div>
             </div>
         </div>
@@ -135,97 +69,17 @@
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
-                { name: "Foro", link: "#"},
+                { name: "Reportes", link: "#"},
+                { name: "Usuarios", link: "#"},
+                { name: "Publicaciones", link: "#"},
                 { name: "Alquileres", link: "#"},
-                { name: "Eventos", link: "#"},
-                //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Sobre nosotros", link: "#"},
+                { name: "Etiquetas", link: "#"},
+                { name: "Ciudades", link: "#"},
+                { name: "Paises", link: "#"}
             ]
       }
     },
-    watch: {
-      data: {
-            immediate: true,
-            deep: true,
-            handler(val, oldVal) {
-            //do something
-            }
-        },
-    },
-    computed: {
-        // Sirve para filtrar una ciudad entre todas las que tenemos
-        filteredData() {
-            this.availableCitiesNames = this.availableCities.map((item) => [item.name, item.id]);
-            return this.availableCitiesNames.filter((item) => item[0].toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
-        },
-        resizeNavbar() {
-            var width = window.innerWidth; 
-            console.log(width);
-        }
-    },
     methods: {
-        getCities() {
-                axios.get(`/api/cities`)
-                    .then(response => {
-                        this.availableCities = response.data.cities;
-                    }).catch(error => {
-                        console.info(error)
-                    });
-            },
-
-        getSelected(selected) {
-                axios.post(`/api/get_city_by_id`, {
-                    id: selected
-                })
-                    .then(response => {
-                        this.selected = response.data.city.id; // ID de la clase seleccionada
-                        this.selectedCity = response.data.city.name;
-                    }).catch(error => {
-                        console.info(error)
-                    });
-        },
-        setSelected(option) {
-            this.getSelected(option)
-            //window.location.reload(); //TODO: Esto hara recargar página entera de filtros
-        },
-        openMenu() {
-            var menu = document.getElementById("menu");
-            var open = document.getElementById("openIcon");
-            var close = document.getElementById("closeIcon");
-            // Cerrar menú
-            console.log(menu.classList.value)
-            if (menu.classList.value != "menu") {
-                // menu.style.display = "none";
-                menu.classList.remove("is-active");
-                open.style.display = "flex";
-                close.style.display = "none";
-            }
-            // Abrir menú 
-            else {
-                menu.classList.add("is-active");
-                // menu.style.display = "block";
-                open.style.display = "none";
-                close.style.display = "flex";
-            }
-        },
-        getUser() {
-            axios.get(`/api/auth`).then(response => {
-                this.user = response.data.user;
-                this.auth = response.data.auth;
-                if (this.auth)
-                    this.profileImage = '/images/users/' + this.user.img_url;
-            }).catch(error => {
-                console.info(error);
-            });
-        },
-        logout() {
-            axios.post(`/logout`).then(response => {
-                this.getUser();
-            }).catch(error => {
-                console.info(error);
-            });
-            
-        }
     },
     mounted() {
         this.getUser();
@@ -238,21 +92,24 @@
 <style lang="scss" scoped>
 $blue: #00309a;
 $yellow: #ffcd00;
-#closeIcon {
-    display: none;
-}
 .navbar {
+    height: 100%;
+    max-width: 280px;
+    min-width: 280px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     flex-wrap: nowrap;
     min-height: 3.25rem;
     justify-content: flex-start;
     background-color: whitesmoke;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    position: fixed !important;
+    padding: 30px 30px 30px 30px;
 }
 .menu {
     display: flex;
     align-items: center;
+    flex-direction: column;
     // justify-content: space-around;
     flex-grow: 1;
 }
@@ -261,7 +118,7 @@ $yellow: #ffcd00;
     align-items: center;
     flex-grow: 0;
     flex-shrink: 0;
-    padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+    padding: 0.75rem 0 0.75rem 0;
     color: $blue;
 }
 .navbar-item-logged {
@@ -274,6 +131,7 @@ $yellow: #ffcd00;
 // Foto de la marca
 .brand {
     display: flex;
+    flex-direction: column;
 }
 .brand-img {
     max-height: 3.25rem;
@@ -282,94 +140,11 @@ $yellow: #ffcd00;
 .menu-start {
     display: flex;
     justify-content: flex-start;
-    margin-right: auto;
+    // margin-right: auto;
+    flex-direction: column;
 }
 .btn-start {
     margin: 0 0.5rem 0 0.5rem;
-}
-// Botones de iniciar sesión y registrarse
-.menu-end {
-    display: flex;
-    justify-content: flex-end;
-    margin-left: auto;
-}
-.buttons-menu-end {
-    display: flex;
-}
-#register {
-    margin-right: 0.5rem;
-    background-color: $blue;
-    color: white;
-}
-#register:hover {
-    margin-right: 0.5rem;
-    // background-color: darken($blue, 10%);
-    color: $yellow;
-}
-#login {
-    margin-left: 0.5rem;
-}
-// Para modificar el dropdown de ciudades
-.navbar-item {
-    color: $blue;
-}
-a.navbar-item:hover {
-    background-color: transparent;
-}
-.dropdown-item:active {
-    background-color: transparent;
-}
-// Para cambiarle el borde a los input text
-.input:focus{
-    border-color: $blue !important;
-    -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
-    box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
-}
-// -------------------------------------------------------------
-// Collapse navbar
-// -------------------------------------------------------------
-.navurguesa {
-    display: none;   
-}
-.menu.is-active {
-    display: flex;
-    flex-direction: row;
-}
-@media screen and (max-width: 1074px) {
-    .menu.is-active {
-        display: block;
-        flex-direction: column;
-    }
-    .navbar {
-        flex-wrap: wrap;
-    }
-    .menu {
-        display: none;
-    }
-    .brand {
-        justify-content: space-between;
-        width: 100%;
-    }
-    .navurguesa {
-        color: #4a4a4a;
-        cursor: pointer;
-        justify-content: center;
-        align-items: center;
-        display: flex;
-        position: relative;
-        margin-left: auto;
-    }
-    .menu-start {
-        justify-content: flex-start;
-        flex-direction: column;
-        margin-right: none;
-    }
-    // Botones de iniciar sesión y registrarse
-    .menu-end {
-        justify-content: flex-start;
-        margin: 0 0.5rem 0 0.5rem;
-        padding: 0.5rem 0.75rem 0.75rem 0.75rem;
-    }
 }
 //-----------------------------
 // Hover de los botones del menú
