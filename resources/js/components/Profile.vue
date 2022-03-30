@@ -128,6 +128,10 @@ $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+.tabs li.is-active a {
+    border-bottom-color: #fff !important;
+    color: #fff !important;
+}
 #perfil {
     display: flex;
     margin: 92px 0 0 0;
