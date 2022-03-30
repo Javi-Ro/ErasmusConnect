@@ -72,6 +72,9 @@ Route::get('/register', function () {
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout');
 
-Route::get('/foro', function() {
+Route::get('/foro', function () {
     return view('foro.foro');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
 });
