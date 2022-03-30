@@ -73,7 +73,7 @@
                 </div>
                 <!-- Permite cambiar entre los distintos tipos de publicaciones -->
                 <section>
-                    <b-tabs v-model="activeTab">
+                    <b-tabs v-model="activeTab" position="is-centered" size="is-medium">
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
                         <b-tab-item label="Mis publicaciones">
                             Lorem ipsum dolor sit amet.
@@ -220,6 +220,11 @@ $izq-column-width: 258px;
 
 .ciudad {
     display:flex;
+}
+
+.tabs li.is-active a {
+    border-bottom-color: $blue;
+    color: $blue;
 }
 
 // Mucho texto para el botón de editar perfil con animación: https://codepen.io/FluidOfInsanity/pen/RpgvGW
