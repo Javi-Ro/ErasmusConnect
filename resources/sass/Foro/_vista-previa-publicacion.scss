@@ -1,0 +1,129 @@
+.main-vp-publicacion{
+    display: flex;
+    width: 100%;
+    position: relative;
+
+    .centered-container{
+        display: flex;
+        justify-content: space-between;
+        flex-flow: column nowrap;
+        width: 100%;
+        height: auto;
+        align-items: center;
+
+        .content-main{
+            display: flex;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .information{
+            display: flex;
+            width: 95%;
+            flex-flow: column nowrap;
+
+            .information-personal{
+                min-height: 25%;
+                width: auto;
+                display: flex;
+                flex-flow: row wrap;
+                .information-personal-img{
+                    height: 100%;
+                    img{
+                        height: 100%;
+                    }
+                }
+                .information-personal-data{
+                    padding-left: 10px;
+                    height: 100%;
+                    display: flex;
+                    flex-flow: column nowrap;
+                    justify-content: center;
+                    align-items: flex-start;
+                    .information-personal-data-main{
+                        display: flex;
+                        flex-flow: row wrap;
+                        height: 49%;
+                        justify-content: center;
+                        align-items: center;
+                        .button{
+                            font-size: 0.7rem;
+                            margin-left: 15px;
+                            border-color: #00309a;
+                            color: #00309a;
+                        }
+
+                        .button:hover{
+                            background-color: #00309a;
+                            color: white;
+                        }
+
+                        .button:focus{
+                            background-color: #00309a;
+                            color: white;
+                        }
+                    }
+                    .information-personal-data-date{
+                        display: flex;
+                        align-items: flex-start;
+                        margin-top: 1%;
+                        height: 49%;
+                        font-weight: 200;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+            .information-description{
+                padding: 10px 5px;
+                font-size: 14px;
+            }
+            .information-options{
+                display: flex;
+                justify-content: row wrap;
+                .information-options-option{
+                    display: flex;
+                    flex-flow: row wrap;
+                    align-items: center;
+                    padding-right: 15px;
+
+                    .information-options-option-data{
+                        line-height: 1;
+                        padding-left: 10px;
+                        strong{
+                            font-size: 12px;
+                        }
+                        p{
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    @media(min-width: $media-desktop-min){
+        width: 800px;
+        justify-content: center;
+        align-items: center;
+
+        .centered-container{
+            align-items: flex-start;
+            //background-color: rgba(var(--b3f,250,250,250),1);
+            background-color: white;
+            border: 1px solid #dbdbdb;
+            .content{
+
+            }
+
+            .information{
+                padding-left: 16px;
+                padding-bottom: 25px;
+
+                .information-description{
+                    font-size: 16px;
+                }
+            }
+
+        }
+    }
+}
