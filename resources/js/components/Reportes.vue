@@ -24,28 +24,36 @@
             <div class="contenido">
                 <p>{{ report.text }}</p>
                 <div class="botones">
+                    <!-- Inicio de modal -->
                     <div class="modal-vue" :id="report.id">
-                        <!-- <button @click="showModal = true">show</button> -->
+                        <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
                         <b-button type="is-info" outlined 
-                        @click="showModal = true">
+                        @click="showModal = report.id"
+                        title="Visualiza la publicación y permite eliminarla"
+                        > 
                         Ver publicación
                         </b-button>
                         <!-- overlay -->
-                        <div class="overlay" v-if="showModal" @click="showModal = false"></div>
+                        <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
+                        <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div>
                         
                         <!-- modal -->
-                        <div class="modal" v-if="showModal">
+                        <!-- Solo aparece cuando showModal tiene el mismo valor que el id del reporte al que corresponde -->
+                        <div class="modal" v-if="showModal == report.id">
                             <div class="vista-previa">
                                 <div class="publicacion">
                                     <vista-previa-publicacion></vista-previa-publicacion>
                                 </div>
                                 <div class="btn-delete">
-                                    <b-button type="is-danger" outlined >{{report.id}} Borrar publicación</b-button>
+                                    <!-- TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) -->
+                                    <b-button type="is-danger" outlined >Borrar publicación ({{report.id}})</b-button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <b-button type="is-danger">
+                    <!-- Fin del modal -->
+                    <b-button type="is-danger"
+                    title="Borra el reporte de la base de datos">
                         Descartar reporte
                     </b-button>
                 </div>
@@ -60,7 +68,7 @@ export default {
     props: {},
     data() {
         return {
-            showModal: false,
+            showModal: 0,
             reports: [
                 {
                     id: 1,
