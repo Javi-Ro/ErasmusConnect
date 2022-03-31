@@ -24,17 +24,28 @@
             </div>
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
-                <button class="edit" type="button">
+                <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
+                <button v-if="actualNickname == nickname"
+                class="edit" type="button">
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
                 </button>
-                <a class="column-item btn-start" href="#">
-                    Amigos
+                
+                <button v-else
+                class="edit" type="button">
+                    <span style="margin-left: 20px;">Añadir a amigos</span>
+                </button>
+
+                <a v-if="actualNickname == nickname"
+                class="column-item btn-start" href="#">
+                    Gestionar amigos
                 </a>
-                <a class="column-item btn-start" href="#">
+                <a v-if="actualNickname == nickname"
+                class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a class="column-item btn-start" href="#">
+                <a v-if="actualNickname == nickname" 
+                class="column-item btn-start" href="#" >
                     Cambiar contraseña
                 </a>                                
             </div>
@@ -48,11 +59,7 @@
                 <div class="user-info">
                     <div class="biografia">
                         <p>
-                            Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. 
-                            Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.
-                            Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. 
-                            Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. 
-                            Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et 
+                            {{ this.bio }}
                         </p>
                     </div>
                     <div class="amigos-ciudad">
@@ -63,7 +70,8 @@
                             <template>
                                 <section>
                                     <b-field>
-                                        <b-tag rounded size="is-medium"><strong>{{ this.city }}</strong>, {{ this.country }}</b-tag>
+                                        <b-tag rounded size="is-medium">
+                                            <strong>{{ this.city }}</strong>, {{ this.country }}</b-tag>
                                     </b-field>
                                 </section>
                             </template>
@@ -96,16 +104,20 @@
                 </section>
             </div>
         </div>
-        <button class="scrollToTopBtn">☝️</button>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
+            // Nick del usuario que ha iniciado sesión
+            actualNickname: "Willyrex",
+
             name: "Pascual Holder",
-            nickname: "NickName",
+            nickname: "Willyrex",
             city: "Madrid",
+            bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
+            ,
             country: "ESPAÑA",
             activeTab: 0,
             // Lista con las distintas publicaciones
@@ -154,6 +166,7 @@ $izq-column-width: 258px;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 #izq {
+    height: 100%;
     padding-left: 30px;
     border-radius: 0px;
     border-left: 0px;
@@ -211,7 +224,7 @@ $izq-column-width: 258px;
 
 .user-info {
     display: flex;
-    margin: 10px 0 10px 0;
+    margin: 30px 0 20px 0;
     flex-direction: column;
 }
 .amigos-ciudad {

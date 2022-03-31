@@ -22,7 +22,7 @@ Route::get('/admin', function () {
     return view('/admin/home');
 });
 
-Route::get('/profile/{nickname}', function() {
+Route::get('/{nickname}', function() {
     return view('profile');
 });
 
