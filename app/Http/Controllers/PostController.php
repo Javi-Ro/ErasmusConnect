@@ -40,6 +40,23 @@ class PostController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function order(Request $data) {
+        $posts = Post::all()->toArray();
+
+        if ($data->criteria == 0) {
+            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? 1 : -1;});
+        } elseif ($data->criteria == 1) {
+            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? -1 : 1;});
+        } elseif ($data->criteria == 2) {
+            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? 1 : -1;});
+        } elseif ($data->criteria == 3) {
+            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? -1 : 1;});
+        } else {
+            $posts = Post::all();
+        }
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
     //TODO: update, not possible yet
 
 }
