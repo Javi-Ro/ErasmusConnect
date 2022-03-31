@@ -2,12 +2,12 @@
   <section class="main-vp-publicacion">
     <div class="centered-container">
       <div class="content-main">
-        <img src="images/foto-ejemplo.jpg" alt="Foto berlín" width="100%" height="auto">
+        <img src="/images/foto-ejemplo.jpg" alt="Foto berlín" width="100%" height="auto">
       </div>
       <div class="information">
           <div class="information-personal">
             <div class="information-personal-img">
-              <img src="images/profile.svg" alt="Profile image">
+              <img src="/images/profile.svg" alt="Profile image">
             </div>
             <div class="information-personal-data">
               <div class="information-personal-data-main">
@@ -45,9 +45,9 @@
     data() {
       return {
         optionsData: [
-          {image: "images/like.svg", title: "Me gusta", data: 1350},
-          {image: "images/comment.svg", title: "Comentarios", data: 152},
-          {image: "images/share.svg", title: "Compartir", data: 56}
+          {image: "/images/like.svg", title: "Me gusta", data: 1350},
+          {image: "/images/comment.svg", title: "Comentarios", data: 152},
+          {image: "/images/share.svg", title: "Compartir", data: 56}
         ]
       }
     },

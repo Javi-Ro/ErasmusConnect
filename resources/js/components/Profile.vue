@@ -76,28 +76,27 @@
                     <b-tabs v-model="activeTab" position="is-centered" size="is-medium">
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
                         <b-tab-item label="Mis publicaciones">
-                            Lorem ipsum dolor sit amet.
+                            <div class="publicacion" v-for='post in myPosts' :key='post.id'>
+                                <vista-previa-publicacion></vista-previa-publicacion>
+                            </div>
                         </b-tab-item>
                         <!-- Ver publicaciones a las que le has dado me gusta -->
                         <b-tab-item label="Me gusta">
-                            Lorem <br>
-                            ipsum <br>
-                            dolor <br>
-                            sit <br>
-                            amet.
+                            <div class="publicacion" v-for='post in LikedPosts' :key='post.id'>
+                                <vista-previa-publicacion></vista-previa-publicacion>
+                            </div>
                         </b-tab-item>
                         <!-- Ver publicaciones guardadas -->
                         <b-tab-item label="Guardados">
-                            Nunc nec velit nec libero vestibulum eleifend.
-                            Curabitur pulvinar congue luctus.
-                            Nullam hendrerit iaculis augue vitae ornare.
-                            Maecenas vehicula pulvinar tellus, id sodales felis lobortis eget.
+                            <div class="publicacion" v-for='post in SavedPosts' :key='post.id'>
+                                <vista-previa-publicacion></vista-previa-publicacion>
+                            </div>
                         </b-tab-item>
                     </b-tabs>
                 </section>
             </div>
         </div>
-
+        <button class="scrollToTopBtn">☝️</button>
     </div>
 </template>
 <script>
@@ -108,7 +107,11 @@ export default {
             nickname: "NickName",
             city: "Madrid",
             country: "ESPAÑA",
-            activeTab: 0
+            activeTab: 0,
+            // Lista con las distintas publicaciones
+            myPosts: [1],
+            LikedPosts: [1, 2],
+            SavedPosts: [1, 3, 4],
         }
     }
     // methods: {
@@ -135,11 +138,6 @@ $margen-column: 10%;
 $padding-cc: 2%;
 $izq-column-width: 258px;
 
-// .tabs li.is-active a {
-//   border-bottom-color: #00309a !important;
-//   color: #00309a !important;
-// }
-
 #perfil {
     display: flex;
     margin: 92px 0 0 0;
@@ -158,8 +156,6 @@ $izq-column-width: 258px;
 #izq {
     padding-left: 30px;
     border-radius: 0px;
-    // margin: 0 2% 0 $margen-column/2;
-    // border-right: 0px;
     border-left: 0px;
     border-top: 0px;
     border-bottom: 0px;
@@ -174,7 +170,6 @@ $izq-column-width: 258px;
     justify-content:center;
     margin: 38px 0 0 $izq-column-width;
     overflow-y: auto;
-    // max-height: 542px;
 }
 #der {
     width:90%;
@@ -199,7 +194,6 @@ $izq-column-width: 258px;
 }
 .nickname {
     color: #000;
-    // font-weight: bold;
     flex-direction: column;
     justify-content: center;
 }
@@ -234,11 +228,12 @@ $izq-column-width: 258px;
     display:flex;
 }
 
-.tabs li.is-active a {
-    border-bottom-color: $blue;
-    color: $blue;
+// CSS relacionado con ver las Publicaciones
+.publicacion {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 20px 0;
 }
-
 // Mucho texto para el botón de editar perfil con animación: https://codepen.io/FluidOfInsanity/pen/RpgvGW
 *:before,
 *:after {
