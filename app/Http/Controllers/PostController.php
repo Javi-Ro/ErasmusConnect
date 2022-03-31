@@ -40,6 +40,17 @@ class PostController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function order(Request $data) {
+        if ($data->criteria == 0) {
+            $posts = Post::orderBy('created_at', 'DESC')->get();
+        } elseif ($data->criteria == 1) {
+            $posts = Post::orderBy('created_at', 'ASC')->get();
+        } else {
+            $posts = Post::all();
+        }
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
     //TODO: update, not possible yet
 
 }
