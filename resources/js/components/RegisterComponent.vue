@@ -125,7 +125,7 @@
             getCountries() {
                 axios.get(`/api/countries`)
                     .then(response => {
-                        this.countries = response.data
+                        this.countries = response.data.countries
                     }).catch(error => {
                         console.info(error)
                     });
@@ -133,7 +133,7 @@
 
             getCities() {
                 this.request.country_id = this.country
-                axios.post(`/api/get_cities`, this.request).then(response => {
+                axios.post(`/api/get_cities_by_country`, this.request).then(response => {
                     this.cities = response.data.cities
                 }).catch(error => {
                     console.info(error)

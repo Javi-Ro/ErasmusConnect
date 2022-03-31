@@ -31,7 +31,7 @@
                             role="button"
                             style="padding-left: 20px;"
                             >
-                            <span style="margin-right: 10px;">{{getSelected(selected)}}</span>
+                            <span style="margin-right: 10px;">{{selectedCity}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>
                     </template>
@@ -42,10 +42,10 @@
                     </b-dropdown-item>
                     <!-- Se le pasa la ciudad debido a un bug relacionado con usar index (más explicado abajo) -->
                     <b-dropdown-item 
-                    v-for="city in filteredData" :key="city" 
-                    @click="setSelected(city)" 
+                    v-for="city in filteredData" :key="city[1]" 
+                    @click="setSelected(city[1])"
                     aria-role="listitem">
-                        {{city}}
+                        {{city[0]}}
                     </b-dropdown-item>
                 </b-dropdown>
                 <!-- <b-navbar-dropdown :label="getSelected(selected)">
@@ -74,13 +74,41 @@
                     Sobre nosotros
                 </a> -->
             </div>
-            <!-- Login y register -->
-            <div class="menu-end">
+            <!-- Usuario ya registrado -->
+            <div v-if="auth">
+                <div class="menu-start">
+                <b-dropdown
+                    append-to-body
+                    aria-role="menu"
+                    scrollable
+                    max-height="200"
+                    trap-focus
+                >
+                    <template #trigger>
+                        <a
+                            class="navbar-item-logged"
+                            role="button"
+                            style="padding-left: 20px;"
+                            >
+                            <img :src="profileImage" height="40px" width="40px" style="margin-right:10px;border-radius:50%;border:2px solid #00309a" />
+                            <span style="margin-right: 10px;">{{user.nickname}}</span>
+                            <font-awesome-icon icon="fa-solid fa-caret-down" />
+                        </a>
+                    </template>
+
+                    <b-dropdown-item><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
+                    <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
+                    </b-dropdown-item>
+                </b-dropdown>
+            </div>
+            </div>
+            <!-- Login y register -->   
+            <div v-else class="menu-end">
                 <div class="buttons-menu-end">
-                    <a class="button is-primary" id="register">
+                    <a href="/register" class="button is-primary" id="register">
                         <strong>Registrarse</strong>
                     </a>
-                    <a class="button is-light" id="login">
+                    <a href="/login" class="button is-light" id="login">
                         Iniciar sesión
                     </a>
                 </div>
@@ -94,19 +122,19 @@
     props: {},
     data() {
       return {
+            user: null,
+            auth: false,
+            profileImage: '',
             searchTerm: '', // Para buscar una ciudad
-            availableCities: [
-                "Madrid",
-                "Budapest",
-                "Praga",
-                "Gdansk"
-            ],
+            availableCities: [],
+            availableCitiesNames: [],
             // Ahora se almacena directamente el nombre de la ciudad, el index daba problemas con la lista filtrada
             // Se cambiaba el index porque se cambiaba el tamaño de la lista
-            selected: "Madrid",
+            selected: 1,
+            selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
-                { name: "Foro", link: "#"},
+                { name: "Foro", link: "/foro"},
                 { name: "Alquileres", link: "#"},
                 { name: "Eventos", link: "#"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
@@ -126,7 +154,8 @@
     computed: {
         // Sirve para filtrar una ciudad entre todas las que tenemos
         filteredData() {
-            return this.availableCities.filter((item) => item.toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+            this.availableCitiesNames = this.availableCities.map((item) => [item.name, item.id]);
+            return this.availableCitiesNames.filter((item) => item[0].toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
         },
         resizeNavbar() {
             var width = window.innerWidth; 
@@ -134,12 +163,28 @@
         }
     },
     methods: {
-        getSelected() {
-            // Directamente devolvemos el seleccionado
-            return this.selected;
+        getCities() {
+                axios.get(`/api/cities`)
+                    .then(response => {
+                        this.availableCities = response.data.cities;
+                    }).catch(error => {
+                        console.info(error)
+                    });
+            },
+
+        getSelected(selected) {
+                axios.post(`/api/get_city_by_id`, {
+                    id: selected
+                })
+                    .then(response => {
+                        this.selected = response.data.city.id; // ID de la clase seleccionada
+                        this.selectedCity = response.data.city.name;
+                    }).catch(error => {
+                        console.info(error)
+                    });
         },
         setSelected(option) {
-            this.selected = option;
+            this.getSelected(option)
             //window.location.reload(); //TODO: Esto hara recargar página entera de filtros
         },
         openMenu() {
@@ -161,9 +206,32 @@
                 open.style.display = "none";
                 close.style.display = "flex";
             }
+        },
+        getUser() {
+            axios.get(`/api/auth`).then(response => {
+                this.user = response.data.user;
+                this.auth = response.data.auth;
+                if (this.auth)
+                    this.profileImage = '/images/users/' + this.user.img_url;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
+        logout() {
+            axios.post(`/logout`).then(response => {
+                this.getUser();
+            }).catch(error => {
+                console.info(error);
+            });
+            
         }
     },
-    mounted() {}
+    mounted() {
+        this.getUser();
+    },
+    created() {
+        this.getCities();
+    }
   }
 </script>
 <style lang="scss" scoped>
@@ -193,6 +261,13 @@ $yellow: #ffcd00;
     flex-grow: 0;
     flex-shrink: 0;
     padding: 0.5rem 0.75rem 0.75rem 0.75rem;
+    color: $blue;
+}
+.navbar-item-logged {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 0 auto;
     color: $blue;
 }
 // Foto de la marca
@@ -256,10 +331,14 @@ a.navbar-item:hover {
     display: none;   
 }
 .menu.is-active {
-    display: block;
-    flex-direction: column;
+    display: flex;
+    flex-direction: row;
 }
 @media screen and (max-width: 1074px) {
+    .menu.is-active {
+        display: block;
+        flex-direction: column;
+    }
     .navbar {
         flex-wrap: wrap;
     }
