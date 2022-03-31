@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,8 +24,11 @@ Route::get('/admin', function () {
 });
 
 Route::get('/{nickname}', function($nickname) {
-    $user = auth()->user();
-    return view('profile', ["nickname"=>$nickname, "user"=>$user->nickname]);
+    $user = "";
+    if(Auth::check())
+        $user = auth()->user()->nickname;
+
+    return view('profile', ["nickname"=>$nickname, "user"=>$user]);
     // ->with("nickname", $nickname)->with("user", $user);
 });
 
