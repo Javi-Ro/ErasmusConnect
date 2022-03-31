@@ -1,6 +1,8 @@
 <template>
   <section class="main-foro">
-    <vista-previa-publicacion></vista-previa-publicacion>
+    <div v-for="post in posts" :key="post.id" class="post">
+      <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+    </div>
   </section>
 </template>
 
@@ -9,7 +11,9 @@
     props: {},
 
     data() {
-      return {}
+      return {
+        posts: []
+      }
     },
 
     watch: {
@@ -24,8 +28,20 @@
 
     computed: {},
 
-    methods: {},
+    methods: {
+      getPosts() {
+        axios.get(`/api/posts`).then(response => {
+            this.posts = response.data.posts;
+        }).catch(error => {
+            console.info(error);
+        })
+      },
+    },
 
-    mounted() {}
+    mounted() {},
+    
+    created() {
+      this.getPosts();  
+    }
   }
 </script>
