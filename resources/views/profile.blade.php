@@ -1,5 +1,5 @@
 @extends('layouts.web')
 
 @section('content')
-    <profile></profile>
+    <profile nickname="{{ $nickname }}" user="{{ $user }}"></profile>
 @endsection

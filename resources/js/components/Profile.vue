@@ -25,7 +25,7 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="actualNickname == nickname"
+                <button v-if="user == nickname"
                 class="edit" type="button">
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
@@ -36,15 +36,15 @@
                     <span style="margin-left: 20px;">Añadir a amigos</span>
                 </button>
 
-                <a v-if="actualNickname == nickname"
+                <a v-if="user == nickname"
                 class="column-item btn-start" href="#">
                     Gestionar amigos
                 </a>
-                <a v-if="actualNickname == nickname"
+                <a v-if="user == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="actualNickname == nickname" 
+                <a v-if="user == nickname" 
                 class="column-item btn-start" href="#" >
                     Cambiar contraseña
                 </a>                                
@@ -108,13 +108,19 @@
 </template>
 <script>
 export default {
+    props: {
+        // nickname del perfil que estamos viendo
+        nickname: String,
+        // Es solo el nickname del usuario que ha iniciado sesión
+        user: String
+    },
     data() {
         return {
             // Nick del usuario que ha iniciado sesión
-            actualNickname: "Willyrex",
+            // actualNickname: "Willyrex",
 
             name: "Pascual Holder",
-            nickname: "Willyrex",
+            // nickname: "Willyrex",
             city: "Madrid",
             bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
             ,
@@ -125,6 +131,11 @@ export default {
             LikedPosts: [1, 2],
             SavedPosts: [1, 3, 4],
         }
+    },
+    created() {
+        console.log(this.nickname);
+        console.log(typeof(this.user));
+        console.log(this.user);
     }
     // methods: {
     //     getNickName(nickname) {

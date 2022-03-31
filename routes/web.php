@@ -22,8 +22,10 @@ Route::get('/admin', function () {
     return view('/admin/home');
 });
 
-Route::get('/{nickname}', function() {
-    return view('profile');
+Route::get('/{nickname}', function($nickname) {
+    $user = auth()->user();
+    return view('profile', ["nickname"=>$nickname, "user"=>$user->nickname]);
+    // ->with("nickname", $nickname)->with("user", $user);
 });
 
 Route::get('/foro', function () {
