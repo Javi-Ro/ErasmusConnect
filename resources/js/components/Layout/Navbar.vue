@@ -241,6 +241,7 @@ $yellow: #ffcd00;
     display: none;
 }
 .navbar {
+    position: fixed !important;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
