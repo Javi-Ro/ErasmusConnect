@@ -1,32 +1,197 @@
 <template>
     <div class="reportes">
-        REPORTES <br>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar est. Mauris in nisi non nisi tristique tempor eget et purus. Sed finibus erat nec augue tempor, et congue erat lobortis. Vestibulum posuere libero finibus vulputate efficitur. Morbi ac dolor quis purus ullamcorper tempus sit amet eu velit. Duis augue velit, fermentum id posuere at, sagittis ut libero. Donec mattis ligula enim, eu rutrum libero ullamcorper id. Sed commodo non mi vitae consectetur. Sed molestie nibh quis vestibulum rutrum. Etiam eget faucibus quam. Morbi id arcu consectetur, aliquet sapien sit amet, tincidunt leo. Integer convallis interdum sem, sit amet rutrum orci rhoncus vitae. Nullam sagittis ex tellus, eget venenatis odio congue nec. Praesent porttitor eleifend tortor, nec venenatis purus ullamcorper eu. Curabitur eget erat a tortor suscipit pellentesque in non lectus.
+        <div class="titulo-pagina">
+             REPORTES
+        </div>
 
-Proin sit amet ultricies neque. Sed pretium tristique vulputate. Proin in velit sem. Nunc vel urna tortor. Donec non velit nec metus lacinia ornare. Donec purus metus, ultricies vitae magna eu, rutrum cursus diam. Praesent in aliquam neque. Fusce lorem lectus, finibus nec diam at, vestibulum condimentum turpis.
-
-Morbi at viverra nibh. Nullam maximus sapien vitae arcu finibus, eu consequat nunc scelerisque. Pellentesque sodales nulla at elit eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere, magna et posuere dapibus, dolor sem elementum elit, in sagittis libero sapien ac magna. Vestibulum in condimentum leo. Fusce sit amet dolor nibh. Ut vestibulum lorem non enim blandit tristique. Donec maximus, leo a porttitor dapibus, velit turpis congue metus, id pellentesque lorem nunc eu sem. Phasellus non augue ac lorem sagittis volutpat vel at tortor. Fusce semper erat eget luctus efficitur. Quisque tincidunt ut ex vitae consequat. Proin ut felis mi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum vitae faucibus massa. In mattis auctor auctor. Proin a ante id erat posuere malesuada. Nullam ut posuere lacus. Maecenas vel metus massa. Cras a aliquam ante. Integer imperdiet id arcu at malesuada. Nullam a euismod magna. Pellentesque eget tellus eu mauris hendrerit viverra.
-
-Nulla accumsan metus vitae justo euismod egestas id quis tortor. Integer ultrices consectetur tellus, ut iaculis orci bibendum sodales. Sed ac est venenatis dolor viverra scelerisque. Mauris facilisis tortor sed dui semper scelerisque. Pellentesque at lobortis lorem. Pellentesque at orci quis ligula ultricies feugiat eget et risus. Donec volutpat urna dignissim sodales mollis. Duis pulvinar lectus urna, ac facilisis elit finibus non. Etiam a eros aliquam, mollis mi sed, rutrum mauris. Nunc ornare elit eu augue tempor, ac commodo urna posuere. Quisque a velit ac tortor vestibulum interdum quis id neque. Quisque volutpat turpis et ullamcorper fermentum. Cras gravida eros lectus, quis blandit lacus luctus ac. Nullam ac libero eget erat finibus interdum. Vestibulum sollicitudin id odio sed dignissim. Mauris non ante risus
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar est. Mauris in nisi non nisi tristique tempor eget et purus. Sed finibus erat nec augue tempor, et congue erat lobortis. Vestibulum posuere libero finibus vulputate efficitur. Morbi ac dolor quis purus ullamcorper tempus sit amet eu velit. Duis augue velit, fermentum id posuere at, sagittis ut libero. Donec mattis ligula enim, eu rutrum libero ullamcorper id. Sed commodo non mi vitae consectetur. Sed molestie nibh quis vestibulum rutrum. Etiam eget faucibus quam. Morbi id arcu consectetur, aliquet sapien sit amet, tincidunt leo. Integer convallis interdum sem, sit amet rutrum orci rhoncus vitae. Nullam sagittis ex tellus, eget venenatis odio congue nec. Praesent porttitor eleifend tortor, nec venenatis purus ullamcorper eu. Curabitur eget erat a tortor suscipit pellentesque in non lectus.
-
-Proin sit amet ultricies neque. Sed pretium tristique vulputate. Proin in velit sem. Nunc vel urna tortor. Donec non velit nec metus lacinia ornare. Donec purus metus, ultricies vitae magna eu, rutrum cursus diam. Praesent in aliquam neque. Fusce lorem lectus, finibus nec diam at, vestibulum condimentum turpis.
-
-Morbi at viverra nibh. Nullam maximus sapien vitae arcu finibus, eu consequat nunc scelerisque. Pellentesque sodales nulla at elit eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere, magna et posuere dapibus, dolor sem elementum elit, in sagittis libero sapien ac magna. Vestibulum in condimentum leo. Fusce sit amet dolor nibh. Ut vestibulum lorem non enim blandit tristique. Donec maximus, leo a porttitor dapibus, velit turpis congue metus, id pellentesque lorem nunc eu sem. Phasellus non augue ac lorem sagittis volutpat vel at tortor. Fusce semper erat eget luctus efficitur. Quisque tincidunt ut ex vitae consequat. Proin ut felis mi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-
-Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum vitae faucibus massa. In mattis auctor auctor. Proin a ante id erat posuere malesuada. Nullam ut posuere lacus. Maecenas vel metus massa. Cras a aliquam ante. Integer imperdiet id arcu at malesuada. Nullam a euismod magna. Pellentesque eget tellus eu mauris hendrerit viverra.
-
-Nulla accumsan metus vitae justo euismod egestas id quis tortor. Integer ultrices consectetur tellus, ut iaculis orci bibendum sodales. Sed ac est venenatis dolor viverra scelerisque. Mauris facilisis tortor sed dui semper scelerisque. Pellentesque at lobortis lorem. Pellentesque at orci quis ligula ultricies feugiat eget et risus. Donec volutpat urna dignissim sodales mollis. Duis pulvinar lectus urna, ac facilisis elit finibus non. Etiam a eros aliquam, mollis mi sed, rutrum mauris. Nunc ornare elit eu augue tempor, ac commodo urna posuere. Quisque a velit ac tortor vestibulum interdum quis id neque. Quisque volutpat turpis et ullamcorper fermentum. Cras gravida eros lectus, quis blandit lacus luctus ac. Nullam ac libero eget erat finibus interdum. Vestibulum sollicitudin id odio sed dignissim. Mauris non ante risus
+        <div class="reporte" v-for="(report) in reports" :key="report.id">
+            <div class="cabecera">
+                <p style="opacity: 0.5;"> 
+                    #{{ report.id }}
+                </p>
+                <div id="tag">
+                    <b-tag type="is-warning" size="is-medium">{{ report.tagName }}</b-tag>
+                </div>
+                <div class="info">
+                    <div id="titulo">
+                        {{ report.title }}
+                    </div>
+                    <div id="user">
+                        (@{{ report.userName }})
+                    </div>
+                </div>
+            </div>
+            <div class="contenido">
+                <p>{{ report.text }}</p>
+                <div class="botones">
+                    <div class="modal-vue" :id="report.id">
+                        <!-- <button @click="showModal = true">show</button> -->
+                        <b-button type="is-info" outlined 
+                        @click="showModal = true">
+                        Ver publicación
+                        </b-button>
+                        <!-- overlay -->
+                        <div class="overlay" v-if="showModal" @click="showModal = false"></div>
+                        
+                        <!-- modal -->
+                        <div class="modal" v-if="showModal">
+                            <div class="vista-previa">
+                                <div class="publicacion">
+                                    <vista-previa-publicacion></vista-previa-publicacion>
+                                </div>
+                                <div class="btn-delete">
+                                    <b-button type="is-danger" outlined >{{report.id}} Borrar publicación</b-button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <b-button type="is-danger">
+                        Descartar reporte
+                    </b-button>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 <script>
+import VistaPreviaPublicacion from './Foro/VistaPreviaPublicacion.vue'
+export default {
+  components: { VistaPreviaPublicacion },
+    props: {},
+    data() {
+        return {
+            showModal: false,
+            reports: [
+                {
+                    id: 1,
+                    tagName: "Insulta a otros usuarios",
+                    title: "Bloquear a este usuario",
+                    userName: "XxManoloxX",
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
+                },
+                {
+                    id: 2,
+                    tagName: "Insulta a otros usuarios",
+                    title: "Bloquear a este usuario2",
+                    userName: "XxManoloxX",
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
+                },
+                {
+                    id: 3,
+                    tagName: "Insulta a otros usuarios",
+                    title: "Bloquear a este usuario3",
+                    userName: "XxManoloxX",
+                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
+                }
+            ]
+        }
+    }
+}
 </script>
 <style lang="scss" scoped>
+$blue: #00309a;
+$yellow: #ffcd00;
+.titulo-pagina {
+    justify-content: center;
+    display: flex;
+    margin-top: 20px;
+    font-size: x-large;
+    color: $blue;
+    font-family: sans-serif;
+}
 .reportes {
     display:flex;
+    flex-direction: column;
+    justify-content: center;
     // El navbar mide 280px aprox
     margin-left: 300px;
+}
+.reporte {
+    border-radius: 2px;
+    display: flex;
+    flex-direction: column;
+    margin: 40px 20px 40px 20px;
+    border: 2px solid $blue;
+    padding: 20px;
+}
+.cabecera {
+    display: flex;
+    flex-direction: column;
+}
+.info {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+#tag {
+    margin: 10px 0;
+}
+#titulo {
+    font-size: 20px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+#user {
+    opacity: 0.75;
+}
+.contenido {
+    display: flex;
+    flex-direction: column;
+}
+.botones {
+    display: flex;
+    margin: 20px 0 0 0;
+    justify-content: space-between;
+}
+
+// Parte del modal
+
+.publicacion {
+    display: flex;
+}
+
+.btn-delete {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.vista-previa {
+    flex-direction: column;
+    margin-top: 100px;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-vue .overlay {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.modal-vue .modal {
+    display: flex;
+    position: fixed !important;
+    // width: 80%;
+    // max-width: 700px;
+    // max-height: 500px;
+    z-index: 9999;
+    width: 80%;
+    height: auto;
+    margin: 30px auto;
+    // padding: 20px 30px;
+    background-color: #fff;
+    // min-height: 600px;
+    overflow: auto;
+}
+
+.modal-vue .close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 </style>

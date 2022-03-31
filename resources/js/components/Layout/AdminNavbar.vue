@@ -3,7 +3,7 @@
         <!-- Logo -->
         <div class="brand" style="align-items: center">
             <p>ADMINISTRADOR</p>
-            <a class="nav-item" tag="router-link" :to="{ path: '/' }">
+            <a class="nav-item" tag="router-link" href="/admin/reportes">
                 <img
                     class="brand-img"
                     src="/images/logo.png"
@@ -69,7 +69,7 @@
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
-                { name: "Reportes", link: "#"},
+                { name: "Reportes", link: "/admin/reportes"},
                 { name: "Usuarios", link: "#"},
                 { name: "Publicaciones", link: "#"},
                 { name: "Alquileres", link: "#"},
@@ -82,10 +82,9 @@
     methods: {
     },
     mounted() {
-        this.getUser();
+        // this.getUser();
     },
     created() {
-        this.getCities();
     }
   }
 </script>
