@@ -2,20 +2,29 @@
 <template>
     <div class="container" style="margin-top:100px">
         <div class="row justify-content-center">
-            <!-- <select @change="sortBy(sortingBy)" v-model="sortingBy">
-                <option value="-1" selected >Default</option>
-                <option value="0">Ordena de mas reciente a mas antiguo</option>
-                <option value="1">Ordena de mas antiguo a mas reciente</option>
-            </select> -->
+
+            <!-- Ordenar por precio // rating // surface -->
+            <select @change="sortBy(sortingBy)" v-model="sortingBy">
+                <option value="-1" selected >Mostrar todos</option>
+                <option value="0">Más caros primeros</option>
+                <option value="1">Más baratos primeros</option>
+                <option value="2">Mejores valorados primero</option>
+                <option value="3">Peores valorados primeros</option>
+                <option value="4">Más metros cuadrados primero</option>
+                <option value="5">Menos metros cuadrados primero</option>
+            </select>  
+
+
             <div class="col-md-8 info">
-                
-                <div class="post" v-for='apartment in apartments' :key='apartment.id'>
-                    {{apartment.title}} {{apartment.address}}
+                <div class="apartment" v-for='apartment in apartments' :key='apartment.id'>
+                    {{apartment.price}} {{apartment.rating}} {{apartment.surface}}
                 </div>
             </div>
         </div>
     </div>
 </template>
+
+
 
 <style lang="scss" scoped>
     .info {
@@ -24,7 +33,7 @@
         width: 100%;
     }
 
-    .post {
+    .apartment {
         display: block;
     }
 </style>
@@ -33,6 +42,7 @@
     export default {
         data() {
             return {
+                sortingBy: null,
                 apartments: []
             }
         },
@@ -42,18 +52,18 @@
         },
 
         methods: {
-            getPosts() {
+            getApartments() {
                 axios.get(`/api/apartments`).then(response => {
-                    this.posts = response.data.posts;
+                    this.apartments = response.data.apartments;
                 }).catch(error => {
                     console.info(error);
                 })
             },
             sortBy(id) {
-                axios.post(`/api/posts/order`, {
+                axios.post(`/api/apartments/order`, {
                     criteria: id
                 }).then(response => {
-                    this.posts = response.data.posts;
+                    this.apartments = response.data.apartments;
                 }).catch(error => {
                     console.info(error.response.data);
                 });
@@ -61,7 +71,7 @@
         },
 
         created() {
-            this.getPosts();
+            this.getApartments();
         }
     }
 </script>

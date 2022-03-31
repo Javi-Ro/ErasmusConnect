@@ -43341,3 +43341,146 @@ textarea.form-control-lg {
     padding: 20px 75px;
   }
 }
+
+.main-vp-publicacion {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+.main-vp-publicacion .centered-container {
+  display: flex;
+  justify-content: space-between;
+  flex-flow: column nowrap;
+  width: 100%;
+  height: auto;
+  align-items: center;
+}
+.main-vp-publicacion .centered-container .content-main {
+  display: flex;
+  width: 100%;
+  margin-bottom: 20px;
+}
+.main-vp-publicacion .centered-container .information {
+  display: flex;
+  width: 95%;
+  flex-flow: column nowrap;
+}
+.main-vp-publicacion .centered-container .information .information-personal-title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.main-vp-publicacion .centered-container .information .information-personal {
+  min-height: 25%;
+  width: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-img {
+  height: 100%;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data {
+  padding-left: 10px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main {
+  display: flex;
+  flex-flow: row wrap;
+  height: 49%;
+  justify-content: center;
+  align-items: center;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button {
+  font-size: 0.7rem;
+  margin-left: 15px;
+  border-color: #00309a;
+  color: #00309a;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:hover {
+  background-color: #00309a;
+  color: white;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:focus {
+  background-color: #00309a;
+  color: white;
+}
+.main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-date {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1%;
+  height: 49%;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.main-vp-publicacion .centered-container .information .information-description {
+  padding: 10px 5px;
+  font-size: 14px;
+}
+.main-vp-publicacion .centered-container .information .information-options {
+  display: flex;
+  justify-content: row wrap;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-right: 15px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data {
+  line-height: 1;
+  padding-left: 10px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data strong {
+  font-size: 12px;
+}
+.main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data p {
+  font-size: 14px;
+}
+@media (min-width: 1024px) {
+  .main-vp-publicacion {
+    width: 800px;
+    justify-content: center;
+    align-items: center;
+  }
+  .main-vp-publicacion .centered-container {
+    align-items: flex-start;
+    background-color: white;
+    border: 1px solid #dbdbdb;
+  }
+  .main-vp-publicacion .centered-container .information {
+    padding-left: 16px;
+    padding-bottom: 25px;
+  }
+  .main-vp-publicacion .centered-container .information .information-description {
+    font-size: 16px;
+  }
+}
+
+.main-foro {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+@media (min-width: 1024px) {
+  .main-foro {
+    padding: 130px 0 0 0;
+  }
+}
+.main-foro .post {
+  margin-bottom: 2rem;
+}

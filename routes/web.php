@@ -18,6 +18,9 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+Route::get('/admin', function () {
+    return view('/admin/home');
+});
 
 Route::group(['prefix' => 'api'], function () {
 
@@ -41,6 +44,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/apartments', 'App\Http\Controllers\ApartmentController@create');
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
     Route::put('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@update');
+    Route::post('/apartments/order', 'App\Http\Controllers\ApartmentController@order');
 
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
@@ -75,6 +79,9 @@ Route::get('/register', function () {
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout');
 
-Route::get('/foro', function() {
+Route::get('/foro', function () {
     return view('foro.foro');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
 });
