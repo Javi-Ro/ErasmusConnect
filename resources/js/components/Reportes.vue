@@ -1,0 +1,32 @@
+<template>
+    <div class="reportes">
+        REPORTES <br>
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar est. Mauris in nisi non nisi tristique tempor eget et purus. Sed finibus erat nec augue tempor, et congue erat lobortis. Vestibulum posuere libero finibus vulputate efficitur. Morbi ac dolor quis purus ullamcorper tempus sit amet eu velit. Duis augue velit, fermentum id posuere at, sagittis ut libero. Donec mattis ligula enim, eu rutrum libero ullamcorper id. Sed commodo non mi vitae consectetur. Sed molestie nibh quis vestibulum rutrum. Etiam eget faucibus quam. Morbi id arcu consectetur, aliquet sapien sit amet, tincidunt leo. Integer convallis interdum sem, sit amet rutrum orci rhoncus vitae. Nullam sagittis ex tellus, eget venenatis odio congue nec. Praesent porttitor eleifend tortor, nec venenatis purus ullamcorper eu. Curabitur eget erat a tortor suscipit pellentesque in non lectus.
+
+Proin sit amet ultricies neque. Sed pretium tristique vulputate. Proin in velit sem. Nunc vel urna tortor. Donec non velit nec metus lacinia ornare. Donec purus metus, ultricies vitae magna eu, rutrum cursus diam. Praesent in aliquam neque. Fusce lorem lectus, finibus nec diam at, vestibulum condimentum turpis.
+
+Morbi at viverra nibh. Nullam maximus sapien vitae arcu finibus, eu consequat nunc scelerisque. Pellentesque sodales nulla at elit eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere, magna et posuere dapibus, dolor sem elementum elit, in sagittis libero sapien ac magna. Vestibulum in condimentum leo. Fusce sit amet dolor nibh. Ut vestibulum lorem non enim blandit tristique. Donec maximus, leo a porttitor dapibus, velit turpis congue metus, id pellentesque lorem nunc eu sem. Phasellus non augue ac lorem sagittis volutpat vel at tortor. Fusce semper erat eget luctus efficitur. Quisque tincidunt ut ex vitae consequat. Proin ut felis mi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum vitae faucibus massa. In mattis auctor auctor. Proin a ante id erat posuere malesuada. Nullam ut posuere lacus. Maecenas vel metus massa. Cras a aliquam ante. Integer imperdiet id arcu at malesuada. Nullam a euismod magna. Pellentesque eget tellus eu mauris hendrerit viverra.
+
+Nulla accumsan metus vitae justo euismod egestas id quis tortor. Integer ultrices consectetur tellus, ut iaculis orci bibendum sodales. Sed ac est venenatis dolor viverra scelerisque. Mauris facilisis tortor sed dui semper scelerisque. Pellentesque at lobortis lorem. Pellentesque at orci quis ligula ultricies feugiat eget et risus. Donec volutpat urna dignissim sodales mollis. Duis pulvinar lectus urna, ac facilisis elit finibus non. Etiam a eros aliquam, mollis mi sed, rutrum mauris. Nunc ornare elit eu augue tempor, ac commodo urna posuere. Quisque a velit ac tortor vestibulum interdum quis id neque. Quisque volutpat turpis et ullamcorper fermentum. Cras gravida eros lectus, quis blandit lacus luctus ac. Nullam ac libero eget erat finibus interdum. Vestibulum sollicitudin id odio sed dignissim. Mauris non ante risus
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec non pulvinar est. Mauris in nisi non nisi tristique tempor eget et purus. Sed finibus erat nec augue tempor, et congue erat lobortis. Vestibulum posuere libero finibus vulputate efficitur. Morbi ac dolor quis purus ullamcorper tempus sit amet eu velit. Duis augue velit, fermentum id posuere at, sagittis ut libero. Donec mattis ligula enim, eu rutrum libero ullamcorper id. Sed commodo non mi vitae consectetur. Sed molestie nibh quis vestibulum rutrum. Etiam eget faucibus quam. Morbi id arcu consectetur, aliquet sapien sit amet, tincidunt leo. Integer convallis interdum sem, sit amet rutrum orci rhoncus vitae. Nullam sagittis ex tellus, eget venenatis odio congue nec. Praesent porttitor eleifend tortor, nec venenatis purus ullamcorper eu. Curabitur eget erat a tortor suscipit pellentesque in non lectus.
+
+Proin sit amet ultricies neque. Sed pretium tristique vulputate. Proin in velit sem. Nunc vel urna tortor. Donec non velit nec metus lacinia ornare. Donec purus metus, ultricies vitae magna eu, rutrum cursus diam. Praesent in aliquam neque. Fusce lorem lectus, finibus nec diam at, vestibulum condimentum turpis.
+
+Morbi at viverra nibh. Nullam maximus sapien vitae arcu finibus, eu consequat nunc scelerisque. Pellentesque sodales nulla at elit eleifend ullamcorper. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere, magna et posuere dapibus, dolor sem elementum elit, in sagittis libero sapien ac magna. Vestibulum in condimentum leo. Fusce sit amet dolor nibh. Ut vestibulum lorem non enim blandit tristique. Donec maximus, leo a porttitor dapibus, velit turpis congue metus, id pellentesque lorem nunc eu sem. Phasellus non augue ac lorem sagittis volutpat vel at tortor. Fusce semper erat eget luctus efficitur. Quisque tincidunt ut ex vitae consequat. Proin ut felis mi. Interdum et malesuada fames ac ante ipsum primis in faucibus.
+
+Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum vitae faucibus massa. In mattis auctor auctor. Proin a ante id erat posuere malesuada. Nullam ut posuere lacus. Maecenas vel metus massa. Cras a aliquam ante. Integer imperdiet id arcu at malesuada. Nullam a euismod magna. Pellentesque eget tellus eu mauris hendrerit viverra.
+
+Nulla accumsan metus vitae justo euismod egestas id quis tortor. Integer ultrices consectetur tellus, ut iaculis orci bibendum sodales. Sed ac est venenatis dolor viverra scelerisque. Mauris facilisis tortor sed dui semper scelerisque. Pellentesque at lobortis lorem. Pellentesque at orci quis ligula ultricies feugiat eget et risus. Donec volutpat urna dignissim sodales mollis. Duis pulvinar lectus urna, ac facilisis elit finibus non. Etiam a eros aliquam, mollis mi sed, rutrum mauris. Nunc ornare elit eu augue tempor, ac commodo urna posuere. Quisque a velit ac tortor vestibulum interdum quis id neque. Quisque volutpat turpis et ullamcorper fermentum. Cras gravida eros lectus, quis blandit lacus luctus ac. Nullam ac libero eget erat finibus interdum. Vestibulum sollicitudin id odio sed dignissim. Mauris non ante risus
+    </div>
+</template>
+<script>
+</script>
+<style lang="scss" scoped>
+.reportes {
+    display:flex;
+    // El navbar mide 280px aprox
+    margin-left: 300px;
+}
+</style>
