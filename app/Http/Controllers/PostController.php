@@ -46,7 +46,7 @@ class PostController extends Controller
         $newPost->text = $request->text;
         $newPost->img_url = $request->img_url;
         $newPost->city_id = $request->city_id;
-        $newPost->update();
+        $newPost->save();
     }
 
     public function order(Request $data) {
@@ -65,7 +65,5 @@ class PostController extends Controller
         }
         return response()->json(['success' => true, 'posts' => $posts]);
     }
-
-    //TODO: update, not possible yet
 
 }

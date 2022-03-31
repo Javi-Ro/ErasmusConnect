@@ -46,4 +46,15 @@ class ApartmentController extends Controller
 
         return response()->json(['success' => false]);
     }
+
+    public function update(Request $request, Apartment $apartment) {
+        $newApartment = Apartment::find($apartment->id);
+        $newApartment->title = $request->title;
+        $newApartment->description = $request->description;
+        $newApartment->img_url = $request->img_url;
+        $newApartment->price = $request->price;
+        $newApartment->email = $request->email;
+        $newApartment->phone = $request->phone;
+        $newApartment->save();
+    }
 }
