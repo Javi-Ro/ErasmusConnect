@@ -249,4 +249,11 @@ nav.shift ul li a:hover:after {
     background: #00309a;
   }
 }
+
+@media screen and (max-width: 425px) {
+  .navbar {
+    max-width: 180px;
+    min-width: 180px;
+  }
+}
 </style>

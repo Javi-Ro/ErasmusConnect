@@ -113,8 +113,10 @@ $yellow: #ffcd00;
     justify-content: center;
     // El navbar mide 280px aprox
     margin-left: 300px;
+    overflow-x: auto;
 }
 .reporte {
+    min-width: 354px;
     border-radius: 2px;
     display: flex;
     flex-direction: column;
@@ -201,5 +203,11 @@ $yellow: #ffcd00;
     position: absolute;
     top: 10px;
     right: 10px;
+}
+
+@media screen and (max-width: 425px) {
+  .reportes {
+      margin-left:200px;
+  }
 }
 </style>
