@@ -29,7 +29,6 @@ Route::get('/{nickname}', function($nickname) {
         $user = auth()->user()->nickname;
 
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
-    // ->with("nickname", $nickname)->with("user", $user);
 });
 
 Route::get('/foro', function () {

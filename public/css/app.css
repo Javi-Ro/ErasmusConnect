@@ -43365,6 +43365,11 @@ textarea.form-control-lg {
   width: 95%;
   flex-flow: column nowrap;
 }
+.main-vp-publicacion .centered-container .information .information-personal-title {
+  font-size: 2rem;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
 .main-vp-publicacion .centered-container .information .information-personal {
   min-height: 25%;
   width: auto;
@@ -43375,7 +43380,11 @@ textarea.form-control-lg {
   height: 100%;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-img img {
-  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data {
   padding-left: 10px;
@@ -43461,12 +43470,17 @@ textarea.form-control-lg {
 .main-foro {
   padding-top: 20px;
   display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   justify-content: center;
+  align-items: center;
 }
 @media (min-width: 1024px) {
   .main-foro {
-    padding: 100px 0 0 0;
+    padding: 130px 0 0 0;
   }
+}
+.main-foro .post {
+  margin-bottom: 2rem;
 }

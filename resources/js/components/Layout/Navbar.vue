@@ -90,7 +90,9 @@
                             role="button"
                             style="padding-left: 20px;"
                             >
-                            <img :src="profileImage" height="40px" width="40px" style="margin-right:10px;border-radius:50%;border:2px solid #00309a" />
+                            <div style="width: 48px;height: 48px; margin-right: 15px;">
+                                <img :src="profileImage" style="object-fit: cover; height: 48px; border-radius: 50%;border:2px solid #00309a"/>
+                            </div>
                             <span style="margin-right: 10px;">{{user.nickname}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>

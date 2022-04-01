@@ -22,6 +22,12 @@
             width: 95%;
             flex-flow: column nowrap;
 
+            .information-personal-title {
+                font-size: 2rem;
+                font-weight: 400;
+                margin-bottom: 10px;
+            }
+
             .information-personal{
                 min-height: 25%;
                 width: auto;
@@ -30,7 +36,10 @@
                 .information-personal-img{
                     height: 100%;
                     img{
-                        height: 100%;
+                        object-fit: cover;
+                        border-radius: 50%;
+                        height: 48px;
+                        width: 48px;
                     }
                 }
                 .information-personal-data{

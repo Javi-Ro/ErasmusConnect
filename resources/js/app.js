@@ -53,8 +53,8 @@ Vue.component('InfoCards', require('./components/InfoCards.vue').default);
 Vue.component('register-component', require('./components/RegisterComponent.vue').default);
 Vue.component('profile', require('./components/Profile.vue').default)
 Vue.component('foro2', require('./components/Foro/Main.vue').default);
+Vue.component('foro', require('./components/Foro/Main.vue').default);
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
-Vue.component('foro', require('./components/Foro.vue').default);
 Vue.component('apartment', require('./components/Apartments.vue').default);
 Vue.component('filter-bar', require('./components/filterBar.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
