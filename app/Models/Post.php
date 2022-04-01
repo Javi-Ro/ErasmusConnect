@@ -13,6 +13,10 @@ class Post extends Model
         'user_id'
     ];
 
+    protected $appends = [
+        "likes"   
+    ];
+
     use HasFactory;
 
     public function tags()
@@ -38,5 +42,13 @@ class Post extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function likes() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function getLikesAttribute() {
+        return $this->likes()->get()->count();
     }
 }
