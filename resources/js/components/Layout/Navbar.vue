@@ -2,7 +2,7 @@
     <div class="navbar">
         <!-- Logo -->
         <div class="brand">
-            <a class="nav-item" tag="router-link" :to="{ path: '/' }">
+            <a class="nav-item" tag="router-link" href="/">
                 <img
                     class="brand-img"
                     src="/images/logo.png"
@@ -243,6 +243,7 @@ $yellow: #ffcd00;
     display: none;
 }
 .navbar {
+    position: fixed !important;
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;

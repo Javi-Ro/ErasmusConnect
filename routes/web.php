@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,18 @@ Route::get('/', function () {
 });
 Route::get('/admin', function () {
     return view('/admin/home');
+});
+
+Route::get('/{nickname}', function($nickname) {
+    $user = "";
+    if(Auth::check())
+        $user = auth()->user()->nickname;
+
+    return view('profile', ["nickname"=>$nickname, "user"=>$user]);
+});
+
+Route::get('/foro', function () {
+    return view('foro');
 });
 
 Route::group(['prefix' => 'api'], function () {
