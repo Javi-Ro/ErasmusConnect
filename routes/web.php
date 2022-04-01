@@ -19,7 +19,7 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/admin', function () {
+Route::get('/admin/reportes', function () {
     return view('/admin/home');
 });
 
