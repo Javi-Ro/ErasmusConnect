@@ -43360,15 +43360,18 @@ textarea.form-control-lg {
   width: 100%;
   margin-bottom: 20px;
 }
+.main-vp-publicacion .centered-container .content-main img {
+  max-height: 700px;
+}
 .main-vp-publicacion .centered-container .information {
   display: flex;
   width: 95%;
   flex-flow: column nowrap;
 }
 .main-vp-publicacion .centered-container .information .information-personal-title {
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 400;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 .main-vp-publicacion .centered-container .information .information-personal {
   min-height: 25%;
@@ -43402,8 +43405,8 @@ textarea.form-control-lg {
   align-items: center;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button {
-  font-size: 0.7rem;
-  margin-left: 15px;
+  font-size: 0.6rem;
+  margin-left: 20px;
   border-color: #00309a;
   color: #00309a;
 }
@@ -43449,14 +43452,18 @@ textarea.form-control-lg {
 }
 @media (min-width: 1024px) {
   .main-vp-publicacion {
-    width: 800px;
+    width: 100%;
     justify-content: center;
     align-items: center;
+    background-color: #f8f9f9;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
     background-color: white;
     border: 1px solid #dbdbdb;
+  }
+  .main-vp-publicacion .centered-container .content-main img {
+    max-height: 700px;
   }
   .main-vp-publicacion .centered-container .information {
     padding-left: 16px;
@@ -43465,21 +43472,32 @@ textarea.form-control-lg {
   .main-vp-publicacion .centered-container .information .information-description {
     font-size: 16px;
   }
+  .main-vp-publicacion .centered-container .information .information-personal-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .main-vp-publicacion .centered-container .information .button {
+    font-size: 0.7rem !important;
+    margin-left: 15px !important;
+  }
 }
 
 .main-foro {
-  padding-top: 20px;
+  padding-top: 140px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   position: relative;
   width: 100%;
   justify-content: center;
-  align-items: center;
 }
-@media (min-width: 1024px) {
+@media (min-width: 1500px) {
   .main-foro {
-    padding: 130px 0 0 0;
+    margin-left: 150px;
   }
+}
+.main-foro .posts {
+  display: flex;
+  flex-direction: column;
 }
 .main-foro .post {
   margin-bottom: 2rem;
