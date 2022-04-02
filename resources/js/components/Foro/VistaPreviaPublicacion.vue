@@ -50,7 +50,7 @@
     data() {
       return {
         optionsData: [
-          {image: "/images/like.svg", title: "Me gusta", data: 1350},
+          {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
           {image: "/images/comment.svg", title: "Comentarios", data: 152},
           {image: "/images/share.svg", title: "Compartir", data: 56}
         ],
@@ -84,7 +84,6 @@
     created() {
       axios.get(`/api/users/` + this.post.user_id).then(response => {
         this.user = response.data.user;
-        console.log(this.user);
       }).catch(error => {
         console.info(error);
       });
