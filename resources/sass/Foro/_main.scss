@@ -1,17 +1,19 @@
 .main-foro{
-    padding-top: 20px;
+    padding-top: 140px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     position: relative;
     width: 100%;
     justify-content: center;
-    align-items: center;
 
-    @media(min-width: $media-desktop-min){
-        padding: 130px 0 0 0;
-        
+    @media(min-width: 1500px) {
+        margin-left: 150px;
     }
 
+    .posts{
+        display: flex;
+        flex-direction: column;
+    }
     .post {
         margin-bottom: 2rem;
     }
