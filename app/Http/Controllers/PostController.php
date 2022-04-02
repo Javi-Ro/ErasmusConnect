@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -54,6 +55,13 @@ class PostController extends Controller
         } else {
             $posts = Post::all();
         }
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
+    public function filterByTag(Request $data) {
+        $tag = Tag::findOrFail($data->tag);
+        $posts = $tag->posts()->get();
+
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 

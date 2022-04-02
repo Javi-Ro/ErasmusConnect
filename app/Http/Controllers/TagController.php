@@ -38,4 +38,23 @@ class TagController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function getPostsTags() {
+        $tags = Tag::wherePost(1)->get();
+
+        foreach ($tags as $tag) {
+            $tag->name = ucfirst($tag->name); // First letter capital
+        }
+
+        return response()->json(['success' => true, 'tags' => $tags]);
+    }
+
+    public function getApartmentsTags() {
+        $tags = Tag::wherePost(0)->get();
+
+        foreach ($tags as $tag) {
+            $tag->name = ucfirst($tag->name); // First letter capital
+        }
+
+        return response()->json(['success' => true, 'tags' => $tags]);        
+    }
 }

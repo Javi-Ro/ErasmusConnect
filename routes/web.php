@@ -43,8 +43,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
 
     //TAGS
-    Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
+    Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
+    Route::get('/tags/apartments', 'App\Http\Controllers\TagController@getApartmentsTags');
+    Route::get('/tags/{tag}', 'App\Http\Controllers\TagController@get');
     Route::post('/tags', 'App\Http\Controllers\TagController@create');
     Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
 
@@ -73,6 +75,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
     //POSTS
+    Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
