@@ -18,7 +18,7 @@
                 <b-button class="information-personal-data-main-button" type="is-link" outlined>Guardar</b-button>
               </div>
               <div class="information-personal-data-date">
-                <p>15/10/2001</p>
+                <p>{{ post.created_at }}</p>
               </div>
             </div>
           </div>
@@ -31,8 +31,8 @@
             <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
               <img :src="option.image" :alt="option.title" width="25px" height="25px">
               <div class="information-options-option-data">
-                <strong>{{option.title}}</strong>
-                <p>{{option.data}}</p>
+                <strong>{{ option.title }}</strong>
+                <p>{{ option.data }}</p>
               </div>
             </div>
           </div>
