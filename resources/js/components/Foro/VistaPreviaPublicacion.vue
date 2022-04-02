@@ -50,9 +50,9 @@
     data() {
       return {
         optionsData: [
-          {image: "images/like.svg", title: "Me gusta", data: 1350},
-          {image: "images/comment.svg", title: "Comentarios", data: 152},
-          {image: "images/share.svg", title: "Compartir", data: 56}
+          {image: "/images/like.svg", title: "Me gusta", data: 1350},
+          {image: "/images/comment.svg", title: "Comentarios", data: 152},
+          {image: "/images/share.svg", title: "Compartir", data: 56}
         ],
         user: Object,
       }

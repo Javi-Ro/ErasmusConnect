@@ -2,7 +2,7 @@
     <div class="filter-bar">
         <div class="tag" >
             <p class="cabecera">
-                Busca lo que más te interesa
+                Temas
             </p>
         </div>
         <div class="tags">
@@ -69,15 +69,27 @@ $blue:#00309a;
 // Indica el radio de la barra de filtros
 $radio: 10px;
 .filter-bar {
-    display:flex;
+    display:none;
     // width: 20%;
     // height: 100%;
-    border-radius: $radio;
+    //border-radius: $radio;
     // 100px es la anchura del navbar
-    margin: 130px 0 0 20px;
-    border: 3px solid blue;
-    flex-direction: column;
+    border: 1px solid #dbdbdb;
+    //flex-direction: column;
     overflow: hidden;
+    background-color: white;
+    position: fixed;
+    height: fit-content;
+    left: 0;
+    padding-top: 20px;
+    height: 100%;
+    top: 90px;
+    min-width: 300px;
+    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+
+    @media(min-width: 1500px){
+        display: block;
+    }
 
 }
 .tags {
@@ -85,17 +97,22 @@ $radio: 10px;
     flex-direction: column;
     // width: 100%;
     justify-content: flex-start;
-    max-height: 270px;
     overflow-y: auto;
     flex-wrap: nowrap;
 }
 .tag {
     display: flex;
     font-size: 1rem;
-    margin: 10px 0 10px 20px;
+    margin: 10px 20px;
+    margin-right: 40px;
     justify-content: flex-start;
     color: #000;
-    background-color: transparent
+    background-color: transparent;
+
+    .cabecera{
+        margin-bottom: 20px;
+        font-size: 1.5rem;
+    }
 }
 
 .tag-body {

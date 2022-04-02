@@ -18,8 +18,20 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
-Route::get('/admin', function () {
+Route::get('/admin/reportes', function () {
     return view('/admin/home');
+});
+
+Route::get('/foro', function () {
+    return view('foro');
+});
+
+Route::get('/profile/{nickname}', function($nickname) {
+    $user = "";
+    if(Auth::check())
+        $user = auth()->user()->nickname;
+
+    return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
 
 Route::group(['prefix' => 'api'], function () {

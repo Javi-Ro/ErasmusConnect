@@ -1,7 +1,11 @@
 <template>
-  <section class="main-foro">
-    <div v-for="post in posts" :key="post.id" class="post">
-      <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+  <section class="main-foro"> 
+    <filter-bar></filter-bar>
+    <filter-bar-horizontal></filter-bar-horizontal>
+    <div class="posts">
+      <div v-for="post in posts" :key="post.id" class="post">
+        <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+      </div>
     </div>
   </section>
 </template>

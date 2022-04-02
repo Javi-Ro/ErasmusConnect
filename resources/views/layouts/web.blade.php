@@ -18,7 +18,9 @@
         <!-- <main class="main-container"> -->
             @yield('content')
         <!-- </main> -->
-        @include('partials.footer')
+        <!-- Lo comento para que no aparezca en páginas como el perfil
+        tocará llamar a '<footer-web/>' Al final de cada .vue en el que queramos que aparezca -->
+        <!-- @include('partials.footer') -->
     </div>
 </body>
 </html>
