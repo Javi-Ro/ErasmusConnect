@@ -3,7 +3,7 @@
         <!-- Logo -->
         <div class="brand" style="align-items: center">
             <p>ADMINISTRADOR</p>
-            <a class="nav-item" tag="router-link" href="/admin/reportes">
+            <a class="nav-item" tag="router-link" href="/">
                 <img
                     class="brand-img"
                     src="/images/logo.png"

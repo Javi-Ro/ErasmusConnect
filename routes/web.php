@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Auth;
+// use Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,7 +28,7 @@ Route::get('/admin/usuarios', function () {
     return view('/admin/usuarios');
 });
 
-Route::get('/{nickname}', function($nickname) {
+Route::get('/{nickname}/profile', function($nickname) {
     $user = "";
     if(Auth::check())
         $user = auth()->user()->nickname;

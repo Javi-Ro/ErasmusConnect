@@ -241,7 +241,7 @@ $blue: #00309a;
 $yellow: #ffcd00;
 #closeIcon {
     display: none;
-}
+}    /* Modifica el texto de dentro */
 .navbar {
     position: fixed !important;
     display: flex;
