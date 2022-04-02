@@ -7,10 +7,10 @@
       <div class="login-main-user"> 
           <input placeholder="Nombre de usuario">
       </div>
-            <div class="login-main-password"> 
-          <input placeholder="Contraseña">
+        <div class="login-main-password"> 
+          <input placeholder="Contraseña" type="password">
       </div>
-      <b-checkbox id="checkbox" > He olvidado mi contraseña </b-checkbox>
+      <div class="pregunta"> ¿No tienes cuenta? <a class="registrate"> Regístrate </a> </div>
       <b-button class="button is-primary" id="login">Iniciar sesión</b-button>
 
   </section>
@@ -24,6 +24,12 @@
         font-family: Arial, Helvetica, sans-serif;
     }
 
+    .pregunta{
+        margin-bottom: 10px;
+    }
+    .registrate{
+        color:#00309a;
+    }
     .login-main{
         margin-top: 130px;
         display:flex;
@@ -53,12 +59,6 @@
         margin-right: 0.5rem;
         // background-color: darken($blue, 10%);
         color: #ffcd00;
-    }
-
-    .checkbox{
-        font-size: 15px;
-        font-family: Arial, Helvetica, sans-serif;
-        margin-bottom: 10px;
     }
 
 </style>
