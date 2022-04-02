@@ -19,8 +19,13 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/admin/reportes', function () {
     return view('/admin/home');
+});
+
+Route::get('/admin/usuarios', function () {
+    return view('/admin/usuarios');
 });
 
 Route::get('/{nickname}', function($nickname) {
