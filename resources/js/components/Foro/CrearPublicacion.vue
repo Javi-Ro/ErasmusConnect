@@ -1,18 +1,22 @@
 <template>
-    <section class="login-main">
-fjfdñdsfj
+    <section style="margin-top: 130px;">
+        
+    HOLA
+    </section>    
 
-  </section>
 </template>
 
+<style lang="scss" scoped>
+    section{
+        background-color:blue;
+    }
+</style>
 
 <script>
   export default {
     props: {},
     data() {
-      return {
-       
-      }
+      return {}
     },
     watch: {
       data: {
