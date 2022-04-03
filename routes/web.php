@@ -34,6 +34,10 @@ Route::get('/profile/{nickname}', function($nickname) {
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
 
+Route::get('/publicacion', function(){
+    return view('foro.publicacion');
+});
+
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
