@@ -23,43 +23,44 @@
                 :debounce-page-input="inputDebounce"
                 >
 
-                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable v-slot="props">
+                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
                     {{ props.row.id }}
                 </b-table-column>
-                <b-table-column field="titulo" label="Titulo" width="20%" sortable searchable v-slot="props">
+                <b-table-column field="title" label="Titulo" width="20%" sortable searchable centered v-slot="props">
                     {{ props.row.title }}
                 </b-table-column>
-                <b-table-column field="comentario" label="Comentario de" width="10%" sortable searchable v-slot="props">
-                    <span v-if="props.row.comentario === null">-</span>
+                <b-table-column field="post_id" label="Comentario de" width="20%" sortable searchable centered v-slot="props">
+                    <span v-if="props.row.post_id === null">-</span>
                     <span v-else>{{ props.row.post_id }}</span>
                 </b-table-column>
-                <b-table-column field="usuario_id" label="Usuario" sortable width="10%" searchable v-slot="props">
+                <b-table-column field="user_id" label="Usuario" sortable width="20%" searchable numeric centered v-slot="props">
                     {{ props.row.user_id }}
                 </b-table-column>
-                <b-table-column field="ciudad_id" label="Ciudad" sortable searchable width="10%" v-slot="props">
+                <b-table-column field="city_id" label="Ciudad" numeric sortable searchable width="20%" centered v-slot="props">
                     {{ props.row.city_id }}
                 </b-table-column>
-                <b-table-column field="ver-publicacion" label="" width="5%" v-slot="props">
-                    <b-button type="is-info" outlined size="is-small" @click.prevent="getPost(props.row.id); isCardModalActive = true;"  title="Visualizar la publicación">
+                <b-table-column field="ver-publicacion" label="" width="5%" centered v-slot="props">
+                    <b-button type="is-info" outlined size="is-small" @click.prevent="openPost(props.row);"  title="Visualizar la publicación">
                         Ver publicación
                     </b-button> 
                 </b-table-column>
-                <b-table-column field="eliminar" label="" width="5%">
-                    <b-button type="is-danger" size="is-small" title="Borrar publicacion">
+                <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                    <b-button type="is-danger" @click="deletePost(props.row.id);" size="is-small" title="Borrar publicacion">
                         Eliminar
                     </b-button>
                 </b-table-column>
             </b-table>
         </div>
 
-        <b-modal active=true v-model="isCardModalActive" @on-cancel="post= {};" :width="640" scroll="keep">
-            <vista-previa-publicacion :post="this.post"></vista-previa-publicacion>
-        </b-modal>
+        <!--<b-modal :active="post" v-model="isCardModalActive" :width="640" scroll="keep">
+            <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+        </b-modal> DECLARATIVE WAY OF OPENING THE MODAL-->
         
     </section>
 </template>
 
  <script>
+    import VistaPreviaPublicacionVue from '../Foro/VistaPreviaPublicacion.vue';
     export default {
         props: {},
         data() {
@@ -94,19 +95,30 @@
 
         computed: {},
         methods: {
-            getPost(id) {
-                axios.get(`/api/posts/` + id).then(response => { 
-                    this.post =  response.data.post;
-                }).catch(error => { 
-                    console.info(error);
-                });
-            },
             getPosts() {
                 axios.get(`/api/posts`).then(response => {
                     this.posts = response.data.posts;
                 }).catch(error => {
                     console.info(error);
                 })
+            },
+            openPost(post) {  //--> Programmatic way of creating the modal.
+                let vue = this;
+                vue.$buefy.modal.open({
+                    parent: vue,
+                    animation: 'none',
+                    component: VistaPreviaPublicacionVue,
+                    canCancel: true,
+                    props: { post: post },
+                    width: 640,
+                    events: {
+                        
+                    },
+                    onCancel: () => {}
+                });
+            },
+            deletePost(post){
+                axios.delete(`/api/posts/` + post);
             },
         },
 

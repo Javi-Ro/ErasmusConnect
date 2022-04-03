@@ -43456,6 +43456,7 @@ textarea.form-control-lg {
     justify-content: center;
     align-items: center;
     background-color: #f8f9f9;
+    max-width: 900px;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
@@ -43509,6 +43510,12 @@ textarea.form-control-lg {
 }
 .admin-posts .b-table {
   background-color: white;
+}
+.admin-posts .level {
+  justify-content: center !important;
+}
+.admin-posts .level .pagination .is-current {
+  background-color: #485fc7 !important;
 }
 @media screen and (max-width: 425px) {
   .admin-posts {

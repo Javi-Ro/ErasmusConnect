@@ -77,17 +77,21 @@
       }
     },
 
-    methods: {},
+    methods: {
+      getUser() {
+        axios.get(`/api/users/` + this.post.user_id).then(response => {
+          this.user = response.data.user;
+          console.log(this.user);
+        }).catch(error => {
+          console.info(error);
+        });
+      }
+    },
 
     mounted() {},
 
     created() {
-      axios.get(`/api/users/` + this.post.user_id).then(response => {
-        this.user = response.data.user;
-        console.log(this.user);
-      }).catch(error => {
-        console.info(error);
-      });
+      this.getUser();
     }
   }
 </script>
