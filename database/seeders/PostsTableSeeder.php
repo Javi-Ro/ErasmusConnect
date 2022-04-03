@@ -23,8 +23,8 @@ class PostsTableSeeder extends Seeder
                 'id' => 1,
                 'title' => "Mi etapa en Praga",
                 'user_id' => 1,
-                'img_url' => "ejemplo-praga.jpeg",
-                'text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                'text' => 'Praga es una de las ciudades mas bonitas que he conocido. Abro un foro para que podais hablar acerca de los mejores sitios de esta increible ciudad',
+                'img_url' => 'ejemplo-praga.jpeg'
             ]
         );
 
@@ -33,8 +33,8 @@ class PostsTableSeeder extends Seeder
                 'id' => 2,
                 'title' => "Aqui en Eslovenia",
                 'user_id' => 1,
-                'img_url' => "ejemplo-eslovenia.jpeg",
-                'text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                'text' => 'Viva Eslovenia. No os recomiendo ir en 2023 ya que estara Vicente robando gatitas',
+                'img_url' => 'ejemplo-eslovenia.jpeg'
             ]
         );
 
@@ -43,8 +43,8 @@ class PostsTableSeeder extends Seeder
                 'id' => 3,
                 'title' => "Hola desde Munich",
                 'user_id' => 2,
-                'img_url' => "ejemplo-munich.jpeg",
-                'text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                'text' => 'Muchas alemanas, mucha cerveza y muchas salchichas',
+                'img_url' => 'ejemplo-munich.jpeg'
             ]
         );
 
@@ -53,8 +53,8 @@ class PostsTableSeeder extends Seeder
                 'id' => 4,
                 'title' => "Experiencias en Oslo",
                 'user_id' => 4,
-                'img_url' => "ejemplo-oslo.jpeg",
-                'text' => "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."
+                'text' => 'Solo hay Teslas, una cerveza cuesta un riñon. No vi ninguna aurora boreal, decepcionante. En fin, mucho frio y tampoco hay pinguinos por la calle :(',
+                'img_url' => 'ejemplo-oslo.jpeg'
             ]
         );
     }

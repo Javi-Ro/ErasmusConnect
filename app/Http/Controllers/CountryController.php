@@ -35,5 +35,9 @@ class CountryController extends Controller
         return response()->json(['success' => false]);
     }
 
-    //public functio update() {}
+    public function update(Request $request, Country $country) {
+        $newCountry = Country::find($country->id);
+        $newCountry->name = $request->name;
+        $newCountry->save();
+    }
 }
