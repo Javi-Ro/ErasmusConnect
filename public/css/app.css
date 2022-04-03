@@ -43502,3 +43502,17 @@ textarea.form-control-lg {
 .main-foro .post {
   margin-bottom: 2rem;
 }
+
+.admin-posts {
+  width: calc(100% - 280px);
+  margin-left: 280px;
+}
+.admin-posts .b-table {
+  background-color: white;
+}
+@media screen and (max-width: 425px) {
+  .admin-posts {
+    width: calc(100% - 180px);
+    margin-left: 180px;
+  }
+}

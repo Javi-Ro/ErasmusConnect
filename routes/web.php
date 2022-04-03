@@ -18,8 +18,13 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+
 Route::get('/admin/reportes', function () {
     return view('/admin/home');
+});
+
+Route::get('/admin/posts', function () {
+    return view('/admin/posts');
 });
 
 Route::get('/foro', function () {

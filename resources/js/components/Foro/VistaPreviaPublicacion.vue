@@ -54,7 +54,7 @@
           {image: "/images/comment.svg", title: "Comentarios", data: 152},
           {image: "/images/share.svg", title: "Compartir", data: 56}
         ],
-        user: Object,
+        user: {},
       }
     },
 
@@ -73,7 +73,7 @@
         return "/images/" + this.post.img_url;
       },
       imgProfile() {
-        return "images/users/" + this.user.img_url;
+        return "/images/" + this.user.img_url;
       }
     },
 
