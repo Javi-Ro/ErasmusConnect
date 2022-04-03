@@ -18,9 +18,21 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+
+//ADMINS
 Route::get('/admin', function () {
     return view('/admin/home');
 });
+Route::get('/adminpaises', function () {
+    return view('/admin/paisesAdmin');
+});
+Route::get('/adminetiquetas', function () {
+    return view('/admin/etiquetasAdmin');
+});
+Route::get('/adminciudades', function () {
+    return view('/admin/ciudadesAdmin');
+});
+
 
 Route::group(['prefix' => 'api'], function () {
 
