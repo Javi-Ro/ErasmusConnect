@@ -344,6 +344,7 @@ a.navbar-item:hover {
     }
     .navbar {
         flex-wrap: wrap;
+        width: 100%;
     }
     .menu {
         display: none;
