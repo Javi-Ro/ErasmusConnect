@@ -13,6 +13,10 @@ class Post extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'created_at'  => 'datetime:d/m/Y H:m',
+    ];
+
     protected $appends = [
         "likes"   
     ];

@@ -5,7 +5,7 @@
         <div class="container-1">
             <div class="eslogan">
                 <p id="textoEslogan" style="text-align: center;">
-                    Eslogan espectacular
+                    El erasmus no es un año de tu vida, es el año de tu vida.
                 </p>
             </div>
             <div class="botonPrincipal">
@@ -31,7 +31,8 @@
                 <div class="titulo-cartas">
                     <p>Foro</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                <p> 
+                    ¿No sabes donde irte de Erasmus aún? ¿Lo tienes claro? Sea cual sea tu respuesta, te presentamos el foro. Un sitio donde vas a poder saber más sobre la experiencia de otros estudiantes durante su Erasmus, donde vas a poder conocer a tus futuros compañeros de aventuras, e incluso saber más de cualquier ciudad de Europa. No dudes en entrar y ver que se comenta por ahí, podrás descubrir más sobre la cultura, gastronomía, quedadas, fiestas... que gente como tú está realizando fuera de España. Obviamente, también podrás hablar y encontrar información sobre tu universidad de destino... aunque sabemos que esto ya es algo menos divertido. El foro abarca tantos países y temas distintos, que puedes pasar todas las horas que quieras descubriendo todo sobre cualquier pais de Europa. ¡Corre y presentate! Mil historias te esperan por todo el continente.
                 </p>
             </div>
         </div>
@@ -44,7 +45,8 @@
                 <div class="titulo-cartas">
                     <p>Alquileres</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                <p> 
+                    Vas a otro país, quizás con una cultura un tanto distinta a la española... y el tener que buscar un sitio donde podamos alojarnos, realizar nuestro día a día, y superar esas resacas es algo complicado. Se junta el hecho de no poder ir en persona a ver dichos pisos, con el no saber nada sobre las inmobiliarias locales, y el no conocer a nadie. Es por ello por lo que gracias a la sección de alquileres puedes encontrar tu sitio ideal entre los cientos de ellos que ofertamos. Dentro de esta web puedes ordenar y filtrar en función de tus preferencias para que puedas hacerlo de la manera más amena y rápida posible. Por supuesto, cuentas con el foro para buscar futuros compañeros de pisos con los que montar fiestas y ver unas peilus... y bueno estudiar.
                 </p>
             </div>
             <b-image
@@ -67,7 +69,8 @@
                 <div class="titulo-cartas">
                     <p>Eventos</p>
                 </div>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nisi optio enim quibusdam temporibus cumque quos expedita consectetur tempora assumenda repellat quas placeat officia laboriosam veniam natus architecto facilis ut molestias maiores nihil esse ducimus mollitia nam facere cum voluptatibus unde accusamus recusandae qui officiis. Natus distinctio quis nam velit asperiores ipsa est maxime nulla voluptas cupiditate qui modi maiores beatae laboriosam praesentium commodi laborum vero exercitationem perspiciatis explicabo unde consequatur necessitatibus animi sed quasi obcaecati eos harum voluptates ipsam ea odit reiciendis alias aliquam. Labore cumque expedita quos incidunt obcaecati facere nulla tenetur soluta libero quam. Magni nulla officiis molestiae tenetur ipsa maiores ut! Aspernatur totam architecto fuga consequatur repellat delectus ea voluptate. Saepe velit quaerat minima iusto eius nemo voluptas pariatur voluptate! Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo. Voluptatem laborum nesciunt sit non sunt quos quo.
+                <p>
+                    Esta es la parte para muchos estudiantes Erasmus, la más importante, y todos sabemos porqué... Sabemos de primera mano que el llegar a otro país sin conocer a nadie puede ser un gran reto ya que nuestro principal deseo es socializar, conocer gente, viajar, y liarla mucho... Aquí podras conocer a otros estudiantes que al igual que tú, buscan gente con quien divertirse. Existe una gran cantidad de actividades distintas a realizar, desde salir de fiesta o tomarse unas cervezas, a jugar un partido de fútbol, o irse de viaje al país vecino. Disfruta de todas las opciones y diversidad de eventos que realizan tus compañeros para hacer que esto haga de tu Erasmus la mejor experiencia de tu vida.
                 </p>
             </div>
         </div>
