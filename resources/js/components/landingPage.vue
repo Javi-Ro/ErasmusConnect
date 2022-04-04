@@ -23,7 +23,7 @@
     <!-- Fin de la primera parte -->
     <InfoCards/>
     <!-- Tarjeta que explica los Reviews/Valoraciones -->
-    <div class="tarjeta" id="tarjeta-1">
+    <div class="tarjeta" id="foro">
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
@@ -42,7 +42,7 @@
     </div>
 
     <!-- Tarjeta que explica los Rentings -->
-    <div class="tarjeta" id="tarjeta-2">
+    <div class="tarjeta" id="alquiler">
         <div class="contenido-tarjeta">
             <div class="texto" id="texto-2">
                 <div class="titulo-cartas">
@@ -55,18 +55,18 @@
             <b-image
                 id="img-tarjeta"
                 :src="require('@../../../public/images/landing/alquileres.jpg').default"
-                alt="placeholder"
+                alt="Alquileres"
             ></b-image>
         </div>
     </div>
 
     <!-- Tarjeta que explica los Beerbuddies -->
-    <div class="tarjeta" id="tarjeta-3">
+    <div class="tarjeta" id="eventos">
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
                 :src="require('@../../../public/images/landing/fiesta.png').default"
-                alt="placeholder"
+                alt="eventos"
             ></b-image>
             <div class="texto" id="texto-3">
                 <div class="titulo-cartas">
@@ -81,7 +81,6 @@
     <footer-web/>
 </div>
 </template>
-
 
 <style lang="scss" scoped>
 $blue:#00309a;
@@ -288,7 +287,7 @@ $color: #00309a;
 /*------------------------------------------YU-GI-OH------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
 // Le ponemos mas margen para que sea equivalente en distancia al resto
-#tarjeta-1 {
+#foro {
     margin-top: 4%;
 }
 .tarjeta {
