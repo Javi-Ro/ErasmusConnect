@@ -136,7 +136,7 @@
 
     /* Modifica el texto de dentro */
     color: #000;
-    font-size: 3rem;
+    font-size: 2.3rem;
     font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
     text-transform: uppercase;
     letter-spacing: .15rem;
