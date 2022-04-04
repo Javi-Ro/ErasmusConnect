@@ -1,5 +1,5 @@
 @extends('layouts.web')
 
 @section('content')
-    <crear-publicacion></crear-publicacion>
+    <foro></foro>
 @endsection
