@@ -44,7 +44,7 @@
 <script>
   export default {
     props: {
-      post: Object
+      post: {}
     },
 
     data() {

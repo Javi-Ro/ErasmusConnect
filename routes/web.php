@@ -34,7 +34,7 @@ Route::get('/profile/{nickname}', function($nickname) {
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
 
-Route::get('/publicacion', function(){
+Route::get('/publicacion/{publicacion}', function(){
     return view('foro.publicacion');
 });
 
