@@ -14,15 +14,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH ROUTES
+
 Auth::routes();
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+Route::get('/register', function () {
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
+
+    return redirect(RouteServiceProvider::HOME);
+});
+
+// VIEWS ROUTES
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
-
-Route::get('/admin/reportes', function () {
-    return view('/admin/home');
-});
 
 Route::get('/foro', function () {
     return view('foro');
@@ -35,6 +44,19 @@ Route::get('/profile/{nickname}', function($nickname) {
 
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
+
+Route::get('/admin/reportes', function () {
+    return view('/admin/home');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
+});
+
+// API ROUTES
 
 Route::group(['prefix' => 'api'], function () {
 
@@ -88,21 +110,4 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
-});
-
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
-});
-
-Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-
-Route::get('/foro', function () {
-    return view('foro.foro');
-});
-Route::get('/apartments', function () {
-    return view('apartments.apartment');
 });
