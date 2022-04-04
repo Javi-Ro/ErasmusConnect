@@ -2,7 +2,7 @@
     <div class="filter-bar">
         <div class="tag" >
             <p class="cabecera">
-                Temas
+                Elige lo que más te interesa
             </p>
         </div>
         <div class="tags">
@@ -10,7 +10,8 @@
             v-for="(tag,index) in tags" :key="index" :href="tag.link"
             >
                 <div class="tag" @click="selectTag(index, tag.link)">
-                    <p class="tagname">
+                    <img src="/images/sports.svg" alt="" width="36px" height="36px" style="margin-right: 20px">
+                    <p class="tagname vertical">
                         {{tag.name}}
                     </p>
                 </div>
@@ -103,11 +104,16 @@ $radio: 10px;
 .tag {
     display: flex;
     font-size: 1rem;
-    margin: 10px 20px;
-    margin-right: 40px;
+    margin: 10px 10px;
+    margin-right: 20px;
     justify-content: flex-start;
     color: #000;
     background-color: transparent;
+
+    .tagname .vertical{
+        font-size: 0.9375;
+        font-weight: 300;
+    }
 
     .cabecera{
         margin-bottom: 20px;
