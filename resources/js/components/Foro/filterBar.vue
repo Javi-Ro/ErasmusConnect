@@ -7,9 +7,9 @@
         </div>
         <div class="tags">
             <div class="tag-body" :id="setTagID(index)" 
-            v-for="(tag,index) in tags" :key="index" :href="tag.link"
+            v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
             >
-                <div class="tag" @click="selectTag(index, tag.link)">
+                <div class="tag">
                     <p class="tagname">
                         {{tag.name}}
                     </p>
@@ -22,34 +22,40 @@
 export default {
     data() {
         return {
-            tags: [
-                { name: "Deporte", link: "#1"},
-                { name: "Fiesta", link: "#2"},
-                { name: "Cine", link: "#3"},{ name: "Cine", link: "#3"},{ name: "Cine", link: "#3"},{ name: "Cine", link: "#3"},
-                { name: "Cultura", link: "#4"}
-            ]
+            tags: [],
+            nTags: 0
         }
     },
     methods: {
-        getNumberOfTags() {
-            // Hay que hacer una llamada a la base de datos para obtener dinámicamente
-            // el número de etiquetas que hay en la base de datos
-            // Número de etiquetas - 1 para que coincida con el index que empieza en 0
-            return 6 - 1;
+        getTags() {
+            axios.get(`/api/tags/posts`).then(response => {
+                this.tags = response.data.tags;
+                this.nTags = this.tags.length - 1;
+            }).catch(error => {
+                console.info(error);
+            });
         },
         setTagID(index) {
             // Es necesario distinguir entre la primera etiqueta y el resto
             if(index == 0)
                 return "first-tag";
             // Es necesario distinguir entre la última etiqueta y el resto
-            else if(index == this.getNumberOfTags())
+            else if(index == this.nTags)
                 return "last-tag";
             else
                 return "";
         },
         // Evento on-click para cuando se pulse una etiqueta
-        selectTag(index, link) {
-            console.log("INDEX: " + index + "\nLINK: " + link)
+        getPostsByTag(tag) {
+            axios.get(`/api/posts/filter-by-tag`, {
+                params: {
+                    tag: tag
+                }
+            }).then(response => {
+                this.$parent.posts = response.data.posts;
+            }).catch(error => {
+                console.info(error);
+            });
         },
         cardModal() {
             this.$buefy.modal.open({
@@ -58,9 +64,13 @@ export default {
                 hasModalCard: true,
                 customClass: 'custom-class custom-class-2',
                 // trapFocus: true
-            })
+            });
         }
 
+    },
+
+    created() {
+        this.getTags();
     }
 }
 </script>

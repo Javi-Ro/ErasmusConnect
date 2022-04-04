@@ -7,10 +7,10 @@
       </div>
 
       <div class="elemento"> 
-          <b-input placeholder="Nombre de usuario"> </b-input>
+          <b-input v-model="nickname" placeholder="Nombre de usuario"> </b-input>
       </div>
       <div class="elemento"> 
-        <b-input class="input-buefy" icon-pack="fas"
+        <b-input v-model="password" class="input-buefy" icon-pack="fas"
               icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> 
         </b-input>
       </div>
@@ -18,7 +18,7 @@
       <div class="pregunta"> 
         <p> ¿No tienes cuenta? <a class="registrate" href="/register"> Regístrate </a> </p>
       </div>
-        <b-button class="button login is-primary" id="login">Iniciar sesión</b-button>
+        <b-button v-on:click="loginUser()" class="button login is-primary" id="login">Iniciar sesión</b-button>
       
     </div>
 
@@ -87,7 +87,11 @@
   export default {
     props: {},
     data() {
-      return {}
+      return {
+        nickname: '',
+        password: '',
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
     },
     watch: {
       data: {
@@ -99,7 +103,22 @@
       },
     },
     computed: {},
-    methods: {},
+    methods: {
+      loginUser() {
+        axios.post(`/login`, {
+          nickname: this.nickname,
+          password: this.password
+        }).then(response => {
+          if (response.data.success) {
+            window.location.href = "/";
+          } else {
+            alert("These credentials does not match any of our records!");
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      }
+    },
     mounted() {}
   }
 
