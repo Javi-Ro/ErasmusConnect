@@ -43428,7 +43428,7 @@ textarea.form-control-lg {
   font-size: 0.8rem;
 }
 .main-vp-publicacion .centered-container .information .information-description {
-  padding: 10px 5px;
+  padding: 10px 0px;
   font-size: 14px;
 }
 .main-vp-publicacion .centered-container .information .information-options {
@@ -43496,7 +43496,7 @@ textarea.form-control-lg {
 }
 
 .main-foro {
-  padding-top: 140px;
+  padding-top: 200px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -43506,6 +43506,7 @@ textarea.form-control-lg {
 @media (min-width: 1500px) {
   .main-foro {
     margin-left: 150px;
+    padding-top: 140px;
   }
 }
 .main-foro .posts {
@@ -43517,70 +43518,104 @@ textarea.form-control-lg {
 }
 
 .post-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-container-positioned {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
-  margin-top: 120px;
+  margin-top: 190px;
+  align-items: flex-start;
 }
-.post-container .title-bar {
+.post-container-positioned .title-bar {
   display: flex;
   flex-flow: row wrap;
   align-items: center;
   margin-left: 10px;
   margin-bottom: 25px;
 }
-.post-container .title-bar .title-bar-img {
+.post-container-positioned .title-bar .title-bar-img {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 36px;
   height: 36px;
   margin-right: 35px;
+  transition: 0.3s ease all;
 }
-.post-container .title-bar .title-bar-img:hover {
+.post-container-positioned .title-bar .title-bar-img:hover {
   cursor: pointer;
   border-radius: 999px;
   background-color: #e6e7e7;
+  transition: 0.3s ease all;
 }
-.post-container .title-bar p {
+.post-container-positioned .title-bar p {
   font-weight: bold;
   font-size: 17px;
 }
-.post-container .post-comment {
+.post-container-positioned .post .centered-container {
+  border-bottom: none;
+}
+.post-container-positioned .comments-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-flow: column nowrap;
+  width: 100%;
+}
+.post-container-positioned .post-comment {
   margin-top: 20px;
   margin-left: 8px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  width: 95%;
+  margin-bottom: 20px;
 }
-.post-container .post-comment .post-comment-input {
+.post-container-positioned .post-comment .post-comment-input {
   width: 65%;
   margin-right: 5%;
 }
-.post-container .post-comment .input:active {
+.post-container-positioned .post-comment .input:active {
   border-color: #00309a !important;
 }
-.post-container .post-comment .post-comment-send {
+.post-container-positioned .post-comment .input:focus {
+  border-color: #00309a !important;
+  box-shadow: 0px 0px 0px 0.125em rgba(0, 48, 154, 0.25);
+}
+.post-container-positioned .post-comment .post-comment-send {
   width: 15%;
   color: #00309a;
   font-size: 16px;
   cursor: pointer;
 }
-.post-container .horizontal-menu {
-  display: none !important;
-}
 @media (min-width: 1024px) {
-  .post-container .horizontal-menu {
-    display: inherit;
+  .post-container-positioned {
+    margin-top: 190px;
+  }
+  .post-container-positioned .comments-container {
+    border: 1px solid #dbdbdb;
+    border-top: none;
+    background-color: white;
+  }
+  .post-container-positioned .title-bar p {
+    font-size: 20px;
+  }
+}
+@media (min-width: 1500px) {
+  .post-container-positioned {
+    margin-top: 120px;
+    margin-left: 20%;
   }
 }
 
 .comentario-container {
-  margin-top: 20px;
-  margin-left: 8px;
-  display: flex;
-  justify-content: center;
-  margin-left: 150px;
+  margin-bottom: 30px;
+  margin-left: 16px;
 }
 
 .information {
@@ -43647,7 +43682,7 @@ textarea.form-control-lg {
   font-size: 0.8rem;
 }
 .information .information-description {
-  padding: 10px 5px;
+  padding: 10px 0px;
   font-size: 14px;
 }
 .information .information-options {
@@ -43675,7 +43710,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 1024px) {
   .information {
-    padding-left: 16px;
+    padding-left: 0px;
     padding-bottom: 25px;
   }
   .information .information-description {

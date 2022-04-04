@@ -1,5 +1,5 @@
 .main-foro{
-    padding-top: 140px;
+    padding-top: 200px;
     display: flex;
     flex-direction: row;
     position: relative;
@@ -8,11 +8,13 @@
 
     @media(min-width: 1500px) {
         margin-left: 150px;
+        padding-top: 140px;
     }
 
     .posts{
         display: flex;
         flex-direction: column;
+        
     }
     .post {
         margin-bottom: 2rem;

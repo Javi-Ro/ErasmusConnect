@@ -1,8 +1,16 @@
 .post-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.post-container-positioned{
     display: flex;
     justify-content: center;
     flex-flow: column nowrap;
-    margin-top: 120px;
+    margin-top: 190px;
+    align-items: flex-start;
     .title-bar{
         display: flex;
         flex-flow: row wrap;
@@ -16,19 +24,28 @@
             width: 36px;
             height: 36px;
             margin-right: 35px;
+            transition: .3s ease all;
         }
         .title-bar-img:hover{
             cursor: pointer;
             border-radius: 999px;
             background-color: #e6e7e7;
+            transition: .3s ease all;
         }
         p{
             font-weight: bold;
             font-size: 17px;
         }
     }
-    .post{
-        
+    .post .centered-container{
+        border-bottom: none;
+    }
+    .comments-container{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column nowrap;
+        width: 100%;
     }
     .post-comment{
         margin-top: 20px;
@@ -36,6 +53,7 @@
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        width: 95%;
         .post-comment-input{
             width: 65%;
             margin-right: 5%;
@@ -43,22 +61,39 @@
         .input:active{
             border-color: #00309a !important;
         }
+        .input:focus{
+            border-color: #00309a !important;
+            -webkit-box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25); 
+            box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25);
+        }
         .post-comment-send{
             width: 15%;
             color: #00309a;
             font-size: 16px;
             cursor: pointer;
         }
-    }
-
-    .horizontal-menu{
-        display: none !important;
+        margin-bottom: 20px;
     }
 
     @media(min-width: $media-desktop-min){
-        .horizontal-menu{
-            display: inherit;
+        margin-top: 190px;
+
+        .comments-container{
+            border: 1px solid #dbdbdb;
+            border-top: none;
+            background-color: white;
         }
-        
+        .title-bar{
+            p{
+                font-size: 20px;
+            }
+        }
     }
+
+    @media(min-width: 1500px){
+        margin-top: 120px;
+        margin-left: 20%;
+    }
+
+    
 }

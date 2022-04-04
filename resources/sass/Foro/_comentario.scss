@@ -1,6 +1,6 @@
 .comentario-container{
-    margin-top: 20px;
-    margin-left: 8px;
+    margin-bottom: 30px;
+    margin-left: 16px;
 }
 .information{
     display: flex;
@@ -68,7 +68,7 @@
         }
     }
     .information-description{
-        padding: 10px 5px;
+        padding: 10px 0px;
         font-size: 14px;
     }
     .information-options{
@@ -96,7 +96,7 @@
     }
 
     @media(min-width: $media-desktop-min){
-        padding-left: 16px;
+        padding-left: 0px;
         padding-bottom: 25px;
 
         .information-description{
