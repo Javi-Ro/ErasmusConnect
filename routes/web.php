@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,8 @@ Auth::routes();
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
+
 Route::get('/admin/reportes', function () {
     return view('/admin/home');
 });
@@ -86,10 +88,14 @@ Route::group(['prefix' => 'api'], function () {
 });
 
 Route::get('/register', function () {
-    return view('auth/register');
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
+
+    return redirect(RouteServiceProvider::HOME);
 });
 
-Route::post('/logout', 'App\Http\Controllers\UserController@logout');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
 
 Route::get('/foro', function () {
     return view('foro.foro');

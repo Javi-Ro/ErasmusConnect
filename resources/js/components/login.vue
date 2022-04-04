@@ -4,14 +4,17 @@
           <p> Iniciar sesión </p>
       </div>
 
-      <div class="login-main-user"> 
-          <input placeholder="Nombre de usuario">
-      </div>
-        <div class="login-main-password"> 
-          <input placeholder="Contraseña" type="password">
-      </div>
-      <div class="pregunta"> ¿No tienes cuenta? <a class="registrate"> Regístrate </a> </div>
-      <b-button class="button is-primary" id="login">Iniciar sesión</b-button>
+      <form action="" v-on:submit.prevent="loginUser()" method="get">
+        <input type="hidden" name="_token" :value="csrf">
+        <div class="login-main-user"> 
+            <input v-model="nickname" name="nickname" placeholder="Nombre de usuario" required>
+        </div>
+          <div class="login-main-password"> 
+            <input v-model="password" name="password" placeholder="Contraseña" type="password" required>
+        </div>
+        <div class="pregunta"> ¿No tienes cuenta? <a class="registrate"> Regístrate </a> </div>
+        <b-button native-type="submit" class="button is-primary" id="login">Inicia sesión</b-button>
+      </form>
 
   </section>
 </template>
@@ -67,7 +70,11 @@
   export default {
     props: {},
     data() {
-      return {}
+      return {
+        nickname: '',
+        password: '',
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
     },
     watch: {
       data: {
@@ -79,7 +86,22 @@
       },
     },
     computed: {},
-    methods: {},
+    methods: {
+      loginUser() {
+        axios.post(`/login`, {
+          nickname: this.nickname,
+          password: this.password
+        }).then(response => {
+          if (response.data.success) {
+            window.location.href = "/";
+          } else {
+            alert("These credentials does not match any of our records!");
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      }
+    },
     mounted() {}
   }
 </script>
