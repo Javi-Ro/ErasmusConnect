@@ -43578,6 +43578,9 @@ textarea.form-control-lg {
 .comentario-container {
   margin-top: 20px;
   margin-left: 8px;
+  display: flex;
+  justify-content: center;
+  margin-left: 150px;
 }
 
 .information {
