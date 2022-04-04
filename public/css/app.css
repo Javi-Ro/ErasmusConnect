@@ -43574,3 +43574,125 @@ textarea.form-control-lg {
     display: inherit;
   }
 }
+
+.comentario-container {
+  margin-top: 20px;
+  margin-left: 8px;
+}
+
+.information {
+  display: flex;
+  width: 95%;
+  flex-flow: column nowrap;
+}
+.information .information-personal-title {
+  font-size: 1.5rem;
+  font-weight: 400;
+  margin-bottom: 20px;
+}
+.information .information-personal {
+  min-height: 25%;
+  width: auto;
+  display: flex;
+  flex-flow: row wrap;
+}
+.information .information-personal .information-personal-img {
+  height: 100%;
+}
+.information .information-personal .information-personal-img img {
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+  height: 48px;
+  width: 48px;
+}
+.information .information-personal .information-personal-data {
+  padding-left: 10px;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: flex-start;
+}
+.information .information-personal .information-personal-data .information-personal-data-main {
+  display: flex;
+  flex-flow: row wrap;
+  height: 49%;
+  justify-content: center;
+  align-items: center;
+}
+.information .information-personal .information-personal-data .information-personal-data-main .button {
+  font-size: 0.6rem;
+  margin-left: 20px;
+  border-color: #00309a;
+  color: #00309a;
+}
+.information .information-personal .information-personal-data .information-personal-data-main .button:hover {
+  background-color: #00309a;
+  color: white;
+}
+.information .information-personal .information-personal-data .information-personal-data-main .button:focus {
+  background-color: #00309a;
+  color: white;
+}
+.information .information-personal .information-personal-data .information-personal-data-date {
+  display: flex;
+  align-items: flex-start;
+  margin-top: 1%;
+  height: 49%;
+  font-weight: 200;
+  font-size: 0.8rem;
+}
+.information .information-description {
+  padding: 10px 5px;
+  font-size: 14px;
+}
+.information .information-options {
+  display: flex;
+  justify-content: row wrap;
+}
+.information .information-options .information-options-option {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  padding-right: 15px;
+}
+.information .information-options .information-options-option img {
+  width: 20px;
+}
+.information .information-options .information-options-option .information-options-option-data {
+  line-height: 1;
+  padding-left: 10px;
+}
+.information .information-options .information-options-option .information-options-option-data strong {
+  font-size: 10px;
+}
+.information .information-options .information-options-option .information-options-option-data p {
+  font-size: 12px;
+}
+@media (min-width: 1024px) {
+  .information {
+    padding-left: 16px;
+    padding-bottom: 25px;
+  }
+  .information .information-description {
+    font-size: 16px;
+  }
+  .information .information-personal-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  .information .button {
+    font-size: 0.7rem !important;
+    margin-left: 15px !important;
+  }
+  .information .information.options.option img {
+    width: 25px;
+  }
+  .information .information-options-option-data strong {
+    font-size: 12px;
+  }
+  .information .information-options-option-data p {
+    font-size: 14px;
+  }
+}

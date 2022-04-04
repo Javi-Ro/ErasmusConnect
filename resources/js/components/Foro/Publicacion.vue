@@ -13,7 +13,8 @@
       <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
       <p class="post-comment-send" @click="sendComment()">Publicar</p>
     </div>
-    
+    <comentario></comentario>
+    <comentario></comentario> 
   </section>
 </template>
 
@@ -23,7 +24,7 @@
 
     data() {
       return {
-          post: { id: 1, title: "Aquí en Eslovaquia", text: "Hola buienas ocmo estas y tu bien y yo de locos nene.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'}
+          post: { id: 1, title: "Aquí en Eslovaquia", text: "Hola buienas ocmo estas y tu bien y yo de locos nene.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'},
       }
     },
 
