@@ -10,6 +10,8 @@ window.Vue = require('vue').default;
 import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+//import '@mdi/font/css/materialdesignicons.css'
+
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -17,6 +19,7 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import specific icons */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
@@ -32,11 +35,14 @@ library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
 library.add(faUpload)
+library.add(fas)
 library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-
 Vue.use(Buefy)
+
+
+
 
 
 
@@ -68,7 +74,8 @@ Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').def
 Vue.component('reportes', require('./components/Reportes.vue').default);
 Vue.component('usuarios', require('./components/Usuarios.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
-
+Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
