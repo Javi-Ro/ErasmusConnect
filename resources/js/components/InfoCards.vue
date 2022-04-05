@@ -36,7 +36,12 @@
                     ></b-image>
                     <div class="contenido-2">
                         <div class="contenido-texto">
-                            <p> ¡Nosotros somos ErasmusConnect! Un grupo de estudiantes que al igual que vosotros, se embarcaron en la aventura que supone un Erasmus. Es por ello por lo que nuestro objetivo es potenciar al máximo vuestra experiencia mediante todas las opciones que ofrecemos. Sabemos que simplemente ya el hecho de elegir la ciudad de destino es todo un reto... Justo despues de tomar una decisión tan importante, nos tocará conocer gente nueva, buscarnos un alquiler para esos meses, y por supuesto y más importante ¡Salir de fiesta! Navega por nuestra web para poder encontrar solución a todos estos problemas que se te pueden presentar durante todos tus meses de Erasmus. Y por supuesto, no olvides de seguirnos en nuestras redes sociales :) </p>
+                            <p>
+                                ¿Quiéres saber más acerca de un pais en concreto y conocer a gente nueva? ¡Únete a nuestro <strong>Foro</strong>
+                                Y encuentra rápidamente la información que quieras relacionada con tu ciudad de destino.
+                                ¡Participa en las distintas comunidades y conoce a gente nueva que también vaya a estar de Erasmus
+                                en la misma ciudad que tú!
+                            </p>
                         </div>
                         <div class="contenido-btn">
                             <b-button type="is-info" size="is-medium" v-on:click="scrollTo('foro')">Saber más</b-button>
@@ -53,7 +58,12 @@
                     ></b-image>
                     <div class="contenido-2">
                         <div class="contenido-texto">
-                            <p> ¡Nosotros somos ErasmusConnect! Un grupo de estudiantes que al igual que vosotros, se embarcaron en la aventura que supone un Erasmus. Es por ello por lo que nuestro objetivo es potenciar al máximo vuestra experiencia mediante todas las opciones que ofrecemos. Sabemos que simplemente ya el hecho de elegir la ciudad de destino es todo un reto... Justo despues de tomar una decisión tan importante, nos tocará conocer gente nueva, buscarnos un alquiler para esos meses, y por supuesto y más importante ¡Salir de fiesta! Navega por nuestra web para poder encontrar solución a todos estos problemas que se te pueden presentar durante todos tus meses de Erasmus. Y por supuesto, no olvides de seguirnos en nuestras redes sociales :) </p>
+                            <p>
+                                ¿Sabes donde viajar pero no tienes un piso al que ir? ¡Nuestro apartado de <strong>Alquileres</strong>
+                                es justo lo que necesitas!
+                                Podrás navegar entre distintas ofertas propuestas por los usuarios de la aplicación además de poder comparar valoraciones.
+                                <br>Si te interesa alquilar un piso para estudiantes Erasmus, ¡este es el lugar donde subirlo!
+                            </p>
                         </div>
                         <div class="contenido-btn">
                             <b-button type="is-info" size="is-medium" v-on:click="scrollTo('alquiler')">Saber más</b-button>
@@ -70,7 +80,11 @@
                     ></b-image>
                     <div class="contenido-2">
                         <div class="contenido-texto">
-                            <p> ¡Nosotros somos ErasmusConnect! Un grupo de estudiantes que al igual que vosotros, se embarcaron en la aventura que supone un Erasmus. Es por ello por lo que nuestro objetivo es potenciar al máximo vuestra experiencia mediante todas las opciones que ofrecemos. Sabemos que simplemente ya el hecho de elegir la ciudad de destino es todo un reto... Justo despues de tomar una decisión tan importante, nos tocará conocer gente nueva, buscarnos un alquiler para esos meses, y por supuesto y más importante ¡Salir de fiesta! Navega por nuestra web para poder encontrar solución a todos estos problemas que se te pueden presentar durante todos tus meses de Erasmus. Y por supuesto, no olvides de seguirnos en nuestras redes sociales :) </p>
+                            <p>
+                                ¿Ganas de fiesta pero no conoces a nadie o no conoces donde encontrar a gente de tu edad?
+                                ¡No hay problema! En nuestro apartado de <strong>Eventos</strong> tendrás acceso a distintas quedadas propuesta por los usuarios
+                                <br>¡Busca quedadas en tu ciudad y a disfrutar!
+                            </p>
                         </div>
                         <div class="contenido-btn">
                             <b-button type="is-info" size="is-medium" v-on:click="scrollTo('eventos')">Saber más</b-button>
@@ -138,6 +152,7 @@ img {
     flex-direction: column;
     display: flex;
     width: 80%;
+    margin-left: 10px;
 }
 
 .contenido-btn {
@@ -153,6 +168,7 @@ img {
 }
 .contenido-2 > .contenido-texto {
     width: 100%;
+    margin-bottom: 30px;
 }
 @media screen and (max-width: 1435px) {
     .contenido {
@@ -164,6 +180,7 @@ img {
     }
     .contenido-2 {
         width: 100%;
+        margin-left: 0px;
     }
     .contenido-btn {
         display: none;
