@@ -17,10 +17,13 @@ import { library, icon } from '@fortawesome/fontawesome-svg-core'
 /* import specific icons */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -30,10 +33,15 @@ library.add(faUser)
 library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
+library.add(fas)
+library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 const camera = icon({ prefix: 'fas', iconName: 'camera' })
 
 Vue.use(Buefy)
+
+
+
 
 
 
@@ -65,6 +73,7 @@ Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').def
 Vue.component('reportes', require('./components/Reportes.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
+Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

@@ -4,8 +4,11 @@
     <div class="mapa">
         <div class="container-1">
             <div class="eslogan">
-                <p id="textoEslogan" style="text-align: center;">
-                    El erasmus no es un año de tu vida, es el año de tu vida.
+                <p id="textoEslogan1" style="text-align: center;">
+                    El erasmus no es un año de tu vida,
+                </p>
+                <p id="textoEslogan2" style="text-align: center;">
+                    es <strong>el</strong> año de tu vida.
                 </p>
             </div>
             <div class="botonPrincipal">
@@ -20,12 +23,12 @@
     <!-- Fin de la primera parte -->
     <InfoCards/>
     <!-- Tarjeta que explica los Reviews/Valoraciones -->
-    <div class="tarjeta" id="tarjeta-1">
+    <div class="tarjeta" id="foro">
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/placeholder.png').default"
-                alt="placeholder"
+                :src="require('@../../../public/images/landing/foto-foro.png').default"
+                alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">
                 <div class="titulo-cartas">
@@ -39,7 +42,7 @@
     </div>
 
     <!-- Tarjeta que explica los Rentings -->
-    <div class="tarjeta" id="tarjeta-2">
+    <div class="tarjeta" id="alquiler">
         <div class="contenido-tarjeta">
             <div class="texto" id="texto-2">
                 <div class="titulo-cartas">
@@ -51,19 +54,19 @@
             </div>
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/placeholder.png').default"
-                alt="placeholder"
+                :src="require('@../../../public/images/landing/alquileres.jpg').default"
+                alt="Alquileres"
             ></b-image>
         </div>
     </div>
 
     <!-- Tarjeta que explica los Beerbuddies -->
-    <div class="tarjeta" id="tarjeta-3">
+    <div class="tarjeta" id="eventos">
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/placeholder.png').default"
-                alt="placeholder"
+                :src="require('@../../../public/images/landing/fiesta.png').default"
+                alt="eventos"
             ></b-image>
             <div class="texto" id="texto-3">
                 <div class="titulo-cartas">
@@ -75,14 +78,16 @@
             </div>
         </div>
     </div>
-
     <footer-web/>
 </div>
 </template>
 
-
 <style lang="scss" scoped>
-/* background-image: url('~@../../../public/img/mapa.png'); */
+$blue:#00309a;
+
+strong {
+    color: #000;
+}
 
 .landing {
     height: 100%;
@@ -119,7 +124,7 @@
     background-image: url('/images/mapa1620.png'); 
     background-repeat: no-repeat;
     background-size: cover;
-    height: 80vh
+    height: 80vh;
 }
 
 /* Estilo de como se ve el eslogan */
@@ -128,19 +133,23 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     width: 80%;
 
     background-color: white;
-    border: 1px solid #000;
+    border: 2px solid $blue;
+    border-radius: 10px;
     margin: 0 0 5% 0;
+    padding: 10px 10px;
 
     /* Modifica el texto de dentro */
     color: #000;
-    font-size: 3rem;
+    font-size: 2.3rem;
     font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
-    text-transform: uppercase;
+    // text-transform: uppercase;
     letter-spacing: .15rem;
     text-align: center;
+    box-shadow: $blue 0px 5px 15px;
 }
 
 // Se encarga de hacer la animación de pulsaciones
@@ -278,7 +287,7 @@ $color: #00309a;
 /*------------------------------------------YU-GI-OH------------------------------------------------*/
 /*--------------------------------------------------------------------------------------------------*/
 // Le ponemos mas margen para que sea equivalente en distancia al resto
-#tarjeta-1 {
+#foro {
     margin-top: 4%;
 }
 .tarjeta {
@@ -305,6 +314,7 @@ $color: #00309a;
     flex-direction: row;
 }
 .texto {
+    font-size: 20px;
     flex-direction: column;
     display:flex;
     max-width: 70%;
@@ -323,12 +333,12 @@ $color: #00309a;
     align-items: center;
     margin: 0 0 2% 0;
     color:#00309a;
-    font-size: 20px;
+    font-size: 30px;
     font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
     text-transform: uppercase;
 }
 
-@media screen and (max-width: 1100px) {
+@media screen and (max-width: 1435px) {
     // .tarjeta {
     //     justify-content: center;
     // }
@@ -343,7 +353,7 @@ $color: #00309a;
     #texto-2 {
     padding: 3% 0 0 0;
     }
-    #tarjeta-2 > .contenido-tarjeta{
+    #alquiler > .contenido-tarjeta{
         flex-direction: column-reverse;
     }
 }

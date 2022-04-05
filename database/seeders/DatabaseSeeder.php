@@ -38,5 +38,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(LikesTableSeeder::class);
         $this->command->info('Likes table seeded!');
+
+        $this->call(PostTagTableSeeder::class);
+        $this->command->info('Post_Tag table seeded!');
+
+        $this->call(ApartmentTagTableSeeder::class);
+        $this->command->info('Apartment_Tag table seeded!');
     }
 }

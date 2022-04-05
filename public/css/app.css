@@ -43460,6 +43460,7 @@ textarea.form-control-lg {
     justify-content: center;
     align-items: center;
     background-color: #f8f9f9;
+    max-width: 900px;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
@@ -43774,5 +43775,40 @@ textarea.form-control-lg {
   }
   .information .information-options-option-data p {
     font-size: 14px;
+  }
+}
+
+.admin-posts {
+  width: calc(100% - 280px);
+  margin-left: 280px;
+}
+.admin-posts .title {
+  background-color: white;
+  justify-content: center;
+  display: flex;
+  padding-top: 20px;
+  font-size: x-large;
+  color: #00309a;
+  font-family: sans-serif;
+  margin-bottom: 0px !important;
+  padding-bottom: 1.5rem;
+}
+.admin-posts .b-table {
+  background-color: white;
+}
+.admin-posts .b-table .table-wrapper .has-mobile-cards {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.admin-posts .level {
+  justify-content: center !important;
+}
+.admin-posts .level .pagination .is-current {
+  background-color: #485fc7 !important;
+}
+@media screen and (max-width: 425px) {
+  .admin-posts {
+    width: calc(100% - 180px);
+    margin-left: 180px;
   }
 }

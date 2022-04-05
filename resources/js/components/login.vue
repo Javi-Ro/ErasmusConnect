@@ -1,63 +1,93 @@
+
 <template>
   <section class="login-main">
+    <div class="contenedor">
       <div class="titulo">
           <p> Iniciar sesión </p>
       </div>
 
-      <div class="login-main-user"> 
-          <input placeholder="Nombre de usuario">
+      <div class="elemento"> 
+          <b-input v-model="nickname" placeholder="Nombre de usuario"> </b-input>
       </div>
-        <div class="login-main-password"> 
-          <input placeholder="Contraseña" type="password">
-      </div>
-      <div class="pregunta"> ¿No tienes cuenta? <a class="registrate"> Regístrate </a> </div>
-      <b-button class="button is-primary" id="login">Iniciar sesión</b-button>
 
+      <div class="elemento"> 
+        <b-input v-model="password" class="input-buefy" icon-pack="fas" icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> </b-input>
+      </div>
+
+      <div class="pregunta"> 
+        <p> ¿No tienes cuenta? <a class="registrate" href="/register"> Regístrate </a> </p>
+      </div>
+
+      <b-button v-on:click="loginUser()" class="button login is-primary" id="login">Iniciar sesión</b-button>
+      
+    </div>
+
+    <div>
+      <footer-web></footer-web>
+    </div>
   </section>
+
 </template>
+
+<style>
+    .input:focus{
+      border-color: #00309a !important;
+      -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+      box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    }
+</style>
+
 
 <style lang="scss" scoped>
 
+  // html,body{
+  //   height: 100vh;
+  // }
     .titulo{
         color:#00309a;
         font-size: 20px;
         font-family: Arial, Helvetica, sans-serif;
+        align-self: center;
+        margin-bottom: 10px;
+    }
+
+    .contenedor{
+      display:flex;
+      flex-flow: column wrap;
     }
 
     .pregunta{
         margin-bottom: 10px;
+        align-self:center;
     }
+
     .registrate{
         color:#00309a;
     }
+
     .login-main{
         margin-top: 130px;
         display:flex;
-        flex-flow: column wrap;
+        flex-direction: column;
+        justify-content: space-between;
         align-items: center;
-        height: 100%;
+        height: calc(100vh - 130px);
+        flex-wrap: nowrap;
     }
 
-    .titulo{
+    .elemento{
         margin-bottom: 20px;
     }
 
-    .login-main-user{
-        margin-bottom: 20px;
-    }
-
-    .login-main-password{
-        margin-bottom: 20px;
-    }
-
-    #login {
+    .login {
         margin-right: 0.5rem;
         background-color: #00309a;
         color: white;
+        align-self: center;
     }
-    #login:hover {
+    .login:hover {
         margin-right: 0.5rem;
-        // background-color: darken($blue, 10%);
+        background-color: #00309a;;
         color: #ffcd00;
     }
 
@@ -67,7 +97,11 @@
   export default {
     props: {},
     data() {
-      return {}
+      return {
+        nickname: '',
+        password: '',
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+      }
     },
     watch: {
       data: {
@@ -79,7 +113,23 @@
       },
     },
     computed: {},
-    methods: {},
+    methods: {
+      loginUser() {
+        axios.post(`/login`, {
+          nickname: this.nickname,
+          password: this.password
+        }).then(response => {
+          if (response.data.success) {
+            window.location.href = "/";
+          } else {
+            alert("These credentials does not match any of our records!");
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      }
+    },
     mounted() {}
   }
+
 </script>

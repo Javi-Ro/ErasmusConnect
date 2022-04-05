@@ -25,11 +25,12 @@
 
 <script>
   export default {
-    props: {},
+    props: {
+    },
 
     data() {
       return {
-          post: { id: 1, title: "Aquí en Eslovaquia", text: "Hola buienas ocmo estas y tu bien y yo de locos nene.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'}
+          post: { id: 1, title: "Aquí en Praga", text: "Praga es una de las ciudades mas bonitas que he conocido.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'}
       }
     },
 

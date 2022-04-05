@@ -14,7 +14,7 @@
         </b-field>
       </div>
       <div v-for="post in posts" :key="post.id" class="post" id="postContainer">
-        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post" @click="redirect()"></vista-previa-publicacion></a>
+        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
       </div>
     </div>
   </section>
@@ -50,20 +50,12 @@
             console.info(error);
         })
       },
-      prepareRedirect() {
-        let a=document.getElementById('postContainer');
-        a.addEventListener('click',function (event) {
-          event.preventDefault(); //esto cancela el comportamiento del click
-          location.href="/publicacion";
-});
-      }
     },
 
     mounted() {},
     
     created() {
       this.getPosts();  
-      this.prepareRedirect();
     }
   }
 </script>
