@@ -2,18 +2,16 @@
     <div class="filter-bar">
         <div class="tag" >
             <p class="cabecera">
-                Temas
+                Elige lo que más te interesa
             </p>
         </div>
         <div class="tags">
             <div class="tag-body" :id="setTagID(index)" 
             v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
             >
-                <div class="tag">
-                    <p class="tagname">
-                        {{tag.name}}
-                    </p>
-                </div>
+                <div class="tag" @click="selectTag(index, tag.link)">
+                    <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
+                    <p class="tagname vertical"></p>{{ tag.name }}</div>
             </div>
         </div>
     </div>
@@ -113,11 +111,16 @@ $radio: 10px;
 .tag {
     display: flex;
     font-size: 1rem;
-    margin: 10px 20px;
-    margin-right: 40px;
+    margin: 10px 10px;
+    margin-right: 20px;
     justify-content: flex-start;
     color: #000;
     background-color: transparent;
+
+    .tagname .vertical{
+        font-size: 0.9375;
+        font-weight: 300;
+    }
 
     .cabecera{
         margin-bottom: 20px;
