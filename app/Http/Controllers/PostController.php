@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
 
 class PostController extends Controller
 {
@@ -40,6 +41,15 @@ class PostController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function update(Request $request, Post $post) {
+        $newPost = Post::find($post->id);
+        $newPost->title = $request->title;
+        $newPost->text = $request->text;
+        $newPost->img_url = $request->img_url;
+        $newPost->city_id = $request->city_id;
+        $newPost->save();
+    }
+
     public function order(Request $data) {
         $posts = Post::all()->toArray();
 
@@ -54,6 +64,13 @@ class PostController extends Controller
         } else {
             $posts = Post::all();
         }
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
+    public function filterByTag(Request $data) {
+        $tag = Tag::findOrFail($data->tag);
+        $posts = $tag->posts()->get();
+
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 

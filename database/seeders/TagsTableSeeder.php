@@ -37,7 +37,7 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 3,
                 'name' => "deporte",
-                'post' => false
+                'post' => true
             ]
         );
 
@@ -45,7 +45,7 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => "noche",
-                'post' => false
+                'post' => true
             ]
         );
 

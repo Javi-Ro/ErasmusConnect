@@ -13,6 +13,10 @@ class Post extends Model
         'user_id'
     ];
 
+    protected $casts = [
+        'created_at'  => 'datetime:d/m/Y H:m',
+    ];
+
     protected $appends = [
         "likes"   
     ];
@@ -21,7 +25,7 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function user()

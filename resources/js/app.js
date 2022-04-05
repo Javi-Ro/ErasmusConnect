@@ -20,6 +20,8 @@ import { faUser } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -28,6 +30,7 @@ library.add(faUser)
 library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
+library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 
@@ -56,7 +59,8 @@ Vue.component('foro2', require('./components/Foro/Main.vue').default);
 Vue.component('foro', require('./components/Foro/Main.vue').default);
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
 Vue.component('apartment', require('./components/Apartments.vue').default);
-Vue.component('filter-bar', require('./components/filterBar.vue').default);
+Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
+Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
