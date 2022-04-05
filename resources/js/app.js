@@ -10,6 +10,8 @@ window.Vue = require('vue').default;
 import Vue from 'vue'
 import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
+import '@mdi/font/css/materialdesignicons.css'
+
 
 /* import the fontawesome core */
 import { library } from '@fortawesome/fontawesome-svg-core'
@@ -17,9 +19,12 @@ import { library } from '@fortawesome/fontawesome-svg-core'
 /* import specific icons */
 import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
 import { faUser } from '@fortawesome/free-solid-svg-icons'
+import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -28,10 +33,14 @@ library.add(faUser)
 library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
+library.add(fas)
+library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
-
 Vue.use(Buefy)
+
+
+
 
 
 
@@ -61,6 +70,8 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
+Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -5,13 +5,25 @@
       <div class="titulo">
           <p> Iniciar sesión </p>
       </div>
+      
+      <form action="" v-on:submit.prevent="loginUser()" method="get">
+        <input type="hidden" name="_token" :value="csrf">
+        <div class="login-main-user"> 
+            <input v-model="nickname" name="nickname" placeholder="Nombre de usuario" required>
+        </div>
+          <div class="login-main-password"> 
+            <input v-model="password" name="password" placeholder="Contraseña" type="password" required>
+        </div>
+        <div class="pregunta"> ¿No tienes cuenta? <a class="registrate"> Regístrate </a> </div>
+        <b-button native-type="submit" class="button is-primary" id="login">Inicia sesión</b-button>
+      </form>
 
-      <div class="elemento"> 
-          <b-input v-model="nickname" placeholder="Nombre de usuario"> </b-input>
+  <div class="elemento"> 
+          <b-input placeholder="Nombre de usuario"> </b-input>
       </div>
       <div class="elemento"> 
-        <b-input v-model="password" class="input-buefy" icon-pack="fas"
-              icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> 
+        <b-input class="input-buefy"
+               placeholder="Contraseña" type="password" password-reveal> 
         </b-input>
       </div>
 
@@ -28,6 +40,15 @@
   </section>
 
 </template>
+
+<style>
+    .input:focus{
+      border-color: #00309a !important;
+      -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+      box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    }
+</style>
+
 
 <style lang="scss" scoped>
 
@@ -59,10 +80,11 @@
     .login-main{
         margin-top: 130px;
         display:flex;
-        flex-flow: column wrap;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         height: calc(100vh - 130px);
+        flex-wrap: nowrap;
     }
 
     .elemento{
