@@ -23,6 +23,8 @@ import { fas } from '@fortawesome/free-solid-svg-icons'
 import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faEye } from '@fortawesome/free-solid-svg-icons';
+
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
@@ -32,6 +34,7 @@ library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
 library.add(fas)
+library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(Buefy)
