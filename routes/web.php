@@ -33,8 +33,8 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/foro', function () {
-    return view('foro');
+Route::get('/admin/posts', function () {
+    return view('/admin/posts');
 });
 
 Route::get('/profile/{nickname}', function($nickname) {
@@ -52,6 +52,7 @@ Route::get('/admin/reportes', function () {
 Route::get('/foro', function () {
     return view('foro.foro');
 });
+
 Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
