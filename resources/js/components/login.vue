@@ -22,8 +22,8 @@
           <b-input placeholder="Nombre de usuario"> </b-input>
       </div>
       <div class="elemento"> 
-        <b-input class="input-buefy" icon-pack="fas"
-              icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> 
+        <b-input class="input-buefy"
+               placeholder="Contraseña" type="password" password-reveal> 
         </b-input>
       </div>
 
@@ -40,6 +40,15 @@
   </section>
 
 </template>
+
+<style>
+    .input:focus{
+      border-color: #00309a !important;
+      -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+      box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    }
+</style>
+
 
 <style lang="scss" scoped>
 
@@ -71,10 +80,11 @@
     .login-main{
         margin-top: 130px;
         display:flex;
-        flex-flow: column wrap;
+        flex-direction: column;
         justify-content: space-between;
         align-items: center;
         height: calc(100vh - 130px);
+        flex-wrap: nowrap;
     }
 
     .elemento{
