@@ -1,5 +1,8 @@
 <template>
     <section class="admin-posts">
+        <div class="title">
+            REPORTES
+        </div>
         <div class="main-table">
             <b-table
                 :data="posts"

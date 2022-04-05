@@ -2,8 +2,25 @@
     width: calc(100% - 280px);
     margin-left: 280px;
 
+.title {
+    background-color: white;
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+    font-size: x-large;
+    color: #00309a;
+    font-family: sans-serif;
+    margin-bottom: 0px !important;
+    padding-bottom: 1.5rem;
+}
+
     .b-table{
         background-color: white;
+
+        .table-wrapper .has-mobile-cards{
+            margin-right: 20px;
+            margin-left: 20px;
+        }
     }
 
     .level{
