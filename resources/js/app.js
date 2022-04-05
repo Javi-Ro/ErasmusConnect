@@ -61,6 +61,8 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
+Vue.component('perfil', require('./components/Perfil.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

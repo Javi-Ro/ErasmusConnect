@@ -28,12 +28,12 @@ Route::get('/foro', function () {
     return view('foro');
 });
 
-Route::get('/profile/{nickname}', function($nickname) {
+Route::get('/profile/{nickname}', function ($nickname) {
     $user = "";
-    if(Auth::check())
+    if (Auth::check())
         $user = auth()->user()->nickname;
 
-    return view('profile', ["nickname"=>$nickname, "user"=>$user]);
+    return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
 Route::group(['prefix' => 'api'], function () {
@@ -100,6 +100,12 @@ Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logo
 Route::get('/foro', function () {
     return view('foro.foro');
 });
+Route::get('/perfil', function () {
+    return view('perfil.perfil');
+});
 Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
+
+Route::get('/perfil/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
+Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower');

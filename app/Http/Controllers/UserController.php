@@ -43,7 +43,8 @@ class UserController extends Controller
         return response()->json(['success' => false]);
     }
 
-    public function auth() {
+    public function auth()
+    {
         return response()->json(["auth" => Auth::check(), "user" => Auth::user()]);
     }
 
@@ -57,6 +58,21 @@ class UserController extends Controller
 
         return response()->json([], 204);
     }
+
+    public function listFollowers(User $user)
+    {
+        return response()->json($user->friends()->get());
+    }
+
+    public function addFollower(User $user1, User $user2)
+    {
+        //$user1 = new User(['name' => 'root']);
+        //$user1->save();
+        //$user1->friends()->array_push($user1->friends(), $user2);
+        $user1->friends()->attach($user2->id);
+    }
+
+
     //TODO: update, not possible yet
 
 
