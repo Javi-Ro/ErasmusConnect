@@ -1,7 +1,10 @@
 <template>
   <section>
     <div class="contenedor">
-     <h3 style="color: #00309a; margin-bottom: 15px;"> Crear una publicación </h3> 
+        <div class="titulo-pagina">
+            CREA UNA PUBLICACIÓN
+        </div>
+
       <div class="contenedor-dropdown"> 
           <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
               <template #trigger>
@@ -60,24 +63,23 @@
             </b-tab-item>
             <!-- disabled -->
             <b-tab-item label="Enlace">  
-              <b-field>
-                  <b-input placeholder="URL" style="width:550px;" maxlength="300" type="url"></b-input>
+              <b-field label="URL">
+                  <b-input style="width:550px;" maxlength="300" type="url"></b-input>
               </b-field>
             </b-tab-item>
         </b-tabs>
 
         <button class="btn">
-            <p style="text-align: center; margin-left: 6px;">
+            <p style="text-align: center;">
                 Publicar
             </p>
         </button>
 
     </div>
-
-    <div class="footer">
       <footer-web></footer-web>
-    </div>
   </section>
+      
+
 
 </template>
 
@@ -101,6 +103,13 @@
 
 </style>
 <style lang="scss" scoped>
+
+  .titulo-pagina {
+      margin: 20px 0 15px 0;
+      font-size: x-large;
+      color:#00309a;
+      font-family: sans-serif;
+  }
 
   .upload-draggable{
     width: 550px;
@@ -134,10 +143,18 @@
       box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
 
+  .contenedor{
+      display:flex;
+      flex-flow: column wrap;
+      // justify-content: space-between;
+  }
+
   .footer{
     display:flex;
   }
 
+
+  
   section{
         margin-top: 130px;
         display:flex;
@@ -149,14 +166,24 @@
         height: calc(100vh - 130px);
   }
 
+@media (max-height: 550px) {
+  section{
+        margin-top: 130px;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        height: auto;
+        justify-content: space-between;
+        height: calc(100% - 130px);
+  }
+}
+
+
+
+
   .input-size{
     width: 550px;
-  }
-
-  .contenedor{
-      display:flex;
-      flex-flow: column wrap;
-      justify-content: space-between;
   }
 
   b-input{
@@ -165,18 +192,19 @@
   }
 
   .btn {
-	width: 100px;
+	width: 40%;
   display:flex;
   background-color: #00309a;
   font-weight: bold;
   font-size: 0.9rem;
   font-family: Arial, Helvetica, sans-serif; 
-	padding: .6rem 1rem;
+	padding: .6rem 5.5rem;
 	border-radius: 10rem;
 	position: relative;
 	overflow: hidden;
   color:white;
   align-self:center;
+  text-align: center;
 }
 
 .btn:hover {
