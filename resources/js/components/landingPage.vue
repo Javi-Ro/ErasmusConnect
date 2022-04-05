@@ -353,7 +353,7 @@ $color: #00309a;
     #texto-2 {
     padding: 3% 0 0 0;
     }
-    #tarjeta-2 > .contenido-tarjeta{
+    #alquiler > .contenido-tarjeta{
         flex-direction: column-reverse;
     }
 }

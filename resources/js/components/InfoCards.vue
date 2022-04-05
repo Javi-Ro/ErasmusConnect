@@ -89,7 +89,7 @@
                 var element = document.getElementById(id);
                 var rect = element.getBoundingClientRect();
                 console.log(rect.top)
-                document.documentElement.scrollTop = rect.top + 100;
+                document.documentElement.scrollTop = rect.top + 625;
             }
         }
     }
@@ -164,6 +164,9 @@ img {
     }
     .contenido-2 {
         width: 100%;
+    }
+    .contenido-btn {
+        display: none;
     }
 }
 </style>
