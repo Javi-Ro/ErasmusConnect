@@ -41,6 +41,15 @@ class PostController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function update(Request $request, Post $post) {
+        $newPost = Post::find($post->id);
+        $newPost->title = $request->title;
+        $newPost->text = $request->text;
+        $newPost->img_url = $request->img_url;
+        $newPost->city_id = $request->city_id;
+        $newPost->save();
+    }
+
     public function order(Request $data) {
         $posts = Post::all()->toArray();
 

@@ -1,5 +1,7 @@
+
 <template>
   <section class="login-main">
+    <div class="contenedor">
       <div class="titulo">
           <p> Iniciar sesión </p>
       </div>
@@ -16,51 +18,78 @@
         <b-button native-type="submit" class="button is-primary" id="login">Inicia sesión</b-button>
       </form>
 
+  <div class="elemento"> 
+          <b-input placeholder="Nombre de usuario"> </b-input>
+      </div>
+      <div class="elemento"> 
+        <b-input class="input-buefy" icon-pack="fas"
+              icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> 
+        </b-input>
+      </div>
+
+      <div class="pregunta"> 
+        <p> ¿No tienes cuenta? <a class="registrate" href="/register"> Regístrate </a> </p>
+      </div>
+        <b-button class="button login is-primary" id="login">Iniciar sesión</b-button>
+      
+    </div>
+
+    <div>
+      <footer-web></footer-web>
+    </div>
   </section>
+
 </template>
 
 <style lang="scss" scoped>
 
+  // html,body{
+  //   height: 100vh;
+  // }
     .titulo{
         color:#00309a;
         font-size: 20px;
         font-family: Arial, Helvetica, sans-serif;
+        align-self: center;
+        margin-bottom: 10px;
+    }
+
+    .contenedor{
+      display:flex;
+      flex-flow: column wrap;
     }
 
     .pregunta{
         margin-bottom: 10px;
+        align-self:center;
     }
+
     .registrate{
         color:#00309a;
     }
+
     .login-main{
         margin-top: 130px;
         display:flex;
         flex-flow: column wrap;
+        justify-content: space-between;
         align-items: center;
-        height: 100%;
+        height: calc(100vh - 130px);
     }
 
-    .titulo{
+    .elemento{
         margin-bottom: 20px;
     }
 
-    .login-main-user{
-        margin-bottom: 20px;
-    }
-
-    .login-main-password{
-        margin-bottom: 20px;
-    }
-
-    #login {
+    .login {
         margin-right: 0.5rem;
         background-color: #00309a;
         color: white;
+        align-self: center;
     }
-    #login:hover {
+    .login:hover {
         margin-right: 0.5rem;
-        // background-color: darken($blue, 10%);
+        background-color: #00309a;;
         color: #ffcd00;
     }
 
@@ -104,4 +133,5 @@
     },
     mounted() {}
   }
+
 </script>
