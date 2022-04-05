@@ -71,7 +71,7 @@
             publicMenu: [
                 { name: "Reportes", link: "/admin/reportes"},
                 { name: "Usuarios", link: "/admin/usuarios"},
-                { name: "Publicaciones", link: "#"},
+                { name: "Publicaciones", link: "/admin/posts"},
                 { name: "Alquileres", link: "#"},
                 { name: "Etiquetas", link: "#"},
                 { name: "Ciudades", link: "#"},
