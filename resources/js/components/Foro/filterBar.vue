@@ -10,7 +10,7 @@
             v-for="(tag,index) in tags" :key="index" :href="tag.link"
             >
                 <div class="tag" @click="selectTag(index, tag.link)">
-                    <img src="/images/sports.svg" alt="" width="36px" height="36px" style="margin-right: 20px">
+                    <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
                     <p class="tagname vertical">
                         {{tag.name}}
                     </p>

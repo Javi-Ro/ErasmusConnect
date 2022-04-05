@@ -43524,6 +43524,7 @@ textarea.form-control-lg {
 }
 .main-foro .post {
   margin-bottom: 2rem;
+  cursor: pointer;
 }
 @media (min-width: 1500px) {
   .main-foro {
@@ -43594,11 +43595,20 @@ textarea.form-control-lg {
   justify-content: flex-start;
   align-items: center;
   width: 95%;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 .post-container-positioned .post-comment .post-comment-input {
   width: 65%;
-  margin-right: 5%;
+  margin-right: 3%;
+}
+.post-container-positioned .post-comment .comment-img {
+  border-radius: 99px;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+.post-container-positioned .post-comment .input {
+  background-color: #f8f9f9;
 }
 .post-container-positioned .post-comment .input:active {
   border-color: #00309a !important;
@@ -43612,6 +43622,18 @@ textarea.form-control-lg {
   color: #00309a;
   font-size: 16px;
   cursor: pointer;
+}
+.post-container-positioned .post-comment .button {
+  font-size: 1rem;
+  background-color: #2B6BC7;
+  color: white;
+  border-radius: 20px;
+}
+.post-container-positioned .post-comment .button:hover {
+  background-color: #00309a;
+}
+.post-container-positioned .post-comment .button:focus {
+  background-color: #00309a;
 }
 @media (min-width: 1024px) {
   .post-container-positioned {
