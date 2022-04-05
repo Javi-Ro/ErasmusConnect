@@ -185,5 +185,8 @@ img {
     .contenido-btn {
         display: none;
     }
+    .contenido-2 > .contenido-texto {
+    margin-bottom: 0;
+}
 }
 </style>
