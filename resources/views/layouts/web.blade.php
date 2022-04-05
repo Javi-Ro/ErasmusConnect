@@ -29,6 +29,7 @@
     html {
         width: 100%;
         height: auto;
+        scroll-behavior: smooth;
     }
     body {
         display: flex;

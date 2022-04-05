@@ -14,7 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH ROUTES
+
 Auth::routes();
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+Route::get('/register', function () {
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
+
+    return redirect(RouteServiceProvider::HOME);
+});
+
+// VIEWS ROUTES
 
 Route::get('/', function () {
     return view('home');
@@ -39,6 +52,19 @@ Route::get('/profile/{nickname}', function($nickname) {
 
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
+
+Route::get('/admin/reportes', function () {
+    return view('/admin/home');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
+});
+
+// API ROUTES
 
 Route::group(['prefix' => 'api'], function () {
 

@@ -5,7 +5,7 @@
       <div class="titulo">
           <p> Iniciar sesión </p>
       </div>
-
+      
       <form action="" v-on:submit.prevent="loginUser()" method="get">
         <input type="hidden" name="_token" :value="csrf">
         <div class="login-main-user"> 
@@ -30,7 +30,7 @@
       <div class="pregunta"> 
         <p> ¿No tienes cuenta? <a class="registrate" href="/register"> Regístrate </a> </p>
       </div>
-        <b-button class="button login is-primary" id="login">Iniciar sesión</b-button>
+        <b-button v-on:click="loginUser()" class="button login is-primary" id="login">Iniciar sesión</b-button>
       
     </div>
 
