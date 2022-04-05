@@ -1,6 +1,7 @@
 <template>
   <section>
     <div class="contenedor">
+     <h3 style="color: #00309a; margin-bottom: 15px;"> Crear una publicación </h3> 
       <div class="contenedor-dropdown"> 
           <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
               <template #trigger>
@@ -29,7 +30,7 @@
               </b-field>
 
               <b-field label="Texto">
-                  <b-input  minlength="0" style="width:550px;" type="textarea" class="custom-input"></b-input>
+                  <b-input minlength="0" style="width:550px;" type="textarea" class="custom-input"></b-input>
               </b-field>
             </b-tab-item>
 
@@ -81,13 +82,15 @@
 </template>
 
 <style>
+
   .custom-input:focus{
-      border-color: greenyellow !important;
+      border-color: #00309a !important;
       -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
       box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
+
   .input:focus{
-      border-color: greenyellow !important;
+      border-color: #00309a !important;
       -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
       box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
@@ -98,7 +101,6 @@
 
 </style>
 <style lang="scss" scoped>
-  // $input-focus-box-shadow-color: greenyellow;
 
   .upload-draggable{
     width: 550px;
@@ -132,14 +134,19 @@
       box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
 
+  .footer{
+    display:flex;
+  }
+
   section{
         margin-top: 130px;
         display:flex;
-        flex-flow: column wrap;
+        flex-direction: column;
+        flex-wrap: nowrap;
         align-items: center;
         height: auto;
         justify-content: space-between;
-        min-height: calc(100vh - 130px);
+        height: calc(100vh - 130px);
   }
 
   .input-size{
@@ -169,6 +176,7 @@
 	position: relative;
 	overflow: hidden;
   color:white;
+  align-self:center;
 }
 
 .btn:hover {

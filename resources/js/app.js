@@ -60,7 +60,7 @@ Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPrevia
 Vue.component('apartment', require('./components/Apartments.vue').default);
 Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
 Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
-Vue.component('login', require('./components/login.vue').default);
+// Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
 Vue.component('usuarios', require('./components/Usuarios.vue').default);
