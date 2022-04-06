@@ -36,6 +36,9 @@ Route::get('/profile/{nickname}', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
+Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
+
+
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
@@ -110,5 +113,4 @@ Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
 
-Route::get('/perfil/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
 Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower');

@@ -42,6 +42,7 @@ class UserController extends Controller
 
         return response()->json(['success' => false]);
     }
+    
 
 
     public function update(Request $request, User $user)
