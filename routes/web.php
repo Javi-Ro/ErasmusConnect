@@ -18,9 +18,25 @@ Auth::routes();
 Route::get('/', function () {
     return view('home');
 });
+<<<<<<< HEAD
 Route::get('/admin/reportes', function () {
+=======
+
+//ADMINS
+Route::get('/admin', function () {
+>>>>>>> 1df4737dcb5e0c83a82cda33a74fb6abc3b95023
     return view('/admin/home');
 });
+Route::get('/adminpaises', function () {
+    return view('/admin/paisesAdmin');
+});
+Route::get('/adminetiquetas', function () {
+    return view('/admin/etiquetasAdmin');
+});
+Route::get('/adminciudades', function () {
+    return view('/admin/ciudadesAdmin');
+});
+
 
 Route::get('/foro', function () {
     return view('foro');
