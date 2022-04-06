@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Auth;
+use App\Providers\RouteServiceProvider;
 
 /*
 |--------------------------------------------------------------------------
@@ -115,6 +115,7 @@ Route::group(['prefix' => 'api'], function () {
 
 
     //POSTS
+    Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
