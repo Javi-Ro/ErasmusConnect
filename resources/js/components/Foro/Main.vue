@@ -3,8 +3,18 @@
     <filter-bar></filter-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
     <div class="posts">
-      <div v-for="post in posts" :key="post.id" class="post">
-        <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+      <div class="searcher">
+        <b-field>
+            <b-input placeholder="Search a profile..."
+                type="search"
+                icon="magnify"
+                icon-clickable
+                @icon-click="searchIconClick">
+            </b-input>
+        </b-field>
+      </div>
+      <div v-for="post in posts" :key="post.id" class="post" id="postContainer">
+        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
       </div>
     </div>
   </section>

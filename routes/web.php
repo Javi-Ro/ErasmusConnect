@@ -14,21 +14,35 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH ROUTES
+
 Auth::routes();
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+Route::get('/register', function () {
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
+
+    return redirect(RouteServiceProvider::HOME);
+});
+
+// ADMIN ROUTES
+
+Route::get('/admin/reports', function () {
+    return view('/admin/home');
+});
+
+Route::get('/admin/posts', function () {
+    return view('/admin/posts');
+});
+
 
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/admin/reportes', function () {
-    return view('/admin/home');
-});
-
-Route::get('/foro', function () {
-    return view('foro');
-});
-
-Route::get('/profile/{nickname}', function ($nickname) {
+Route::get('/{nickname}/profile', function($nickname) {
     $user = "";
     if (Auth::check())
         $user = auth()->user()->nickname;
@@ -37,7 +51,29 @@ Route::get('/profile/{nickname}', function ($nickname) {
 });
 
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
+Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
 
+Route::get('/publicacion', function(){
+    return view('foro.publicacion');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+
+Route::get('/foro/crear', function () {
+    return view('foro.crearpublicacion');
+});
+
+// API ROUTES
 
 Route::group(['prefix' => 'api'], function () {
 
@@ -112,5 +148,3 @@ Route::get('/perfil', function () {
 Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
-
-Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower');

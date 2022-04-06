@@ -64,5 +64,4 @@ class TagController extends Controller
         $newTag->post = $request->post;
         $newTag->save();
     }
-
 }

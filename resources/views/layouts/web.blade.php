@@ -14,7 +14,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="background-color: #f8f9f9">
         @include('partials.navbar')
         <!-- <main class="main-container"> -->
             @yield('content')
@@ -29,6 +29,7 @@
     html {
         width: 100%;
         height: auto;
+        scroll-behavior: smooth;
     }
     body {
         display: flex;

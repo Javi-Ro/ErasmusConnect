@@ -17,6 +17,7 @@ class CreateTagsTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->boolean('post');
+            $table->string('img_url')->nullable();
             $table->timestamps();
         });
     }

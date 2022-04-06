@@ -29,7 +29,7 @@
           </div>
           <div class="information-options">
             <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-              <img :src="option.image" :alt="option.title" width="25px" height="25px">
+              <img :src="option.image" :alt="option.title">
               <div class="information-options-option-data">
                 <strong>{{ option.title }}</strong>
                 <p>{{ option.data }}</p>
@@ -54,7 +54,7 @@
           {image: "/images/comment.svg", title: "Comentarios", data: 152},
           {image: "/images/share.svg", title: "Compartir", data: 56}
         ],
-        user: Object,
+        user: {},
       }
     },
 
@@ -73,20 +73,25 @@
         return "/images/" + this.post.img_url;
       },
       imgProfile() {
-        return "images/users/" + this.user.img_url;
+        return "/images/" + this.user.img_url;
       }
     },
 
-    methods: {},
+    methods: {
+      getUser() {
+        axios.get(`/api/users/` + this.post.user_id).then(response => {
+          this.user = response.data.user;
+          console.log(this.user);
+        }).catch(error => {
+          console.info(error);
+        });
+      }
+    },
 
     mounted() {},
 
     created() {
-      axios.get(`/api/users/` + this.post.user_id).then(response => {
-        this.user = response.data.user;
-      }).catch(error => {
-        console.info(error);
-      });
+      this.getUser();
     }
   }
 </script>
