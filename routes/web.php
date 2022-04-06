@@ -83,8 +83,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
 
     //TAGS
+    Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
+    
     Route::post('/tags', 'App\Http\Controllers\TagController@create');
     Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
 

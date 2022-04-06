@@ -214,7 +214,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/users/' + this.user.img_url;
+                    this.profileImage = '/images/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });
