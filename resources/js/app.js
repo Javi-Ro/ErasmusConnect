@@ -73,6 +73,9 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
+Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').default);
+Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
+Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
 Vue.component('usuarios', require('./components/Usuarios.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);

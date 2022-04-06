@@ -32,6 +32,16 @@ Route::get('/register', function () {
 Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
+Route::get('/admin/countries', function () {
+    return view('/admin/paisesAdmin');
+});
+Route::get('/admin/tags', function () {
+    return view('/admin/etiquetasAdmin');
+});
+Route::get('/admin/cities', function () {
+    return view('/admin/ciudadesAdmin');
+});
+
 
 Route::get('/admin/posts', function () {
     return view('/admin/posts');
