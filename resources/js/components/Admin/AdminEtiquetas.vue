@@ -1,5 +1,8 @@
 <template>
     <div class="admin-etiquetas">
+        <div class="title">
+            ETIQUETAS
+        </div>
         <b-table class="table"
             :data="data"
             :columns="columns"
@@ -13,25 +16,25 @@
 
             <div class="crud">
 
-                <b-field class="field" label="Name">
+                <b-field class="field" label="Nombre">
                     <b-input placeholder="Compra, Aire Libre..."></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-info" outlined>Create</b-button>
+                <b-button class="btn" type="is-success">Crear</b-button>
             </div>
 
 
             <div class="crud">
 
-                <b-field class="field" label="Old name">
+                <b-field class="field" label="Nombre">
                     <b-input ></b-input>
                 </b-field>
 
-                <b-field class="field" label="New name">
+                <b-field class="field" label="Nuevo nombre">
                     <b-input placeholder="Compra, Aire Libre..."></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-warning" outlined>Update</b-button>
+                <b-button class="btn" type="is-info">Actualizar</b-button>
             </div>
 
         </div>
@@ -63,19 +66,18 @@
                         searchable: true
                     },
                     {
-                        centered:true,
                         field: 'name',
-                        label: 'Name',
+                        label: 'Nombre',
                         searchable: true
                     },
                     {
                         field: 'edit',
-                        label: 'Edit',
+                        label: 'Editar',
                         centered:true,
                     },
                     {
                         field: 'delete',
-                        label: 'Delete',
+                        label: 'Eliminar',
                         centered:true,
                     }
                 ]
@@ -84,15 +86,27 @@
     }
 </script>
 <style lang="scss" scoped>
+    .title {
+        justify-content: center;
+        display: flex;
+        margin-top: 20px;
+        font-size: x-large;
+        color:#00309a;
+        font-family: sans-serif;
+    }
     .admin-etiquetas {
+    flex-direction: column;
+    align-items: center;
     display:flex;
+    justify-content: center;
     // El navbar mide 280px aprox
-    margin-left: 280px;
-    flex-flow: row wrap;
+    // margin-left: 300px;
     height: 100%;
+    margin: 10px 30px 30px 330px;
+
 
     .table{
-        width: 100%;
+        width: 70%;
     }
     .table > :not(:first-child) {
         border-top: 0ch;

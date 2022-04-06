@@ -1,37 +1,40 @@
 <template>
     <div class="admin-paises">
+        <div class="title">
+            PAISES
+        </div>
         <b-table class="table"
             :data="data"
             :columns="columns"
             :debounce-search="1000"
             :paginated=true
             :per-page=5>
-        
+         
         </b-table>
-        
+
         <div class="crud-container">
 
             <div class="crud">
 
-                <b-field class="field" label="Name">
+                <b-field class="field" label="Nombre">
                     <b-input placeholder="Noruega, España..."></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-info" outlined>Create</b-button>
+                <b-button class="btn" type="is-success">Crear</b-button>
             </div>
 
 
             <div class="crud">
 
-                <b-field class="field" label="Old name">
+                <b-field class="field" label="Nombre">
                     <b-input ></b-input>
                 </b-field>
 
-                <b-field class="field" label="New name">
+                <b-field class="field" label="Nuevo nombre">
                     <b-input placeholder="Noruega, España..."></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-warning" outlined>Update</b-button>
+                <b-button class="btn" type="is-info">Actualizar</b-button>
             </div>
 
         </div>
@@ -44,8 +47,10 @@
     export default {
         data() {
             return {
-                data: [
-                    { 'id': 1, 'name': 'Morolandia'},
+
+            
+               data: [
+	                { 'id': 1, 'name': 'Morolandia'},
                     { 'id': 2, 'name': 'Republica Checa'},
                     { 'id': 3, 'name': 'Croacia'},
                     { 'id': 4, 'name': 'Polonia'},
@@ -61,19 +66,18 @@
                         searchable: true
                     },
                     {
-                        centered:true,
                         field: 'name',
-                        label: 'Name',
+                        label: 'Nombre',
                         searchable: true
                     },
                     {
                         field: 'edit',
-                        label: 'Edit',
+                        label: 'Editar',
                         centered:true,
                     },
                     {
                         field: 'delete',
-                        label: 'Delete',
+                        label: 'Eliminar',
                         centered:true,
                     }
                 ]
@@ -82,15 +86,27 @@
     }
 </script>
 <style lang="scss" scoped>
+    .title {
+        justify-content: center;
+        display: flex;
+        margin-top: 20px;
+        font-size: x-large;
+        color: #00309a;
+        font-family: sans-serif;
+    }
     .admin-paises {
+    flex-direction: column;
+    align-items: center;
     display:flex;
+    justify-content: center;
     // El navbar mide 280px aprox
-    margin-left: 290px;
-    flex-flow: row wrap;
+    // margin-left: 300px;
     height: 100%;
+    margin: 10px 30px 30px 330px;
+
 
     .table{
-        width: 100%;
+        width: 70%;
     }
     .table > :not(:first-child) {
         border-top: 0ch;
