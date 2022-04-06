@@ -66,8 +66,9 @@ Route::get('/apartments', function () {
 Route::get('/foro', function () {
     return view('foro.foro');
 });
-Route::get('/apartments', function () {
-    return view('apartments.apartment');
+
+Route::get('/foro/crear', function () {
+    return view('foro.crearpublicacion');
 });
 
 // API ROUTES

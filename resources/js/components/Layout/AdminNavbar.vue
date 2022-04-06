@@ -3,7 +3,11 @@
         <!-- Logo -->
         <div class="brand" style="align-items: center">
             <p>ADMINISTRADOR</p>
+<<<<<<< HEAD
             <a class="nav-item" tag="router-link" href="/admin/reports">
+=======
+            <a class="nav-item" tag="router-link" href="/">
+>>>>>>> cb7ebd85dc4ffeb4ec42737cfd13240b731936c0
                 <img
                     class="brand-img"
                     src="/images/logo.png"
@@ -70,7 +74,7 @@
             // Nombre cambiado
             publicMenu: [
                 { name: "Reportes", link: "/admin/reports"},
-                { name: "Usuarios", link: "#"},
+                { name: "Usuarios", link: "/admin/usuarios"},
                 { name: "Publicaciones", link: "/admin/posts"},
                 { name: "Alquileres", link: "#"},
                 { name: "Etiquetas", link: "#"},
