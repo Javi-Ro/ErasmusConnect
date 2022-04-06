@@ -33,7 +33,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/admin/reportes', function () {
+Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
 
@@ -51,10 +51,6 @@ Route::get('/profile/{nickname}', function($nickname) {
 
 Route::get('/publicacion', function(){
     return view('foro.publicacion');
-});
-
-Route::get('/admin/reportes', function () {
-    return view('/admin/home');
 });
 
 Route::get('/foro', function () {
