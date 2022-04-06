@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Erasmus Connect</title>
 
@@ -13,7 +14,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div id="app" style="background-color: #f8f9f9">
         @include('partials.navbar')
         <!-- <main class="main-container"> -->
             @yield('content')
@@ -28,6 +29,7 @@
     html {
         width: 100%;
         height: auto;
+        scroll-behavior: smooth;
     }
     body {
         display: flex;

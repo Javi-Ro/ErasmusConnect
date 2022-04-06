@@ -21,7 +21,8 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 1,
                 'name' => "comida",
-                'post' => true
+                'post' => true,
+                'img_url' => "/images/restaurant.svg"
             ]
         );
 
@@ -29,7 +30,8 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 2,
                 'name' => "fiesta",
-                'post' => true
+                'post' => true,
+                'img_url' => "/images/fiesta.svg"
             ]
         );
 
@@ -37,7 +39,8 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 3,
                 'name' => "deporte",
-                'post' => true
+                'post' => true,
+                'img_url' => "/images/sports.svg"
             ]
         );
 
@@ -45,7 +48,8 @@ class TagsTableSeeder extends Seeder
             [
                 'id' => 4,
                 'name' => "noche",
-                'post' => true
+                'post' => true,
+                'img_url' => "/images/noche.svg"
             ]
         );
 

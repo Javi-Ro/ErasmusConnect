@@ -1,6 +1,7 @@
 .main-vp-publicacion{
     display: flex;
     width: 100%;
+    max-width: 900px;
     position: relative;
 
     .centered-container{
@@ -86,7 +87,7 @@
                 }
             }
             .information-description{
-                padding: 10px 5px;
+                padding: 10px 0px;
                 font-size: 14px;
             }
             .information-options{
@@ -97,15 +98,17 @@
                     flex-flow: row wrap;
                     align-items: center;
                     padding-right: 15px;
-
+                    img{
+                        width: 20px;
+                    }
                     .information-options-option-data{
                         line-height: 1;
                         padding-left: 10px;
                         strong{
-                            font-size: 12px;
+                            font-size: 10px;
                         }
                         p{
-                            font-size: 14px;
+                            font-size: 12px;
                         }
                     }
                 }
@@ -118,6 +121,7 @@
         justify-content: center;
         align-items: center;
         background-color: #f8f9f9;
+        max-width: 900px;
 
         .centered-container{
             align-items: flex-start;
@@ -144,6 +148,20 @@
                 .button{
                     font-size: 0.7rem !important;
                     margin-left: 15px !important;
+                }
+                .information.options.option{
+                    img{
+                        width: 25px;
+                    }
+                }
+                
+                .information-options-option-data{
+                    strong{
+                        font-size: 12px;
+                    }
+                    p{
+                        font-size: 14px;
+                    }
                 }
             }
 

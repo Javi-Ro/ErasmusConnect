@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,18 +14,20 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// AUTH ROUTES
+
 Auth::routes();
+Route::post('/login', 'App\Http\Controllers\Auth\LoginController@login')->name('login');
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+Route::get('/register', function () {
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
 
-Route::get('/', function () {
-    return view('home');
+    return redirect(RouteServiceProvider::HOME);
 });
-<<<<<<< HEAD
-Route::get('/admin/reportes', function () {
-=======
 
-//ADMINS
-Route::get('/admin', function () {
->>>>>>> 1df4737dcb5e0c83a82cda33a74fb6abc3b95023
+Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
 Route::get('/adminpaises', function () {
@@ -38,17 +41,44 @@ Route::get('/adminciudades', function () {
 });
 
 
-Route::get('/foro', function () {
-    return view('foro');
+Route::get('/admin/posts', function () {
+    return view('/admin/posts');
 });
 
-Route::get('/profile/{nickname}', function($nickname) {
+// VIEWS ROUTES
+
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/{nickname}/profile', function($nickname) {
     $user = "";
     if(Auth::check())
         $user = auth()->user()->nickname;
 
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
+
+Route::get('/publicacion', function(){
+    return view('foro.publicacion');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
+});
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
+});
+
+// API ROUTES
 
 Route::group(['prefix' => 'api'], function () {
 
@@ -60,8 +90,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/users/{user}', 'App\Http\Controllers\UserController@update');
 
     //TAGS
-    Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
+    Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
+    Route::get('/tags/apartments', 'App\Http\Controllers\TagController@getApartmentsTags');
+    Route::get('/tags/{tag}', 'App\Http\Controllers\TagController@get');
     Route::post('/tags', 'App\Http\Controllers\TagController@create');
     Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
     Route::put('/tags/{tag}', 'App\Http\Controllers\TagController@update');
@@ -91,6 +123,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/cities/{city}', 'App\Http\Controllers\CityController@update');
 
     //POSTS
+    Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
@@ -99,17 +132,4 @@ Route::group(['prefix' => 'api'], function () {
     Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
-});
-
-Route::get('/register', function () {
-    return view('auth/register');
-});
-
-Route::post('/logout', 'App\Http\Controllers\UserController@logout');
-
-Route::get('/foro', function () {
-    return view('foro.foro');
-});
-Route::get('/apartments', function () {
-    return view('apartments.apartment');
 });
