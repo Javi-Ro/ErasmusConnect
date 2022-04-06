@@ -78,7 +78,7 @@ Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.v
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
-Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
