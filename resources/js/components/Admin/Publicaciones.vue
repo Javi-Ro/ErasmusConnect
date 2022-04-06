@@ -1,7 +1,7 @@
 <template>
     <section class="admin-posts">
         <div class="title">
-            REPORTES
+            PUBLICACIONES
         </div>
         <div class="main-table">
             <b-table

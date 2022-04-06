@@ -27,13 +27,9 @@ Route::get('/register', function () {
     return redirect(RouteServiceProvider::HOME);
 });
 
-// VIEWS ROUTES
+// ADMIN ROUTES
 
-Route::get('/', function () {
-    return view('home');
-});
-
-Route::get('/admin/reportes', function () {
+Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
 
@@ -41,16 +37,26 @@ Route::get('/admin/posts', function () {
     return view('/admin/posts');
 });
 
-Route::get('/admin/usuarios', function () {
+Route::get('/admin/users', function () {
     return view('/admin/usuarios');
 });
 
-Route::get('/profile/{nickname}', function($nickname) {
+// VIEWS ROUTES
+
+Route::get('/', function () {
+    return view('home');
+})->name('home');
+
+Route::get('/{nickname}/profile', function($nickname) {
     $user = "";
     if(Auth::check())
         $user = auth()->user()->nickname;
 
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
+});
+
+Route::get('/publicacion', function(){
+    return view('foro.publicacion');
 });
 
 Route::get('/foro', function () {
@@ -110,9 +116,3 @@ Route::group(['prefix' => 'api'], function () {
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
-
-Route::get('/register', function () {
-    return view('auth/register');
-});
-
-Route::post('/logout', 'App\Http\Controllers\UserController@logout');

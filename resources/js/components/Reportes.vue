@@ -106,6 +106,7 @@ $yellow: #ffcd00;
     font-size: x-large;
     color: $blue;
     font-family: sans-serif;
+    font-weight: bold;
 }
 .reportes {
     display:flex;

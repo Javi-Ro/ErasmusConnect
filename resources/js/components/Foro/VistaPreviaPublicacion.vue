@@ -29,7 +29,7 @@
           </div>
           <div class="information-options">
             <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-              <img :src="option.image" :alt="option.title" width="25px" height="25px">
+              <img :src="option.image" :alt="option.title">
               <div class="information-options-option-data">
                 <strong>{{ option.title }}</strong>
                 <p>{{ option.data }}</p>

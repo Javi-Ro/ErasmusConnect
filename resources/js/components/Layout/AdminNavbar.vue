@@ -3,7 +3,7 @@
         <!-- Logo -->
         <div class="brand" style="align-items: center">
             <p>ADMINISTRADOR</p>
-            <a class="nav-item" tag="router-link" href="/admin/reportes">
+            <a class="nav-item" tag="router-link" href="/admin/reports">
                 <img
                     class="brand-img"
                     src="/images/logo.png"
@@ -69,8 +69,8 @@
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
-                { name: "Reportes", link: "/admin/reportes"},
-                { name: "Usuarios", link: "/admin/usuarios"},
+                { name: "Reportes", link: "/admin/reports"},
+                { name: "Usuarios", link: "/admin/users"},
                 { name: "Publicaciones", link: "/admin/posts"},
                 { name: "Alquileres", link: "#"},
                 { name: "Etiquetas", link: "#"},

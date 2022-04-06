@@ -3,23 +3,39 @@
         <div class="titulo-pagina">
             USUARIOS
         </div>
-
-        <b-table :paginated=true 
-            :paginationPosition='bottom'
-            :per-page='10'
-            :pagination-simple='true'
-            :paginationOrder= 'is-centered'
-            :sortIcon='arrow-up'
-            :sortIconSize='is-small'
-             aria-next-label="Next page"
-            aria-previous-label="Previous page"
-            aria-page-label="Page"
-            aria-current-label="Current page"
-            :defaultSortDirection= 'asc'
+<b-table class="table"
             :data="data"
-            :columns="columns"
-            >
+            :debounce-search="1000">
+
+                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
+                    {{ props.row.id }}
+                </b-table-column>
+                <b-table-column field="nickname" label="Nombre de usuario" width="20%" style="margin-left: 20px;" centered sortable searchable v-slot="props">
+                    {{ props.row.nickname }}
+                </b-table-column>
+                <b-table-column field="email" label="Correo electrónico" width="20%" style="margin-left: 20px;" centered sortable searchable v-slot="props">
+                    {{ props.row.email }}
+                </b-table-column>
+                <b-table-column field="date" label="Fecha de unión" width="20%" style="margin-left: 20px;" sortable v-slot="props">
+                    {{ props.row.date }}
+                </b-table-column>
+                   <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" sortable v-slot="props">
+                    {{ props.row.followers }}
+                </b-table-column>
+                <b-table-column field="editar" label="" width="5%" centered>
+                    <b-button type="is-info" outlined title="Editar etiqueta">
+                        Editar
+                    </b-button> 
+                </b-table-column>
+                <b-table-column field="eliminar" label="" centered width="5%">
+                    <b-button type="is-danger" title="Borrar etiqueta">
+                        Eliminar
+                    </b-button>
+                </b-table-column>
         </b-table>
+
+
+
         <div class="top">
             <a> 
               <b-button type="is-info" >Añadir usuario</b-button>
@@ -30,9 +46,27 @@
   </section>
 </template>
 <style>
-.table{
-  background-color: #f8fafc;
-}
+
+    .table{
+    background-color: #f8fafc;
+    }
+    .pagination.is-simple .info {
+        margin-right: auto;
+    }
+
+    .pagination{
+        display: flex;
+        align-items: center;
+
+    }
+
+    .pagination-link{
+        align-self: center;
+    }
+
+    .table > :not(:first-child){
+        border-top:none;
+    }
 </style>
 <style lang="scss" scoped>
 
@@ -43,6 +77,7 @@
           font-size: x-large;
           color:#00309a;
           font-family: sans-serif;
+          font-weight: bold;
     }
 
     .top{
@@ -73,11 +108,6 @@
         height: 100vh;  
         background-color: #f8fafc;
     }
-
-    .titulo{
-        margin-bottom: 20px;
-    }
-
 
 </style>
 
