@@ -27,16 +27,18 @@ Route::get('/register', function () {
     return redirect(RouteServiceProvider::HOME);
 });
 
+// ADMIN ROUTES
+
 Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
-Route::get('/adminpaises', function () {
+Route::get('/admin/countries', function () {
     return view('/admin/paisesAdmin');
 });
-Route::get('/adminetiquetas', function () {
+Route::get('/admin/tags', function () {
     return view('/admin/etiquetasAdmin');
 });
-Route::get('/adminciudades', function () {
+Route::get('/admin/cities', function () {
     return view('/admin/ciudadesAdmin');
 });
 
