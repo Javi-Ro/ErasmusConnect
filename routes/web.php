@@ -67,6 +67,11 @@ Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
 
+Route::get('/foro/crear', function () {
+    return view('foro.crearpublicacion');
+});
+
+
 // API ROUTES
 
 Route::group(['prefix' => 'api'], function () {

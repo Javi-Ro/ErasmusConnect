@@ -40,8 +40,7 @@
             <a> 
               <b-button type="is-info" >Añadir usuario</b-button>
             </a>
-        </div>
-  
+        </div>  
 
   </section>
 </template>
@@ -68,6 +67,7 @@
         border-top:none;
     }
 </style>
+
 <style lang="scss" scoped>
 
     .titulo-pagina{
@@ -77,6 +77,7 @@
           font-size: x-large;
           color:#00309a;
           font-family: sans-serif;
+
           font-weight: bold;
     }
 
@@ -96,6 +97,7 @@
       width: 500px;
      
     }
+
 
     .titulo{
         color:#00309a;
@@ -160,4 +162,5 @@
             }
         }
     }
+
 </script>
