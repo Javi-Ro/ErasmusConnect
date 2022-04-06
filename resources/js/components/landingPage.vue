@@ -5,7 +5,7 @@
         <div class="container-1">
             <div class="eslogan">
                 <p id="textoEslogan1" style="text-align: center;">
-                    El erasmus no es un año de tu vida,
+                    El Erasmus no es un año de tu vida,
                 </p>
                 <p id="textoEslogan2" style="text-align: center;">
                     es <strong>el</strong> año de tu vida.
@@ -109,9 +109,24 @@ strong {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 80%;
+    width: 100%;
     height: 100%;
     // position: absolute;
+}
+
+.eslogan{
+    opacity: 0.8;
+}
+.mapa::before{
+    content: "";
+    background-image: url('~@../../../public/images/wallpaper2.jpg');
+    background-size: cover;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: 0px;
+    left: 0px;
+    opacity: 0.5;
 }
 
 .container-1 {
@@ -121,9 +136,9 @@ strong {
     flex-flow: column;
     z-index: 2;
     width: 100%;
-    background-image: url('/images/mapa1620.png'); 
-    background-repeat: no-repeat;
-    background-size: cover;
+    //background-image: url('/images/wallpaper2.jpg');
+    //background-repeat: no-repeat;
+    //background-size: cover;
     height: 80vh;
 }
 
@@ -227,13 +242,13 @@ $color: #00309a;
     .eslogan {
         font-size: 2rem;
     }
-    .container-1 {
+    /*.container-1 {
         margin-top: 10%;
         padding-top: 10%;
         justify-content: flex-start;
-        background-image: url('/images/mapa992.png'); 
+        background-image: url('/images.png'); 
         height: 50vh
-    }
+    }*/
     .pulse-button {
         font-size: 0.75rem;
     }
@@ -245,12 +260,12 @@ $color: #00309a;
     .eslogan {
         font-size: 0.5rem;
     }
-    .container-1 {
+    /* .container-1 {
         background-image: url('/images/mapa425.png'); 
         height: 40vh;
         margin-top: 15%;
         padding-top: 20%;
-    }
+    } */
     .pulse-button {
         font-size: 0.45rem;
     }

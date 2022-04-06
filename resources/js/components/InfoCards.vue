@@ -135,7 +135,11 @@ img {
     align-items: center;
     flex-direction: column;
     display: flex;
-    margin: 40px 25px 0 25px;
+    margin: 220px 25px 0 25px;
+
+    @media(min-width: 1024px){
+        margin-top: 100px;
+    }
 }
 
 .contenido {
