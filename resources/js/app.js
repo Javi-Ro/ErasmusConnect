@@ -22,6 +22,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import { faX } from '@fortawesome/free-solid-svg-icons'
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+import { faUpload } from '@fortawesome/free-solid-svg-icons'
 import { faEye } from '@fortawesome/free-solid-svg-icons';
 
 
@@ -33,6 +34,7 @@ library.add(faUser)
 library.add(faBars)
 library.add(faX)
 library.add(faArrowRightFromBracket)
+library.add(faUpload)
 library.add(fas)
 library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
@@ -71,6 +73,9 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
+Vue.component('usuarios', require('./components/Usuarios.vue').default);
+Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
+Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);

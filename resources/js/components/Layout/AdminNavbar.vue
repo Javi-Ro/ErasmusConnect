@@ -70,7 +70,7 @@
             // Nombre cambiado
             publicMenu: [
                 { name: "Reportes", link: "/admin/reports"},
-                { name: "Usuarios", link: "#"},
+                { name: "Usuarios", link: "/admin/usuarios"},
                 { name: "Publicaciones", link: "/admin/posts"},
                 { name: "Alquileres", link: "#"},
                 { name: "Etiquetas", link: "#"},
