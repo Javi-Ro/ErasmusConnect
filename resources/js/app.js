@@ -73,12 +73,9 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('login', require('./components/login.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
 Vue.component('reportes', require('./components/Reportes.vue').default);
-<<<<<<< HEAD
-=======
 Vue.component('usuarios', require('./components/Usuarios.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
->>>>>>> cb7ebd85dc4ffeb4ec42737cfd13240b731936c0
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
