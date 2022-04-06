@@ -5,11 +5,25 @@
         </div>
         <b-table class="table"
             :data="data"
-            :columns="columns"
             :debounce-search="1000"
             :paginated=true
             :per-page=5>
-         
+                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
+                    {{ props.row.id }}
+                </b-table-column>
+                <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
+                    {{ props.row.name }}
+                </b-table-column>
+                <b-table-column field="editar" label="" width="5%" centered>
+                    <b-button type="is-info" outlined title="Editar etiqueta">
+                        Editar
+                    </b-button> 
+                </b-table-column>
+                <b-table-column field="eliminar" label="" centered width="5%">
+                    <b-button type="is-danger" title="Borrar etiqueta">
+                        Eliminar
+                    </b-button>
+                </b-table-column>
         </b-table>
 
         <div class="crud-container">
