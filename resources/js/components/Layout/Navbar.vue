@@ -98,7 +98,7 @@
                         </a>
                     </template>
 
-                    <b-dropdown-item><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
+                    <b-dropdown-item @click="showProfile()"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
                     <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
                     </b-dropdown-item>
                 </b-dropdown>
@@ -166,14 +166,16 @@
     },
     methods: {
         getCities() {
-                axios.get(`/api/cities`)
-                    .then(response => {
-                        this.availableCities = response.data.cities;
-                    }).catch(error => {
-                        console.info(error)
-                    });
-            },
-
+            axios.get(`/api/cities`)
+                .then(response => {
+                    this.availableCities = response.data.cities;
+                }).catch(error => {
+                    console.info(error)
+                });
+        },
+        showProfile() {
+            window.location.href = "/" + this.user.nickname + "/profile";
+        },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {
                     id: selected
@@ -214,7 +216,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/users/' + this.user.img_url;
+                    this.profileImage = '/images/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });

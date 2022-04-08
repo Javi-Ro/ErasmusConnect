@@ -119,7 +119,7 @@ export default {
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
 
-            name: "Pascual Holder",
+            name: "",
             // nickname: "Willyrex",
             city: "Madrid",
             bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
@@ -136,6 +136,7 @@ export default {
         console.log(this.nickname);
         console.log(typeof(this.user));
         console.log(this.user);
+        this.name = this.user;
     }
     // methods: {
     //     getNickName(nickname) {

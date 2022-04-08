@@ -1,7 +1,7 @@
 <template>
     <div class="reportes">
         <div class="titulo-pagina">
-             REPORTES
+            REPORTES
         </div>
 
         <div class="reporte" v-for="(report) in reports" :key="report.id">
@@ -106,6 +106,7 @@ $yellow: #ffcd00;
     font-size: x-large;
     color: $blue;
     font-family: sans-serif;
+    font-weight: bold;
 }
 .reportes {
     display:flex;

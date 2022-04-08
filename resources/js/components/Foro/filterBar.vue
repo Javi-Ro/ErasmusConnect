@@ -9,9 +9,10 @@
             <div class="tag-body" :id="setTagID(index)" 
             v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
             >
-                <div class="tag" @click="selectTag(index, tag.link)">
+                <div class="tag">
                     <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
-                    <p class="tagname vertical"></p>{{ tag.name }}</div>
+                    <p class="tagname vertical"></p>{{ tag.name }}
+                </div>
             </div>
         </div>
     </div>
