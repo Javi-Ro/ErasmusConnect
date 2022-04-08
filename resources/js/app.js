@@ -55,9 +55,8 @@ Vue.use(Buefy)
  * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
  */
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
+<<<<<<< HEAD
 Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
 Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
 Vue.component('landing', require('./components/landingPage.vue').default);
@@ -76,13 +75,57 @@ Vue.component('reportes', require('./components/Reportes.vue').default);
 <<<<<<< HEAD
 Vue.component('usuarios', require('./components/Usuarios.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
+=======
+// Admin
+Vue.component('reportes', require('./components/Admin/Reportes.vue').default);
+Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').default);
+Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
+Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
+>>>>>>> 0a8802cf5d4ccbdc70c0e95499d63713d6f6f009
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
+
+// Auth
+Vue.component('login', require('./components/Auth/login.vue').default);
+Vue.component('register-component', require('./components/Auth/RegisterComponent.vue').default);
+//---
+
+// Foro
+Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
+<<<<<<< HEAD
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 =======
 Vue.component('perfil', require('./components/Perfil.vue').default);
 >>>>>>> funcionalidad-seguidores
+=======
+Vue.component('foro', require('./components/Foro/Main.vue').default);
+Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
+Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
+//---
+
+// Landing
+Vue.component('landing', require('./components/Landing/landingPage.vue').default);
+Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default);
+//---
+
+// Layout
+Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
+Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
+Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
+//---
+
+Vue.component('profile', require('./components/Profile.vue').default)
+Vue.component('apartment', require('./components/Apartments.vue').default);
+
+
+
+Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
+
+
+
+>>>>>>> 0a8802cf5d4ccbdc70c0e95499d63713d6f6f009
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
