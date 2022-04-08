@@ -53,6 +53,12 @@ Route::get('/admin/users', function () {
 
 // VIEWS ROUTES
 
+Route::get('/admin/users', function () {
+    return view('/admin/usuarios');
+});
+
+// VIEWS ROUTES
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
