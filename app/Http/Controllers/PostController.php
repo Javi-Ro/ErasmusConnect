@@ -66,4 +66,9 @@ class PostController extends Controller
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 
+    public function getComments(Post $post) {
+        $comments = $post->comments()->get();
+        return response()->json(['success' => true, 'comments' => $comments]);
+    }
+
 }

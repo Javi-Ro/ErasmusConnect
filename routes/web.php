@@ -38,6 +38,7 @@ Route::get('/publicacion/{publicacion}', function(){
     return view('foro.publicacion');
 });
 
+
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
@@ -85,6 +86,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
     Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
+    Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });

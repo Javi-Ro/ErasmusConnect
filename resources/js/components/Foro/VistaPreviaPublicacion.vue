@@ -1,7 +1,7 @@
 <template>
   <section class="main-vp-publicacion">
     <div class="centered-container">
-      <div class="content-main">
+      <div v-if="post" class="content-main">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -9,8 +9,8 @@
             {{ post.title }}
           </div>
           <div class="information-personal">
-            <div class="information-personal-img">
-              <img :src="imgProfile" alt="Profile image">
+            <div v-if="post" class="information-personal-img">
+              <img v-if="Object.entries(user).length!==0" :src="imgProfile" alt="Profile image">
             </div>
             <div class="information-personal-data">
               <div class="information-personal-data-main">
@@ -43,9 +43,7 @@
 
 <script>
   export default {
-    props: {
-      post: {}
-    },
+    props: ['post'],
 
     data() {
       return {
@@ -54,18 +52,13 @@
           {image: "/images/comment.svg", title: "Comentarios", data: 152},
           {image: "/images/share.svg", title: "Compartir", data: 56}
         ],
-        user: Object,
+        user: {},
+        postProp: this.post
       }
     },
 
     watch: {
-      data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
+
     },
 
     computed: {
@@ -73,20 +66,24 @@
         return "/images/" + this.post.img_url;
       },
       imgProfile() {
-        return "images/users/" + this.user.img_url;
+        return "/images/users/" + this.user.img_url;
       }
     },
 
     methods: {},
 
-    mounted() {},
+    mounted() {
+      
+    },
 
     created() {
-      axios.get(`/api/users/` + this.post.user_id).then(response => {
-        this.user = response.data.user;
-      }).catch(error => {
-        console.info(error);
-      });
+      setTimeout(() => {
+        axios.get('/api/users/' + this.post.user_id).then(response => {
+          this.user = response.data.user;
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      }, 1000)
     }
   }
 </script>
