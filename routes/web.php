@@ -53,17 +53,27 @@ Route::get('/admin/users', function () {
 
 // VIEWS ROUTES
 
+Route::get('/admin/users', function () {
+    return view('/admin/usuarios');
+});
+
+// VIEWS ROUTES
+
 Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/{nickname}/profile', function($nickname) {
+Route::get('/{nickname}/profile', function ($nickname) {
     $user = "";
-    if(Auth::check())
+    if (Auth::check())
         $user = auth()->user()->nickname;
 
-    return view('profile', ["nickname"=>$nickname, "user"=>$user]);
+    return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
+
+Route::get('/publicacion', function () {
+Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
+Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
 
 Route::get('/publicacion', function(){
     return view('foro.publicacion');
@@ -133,4 +143,24 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
+});
+
+Route::get('/register', function () {
+    if (Auth::guest()) {
+        return view('auth/register');
+    }
+
+    return redirect(RouteServiceProvider::HOME);
+});
+
+Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
+
+Route::get('/foro', function () {
+    return view('foro.foro');
+});
+Route::get('/perfil', function () {
+    return view('perfil.perfil');
+});
+Route::get('/apartments', function () {
+    return view('apartments.apartment');
 });
