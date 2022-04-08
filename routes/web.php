@@ -47,6 +47,11 @@ Route::get('/admin/posts', function () {
     return view('/admin/posts');
 });
 
+Route::get('/admin/users', function () {
+    return view('/admin/usuarios');
+});
+
+// VIEWS ROUTES
 
 Route::get('/admin/users', function () {
     return view('/admin/usuarios');
@@ -58,7 +63,7 @@ Route::get('/', function () {
     return view('home');
 })->name('home');
 
-Route::get('/{nickname}/profile', function($nickname) {
+Route::get('/{nickname}/profile', function ($nickname) {
     $user = "";
     if (Auth::check())
         $user = auth()->user()->nickname;
@@ -66,6 +71,7 @@ Route::get('/{nickname}/profile', function($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
+Route::get('/publicacion', function () {
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
 Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
 
