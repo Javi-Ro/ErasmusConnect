@@ -71,7 +71,7 @@ Route::get('/{nickname}/profile', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
-Route::get('/publicacion', function () {
+
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
 Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
 
