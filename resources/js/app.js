@@ -43,10 +43,6 @@ const camera = icon({ prefix: 'fas', iconName: 'camera' })
 Vue.use(Buefy)
 
 
-
-
-
-
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
@@ -63,6 +59,7 @@ Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').
 Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
+//---
 
 // Auth
 Vue.component('login', require('./components/Auth/login.vue').default);
@@ -71,6 +68,7 @@ Vue.component('register-component', require('./components/Auth/RegisterComponent
 
 // Foro
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
+Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('foro', require('./components/Foro/Main.vue').default);
@@ -87,63 +85,14 @@ Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default
 Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
 Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
-Vue.component('reportes', require('./components/Reportes.vue').default);
+//---
 
+//TODO: delete 
 Vue.component('perfil', require('./components/Perfil.vue').default);
-Vue.component('usuarios', require('./components/Usuarios.vue').default);
 //---
 
 Vue.component('profile', require('./components/Profile.vue').default)
 Vue.component('apartment', require('./components/Apartments.vue').default);
-
-
-
-Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
-
-// Admin
-Vue.component('reportes', require('./components/Admin/Reportes.vue').default);
-Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').default);
-Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
-Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
-
-Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
-Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
-
-// Auth
-Vue.component('login', require('./components/Auth/login.vue').default);
-Vue.component('register-component', require('./components/Auth/RegisterComponent.vue').default);
-//---
-
-// Foro
-Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
-Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
-Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
-Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
-Vue.component('perfil', require('./components/Perfil.vue').default);
-Vue.component('foro', require('./components/Foro/Main.vue').default);
-Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
-Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
-//---
-
-// Landing
-Vue.component('landing', require('./components/Landing/landingPage.vue').default);
-Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default);
-//---
-
-// Layout
-Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
-Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
-Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
-//---
-
-Vue.component('profile', require('./components/Profile.vue').default)
-Vue.component('apartment', require('./components/Apartments.vue').default);
-
-
-
-Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
-
-
 
 
 /**
