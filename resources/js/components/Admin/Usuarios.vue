@@ -19,7 +19,7 @@
                 <b-table-column field="date" label="Fecha de unión" width="20%" style="margin-left: 20px;" sortable v-slot="props">
                     {{ props.row.date }}
                 </b-table-column>
-                   <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" sortable v-slot="props">
+                   <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" centered sortable v-slot="props">
                     {{ props.row.followers }}
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%">
