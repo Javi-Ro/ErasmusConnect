@@ -1,0 +1,41 @@
+// Navbar buefy
+a.navbar-item:hover{
+    color: $main-color !important;
+}
+
+a.navbar-item:focus{
+    color: $main-color !important;
+}
+
+a.navbar-link:hover{
+    color: $main-color !important;
+}
+
+a.navbar-link:focus{
+    color: $main-color !important;
+}
+
+.navbar-link:not(.is-arrowless)::after{
+    border-color: $main-color !important;
+}
+
+// BOTON SIGN UP NAVBAR
+.button.is-primario{
+    background-color: $main-color !important;
+    color: white;
+}
+
+.button.is-primario:hover{
+    background-color: #0051C6 !important;
+    color: white;
+}
+
+//
+
+@media screen and (min-width: 1024px){
+    .navbar{
+        padding: 10px 35px !important;
+        position: fixed !important;
+        width: 100% !important;
+    }
+}

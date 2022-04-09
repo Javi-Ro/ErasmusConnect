@@ -7,11 +7,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Post extends Model
 {
+
+    protected $fillable = [
+        'title',
+        'user_id'
+    ];
+
+    protected $casts = [
+        'created_at'  => 'datetime:d/m/Y H:m',
+    ];
+
+    protected $appends = [
+        "likes"   
+    ];
+
     use HasFactory;
 
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function user()
@@ -32,5 +46,13 @@ class Post extends Model
     public function post()
     {
         return $this->belongsTo(Post::class);
+    }
+
+    public function likes() {
+        return $this->belongsToMany(User::class);
+    }
+
+    public function getLikesAttribute() {
+        return $this->likes()->get()->count();
     }
 }

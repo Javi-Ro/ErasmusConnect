@@ -19,8 +19,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'nickname',
         'email',
         'password',
+        'city_id',
+        'description'
     ];
 
     /**
@@ -49,10 +52,15 @@ class User extends Authenticatable
 
     public function friends()
     {
-        return $this->hasMany(User::class);
+        return $this->belongsToMany(User::class);
+    }
+    
+    public function curasan()
+    {
+        return $this->belongsToMany(User::class);
     }
 
-    public function apartments() 
+    public function apartments()
     {
         return $this->hasMany(Apartment::class);
     }
@@ -67,5 +75,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class);
+    }
 }

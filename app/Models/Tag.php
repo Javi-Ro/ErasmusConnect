@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
+
+    protected $fillable = [
+        'name',
+        'post'
+    ];
+
     use HasFactory;
 
     public function apartments() 
@@ -16,6 +22,6 @@ class Tag extends Model
 
     public function posts() 
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class);
     }
 }

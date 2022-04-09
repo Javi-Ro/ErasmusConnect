@@ -1,0 +1,33 @@
+.footer-container{
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    padding: 20px 15px;
+    margin-top: 80px;
+    
+
+    .footer-container-main{
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 12px;
+
+        .footer-container-slogan{
+            padding-left: 25px;
+            font-weight: 150;
+        }
+    }
+    .footer-container-rights{
+        text-align: center;
+        font-weight: 300;
+    }
+
+
+
+
+
+    @media (min-width: 769px){
+        padding: 20px 75px;
+    }
+}

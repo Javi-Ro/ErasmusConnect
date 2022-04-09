@@ -1,0 +1,130 @@
+.comentario-container{
+    margin-bottom: 0px;
+    margin-left: 16px;
+}
+.information{
+    display: flex;
+    width: 95%;
+    flex-flow: column nowrap;
+
+    .information-personal-title {
+        font-size: 1.5rem;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+
+    .information-personal{
+        min-height: 25%;
+        width: auto;
+        display: flex;
+        flex-flow: row wrap;
+        .information-personal-img{
+            height: 100%;
+            img{
+                object-fit: cover;
+                border-radius: 50%;
+                height: 48px;
+                width: 48px;
+            }
+        }
+        .information-personal-data{
+            padding-left: 10px;
+            height: 100%;
+            display: flex;
+            flex-flow: column nowrap;
+            justify-content: center;
+            align-items: flex-start;
+            .information-personal-data-main{
+                display: flex;
+                flex-flow: row wrap;
+                height: 49%;
+                justify-content: center;
+                align-items: center;
+                .button{
+                    font-size: 0.6rem;
+                    margin-left: 20px;
+                    border-color: #00309a;
+                    color: #00309a;
+                }
+
+                .button:hover{
+                    background-color: #00309a;
+                    color: white;
+                }
+
+                .button:focus{
+                    background-color: #00309a;
+                    color: white;
+                }
+            }
+            .information-personal-data-date{
+                display: flex;
+                align-items: flex-start;
+                margin-top: 1%;
+                height: 49%;
+                font-weight: 200;
+                font-size: 0.8rem;
+            }
+        }
+    }
+    .information-description{
+        padding: 10px 0px;
+        font-size: 14px;
+    }
+    .information-options{
+        display: flex;
+        justify-content: row wrap;
+        .information-options-option{
+            display: flex;
+            flex-flow: row wrap;
+            align-items: center;
+            padding-right: 15px;
+            img{
+                width: 20px;
+            }
+            .information-options-option-data{
+                line-height: 1;
+                padding-left: 10px;
+                strong{
+                    font-size: 10px;
+                }
+                p{
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+
+    @media(min-width: $media-desktop-min){
+        padding-left: 0px;
+        padding-bottom: 25px;
+
+        .information-description{
+            font-size: 16px;
+        }
+
+        .information-personal-title{
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .button{
+            font-size: 0.7rem !important;
+            margin-left: 15px !important;
+        }
+        .information.options.option{
+            img{
+                width: 25px;
+            }
+        }
+        
+        .information-options-option-data{
+            strong{
+                font-size: 12px;
+            }
+            p{
+                font-size: 14px;
+            }
+        }
+    }
+}

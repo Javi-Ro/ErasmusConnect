@@ -1,0 +1,56 @@
+/**
+ * Spacing_helpers
+ */
+ $spaceamounts: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 225, 230, 250, 275, 300, 325, 350, 375, 400, 450, 500); // Adjust this to include the pixel amounts you need.
+ $sides: (top, bottom, left, right, x, y); // Leave this variable alone
+ 
+ @each $space in $spaceamounts {
+   .m-#{$space} {
+     margin: #{$space}px !important;
+   }
+ 
+   .p-#{$space} {
+     padding: #{$space}px !important;
+   }
+ 
+   @each $side in $sides {
+     @if $side == 'x' {
+       .m-x-#{$space} {
+         margin-left: #{$space}px !important;
+         margin-right: #{$space}px !important;
+       }
+       .p-x-#{$space} {
+         padding-left: #{$space}px !important;
+         padding-right: #{$space}px !important;
+       }
+     } @else if $side == 'y' {
+       .m-y-#{$space} {
+         margin-top: #{$space}px !important;
+         margin-bottom: #{$space}px !important;
+       }
+       .p-y-#{$space} {
+         padding-top: #{$space}px !important;
+         padding-bottom: #{$space}px !important;
+       }
+     } @else {
+       .m-#{str-slice($side, 0, 1)}-#{$space} {
+         margin-#{$side}: #{$space}px !important;
+       }
+ 
+       .p-#{str-slice($side, 0, 1)}-#{$space} {
+         padding-#{$side}: #{$space}px !important;
+       }
+     }
+   }
+ }
+ 
+ /**
+  * Width_helpers
+  */
+ $widthamounts: (0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 15, 16, 17, 18, 19, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 225, 230, 250, 275, 300, 325, 350, 375, 400, 450, 500); // Adjust this to include the pixel amounts you need.
+ 
+ @each $width in $widthamounts {
+   .w-#{$width} { width: #{$width}px !important; }
+   .miw-#{$width} { min-width: #{$width}px !important; }
+   .maw-#{$width} { max-width: #{$width}px !important; }
+ }

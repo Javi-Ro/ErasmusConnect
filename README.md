@@ -2,21 +2,25 @@
 
 Enlace al tablero [Trello](https://trello.com/b/TOL6RU01/1b)
 
-# REVIEWERS
+# REVIEWERS 
+## [FRONTEND]
 ```
-ROSA --> RAUL 
+RAUL --> MADANI
 
-ILYAN --> ROSA
+MADANI --> JAVI
+
+JAVI --> ROSA
+
+ROSA --> RAUL
+```
+## [BACKEND]
+``` 
+ILYAN --> ADRI
+
+ADRI --> MARIO
 
 MARIO --> ILYAN
 
-JAVI --> MARIO
-
-ADRI --> JAVI
-
-MADANI --> ADRI
-
-RAUL --> MADANI
 ```
 
 ### ¿Como empezar a trabajar?
@@ -24,7 +28,7 @@ RAUL --> MADANI
 Clonamos el respositorio desde la terminal con:
 
 ```
-git clone https://github.com/rbm61/ErasmusConnect.git
+git clone https://github.com/Javi-Ro/ErasmusConnect.git
 ```
 
 Como la rama `develop` está asignada por defecto en el repositorio que tenemos local tendrá el siguiente formato:
@@ -46,7 +50,7 @@ $ git checkout develop (Volvemos a develop porque es donde trabajaremos y saldra
 
 Es una opción de automatización que ofrece Github simple de usar y de configurar
 
-El tablero [TAES](https://github.com/rbm61/ErasmusConnect/projects/1) se compone de 4 tablas To Do, In Progress, In Pull Request y Done
+El tablero [TAES] se compone de 4 tablas To Do, In Progress, In Pull Request y Done
 
 A la hora de trabajar crearemos issues que si le asignamos el proyecto TAES se colocarán automáticamente en la columna `To Do`
 

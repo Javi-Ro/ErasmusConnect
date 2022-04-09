@@ -1,0 +1,31 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'General/variables';
+
+// General
+@import 'General/helpers';
+@import 'General/overrides';
+@import 'General/main';
+
+// Third party
+@import '~bulma';
+@import 'buefy/dist/buefy.css';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+// Layout
+@import 'Layout/footer';
+@import 'Layout/navbar';
+
+// Foro
+@import 'Foro/vista-previa-publicacion';
+@import 'Foro/main';
+@import 'Foro/publicacion';
+@import 'Foro/comentario';
+
+//Admin
+@import 'Admin/publicaciones';
