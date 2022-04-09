@@ -11,7 +11,12 @@
       </div>
 
       <div class="elemento"> 
-        <b-input v-model="password" class="input-buefy" icon-pack="fas" icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> </b-input>
+        <!-- <b-input v-model="password" class="input-buefy" icon-pack="fas" icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> </b-input> -->
+          <b-field label="Contraseña">
+            <b-input type="password"
+                password-reveal>
+            </b-input>
+        </b-field>
       </div>
 
       <div class="pregunta"> 
@@ -30,11 +35,14 @@
 </template>
 
 <style>
-    .input:focus{
-      border-color: #00309a !important;
-      -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
-      box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
-    }
+  i {
+    color: #00309a;
+  }
+  .input:focus{
+    border-color: #00309a !important;
+    -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+  }
 </style>
 
 
