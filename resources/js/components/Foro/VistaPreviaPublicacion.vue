@@ -73,7 +73,7 @@
         return "/images/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/" + this.user.img_url;
+        return "/images/users/" + this.user.img_url;
       }
     },
 

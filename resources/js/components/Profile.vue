@@ -229,7 +229,7 @@ $izq-column-width: 258px;
     min-height: 200px;
     border-radius: 3px;
     display: flex;
-    background-image: url('/images/bg-profile-default.jpg'); 
+    background-image: url('/images/placeholders/bg-profile-default.jpg'); 
     background-repeat: no-repeat;
     background-size: cover;
 }

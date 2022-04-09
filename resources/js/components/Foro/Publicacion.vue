@@ -12,7 +12,7 @@
       <vista-previa-publicacion class="post" :post="post"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
-          <img src="images/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
+          <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
           <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>

@@ -5,7 +5,7 @@
             <a class="nav-item" tag="router-link" href="/">
                 <img
                     class="brand-img"
-                    src="/images/logo.png"
+                    src="/images/logo/logo.png"
                     alt="Erasmus Connect"
                 >
             </a>
