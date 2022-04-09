@@ -21,9 +21,10 @@
       </div>
       <div class="information-options">
         <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-          <img :src="option.image" :alt="option.title">
+          <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 30px" title="Me gustas"
+          v-if="index == 0"/>
           <div class="information-options-option-data">
-            <strong>{{ option.title }}</strong>
+            <!-- <strong>{{ option.title }}</strong> -->
             <p>{{ option.data }}</p>
           </div>
         </div>

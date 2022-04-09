@@ -5,7 +5,10 @@
       <filter-bar-horizontal class="horizontal-menu"></filter-bar-horizontal>
       <div class="title-bar">
         <div class="title-bar-img">
-          <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();">
+          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
+          <div @click="goBack()">
+            <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
+          </div>
         </div>
         <p>Publicación</p>
       </div>
