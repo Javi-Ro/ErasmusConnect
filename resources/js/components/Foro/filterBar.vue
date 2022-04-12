@@ -25,9 +25,9 @@
         <div class="tag-body" :id="setTagID(index)"
         v-for="(tag,index) in tags" :key="tag.id">
             <input type="checkbox" class="btn-check" :id="tag.id" autocomplete="off"
-            v-model="selectedTags" :value="tag.id"
+            v-model="selectedTags" :value="tag.id" @change="getPostsByTags()"
             >
-            <label class="btn btn-outline-primary" :for="tag.id">
+            <label class="checkbox-button check-btn-outline" :for="tag.id">
                 <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
                 <p class="tagname vertical">{{ tag.name }}</p>
             </label>
@@ -69,10 +69,21 @@ export default {
                     tag: tag
                 }
             }).then(response => {
+                console.log(response.data.posts)
                 this.$parent.posts = response.data.posts;
             }).catch(error => {
                 console.info(error);
             });
+        },
+        // Evento on-click para cuando se pulse una etiqueta
+        getPostsByTags() {
+            console.log(this.selectedTags)
+            for(var i=0; i < this.selectedTags.length; i++)
+            {
+                console.log("LLAMADA")
+                this.getPostsByTag(this.selectedTags[i])
+
+            }
         },
         cardModal() {
             this.$buefy.modal.open({
@@ -91,29 +102,10 @@ export default {
     }
 }
 </script>
-<style>
-/* label > .button {
-    border: 100px solid #000;
-}
-label > .button.is-primary {
-    border: 100px solid #000;
-    background-color: #00309a;
-    border-color: transparent;
-    color: #fff;
-}
-.button.is-primary {
-    background-color: #00309a;
-    border-color: transparent;
-    color: #fff;
-}
-.button.is-primary:hover, .button.is-primary.is-hovered {
-    background-color: #00309a;
-    border-color: transparent;
-    color: #fff; 
-}*/
-</style>
 <style lang="scss" scoped>
 $blue:#00309a;
+$blue-hover:#00309a;
+
 .filter-bar {
     display:none;
     // width: 20%;
@@ -181,6 +173,48 @@ $blue:#00309a;
 }
 
 // Modificando checkbox button
+.check-btn-outline {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    padding: 10px 20px 10px 40px;
+    font-size: x-large;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.check-btn-outline {
+    color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:active {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:focus {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+// .btn-outline-dark:checked{
+//     color: white;
+//     background-color: $blue;
+//     border-color: $blue;
+// }
+.btn-check:checked + .check-btn-outline {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.btn-check:checked + .check-btn-outline {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+.check-btn-outline:hover {
+    color: white;
+    background-color: $blue-hover;
+    border-color: $blue-hover;
+}
+
+
     // /* Track */
     // ::-webkit-scrollbar-track {
     // background: #f1f1f1; 

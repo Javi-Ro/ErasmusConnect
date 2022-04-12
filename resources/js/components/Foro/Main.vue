@@ -8,8 +8,8 @@
             <b-input placeholder="Search a profile..."
                 type="search"
                 icon="magnify"
-                icon-clickable
-                @icon-click="searchIconClick">
+                icon-clickable>
+                <!-- @icon-click="searchIconClick"> -->
             </b-input>
         </b-field>
       </div>
