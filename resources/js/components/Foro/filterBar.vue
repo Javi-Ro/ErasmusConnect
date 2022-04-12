@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-bar">
+    <!-- <div class="filter-bar">
         <div class="tag" >
             <p class="cabecera">
                 Elige lo que más te interesa
@@ -15,6 +15,23 @@
                 </div>
             </div>
         </div>
+    </div> -->
+    <div class="filter-bar">
+        <div class="tag" >
+            <p class="cabecera">
+                Elige lo que más te interesa
+            </p>
+        </div>
+        <div class="tag-body" :id="setTagID(index)"
+        v-for="(tag,index) in tags" :key="tag.id">
+            <input type="checkbox" class="btn-check" :id="tag.id" autocomplete="off"
+            v-model="selectedTags" :value="tag.id"
+            >
+            <label class="btn btn-outline-primary" :for="tag.id">
+                <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
+                <p class="tagname vertical">{{ tag.name }}</p>
+            </label>
+        </div>
     </div>
 </template>
 <script>
@@ -22,6 +39,7 @@ export default {
     data() {
         return {
             tags: [],
+            selectedTags: [],
             nTags: 0
         }
     },
@@ -73,15 +91,33 @@ export default {
     }
 }
 </script>
+<style>
+/* label > .button {
+    border: 100px solid #000;
+}
+label > .button.is-primary {
+    border: 100px solid #000;
+    background-color: #00309a;
+    border-color: transparent;
+    color: #fff;
+}
+.button.is-primary {
+    background-color: #00309a;
+    border-color: transparent;
+    color: #fff;
+}
+.button.is-primary:hover, .button.is-primary.is-hovered {
+    background-color: #00309a;
+    border-color: transparent;
+    color: #fff; 
+}*/
+</style>
 <style lang="scss" scoped>
 $blue:#00309a;
-// Indica el radio de la barra de filtros
-$radio: 10px;
 .filter-bar {
     display:none;
     // width: 20%;
     // height: 100%;
-    //border-radius: $radio;
     // 100px es la anchura del navbar
     border: 1px solid #dbdbdb;
     //flex-direction: column;
@@ -138,25 +174,13 @@ $radio: 10px;
     background-color: rgb(218, 218, 218);
 }
 
-// Primera etiqueta
-// #first-tag {
-//     border-radius: ($radio - 4px) ($radio - 4px) 0 0;
-//     cursor: default;
-    
-// }
-// #first-tag:hover {
-//     background-color: transparent;
-// }
-// Última etiqueta
-#last-tag{
-    border-radius: 0 0 ($radio - 4px) ($radio - 4px);
-}
-
 .cabecera {
     // display: flex;
     font-weight: bold;
     font-size: 1.3rem;
 }
+
+// Modificando checkbox button
     // /* Track */
     // ::-webkit-scrollbar-track {
     // background: #f1f1f1; 
