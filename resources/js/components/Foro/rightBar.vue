@@ -16,7 +16,14 @@
     </div>
 </template>
 <script></script>
+<style>
+input[type="search" i] {
+    border-radius: 20px;
+}
+</style>
 <style lang="scss" scoped>
+$blue: #00309a;
+$yellow: #F2AF13;
 .right-bar {
     display:none;
     // 100px es la anchura del navbar
@@ -38,6 +45,8 @@
 }
 .content {
     padding: 30px 10px 10px 20px;
+    display: flex;
+    flex-direction: column;
 }
 @media(min-width: 1500px) {
     .right-bar {

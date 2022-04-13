@@ -1,5 +1,10 @@
 <template>
     <div class="filter-bar">
+        <a href="/foro/crear" class="button btn-publicar" id="publicar">
+            <p style="padding: 0 10px 0 10px; text-align: center;">
+                Publicar
+            </p>
+        </a>
         <div class="tag" >
             <p class="cabecera">
                 Elige lo que más te interesa
@@ -75,8 +80,38 @@ export default {
 </script>
 <style lang="scss" scoped>
 $blue:#00309a;
+$yellow: #F2AF13;
 // Indica el radio de la barra de filtros
 $radio: 10px;
+.btn-publicar {
+    width: 90%;
+    padding: 10px 20px;
+    margin: 25px 0px;
+
+    border: none;
+    border-radius: 30px;
+
+    box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);
+    background-color: $blue;
+    background-size:cover;
+    background-repeat: no-repeat;
+    /* Modifica el texto de dentro */
+    color: $yellow;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
+    letter-spacing: .15rem;
+}
+#publicar {
+    margin-right: 0.5rem;
+    background-color: $blue;
+    color: white;
+}
+#publicar:hover {
+    margin-right: 0.5rem;
+    // background-color: darken($blue, 10%);
+    color: $yellow;
+}
 .filter-bar {
     display:none;
     // width: 20%;
