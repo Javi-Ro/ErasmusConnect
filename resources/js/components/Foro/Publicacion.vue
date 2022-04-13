@@ -12,12 +12,14 @@
           <p>Volver al foro</p>
         </div>
       </div>
-      <vista-previa-publicacion :post="post" :comment="false"></vista-previa-publicacion>
+
+      <vista-previa-publicacion :post="post" :comment="false" view="unique"></vista-previa-publicacion>
+
       <div class="comments-container">
         <div class="post-comment">
           <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
           <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
-          <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
+          <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Comentar</b-button>
         </div>
         <vista-previa-publicacion :post="post" :comment="true"></vista-previa-publicacion>
         <comentario></comentario>

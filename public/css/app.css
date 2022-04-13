@@ -43529,7 +43529,6 @@ textarea.form-control-lg {
 }
 .main-foro .post {
   margin-bottom: 2rem;
-  cursor: pointer;
 }
 @media (min-width: 1500px) {
   .main-foro .posts {
@@ -43554,7 +43553,7 @@ textarea.form-control-lg {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
-  margin-top: 190px;
+  margin-top: 160px;
   align-items: flex-start;
 }
 .post-container-positioned .title-bar {
@@ -43563,7 +43562,7 @@ textarea.form-control-lg {
   padding: 10px;
   z-index: 99;
   top: 95px;
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
@@ -43659,7 +43658,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 1500px) {
   .post-container-positioned {
-    margin-top: 260px;
+    margin-top: 160px;
   }
 }
 

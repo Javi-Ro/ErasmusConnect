@@ -16,7 +16,7 @@
       </div> -->
       <div v-for="post in posts" :key="post.id" class="post" id="postContainer">
         <!-- <a href="/publicacion" style="color:black;"> -->
-        <vista-previa-publicacion :post="post"></vista-previa-publicacion>
+        <vista-previa-publicacion :post="post" :comment="false" view=""></vista-previa-publicacion>
         <!-- </a> -->
       </div>
     </div>

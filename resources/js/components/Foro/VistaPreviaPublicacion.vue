@@ -1,11 +1,15 @@
 <template>
-  <section class="main-vp-publicacion">
+  <section class="main-vp-publicacion" :id="view">
     <div class="centered-container">
-      <a href="/publicacion" style="color:black;">
-      <div class="content-main" v-if="!comment">
+
+      <a href="/publicacion" style="color:black;" title="Ver publicación" v-if='view == ""'>
+        <div class="content-main" v-if="!comment">
+          <img :src="imgUrl" alt="Foto" width="100%" height="auto">
+        </div>
+      </a>
+      <div class="content-main" v-if="view == 'unique'">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
-      </a>
       <div class="information">
           <div class="information-personal-title" v-if="!comment">
             {{ post.title }}
@@ -69,7 +73,8 @@
   export default {
     props: {
       post: Object,
-      comment: Boolean
+      comment: Boolean,
+      view: String
     },
 
     data() {
@@ -131,5 +136,8 @@
 <style lang="scss" scoped>
 #tags {
   margin: 10px 0;
+}
+#unique {
+  max-width: 900px;
 }
 </style>
