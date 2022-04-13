@@ -7,14 +7,20 @@
       </div>
 
       <div class="elemento"> 
-          <b-input v-model="nickname" placeholder="Nombre de usuario"> </b-input>
+          <b-field size="is-medium" label="Nombre de usuario">
+            <b-input
+            v-model="nickname" 
+            size="is-medium"
+            placeholder="Nombre de usuario"> </b-input>
+          </b-field>
       </div>
 
       <div class="elemento"> 
         <!-- <b-input v-model="password" class="input-buefy" icon-pack="fas" icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> </b-input> -->
-          <b-field label="Contraseña">
+          <b-field size="is-medium" label="Contraseña">
             <b-input type="password"
-                password-reveal>
+              size="is-medium"
+              password-reveal>
             </b-input>
         </b-field>
       </div>
@@ -23,7 +29,13 @@
         <p> ¿No tienes cuenta? <a class="registrate" href="/register"> Regístrate </a> </p>
       </div>
 
-      <b-button v-on:click="loginUser()" class="button login is-primary" id="login">Iniciar sesión</b-button>
+      <b-button v-on:click="loginUser()" 
+      class="button login is-primary" 
+      id="login"
+      size="is-large"
+      >
+        Iniciar sesión
+      </b-button>
       
     </div>
 
@@ -53,10 +65,10 @@
   // }
     .titulo{
         color:#00309a;
-        font-size: 20px;
+        font-size: 30px;
         font-family: Arial, Helvetica, sans-serif;
         align-self: center;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
 
     .contenedor{
@@ -67,6 +79,7 @@
     .pregunta{
         margin-bottom: 10px;
         align-self:center;
+        font-size: large;
     }
 
     .registrate{
@@ -88,6 +101,7 @@
     }
 
     .login {
+        margin-top: 30px;
         margin-right: 0.5rem;
         background-color: #00309a;
         color: white;
