@@ -12,11 +12,17 @@
     margin-top: 190px;
     align-items: flex-start;
     .title-bar{
+        position: fixed;
+        background-color: whitesmoke;
+        padding: 10px;
+        z-index: 99;
+        top: 95px;
+        width: 80%;
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        margin-left: 10px;
-        margin-bottom: 25px;
+        // margin-left: 10px;
+        // margin-bottom: 25px;
         .title-bar-img{
             display: flex;
             justify-content: center;
@@ -113,8 +119,7 @@
     }
 
     @media(min-width: 1500px){
-        margin-top: 120px;
-        margin-left: 20%;
+        margin-top: 260px;
     }
 
     

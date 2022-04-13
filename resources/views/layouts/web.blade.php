@@ -41,6 +41,7 @@
         width: 100%;
         flex-direction: column;
         height: 100%;
+        color: #000;
     }
     p {
         text-align: justify;

@@ -132,6 +132,7 @@ $radio: 10px;
     top: 90px;
     left: 70px;
     border-left: none;
+    border-right: 1px;
     box-shadow: rgb(0 0 0 / 24%) 5px 3px 8px;
 
     @media(min-width: 1500px){

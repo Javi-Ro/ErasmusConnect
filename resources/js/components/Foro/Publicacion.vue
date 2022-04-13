@@ -1,8 +1,6 @@
 <template>
   <section class="post-container">
     <div class="post-container-positioned">
-      <filter-bar></filter-bar>
-      <filter-bar-horizontal class="horizontal-menu"></filter-bar-horizontal>
       <div class="title-bar">
         <div class="title-bar-img">
           <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
@@ -10,16 +8,18 @@
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
         </div>
-        <p>Publicación</p>
+        <div>
+          <p>Volver al foro</p>
+        </div>
       </div>
-      <vista-previa-publicacion class="post" :post="post"></vista-previa-publicacion>
+      <vista-previa-publicacion :post="post" :comment="false"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
           <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
           <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>
-        <comentario></comentario>
+        <vista-previa-publicacion :post="post" :comment="true"></vista-previa-publicacion>
         <comentario></comentario>
       </div>
     </div>
@@ -61,3 +61,8 @@
     mounted() {}
   }
 </script>
+<style>
+.post-comment {
+  margin: 0 0 10px 0;
+}
+</style>

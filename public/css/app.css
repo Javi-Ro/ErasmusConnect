@@ -43379,6 +43379,7 @@ textarea.form-control-lg {
   width: auto;
   display: flex;
   flex-flow: row wrap;
+  padding-top: 10px;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-img {
   height: 100%;
@@ -43557,11 +43558,15 @@ textarea.form-control-lg {
   align-items: flex-start;
 }
 .post-container-positioned .title-bar {
+  position: fixed;
+  background-color: whitesmoke;
+  padding: 10px;
+  z-index: 99;
+  top: 95px;
+  width: 80%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  margin-left: 10px;
-  margin-bottom: 25px;
 }
 .post-container-positioned .title-bar .title-bar-img {
   display: flex;
@@ -43654,8 +43659,7 @@ textarea.form-control-lg {
 }
 @media (min-width: 1500px) {
   .post-container-positioned {
-    margin-top: 120px;
-    margin-left: 20%;
+    margin-top: 260px;
   }
 }
 
