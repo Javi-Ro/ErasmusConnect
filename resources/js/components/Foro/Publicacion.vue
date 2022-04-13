@@ -18,11 +18,12 @@
       <div class="comments-container">
         <div class="post-comment">
           <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
-          <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
+          <b-input class="post-comment-input" size="is-medium" placeholder="Comenta tu respuesta..." rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Comentar</b-button>
         </div>
+        <!-- Pasar post que es "hijo" del post que se está viendo -->
         <vista-previa-publicacion :post="post" :comment="true"></vista-previa-publicacion>
-        <comentario></comentario>
+        <vista-previa-publicacion :post="post" :comment="true"></vista-previa-publicacion>
       </div>
     </div>
   </section>

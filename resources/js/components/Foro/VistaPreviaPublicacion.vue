@@ -51,13 +51,16 @@
               </div>
           </div>
           <div class="information-options" v-if="!comment">
-            <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-              <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 30px" title="Me gustas"
-              v-if="index == 0"/>
-              <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 30px" title="Comentarios"
-              v-if="index == 1"/>
-              <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 30px" title="Compartir"
-              v-if="index == 2"/>
+            <div class="information-options-option" :id="'select-option-' + option.id"
+            v-for="(option, index) in optionsData" :key="index">
+              <div :id="'background-option-' + option.id">
+                <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gustas"
+                v-if="index == 0"/>
+                <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
+                v-if="index == 1"/>
+                <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px;" title="Compartir"
+                v-if="index == 2"/>
+              </div>
               <div class="information-options-option-data">
                 <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
@@ -88,9 +91,9 @@
           // {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
           // {image: "/images/comment.svg", title: "Comentarios", data: 152},
           // {image: "/images/share.svg", title: "Compartir", data: 56}
-          {data: this.post.likes},
-          {data: 152},
-          {data: 56}
+          {id: 1, data: this.post.likes},
+          {id: 2, data: 152},
+          {id: 3, data: 56}
         ],
         user: {},
       }
@@ -134,6 +137,39 @@
   }
 </script>
 <style lang="scss" scoped>
+$blue: #00309a;
+#select-option-1:hover #background-option-1 {
+  -webkit-transition: background-color 0.3s ease;
+  border-radius: 50px;
+  background-color: rgb(249, 24, 128, 0.2);
+  z-index: 0;
+}
+#select-option-2:hover #background-option-2 {
+  -webkit-transition: background-color 0.3s ease;
+  border-radius: 50px;
+  background-color: rgb(0, 48, 154, 0.2);
+  z-index: 0;
+}
+#select-option-3:hover #background-option-3 {
+  -webkit-transition: background-color 0.3s ease;
+  border-radius: 50px;
+  background-color: rgb(218, 218, 218);
+  z-index: 0;
+}
+#select-option {
+  &-1:hover {
+    cursor: pointer;
+    color: #f91880;
+    z-index: 1
+  }
+  &-2:hover {
+    cursor: pointer;
+    color:$blue;
+  }
+  &-3:hover {
+    cursor: pointer;
+  }
+}
 #tags {
   margin: 10px 0;
 }
