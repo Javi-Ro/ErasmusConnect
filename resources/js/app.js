@@ -78,6 +78,7 @@ Vue.component('comentario', require('./components/Foro/Comentario.vue').default)
 Vue.component('foro', require('./components/Foro/Main.vue').default);
 Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
 Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
+Vue.component('right-bar', require('./components/Foro/rightBar.vue').default);
 //---
 
 // Landing

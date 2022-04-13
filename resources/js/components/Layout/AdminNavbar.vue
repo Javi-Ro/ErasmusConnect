@@ -90,7 +90,7 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 .navbar {
     height: 100%;
     max-width: 280px;

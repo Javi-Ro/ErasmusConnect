@@ -1,9 +1,11 @@
 <template>
   <section class="main-vp-publicacion">
     <div class="centered-container">
+      <a href="/publicacion" style="color:black;">
       <div class="content-main">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
+      </a>
       <div class="information">
           <div class="information-personal-title">
             {{ post.title }}

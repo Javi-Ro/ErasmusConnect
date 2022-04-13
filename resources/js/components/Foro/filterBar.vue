@@ -86,15 +86,18 @@ $radio: 10px;
     border: 1px solid #dbdbdb;
     //flex-direction: column;
     overflow: hidden;
-    background-color: white;
+    background-color: whitesmoke;
     position: fixed;
     height: fit-content;
-    left: 0;
+    max-width: 370px;
+    min-width: 370px;
+    
     padding-top: 20px;
     height: 100%;
     top: 90px;
-    min-width: 300px;
-    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    left: 70px;
+    border-left: none;
+    box-shadow: rgb(0 0 0 / 24%) 5px 3px 8px;
 
     @media(min-width: 1500px){
         display: block;

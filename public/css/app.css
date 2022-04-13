@@ -43345,7 +43345,7 @@ textarea.form-control-lg {
 .main-vp-publicacion {
   display: flex;
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   position: relative;
 }
 .main-vp-publicacion .centered-container {
@@ -43461,7 +43461,7 @@ textarea.form-control-lg {
     justify-content: center;
     align-items: center;
     background-color: #f8f9f9;
-    max-width: 900px;
+    max-width: 600px;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
@@ -43498,7 +43498,7 @@ textarea.form-control-lg {
 }
 
 .main-foro {
-  padding-top: 200px;
+  margin-top: 120px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -43523,15 +43523,17 @@ textarea.form-control-lg {
 .main-foro .posts {
   display: flex;
   flex-direction: column;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 .main-foro .post {
   margin-bottom: 2rem;
   cursor: pointer;
 }
 @media (min-width: 1500px) {
-  .main-foro {
-    margin-left: 150px;
-    padding-top: 140px;
+  .main-foro .posts {
+    margin-left: 400px;
+    margin-right: 400px;
   }
 }
 @media (min-width: 1024px) {

@@ -96,7 +96,7 @@
     .login:hover {
         margin-right: 0.5rem;
         background-color: #00309a;;
-        color: #ffcd00;
+        color: #F2AF13;
     }
 
 </style>
