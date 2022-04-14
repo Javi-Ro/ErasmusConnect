@@ -1,5 +1,5 @@
 <template>
-    <div class="filter-bar">
+    <div class="filter-bar" style="align-items:center">
         <div class="cabecera">
             <p>
                 Temas
@@ -15,6 +15,16 @@
                     </p>
                 </div>
             </div>
+        </div>
+        <div class="searcher" style="margin-left: auto;">
+            <b-field>
+                <b-input placeholder="Buscar"
+                    type="search"
+                    icon="magnify">
+                    <!-- icon-clickable -->
+                    @icon-click="searchIconClick"
+                </b-input>
+            </b-field>
         </div>
     </div>
 </template>
@@ -102,6 +112,8 @@ $radio: 10px;
     justify-content: flex-start;
     overflow-y: auto;
     flex-wrap: nowrap;
+    align-items: center;
+    margin-bottom: 0;
 }
 .tag {
     display: flex;
@@ -113,6 +125,7 @@ $radio: 10px;
     margin-right: 15px;
     border-radius: 20px;
     font-weight: 500;
+    margin-bottom: 0;
 }
 
 .tag:hover{

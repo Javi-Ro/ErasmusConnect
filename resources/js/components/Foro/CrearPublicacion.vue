@@ -2,9 +2,8 @@
   <section>
     <div class="contenedor">
         <div class="titulo-pagina">
-            CREA UNA PUBLICACIÓN
+            <p>CREA UNA PUBLICACIÓN</p>
         </div>
-
       <div class="contenedor-dropdown"> 
           <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
               <template #trigger>
@@ -105,6 +104,8 @@
 <style lang="scss" scoped>
 
   .titulo-pagina {
+      justify-content: center;
+      display: flex;
       margin: 20px 0 15px 0;
       font-size: x-large;
       color:#00309a;
@@ -192,11 +193,12 @@
   }
 
   .btn {
+  justify-content: center;
 	width: 40%;
   display:flex;
   background-color: #00309a;
   font-weight: bold;
-  font-size: 0.9rem;
+  font-size: 1.2rem;
   font-family: Arial, Helvetica, sans-serif; 
 	padding: .6rem 5.5rem;
 	border-radius: 10rem;
@@ -208,7 +210,7 @@
 }
 
 .btn:hover {
-  color: yellow;
+  color: #F2AF13;
 }
 
 </style>
