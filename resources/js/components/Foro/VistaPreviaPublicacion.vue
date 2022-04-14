@@ -49,11 +49,11 @@
       return {
         optionsData: [
           {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
-          {image: "/images/comment.svg", title: "Comentarios", data: 152},
-          {image: "/images/share.svg", title: "Compartir", data: 56}
+          {image: "/images/comment.svg", title: "Comentarios", data: this.post.comments},
+          {image: "/images/share.svg", title: "Compartir", data: 0}
         ],
         user: {},
-        postProp: this.post
+        postProp: this.post,
       }
     },
 
@@ -70,7 +70,9 @@
       }
     },
 
-    methods: {},
+    methods: {
+
+    },
 
     mounted() {
       

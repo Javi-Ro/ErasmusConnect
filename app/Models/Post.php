@@ -18,7 +18,8 @@ class Post extends Model
     ];
 
     protected $appends = [
-        "likes"   
+        "likes",
+        "comments"
     ];
 
     use HasFactory;
@@ -54,5 +55,9 @@ class Post extends Model
 
     public function getLikesAttribute() {
         return $this->likes()->get()->count();
+    }
+
+    public function getCommentsAttribute() {
+        return $this->comments()->get()->count();
     }
 }

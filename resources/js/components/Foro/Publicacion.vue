@@ -41,12 +41,12 @@
 
 <script>
   export default {
-    
+    props:{post: Object},
+
     data() {
       return {
-        post: {},
         comments: [{id: null}],
-        data: null
+        data: false
       }
     },
 
@@ -72,14 +72,14 @@
         })
       },
       getPostById(){
-        axios.get('/api/posts/1').then(response => {
+        axios.get('/api/posts/' + this.post.id).then(response => {
             this.post = response.data.post;
           }).catch(error => {
             console.info(error);
           })
       },
       getComments() {
-        axios.get('/api/posts/1/comments').then(response => {
+        axios.get('/api/posts/'+ this.post.id +'/comments').then(response => {
             this.comments = response.data.comments;
             this.data = true;
           }).catch(error => {
@@ -92,12 +92,12 @@
     },
 
     mounted() {
-      
+      this.getPostById()
+      this.getComments()
     },
 
     created() {
-      this.getPostById()
-      this.getComments()
+
     }
   }
 </script>

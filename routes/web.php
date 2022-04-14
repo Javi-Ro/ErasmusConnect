@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +35,10 @@ Route::get('/profile/{nickname}', function($nickname) {
     return view('profile', ["nickname"=>$nickname, "user"=>$user]);
 });
 
-Route::get('/publicacion/{publicacion}', function(){
-    return view('foro.publicacion');
+Route::get('/publicacion/{publicacion}', function($id){
+    $post = App\Models\Post::whereId($id)->first();
+
+    return view('foro.publicacion')->with('post', $post);
 });
 
 
