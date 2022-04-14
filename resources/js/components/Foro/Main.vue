@@ -1,20 +1,23 @@
 <template>
   <section class="main-foro"> 
     <filter-bar></filter-bar>
+    <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
     <div class="posts">
-      <div class="searcher">
+      <!-- <div class="searcher">
         <b-field>
             <b-input placeholder="Search a profile..."
                 type="search"
                 icon="magnify"
                 icon-clickable>
-                <!-- @icon-click="searchIconClick"> -->
+                @icon-click="searchIconClick"
             </b-input>
         </b-field>
-      </div>
+      </div> -->
       <div v-for="post in posts" :key="post.id" class="post" id="postContainer">
-        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
+        <!-- <a href="/publicacion" style="color:black;"> -->
+        <vista-previa-publicacion :post="post" :comment="false" view=""></vista-previa-publicacion>
+        <!-- </a> -->
       </div>
     </div>
   </section>
