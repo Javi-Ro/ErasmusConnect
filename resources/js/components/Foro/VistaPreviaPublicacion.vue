@@ -51,17 +51,17 @@
               </div>
           </div>
           <div class="information-options" v-if="!comment">
-            <div class="information-options-option" :id="'select-option-' + option.id"
+            <div :class="'information-options-option tag-' + option.id" :id="'select-option-' + option.id"
             v-for="(option, index) in optionsData" :key="index">
               <div :id="'background-option-' + option.id">
-                <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gustas"
+                <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
                 v-if="index == 0"/>
                 <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
                 v-if="index == 1"/>
                 <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px;" title="Compartir"
-                v-if="index == 2"/>
+                v-if="index == 2" />
               </div>
-              <div class="information-options-option-data">
+              <div class="information-options-option-data" v-if="index != 2">
                 <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
@@ -138,6 +138,10 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
+.tag-3 {
+  margin-left: auto;
+}
+
 #select-option-1:hover #background-option-1 {
   -webkit-transition: background-color 0.3s ease;
   border-radius: 50px;
@@ -167,6 +171,7 @@ $blue: #00309a;
     color:$blue;
   }
   &-3:hover {
+    margin-left: auto;
     cursor: pointer;
   }
 }

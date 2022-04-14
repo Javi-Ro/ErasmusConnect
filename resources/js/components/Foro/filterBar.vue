@@ -10,31 +10,17 @@
                 Elige lo que más te interesa
             </p>
         </div>
-        <div class="tags">
-            <div class="tag-body" :id="setTagID(index)" 
-            v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
-            >
-                <div class="tag">
-                    <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
-                    <p class="tagname vertical"></p>{{ tag.name }}
-                </div>
-            </div>
-        </div>
-    </div> -->
-    <div class="filter-bar">
-        <div class="tag" >
-            <p class="cabecera">
-                Elige lo que más te interesa
-            </p>
-        </div>
         <div class="tag-body" :id="setTagID(index)"
-        v-for="(tag,index) in tags" :key="tag.id">
+        v-for="(tag,index) in tags" :key="tag.id" style="text-align: center;">
             <input type="checkbox" class="btn-check" :id="tag.id" autocomplete="off"
             v-model="selectedTags" :value="tag.id" @change="getPostsByTags()"
             >
             <label class="checkbox-button check-btn-outline" :for="tag.id">
-                <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
-                <p class="tagname vertical">{{ tag.name }}</p>
+                <div style="display:flex; margin-left: 20px">
+                    <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
+                    <p class="tagname vertical">{{ tag.name }}</p>
+                </div>
+
             </label>
         </div>
     </div>
@@ -85,7 +71,6 @@ export default {
             console.log(this.selectedTags)
             for(var i=0; i < this.selectedTags.length; i++)
             {
-                console.log("LLAMADA")
                 this.getPostsByTag(this.selectedTags[i])
 
             }
@@ -202,9 +187,9 @@ $radio: 10px;
     cursor: pointer;
     -webkit-transition: background-color 0.5s ease;
 }
-.tag-body:hover {
-    background-color: rgb(218, 218, 218);
-}
+// .tag-body:hover {
+//     background-color: rgb(218, 218, 218);
+// }
 
 .cabecera {
     // display: flex;
@@ -216,7 +201,8 @@ $radio: 10px;
 .check-btn-outline {
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 80%;
+    margin: 10px 0 0 20px;
     cursor: pointer;
     padding: 10px 20px 10px 40px;
     font-size: x-large;
@@ -224,6 +210,7 @@ $radio: 10px;
 }
 
 .check-btn-outline {
+    border-radius: 30px;
     color: $blue;
     border-color: $blue;
 }
