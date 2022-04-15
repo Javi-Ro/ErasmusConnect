@@ -11,8 +11,13 @@
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
-          <div class="information-personal-title" v-if="!comment">
-            {{ post.title }}
+          <div class="information-personal-title title-save" v-if="!comment">
+            <p>{{ post.title }}</p>
+            <div class="information-options-option tag-3" id="select-option-3">
+              <div id="background-option-3" style="padding: 0 10px;">
+                <font-awesome-icon icon="fa-regular fa-bookmark" style="font-size: 25px; padding: 4px 4px;" title="Guardar"/>
+              </div>
+            </div>
           </div>
           <div class="information-personal">
             <div class="information-personal-img">
@@ -21,9 +26,9 @@
             <div class="information-personal-data">
               <div class="information-personal-data-main">
                 <p class="information-personal-data-main-user">{{ user.nickname }}</p>
-                <b-button class="information-personal-data-main-button" type="is-link" outlined v-if="!comment">
+                <!-- <b-button class="information-personal-data-main-button" type="is-link" outlined v-if="!comment">
                   Guardar
-                </b-button>
+                </b-button> -->
               </div>
               <div class="information-personal-data-date">
                 <p>{{ post.created_at }}</p>
@@ -58,7 +63,7 @@
                 v-if="index == 0"/>
                 <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
                 v-if="index == 1"/>
-                <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px;" title="Compartir"
+                <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px; padding: 10px 10px;" title="Compartir"
                 v-if="index == 2" />
               </div>
               <div class="information-options-option-data" v-if="index != 2">
@@ -138,8 +143,13 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
+.title-save {
+  display:flex;
+  justify-content: space-between;
+}
 .tag-3 {
   margin-left: auto;
+  padding-right: 0 !important;
 }
 
 #select-option-1:hover #background-option-1 {
@@ -156,7 +166,7 @@ $blue: #00309a;
 }
 #select-option-3:hover #background-option-3 {
   -webkit-transition: background-color 0.3s ease;
-  border-radius: 50px;
+  border-radius: 80px;
   background-color: rgb(218, 218, 218);
   z-index: 0;
 }

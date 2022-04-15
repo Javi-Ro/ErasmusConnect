@@ -46,26 +46,30 @@
     p {
         text-align: justify;
     }
-    /* Para cambiar la barra de desplazamiento
-    /* width 
+
+
+    @media(min-width: 600px) {
+    /* Para cambiar la barra de desplazamiento */
+    /* width */
     ::-webkit-scrollbar {
         width: 10px;
     }
 
-    /* Track 
+    /* Track */
     ::-webkit-scrollbar-track {
         border-radius: 10px;
         background: #f1f1f1; 
     }
     
-    /* Handle 
+    /* Handle */
     ::-webkit-scrollbar-thumb {
         background: rgb(175, 175, 175);
         border-radius: 10px;
     }
 
-    /* Handle on hover 
+    /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #888
-    } */
+    }
+    }
 </style>

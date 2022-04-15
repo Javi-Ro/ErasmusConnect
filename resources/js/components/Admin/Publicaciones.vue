@@ -112,8 +112,8 @@
                     animation: 'none',
                     component: VistaPreviaPublicacionVue,
                     canCancel: true,
-                    props: { post: post },
-                    width: 640,
+                    props: { post: post, comment:false, view:""},
+                    width: 610,
                     events: {
                         
                     },
