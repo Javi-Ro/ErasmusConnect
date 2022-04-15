@@ -43559,8 +43559,8 @@ textarea.form-control-lg {
   position: fixed;
   background-color: whitesmoke;
   padding: 10px;
-  z-index: 99;
-  top: 95px;
+  z-index: 9;
+  top: 88px;
   width: 100%;
   display: flex;
   flex-flow: row wrap;
@@ -43650,6 +43650,9 @@ textarea.form-control-lg {
     border: 1px solid #dbdbdb;
     border-top: none;
     background-color: white;
+  }
+  .post-container-positioned .title-bar {
+    top: 88px;
   }
   .post-container-positioned .title-bar p {
     font-size: 20px;

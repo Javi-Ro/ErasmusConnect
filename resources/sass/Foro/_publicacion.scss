@@ -15,8 +15,8 @@
         position: fixed;
         background-color: whitesmoke;
         padding: 10px;
-        z-index: 99;
-        top: 95px;
+        z-index: 9;
+        top: 88px;
         width: 100%;
         display: flex;
         flex-flow: row wrap;
@@ -112,6 +112,7 @@
             background-color: white;
         }
         .title-bar{
+            top: 88px;
             p{
                 font-size: 20px;
             }

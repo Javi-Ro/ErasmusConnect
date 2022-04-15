@@ -343,6 +343,7 @@ a.navbar-item:hover {
     .menu.is-active {
         display: block;
         flex-direction: column;
+        z-index: 99;
     }
     .navbar {
         flex-wrap: wrap;
