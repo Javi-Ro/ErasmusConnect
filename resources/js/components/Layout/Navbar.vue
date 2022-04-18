@@ -18,19 +18,9 @@
         <div class="menu" id="menu">
             <!-- Utilidades -->
             <div class="menu-start">
-                <b-dropdown
-                    append-to-body
-                    aria-role="menu"
-                    scrollable
-                    max-height="200"
-                    trap-focus
-                >
+                <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
                     <template #trigger>
-                        <a
-                            class="navbar-item"
-                            role="button"
-                            style="padding-left: 20px;"
-                            >
+                        <a class="navbar-item" role="button" style="padding-left: 20px;">
                             <span style="margin-right: 10px;">{{selectedCity}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>

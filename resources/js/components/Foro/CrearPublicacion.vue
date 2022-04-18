@@ -5,23 +5,25 @@
             CREA UNA PUBLICACIÓN
         </div>
 
-      <div class="contenedor-dropdown"> 
+        <div class="contenedor-dropdown"> 
           <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
-              <template #trigger>
-                  <a class="navbar-item" role="button">
-                      <span style="margin-right: 10px;">Ciudad</span>
-                      <font-awesome-icon icon="fa-solid fa-caret-down" />
-                  </a>
-              </template>
+            <template #trigger>
+                <a class="navbar-item" role="button">
+                    <span style="margin-right: 10px;">{{selectedCity}}</span>
+                    <font-awesome-icon icon="fa-solid fa-caret-down" />
+                </a>
+            </template>
 
-              <b-dropdown-item custom aria-role="listitem">
-                  <input type="text" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
-              </b-dropdown-item>
-              <b-dropdown-item> Prague </b-dropdown-item>
-              <b-dropdown-item> Milán </b-dropdown-item>
-              <b-dropdown-item> Budapest </b-dropdown-item>
-              <b-dropdown-item> Berlín </b-dropdown-item>
-              <b-dropdown-item> Gdansk </b-dropdown-item>
+            <b-dropdown-item custom aria-role="listitem">
+                <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
+            </b-dropdown-item>
+
+            <b-dropdown-item 
+              v-for="city in filteredData" :key="city[1]" 
+              @click="setSelected(city[1])"
+              aria-role="listitem">
+                  {{city[0]}}
+            </b-dropdown-item>
           </b-dropdown>
         </div>
 
@@ -29,11 +31,11 @@
 
             <b-tab-item label="Texto">
               <b-field label="Título" >
-                  <b-input maxlength="300"></b-input>
+                  <b-input maxlength="300" v-model="post.title"></b-input>
               </b-field>
 
               <b-field label="Texto">
-                  <b-input minlength="0" style="width:550px;" type="textarea" class="custom-input"></b-input>
+                  <b-input minlength="0" style="width:550px;" type="textarea" class="custom-input" v-model="post.text"></b-input>
               </b-field>
             </b-tab-item>
 
@@ -62,14 +64,14 @@
               
             </b-tab-item>
             <!-- disabled -->
-            <b-tab-item label="Enlace">  
+            <!-- <b-tab-item label="Enlace">  
               <b-field label="URL">
                   <b-input style="width:550px;" maxlength="300" type="url"></b-input>
               </b-field>
-            </b-tab-item>
+            </b-tab-item> -->
         </b-tabs>
 
-        <button class="btn">
+        <button class="btn" @click="createPost()">
             <p style="text-align: center;">
                 Publicar
             </p>
@@ -82,6 +84,96 @@
 
 
 </template>
+
+<script>
+import filterBarHorizontal from './filterBarHorizontal.vue'
+  export default {
+  components: { filterBarHorizontal },
+    props: {},
+      data() {
+        return {
+            post: {
+              title: null,
+              text: null,
+              img_url: null,
+              city_id: null,
+              user_id: null,
+              post_id: null,
+              file: File
+            },
+            activeTab: 0,
+            searchTerm: '',
+            availableCities: [],
+            availableCitiesNames: [],
+            selectedCity: 'Ciudad',
+            dropFiles: []
+        }
+    },
+    watch: {
+      data: {
+        immediate: true,
+        deep: true,
+        handler(val, oldVal) {
+          //do something
+        }
+      },
+    },
+    computed: {
+      filteredData() {
+          this.availableCitiesNames = this.availableCities.map((item) => [item.name, item.id]);
+          return this.availableCitiesNames.filter((item) => item[0].toLowerCase().indexOf(this.searchTerm.toLowerCase()) >= 0);
+      },
+    },
+    methods: {
+        deleteDropFile(index) {
+          console.log(this.dropFiles);
+            this.dropFiles.splice(index, 1)
+        },
+        getCities() {
+          axios.get(`/api/cities`)
+              .then(response => {
+                  this.availableCities = response.data.cities;
+              }).catch(error => {
+                  console.info(error)
+              });
+        },
+        getSelected(selected) {
+            axios.post(`/api/get_city_by_id`, {
+                id: selected
+            })
+                .then(response => {
+                    this.post.city_id = response.data.city.id; // ID de la clase seleccionada
+                    this.selectedCity = response.data.city.name;
+                }).catch(error => {
+                    console.info(error)
+                });
+        },
+        setSelected(option) {
+            console.log(this.dropFiles);
+            this.getSelected(option);
+        },
+        createPost() {
+          const formData = new FormData();
+          formData.append('post', JSON.stringify(this.post));
+          formData.append('file', this.dropFiles[0]);
+          axios.post(`/api/posts`, formData).then(response => {
+            // window.href.location = "/foro";
+            console.log(response);
+          }).catch(error => {
+            if (error.response.status === 403) {
+              window.location.href = "/login";
+            } else if (error.response.status === 422) {
+              alert("El titulo es obligatorio");
+            }
+          })
+        }
+    },
+    mounted() {},
+    created() {
+      this.getCities();
+    }
+  }
+</script>
 
 <style>
 
@@ -212,31 +304,3 @@
 }
 
 </style>
-
-<script>
-import filterBarHorizontal from './filterBarHorizontal.vue'
-  export default {
-  components: { filterBarHorizontal },
-    props: {},
-      data() {
-        return {
-            dropFiles: []
-        }
-    },
-    watch: {
-      data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
-    },
-    computed: {},
-    methods: {
-        deleteDropFile(index) {
-            this.dropFiles.splice(index, 1)
-        }},
-    mounted() {}
-  }
-</script>

@@ -153,7 +153,3 @@ Route::get('/register', function () {
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-
-Route::get('/perfil', function () {
-    return view('perfil.perfil');
-});
