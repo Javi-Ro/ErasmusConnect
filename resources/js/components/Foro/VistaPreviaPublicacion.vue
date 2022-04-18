@@ -13,9 +13,12 @@
       <div class="information">
           <div class="information-personal-title title-save" v-if="!comment">
             <p>{{ post.title }}</p>
-            <div class="information-options-option tag-3" id="select-option-3">
-              <div id="background-option-3" style="padding: 0 10px;">
-                <font-awesome-icon icon="fa-regular fa-bookmark" style="font-size: 25px; padding: 4px 4px;" title="Guardar"/>
+            <div class="information-options-option tag-0" id="select-option-0" @click="reaction(0)">
+              <div id="background-option-0" style="padding: 0 10px;">
+                <font-awesome-icon icon="fa-regular fa-bookmark" style="font-size: 25px; padding: 4px 4px;" title="Guardar"
+                v-if="saved == false"/>
+                <font-awesome-icon icon="fa-solid fa-bookmark" style="font-size: 25px; padding: 4px 4px;" title="Quitar de guardados"
+                v-if="saved == true"/>
               </div>
             </div>
           </div>
@@ -57,16 +60,22 @@
           </div>
           <div class="information-options" v-if="!comment">
             <div :class="'information-options-option tag-' + option.id" :id="'select-option-' + option.id"
-            v-for="(option, index) in optionsData" :key="index">
+            v-for="(option, index) in optionsData" :key="index" @click="reaction(option.id)">
               <div :id="'background-option-' + option.id">
                 <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
-                v-if="index == 0"/>
+                v-if="index == 0 && liked == false"/>
+                <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
+                v-if="index == 0 && liked == true"/>
                 <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
                 v-if="index == 1"/>
                 <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px; padding: 10px 10px;" title="Compartir"
                 v-if="index == 2" />
               </div>
-              <div class="information-options-option-data" v-if="index != 2">
+              <div class="information-options-option-data" v-if="index != 2 && liked == false">
+                <!-- <strong>{{ option.title }}</strong> -->
+                <p>{{ option.data }}</p>
+              </div>
+              <div class="information-options-option-data" v-if="index != 2 && liked == true">
                 <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
@@ -87,6 +96,10 @@
 
     data() {
       return {
+        // Variable que controla si se ha guardado una publicación
+        saved: false,
+        // Variable que controla si se ha dado me gusta una publicación
+        liked: false,
         postTags: [
           {name: "comida"},
           {name: "fiesta"},
@@ -131,6 +144,31 @@
         }).catch(error => {
           console.info(error);
         });
+      },
+      reaction(option) {
+        if(option == 0) {
+          console.log("Guardando post...")
+          // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
+          if(this.saved == false) {
+            this.saved = true
+          }
+          else {
+            this.saved = false
+          }
+        }
+        else if(option == 1) {
+          console.log("Dando me gusta a post...")
+          var element = document.getElementById("select-option-" + option);
+          // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
+          if(this.liked == false) {
+            element.classList.add("liked");
+            this.liked = true
+          }
+          else {
+            element.classList.remove("liked");
+            this.liked = false
+          }
+        }
       }
     },
 
@@ -152,12 +190,24 @@ $blue: #00309a;
   padding-right: 0 !important;
 }
 
+#select-option-0:hover #background-option-0 {
+  -webkit-transition: background-color 0.3s ease;
+  border-radius: 80px;
+  background-color: rgb(218, 218, 218);
+  z-index: 0;
+}
+
 #select-option-1:hover #background-option-1 {
   -webkit-transition: background-color 0.3s ease;
   border-radius: 50px;
   background-color: rgb(249, 24, 128, 0.2);
   z-index: 0;
 }
+
+.liked {
+  color: #f91880;
+}
+
 #select-option-2:hover #background-option-2 {
   -webkit-transition: background-color 0.3s ease;
   border-radius: 50px;
@@ -171,6 +221,9 @@ $blue: #00309a;
   z-index: 0;
 }
 #select-option {
+  &-0:hover {
+    cursor: pointer;
+  }
   &-1:hover {
     cursor: pointer;
     color: #f91880;
@@ -181,7 +234,6 @@ $blue: #00309a;
     color:$blue;
   }
   &-3:hover {
-    margin-left: auto;
     cursor: pointer;
   }
 }
