@@ -9,7 +9,7 @@
             <b-button type="is-danger is-light" style="border-radius: 10px border: 1px solid #cc0f35"
             @click=clearFilter()>
                 <font-awesome-icon id="closeIcon" icon="fa-solid fa-x"/> 
-                &nbsp Eliminar filtros
+                &nbsp; Eliminar filtros
             </b-button>
         </div>
         <div style="min-height:40px" v-if="this.selectedTags.length == 0"></div>
@@ -74,6 +74,7 @@ export default {
             console.log(this.selectedTags)
             for(var i=0; i < this.selectedTags.length; i++)
             {
+                // TODO: Llamada en la que se le pasa una lista de tags?
                 this.getPostsByTag(this.selectedTags[i])
 
             }
@@ -189,7 +190,6 @@ $radio: 10px;
 
 .tag-body {
     width: 100%;
-    cursor: pointer;
     -webkit-transition: background-color 0.5s ease;
 }
 
@@ -223,11 +223,7 @@ $radio: 10px;
 .check-btn-outline:focus {
     box-shadow: 0 0 0 0.05rem $blue;
 }
-// .btn-outline-dark:checked{
-//     color: white;
-//     background-color: $blue;
-//     border-color: $blue;
-// }
+
 .btn-check:checked + .check-btn-outline {
     color: white;
     background-color: $blue;
@@ -241,20 +237,4 @@ $radio: 10px;
     background-color: $blue-hover;
     border-color: $blue-hover;
 }
-
-
-    // /* Track */
-    // ::-webkit-scrollbar-track {
-    // background: #f1f1f1; 
-    // }
-    
-    // // /* Handle */
-    // // ::-webkit-scrollbar-thumb {
-    // // background: rgb(175, 175, 175); 
-    // // }
-
-    // // /* Handle on hover */
-    // // ::-webkit-scrollbar-thumb:hover {
-    // // background: #888; 
-    // // }
 </style>

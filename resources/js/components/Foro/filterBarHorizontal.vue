@@ -5,15 +5,26 @@
                 Temas
             </p>
         </div>
+        <div class="clear-btn" v-if="this.selectedTagsHorizontal.length > 0">
+            <b-button type="is-danger is-light" @click=clearFilter()>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" 
+                style="width:10px; height:10px; margin-bottom: 2.5px;"
+                title="Eliminar filtros"/> 
+            </b-button>
+        </div>
+        <div style="min-width:30px" v-if="this.selectedTagsHorizontal.length == 0"></div>
         <div class="tags">
             <div class="tag-body" :id="setTagID(index)" 
-            v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
+            v-for="(tag,index) in tags" :key="tag.id"
             >
-                <div class="tag">
-                    <p class="tagname">
-                        {{tag.name}}
-                    </p>
-                </div>
+                <input type="checkbox" class="btn-check" :id="'h-' + tag.id" autocomplete="off"
+                v-model="selectedTagsHorizontal" :value="tag.id" @change="getPostsByTags()"
+                >
+                <label class="checkbox-button check-btn-outline tag" :for="'h-' + tag.id">
+                    <!-- <div class="tag"> -->
+                        <p class="tagname">{{ tag.name }}</p>
+                    <!-- </div> -->
+                </label>
             </div>
         </div>
         <div class="searcher" style="margin-left: auto;">
@@ -33,10 +44,15 @@ export default {
     data() {
         return {
             tags: [],
+            selectedTagsHorizontal: [],
             nTags: 0
         }
     },
     methods: {
+        clearFilter() {
+            this.selectedTagsHorizontal = []
+            // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
+        },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {
                 this.tags = response.data.tags;
@@ -67,6 +83,16 @@ export default {
                 console.info(error);
             });
         },
+        // Evento on-click para cuando se pulse una etiqueta
+        getPostsByTags() {
+            console.log(this.selectedTagsHorizontal)
+            for(var i=0; i < this.selectedTagsHorizontal.length; i++)
+            {
+                // TODO: Llamada en la que se le pasa una lista de tags?
+                this.getPostsByTag(this.selectedTagsHorizontal[i])
+
+            }
+        },
         cardModal() {
             this.$buefy.modal.open({
                 parent: this,
@@ -83,8 +109,20 @@ export default {
     }
 }
 </script>
+<style>
+.clear-btn > .button.is-danger.is-light {
+    background-color: #feecf0;
+    color: #cc0f35;
+    border: 1px solid #cc0f35;
+    padding: 5px !important;
+    max-height: 30px !important;
+    min-width: 30px !important;
+    border-radius: 50px;
+}
+</style>
 <style lang="scss" scoped>
 $blue:#00309a;
+$blue-hover:#00309a;
 // Indica el radio de la barra de filtros
 $radio: 10px;
 .filter-bar {
@@ -114,6 +152,7 @@ $radio: 10px;
     flex-wrap: nowrap;
     align-items: center;
     margin-bottom: 0;
+    margin-left: 10px;
 }
 .tag {
     display: flex;
@@ -126,10 +165,21 @@ $radio: 10px;
     border-radius: 20px;
     font-weight: 500;
     margin-bottom: 0;
+    cursor: pointer;
 }
 
 .tag:hover{
-    background-color: #d8dadf;
+    background-color: $blue;
+    color: white
+}
+
+.btn-check:checked + .check-btn-outline {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.btn-check:checked + .check-btn-outline {
+    box-shadow: 0 0 0 0.05rem $blue;
 }
 
 .tag-body {
@@ -137,18 +187,9 @@ $radio: 10px;
     cursor: pointer;
 }
 
-// Primera etiqueta
-// #first-tag {
-//     border-radius: ($radio - 4px) ($radio - 4px) 0 0;
-//     cursor: default;
-    
-// }
-// #first-tag:hover {
-//     background-color: transparent;
-// }
 // Última etiqueta
 #last-tag{
-    border-radius: 15px;
+    border-radius: 20px;
 }
 
 .cabecera {
@@ -156,20 +197,39 @@ $radio: 10px;
     font-weight: bold;
     font-size: 1.5rem;
     color: #000;
-    margin-right: 30px;
+    margin-right: 10px;
 }
-    // /* Track */
-    // ::-webkit-scrollbar-track {
-    // background: #f1f1f1; 
-    // }
-    
-    // // /* Handle */
-    // // ::-webkit-scrollbar-thumb {
-    // // background: rgb(175, 175, 175); 
-    // // }
+// Modificando checkbox button
+.check-btn-outline {
+    display: flex;
+    align-items: center;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
 
-    // // /* Handle on hover */
-    // // ::-webkit-scrollbar-thumb:hover {
-    // // background: #888; 
-    // // }
+.check-btn-outline {
+    color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:active {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:focus {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+
+.btn-check:checked + .check-btn-outline {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.btn-check:checked + .check-btn-outline {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+.check-btn-outline:hover {
+    color: white;
+    background-color: $blue-hover;
+    border-color: $blue-hover;
+}
 </style>
