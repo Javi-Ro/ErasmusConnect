@@ -5,13 +5,22 @@
                 Publicar
             </p>
         </a>
+        <div class="clear-btn" v-if="this.selectedTags.length > 0">
+            <b-button type="is-danger is-light" style="border-radius: 10px border: 1px solid #cc0f35"
+            @click=clearFilter()>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x"/> 
+                &nbsp Eliminar filtros
+            </b-button>
+        </div>
+        <div style="min-height:40px" v-if="this.selectedTags.length == 0"></div>
         <div class="tag" >
             <p class="cabecera">
                 Elige lo que más te interesa
             </p>
         </div>
-        <div class="tag-body" :id="setTagID(index)"
-        v-for="(tag,index) in tags" :key="tag.id" style="text-align: center;">
+        
+        <div class="tag-body"
+        v-for="(tag) in tags" :key="tag.id" style="text-align: center;">
             <input type="checkbox" class="btn-check" :id="tag.id" autocomplete="off"
             v-model="selectedTags" :value="tag.id" @change="getPostsByTags()"
             >
@@ -35,6 +44,10 @@ export default {
         }
     },
     methods: {
+        clearFilter() {
+            this.selectedTags = []
+            // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
+        },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {
                 this.tags = response.data.tags;
@@ -42,16 +55,6 @@ export default {
             }).catch(error => {
                 console.info(error);
             });
-        },
-        setTagID(index) {
-            // Es necesario distinguir entre la primera etiqueta y el resto
-            if(index == 0)
-                return "first-tag";
-            // Es necesario distinguir entre la última etiqueta y el resto
-            else if(index == this.nTags)
-                return "last-tag";
-            else
-                return "";
         },
         // Evento on-click para cuando se pulse una etiqueta
         getPostsByTag(tag) {
@@ -75,16 +78,6 @@ export default {
 
             }
         },
-        cardModal() {
-            this.$buefy.modal.open({
-                parent: this,
-                component: showAllTags,
-                hasModalCard: true,
-                customClass: 'custom-class custom-class-2',
-                // trapFocus: true
-            });
-        }
-
     },
 
     created() {
@@ -92,12 +85,23 @@ export default {
     }
 }
 </script>
+<style>
+.clear-btn > .button.is-danger.is-light {
+    background-color: #feecf0;
+    color: #cc0f35;
+    border: 1px solid #cc0f35;
+}
+</style>
 <style lang="scss" scoped>
 $blue:#00309a;
 $blue-hover:#00309a;
 $yellow: #F2AF13;
 // Indica el radio de la barra de filtros
 $radio: 10px;
+.clear-btn {
+    display:flex;
+    justify-content: center;
+}
 .btn-publicar {
     width: 90%;
     padding: 10px 20px;
@@ -177,6 +181,7 @@ $radio: 10px;
     }
 
     .cabecera{
+        margin-top: 20px;
         margin-bottom: 20px;
         font-size: 1.5rem;
     }
@@ -187,12 +192,8 @@ $radio: 10px;
     cursor: pointer;
     -webkit-transition: background-color 0.5s ease;
 }
-// .tag-body:hover {
-//     background-color: rgb(218, 218, 218);
-// }
 
 .cabecera {
-    // display: flex;
     font-weight: bold;
     font-size: 1.3rem;
 }

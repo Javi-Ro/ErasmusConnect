@@ -77,7 +77,6 @@ Vue.component('register-component', require('./components/Auth/RegisterComponent
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
-Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('foro', require('./components/Foro/Main.vue').default);
 Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
 Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
