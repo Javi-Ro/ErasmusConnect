@@ -27,7 +27,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/foto-foro.png').default"
+                :src="require('@../../../public/storage/images/landing/foto-foro.png').default"
                 alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">
@@ -119,7 +119,7 @@ strong {
 }
 .mapa::before{
     content: "";
-    background-image: url('~@../../../public/images/wallpaper2.jpg');
+    background-image: url('~@../../../public/images/landing/carrousel/carrousel-1.jpg');
     background-size: cover;
     position: absolute;
     top: 0px;
@@ -136,9 +136,6 @@ strong {
     flex-flow: column;
     z-index: 2;
     width: 100%;
-    //background-image: url('/images/wallpaper2.jpg');
-    //background-repeat: no-repeat;
-    //background-size: cover;
     height: 80vh;
 }
 

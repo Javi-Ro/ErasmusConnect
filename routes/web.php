@@ -154,12 +154,6 @@ Route::get('/register', function () {
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
 
-Route::get('/foro', function () {
-    return view('foro.foro');
-});
 Route::get('/perfil', function () {
     return view('perfil.perfil');
-});
-Route::get('/apartments', function () {
-    return view('apartments.apartment');
 });

@@ -29,9 +29,14 @@
           </div>
           <div class="information-options">
             <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-              <img :src="option.image" :alt="option.title">
+              <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 30px" title="Me gustas"
+              v-if="index == 0"/>
+              <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 30px" title="Comentarios"
+              v-if="index == 1"/>
+              <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 30px" title="Compartir"
+              v-if="index == 2"/>
               <div class="information-options-option-data">
-                <strong>{{ option.title }}</strong>
+                <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
             </div>
@@ -50,9 +55,12 @@
     data() {
       return {
         optionsData: [
-          {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
-          {image: "/images/comment.svg", title: "Comentarios", data: 152},
-          {image: "/images/share.svg", title: "Compartir", data: 56}
+          // {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
+          // {image: "/images/comment.svg", title: "Comentarios", data: 152},
+          // {image: "/images/share.svg", title: "Compartir", data: 56}
+          {data: this.post.likes},
+          {data: 152},
+          {data: 56}
         ],
         user: {},
       }
@@ -73,7 +81,7 @@
         return "/images/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/" + this.user.img_url;
+        return "/images/users/" + this.user.img_url;
       }
     },
 

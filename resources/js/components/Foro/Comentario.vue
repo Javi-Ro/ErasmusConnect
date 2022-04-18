@@ -21,9 +21,10 @@
       </div>
       <div class="information-options">
         <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-          <img :src="option.image" :alt="option.title">
+          <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 30px" title="Me gustas"
+          v-if="index == 0"/>
           <div class="information-options-option-data">
-            <strong>{{ option.title }}</strong>
+            <!-- <strong>{{ option.title }}</strong> -->
             <p>{{ option.data }}</p>
           </div>
         </div>
@@ -42,7 +43,7 @@
           {image: "/images/like.svg", title: "Me gusta", data: 45}
         ],
         post: { id: 1, title: "Aquí en Eslovaquia", text: "Hola buienas ocmo estas y tu bien y yo de locos nene.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'},
-        user: { nickname: "Nick1", img_url: "images/default-profile-img.jpeg"}
+        user: { nickname: "Nick1", img_url: "images/placeholders/default-profile-img.jpeg"}
       }
     },
 

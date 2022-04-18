@@ -12,39 +12,39 @@ import Buefy from 'buefy'
 import 'buefy/dist/buefy.css'
 import '@mdi/font/css/materialdesignicons.css'
 /* import the fontawesome core */
-import { library, icon } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core'
 
 /* import specific icons */
-import { faCaretDown } from '@fortawesome/free-solid-svg-icons'
-import { faUser } from '@fortawesome/free-solid-svg-icons'
-import { fas } from '@fortawesome/free-solid-svg-icons'
-import { faBars } from '@fortawesome/free-solid-svg-icons'
-import { faCamera } from '@fortawesome/free-solid-svg-icons'
-import { faX } from '@fortawesome/free-solid-svg-icons'
-import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
+
+// Iconos de navbar
+import { faCaretDown, faUser, faBars, faX, faArrowRightFromBracket} from '@fortawesome/free-solid-svg-icons'
+
+// Iconos para publicaciones
+import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
+import {faComment} from '@fortawesome/free-regular-svg-icons';
+// Importar el mismo pero en distintos estilos (gratuitos solo está solid y regular)
+import {faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons';
+import {faHeart as faHeartRegular} from '@fortawesome/free-regular-svg-icons';
+
+// Iconos generales
+import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
-import { faEye } from '@fortawesome/free-solid-svg-icons';
+
+// Añadimos iconos para navbar
+library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
+
+// Añadimos iconos generales
+library.add(faArrowLeft, faUpload)
+
+// Añadimos iconos para publicaciones
+library.add(faHeartSolid, faHeartRegular, faShareNodes, faComment)
 
 
 /* import font awesome icon component */
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(faCaretDown)
-library.add(faCamera)
-library.add(faUser)
-library.add(faBars)
-library.add(faX)
-library.add(faArrowRightFromBracket)
-library.add(faUpload)
-library.add(fas)
-library.add(faEye)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
-const camera = icon({ prefix: 'fas', iconName: 'camera' })
 
 Vue.use(Buefy)
-
-
-
-
 
 
 /**
@@ -63,6 +63,7 @@ Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').
 Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
 Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
+//---
 
 // Auth
 Vue.component('login', require('./components/Auth/login.vue').default);
@@ -71,6 +72,7 @@ Vue.component('register-component', require('./components/Auth/RegisterComponent
 
 // Foro
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
+Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
 Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('foro', require('./components/Foro/Main.vue').default);
@@ -87,63 +89,14 @@ Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default
 Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
 Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
 Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
-Vue.component('reportes', require('./components/Reportes.vue').default);
+//---
 
+//TODO: delete 
 Vue.component('perfil', require('./components/Perfil.vue').default);
-Vue.component('usuarios', require('./components/Usuarios.vue').default);
 //---
 
 Vue.component('profile', require('./components/Profile.vue').default)
 Vue.component('apartment', require('./components/Apartments.vue').default);
-
-
-
-Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
-
-// Admin
-Vue.component('reportes', require('./components/Admin/Reportes.vue').default);
-Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').default);
-Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
-Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
-
-Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
-Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
-
-// Auth
-Vue.component('login', require('./components/Auth/login.vue').default);
-Vue.component('register-component', require('./components/Auth/RegisterComponent.vue').default);
-//---
-
-// Foro
-Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
-Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
-Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
-Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
-Vue.component('perfil', require('./components/Perfil.vue').default);
-Vue.component('foro', require('./components/Foro/Main.vue').default);
-Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
-Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
-//---
-
-// Landing
-Vue.component('landing', require('./components/Landing/landingPage.vue').default);
-Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default);
-//---
-
-// Layout
-Vue.component('navbar', require('./components/Layout/Navbar.vue').default);
-Vue.component('footer-web', require('./components/Layout/Footer.vue').default);
-Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').default);
-//---
-
-Vue.component('profile', require('./components/Profile.vue').default)
-Vue.component('apartment', require('./components/Apartments.vue').default);
-
-
-
-Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
-
-
 
 
 /**

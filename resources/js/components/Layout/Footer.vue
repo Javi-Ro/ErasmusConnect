@@ -2,7 +2,7 @@
   <footer class="footer-container">
     <div class="footer-container-main">
       <div class="footer-container-img">
-          <img src="/images/logo.png" width="100px">
+          <img src="/images/logo/logo.png" width="100px">
       </div>
       <div class="footer-container-slogan">
           Boost your erasmus life.

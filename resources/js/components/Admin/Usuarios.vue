@@ -19,13 +19,8 @@
                 <b-table-column field="date" label="Fecha de unión" width="20%" style="margin-left: 20px;" sortable v-slot="props">
                     {{ props.row.date }}
                 </b-table-column>
-                   <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" sortable v-slot="props">
+                   <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" centered sortable v-slot="props">
                     {{ props.row.followers }}
-                </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar etiqueta">
-                        Editar
-                    </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%">
                     <b-button type="is-danger" title="Borrar etiqueta">
@@ -33,14 +28,6 @@
                     </b-button>
                 </b-table-column>
         </b-table>
-
-
-
-        <div class="top">
-            <a> 
-              <b-button type="is-info" >Añadir usuario</b-button>
-            </a>
-        </div>  
 
   </section>
 </template>
@@ -79,18 +66,6 @@
           font-family: sans-serif;
 
           font-weight: bold;
-    }
-
-    .top{
-        display:flex;
-        flex-flow: wrap;
-        justify-content: center;
-    }
-
-    .button{
-      margin: 20px 0 0 0px;
-      width: 100%;
-
     }
 
     a{

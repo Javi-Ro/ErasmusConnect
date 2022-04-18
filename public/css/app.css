@@ -43447,12 +43447,13 @@ textarea.form-control-lg {
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data {
   line-height: 1;
   padding-left: 10px;
+  margin-right: 50px;
 }
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data strong {
-  font-size: 10px;
+  font-size: 20px;
 }
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data p {
-  font-size: 12px;
+  font-size: 15px;
 }
 @media (min-width: 1024px) {
   .main-vp-publicacion {
@@ -43489,10 +43490,10 @@ textarea.form-control-lg {
     width: 25px;
   }
   .main-vp-publicacion .centered-container .information .information-options-option-data strong {
-    font-size: 12px;
+    font-size: 30px;
   }
   .main-vp-publicacion .centered-container .information .information-options-option-data p {
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 

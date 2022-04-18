@@ -5,7 +5,7 @@
             <a class="nav-item" tag="router-link" href="/">
                 <img
                     class="brand-img"
-                    src="/images/logo.png"
+                    src="/images/logo/logo.png"
                     alt="Erasmus Connect"
                 >
             </a>
@@ -140,7 +140,7 @@
                 { name: "Alquileres", link: "#"},
                 { name: "Eventos", link: "#"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Sobre nosotros", link: "#"},
+                { name: "Versión: 1.0.0", link: "#"},
             ]
       }
     },
