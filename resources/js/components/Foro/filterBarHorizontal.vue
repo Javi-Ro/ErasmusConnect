@@ -1,33 +1,35 @@
 <template>
-    <div class="filter-bar" style="align-items:center">
-        <div class="cabecera">
-            <p>
-                Temas
-            </p>
-        </div>
-        <div class="clear-btn" v-if="this.selectedTagsHorizontal.length > 0">
-            <b-button type="is-danger is-light" @click=clearFilter()>
-                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" 
-                style="width:10px; height:10px; margin-bottom: 2.5px;"
-                title="Eliminar filtros"/> 
-            </b-button>
-        </div>
-        <div style="min-width:30px" v-if="this.selectedTagsHorizontal.length == 0"></div>
-        <div class="tags">
-            <div class="tag-body" :id="setTagID(index)" 
-            v-for="(tag,index) in tags" :key="tag.id"
-            >
-                <input type="checkbox" class="btn-check" :id="'h-' + tag.id" autocomplete="off"
-                v-model="selectedTagsHorizontal" :value="tag.id" @change="getPostsByTags()"
+    <div class="filter-bar">
+        <div class="tag-menu">
+            <div class="cabecera">
+                <p>
+                    Temas
+                </p>
+            </div>
+            <div class="clear-btn-2" v-if="this.selectedTagsHorizontal.length > 0">
+                <b-button type="is-danger is-light" @click=clearFilter()>
+                    <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" 
+                    style="width:10px; height:10px; margin-bottom: 2.5px;"
+                    title="Eliminar filtros"/> 
+                </b-button>
+            </div>
+            <div style="min-width:30px" v-if="this.selectedTagsHorizontal.length == 0"></div>
+            <div class="tags">
+                <div class="tag-body" :id="setTagID(index)" 
+                v-for="(tag,index) in tags" :key="tag.id"
                 >
-                <label class="checkbox-button check-btn-outline tag" :for="'h-' + tag.id">
-                    <!-- <div class="tag"> -->
-                        <p class="tagname">{{ tag.name }}</p>
-                    <!-- </div> -->
-                </label>
+                    <input type="checkbox" class="btn-check" :id="'h-' + tag.id" autocomplete="off"
+                    v-model="selectedTagsHorizontal" :value="tag.id" @change="getPostsByTags()"
+                    >
+                    <label class="checkbox-button check-btn-outline tag" :for="'h-' + tag.id">
+                        <!-- <div class="tag"> -->
+                            <p class="tagname">{{ tag.name }}</p>
+                        <!-- </div> -->
+                    </label>
+                </div>
             </div>
         </div>
-        <div class="searcher" style="margin-left: auto;">
+        <div class="searcher">
             <b-field>
                 <b-input placeholder="Buscar"
                     type="search"
@@ -110,7 +112,7 @@ export default {
 }
 </script>
 <style>
-.clear-btn > .button.is-danger.is-light {
+.clear-btn-2 > .button.is-danger.is-light {
     background-color: #feecf0;
     color: #cc0f35;
     border: 1px solid #cc0f35;
@@ -125,7 +127,16 @@ $blue:#00309a;
 $blue-hover:#00309a;
 // Indica el radio de la barra de filtros
 $radio: 10px;
+.searcher {
+    margin-left: auto;
+}
+.tag-menu {
+    display:flex;
+    overflow: hidden;
+    max-width: 100%;
+}
 .filter-bar {
+    align-items:center;
     display:flex;
     border: 1px solid #dbdbdb;
     //flex-direction: column;
@@ -231,5 +242,15 @@ $radio: 10px;
     color: white;
     background-color: $blue-hover;
     border-color: $blue-hover;
+}
+@media(max-width: 500px){
+    .filter-bar {
+        align-items: normal !important;
+        flex-flow: column-reverse;
+    }
+    .searcher {
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }
 </style>

@@ -89,4 +89,10 @@
   }
 }
 
+@media(max-width: 500px){
+  .posts {
+    margin-top: 128px;
+  }
+}
+
 </style>

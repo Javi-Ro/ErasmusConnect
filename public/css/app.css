@@ -43525,12 +43525,14 @@ textarea.form-control-lg {
   flex-direction: column;
   margin-left: 0px;
   margin-right: 0px;
+  margin-top: 82px;
 }
 .main-foro .post {
   margin-bottom: 2rem;
 }
 @media (min-width: 1500px) {
   .main-foro .posts {
+    margin-top: 0px;
     margin-left: 400px;
     margin-right: 400px;
   }
