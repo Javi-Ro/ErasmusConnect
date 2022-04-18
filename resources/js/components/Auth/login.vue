@@ -13,7 +13,7 @@
       <div class="elemento"> 
         <!-- <b-input v-model="password" class="input-buefy" icon-pack="fas" icon-right="faEye" placeholder="Contraseña" type="password" password-reveal> </b-input> -->
           <b-field label="Contraseña">
-            <b-input type="password"
+            <b-input v-model="password" type="password"
                 password-reveal>
             </b-input>
         </b-field>

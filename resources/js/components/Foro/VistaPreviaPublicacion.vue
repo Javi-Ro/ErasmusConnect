@@ -1,7 +1,7 @@
 <template>
   <section class="main-vp-publicacion">
     <div class="centered-container">
-      <div class="content-main">
+      <div v-if="post.img_url !== null" class="content-main">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -78,10 +78,10 @@
 
     computed: {
       imgUrl() {
-        return "/images/" + this.post.img_url;
+        return "/storage/images/posts/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/users/" + this.user.img_url;
+        return "/images/" + this.user.img_url;
       }
     },
 
