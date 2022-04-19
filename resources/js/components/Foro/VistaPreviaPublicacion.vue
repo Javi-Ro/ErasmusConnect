@@ -1,7 +1,7 @@
 <template>
   <section class="main-vp-publicacion">
     <div class="centered-container">
-      <div v-if="post.img_url !== null" class="content-main">
+      <div v-if="post" class="content-main">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -9,8 +9,8 @@
             {{ post.title }}
           </div>
           <div class="information-personal">
-            <div class="information-personal-img">
-              <img :src="imgProfile" alt="Profile image">
+            <div v-if="post" class="information-personal-img">
+              <img v-if="Object.entries(user).length!==0" :src="imgProfile" alt="Profile image">
             </div>
             <div class="information-personal-data">
               <div class="information-personal-data-main">
@@ -48,32 +48,22 @@
 
 <script>
   export default {
-    props: {
-      post: Object
-    },
+    props: ['post'],
 
     data() {
       return {
         optionsData: [
-          // {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
-          // {image: "/images/comment.svg", title: "Comentarios", data: 152},
-          // {image: "/images/share.svg", title: "Compartir", data: 56}
-          {data: this.post.likes},
-          {data: 152},
-          {data: 56}
+          {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
+          {image: "/images/comment.svg", title: "Comentarios", data: this.post.comments},
+          {image: "/images/share.svg", title: "Compartir", data: 0}
         ],
         user: {},
+        postProp: this.post,
       }
     },
 
     watch: {
-      data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
+
     },
 
     computed: {
@@ -81,7 +71,7 @@
         return "/storage/images/posts/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/" + this.user.img_url;
+        return "/images/users/" + this.user.img_url;
       }
     },
 
@@ -96,10 +86,16 @@
       }
     },
 
-    mounted() {},
+    },
+
+    mounted() {
+      
+    },
 
     created() {
-      this.getUser();
+      setTimeout(() => {
+        this.getUser();
+      }, 1000)
     }
   }
 </script>

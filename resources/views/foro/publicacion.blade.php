@@ -1,5 +1,5 @@
 @extends('layouts.web')
 
 @section('content')
-    <publicacion></publicacion>
+    <publicacion :post="{{$post}}"></publicacion>
 @endsection

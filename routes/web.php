@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
 
@@ -69,6 +70,12 @@ Route::get('/{nickname}/profile', function ($nickname) {
         $user = auth()->user()->nickname;
 
     return view('profile', ["nickname" => $nickname, "user" => $user]);
+});
+
+Route::get('/publicacion/{publicacion}', function($id){
+    $post = App\Models\Post::whereId($id)->first();
+
+    return view('foro.publicacion')->with('post', $post);
 });
 
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
@@ -142,6 +149,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
+    Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
+    Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
