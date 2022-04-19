@@ -62,14 +62,23 @@ class PostController extends Controller
         return response()->json(['success' => true, 'post' => $post]);
     }
 
-    public function update(Request $request, Post $post)
-    {
-        $newPost = Post::find($post->id);
-        $newPost->title = $request->title;
-        $newPost->text = $request->text;
-        $newPost->img_url = $request->img_url;
-        $newPost->city_id = $request->city_id;
-        $newPost->save();
+
+    public function update(Request $request, Post $post) {
+        
+        if($request->filled('title')) {
+            $post->title = $request->title;
+        }
+        if($request->filled('text')) {
+            $post->text = $request->text;
+        }
+        if($request->filled('img_url')) {
+            $post->img_url = $request->img_url;
+        }
+        if($request->filled('city_id')) {
+            $post->city_id = $request->city_id;
+        }
+        
+        $post->save();
     }
 
     public function order(Request $data)

@@ -33,8 +33,11 @@ class CountryController extends Controller
     }
 
     public function update(Request $request, Country $country) {
-        $newCountry = Country::find($country->id);
-        $newCountry->name = $request->name;
-        $newCountry->save();
+        
+        if($request->filled('name')) {
+            $country->name = $request->name;
+        }
+        
+        $country->save();
     }
 }
