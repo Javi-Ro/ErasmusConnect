@@ -91,7 +91,12 @@ class PostController extends Controller
         }
         return response()->json(['success' => true, 'posts' => $posts]);
     }
-
+  
+    public function getComments(Post $post) {
+        $comments = $post->comments()->get();
+        return response()->json(['success' => true, 'comments' => $comments]);
+    }
+  
     public function filterByTag(Request $data) {
         $tag = Tag::findOrFail($data->tag);
         $posts = $tag->posts()->get();
@@ -100,5 +105,4 @@ class PostController extends Controller
     }
 
     //TODO: update, not possible yet
-
 }
