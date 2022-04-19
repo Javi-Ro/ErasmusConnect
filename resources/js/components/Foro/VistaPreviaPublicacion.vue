@@ -29,9 +29,14 @@
           </div>
           <div class="information-options">
             <div class="information-options-option" v-for="(option, index) in optionsData" :key="index">
-              <img :src="option.image" :alt="option.title">
+              <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 30px" title="Me gustas"
+              v-if="index == 0"/>
+              <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 30px" title="Comentarios"
+              v-if="index == 1"/>
+              <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 30px" title="Compartir"
+              v-if="index == 2"/>
               <div class="information-options-option-data">
-                <strong>{{ option.title }}</strong>
+                <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
             </div>
@@ -63,7 +68,7 @@
 
     computed: {
       imgUrl() {
-        return "/images/" + this.post.img_url;
+        return "/storage/images/posts/" + this.post.img_url;
       },
       imgProfile() {
         return "/images/users/" + this.user.img_url;
@@ -71,6 +76,15 @@
     },
 
     methods: {
+      getUser() {
+        axios.get(`/api/users/` + this.post.user_id).then(response => {
+          this.user = response.data.user;
+          console.log(this.user);
+        }).catch(error => {
+          console.info(error);
+        });
+      }
+    },
 
     },
 
@@ -80,11 +94,7 @@
 
     created() {
       setTimeout(() => {
-        axios.get('/api/users/' + this.post.user_id).then(response => {
-          this.user = response.data.user;
-        }).catch(error => {
-          console.info(error.response.data);
-        });
+        this.getUser();
       }, 1000)
     }
   }

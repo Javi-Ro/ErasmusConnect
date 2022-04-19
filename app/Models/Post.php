@@ -10,7 +10,11 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'user_id'
+        'text',
+        'img_url',
+        'post_id',
+        'user_id',
+        'city_id'
     ];
 
     protected $casts = [
@@ -26,7 +30,7 @@ class Post extends Model
 
     public function tags()
     {
-        return $this->hasMany(Tag::class);
+        return $this->belongsToMany(Tag::class);
     }
 
     public function user()

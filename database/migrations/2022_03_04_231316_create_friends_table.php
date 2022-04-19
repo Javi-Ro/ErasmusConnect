@@ -13,7 +13,7 @@ class CreateFriendsTable extends Migration
      */
     public function up()
     {
-        Schema::create('friends', function (Blueprint $table) {
+        Schema::create('user_user', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained();
             $table->foreignId('user2_id')->constrained('users');
             $table->primary(['user_id', 'user2_id']);
@@ -29,6 +29,6 @@ class CreateFriendsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('friends');
+        Schema::dropIfExists('user_user');
     }
 }

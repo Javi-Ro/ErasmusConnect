@@ -43447,12 +43447,13 @@ textarea.form-control-lg {
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data {
   line-height: 1;
   padding-left: 10px;
+  margin-right: 50px;
 }
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data strong {
-  font-size: 10px;
+  font-size: 20px;
 }
 .main-vp-publicacion .centered-container .information .information-options .information-options-option .information-options-option-data p {
-  font-size: 12px;
+  font-size: 15px;
 }
 @media (min-width: 1024px) {
   .main-vp-publicacion {
@@ -43460,6 +43461,7 @@ textarea.form-control-lg {
     justify-content: center;
     align-items: center;
     background-color: #f8f9f9;
+    max-width: 900px;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
@@ -43488,10 +43490,10 @@ textarea.form-control-lg {
     width: 25px;
   }
   .main-vp-publicacion .centered-container .information .information-options-option-data strong {
-    font-size: 12px;
+    font-size: 30px;
   }
   .main-vp-publicacion .centered-container .information .information-options-option-data p {
-    font-size: 14px;
+    font-size: 20px;
   }
 }
 
@@ -43503,11 +43505,20 @@ textarea.form-control-lg {
   width: 100%;
   justify-content: center;
 }
-@media (min-width: 1500px) {
-  .main-foro {
-    margin-left: 150px;
-    padding-top: 140px;
-  }
+.main-foro .searcher {
+  display: flex;
+  justify-content: center;
+}
+.main-foro .searcher .field {
+  width: 95%;
+  margin-bottom: 20px;
+}
+.main-foro .input:active {
+  border-color: #00309a !important;
+}
+.main-foro .input:focus {
+  border-color: #00309a !important;
+  box-shadow: 0px 0px 0px 0.125em rgba(0, 48, 154, 0.25);
 }
 .main-foro .posts {
   display: flex;
@@ -43515,6 +43526,18 @@ textarea.form-control-lg {
 }
 .main-foro .post {
   margin-bottom: 2rem;
+  cursor: pointer;
+}
+@media (min-width: 1500px) {
+  .main-foro {
+    margin-left: 150px;
+    padding-top: 140px;
+  }
+}
+@media (min-width: 1024px) {
+  .main-foro .searcher .field {
+    width: 100%;
+  }
 }
 
 .post-container {
@@ -43574,11 +43597,20 @@ textarea.form-control-lg {
   justify-content: flex-start;
   align-items: center;
   width: 95%;
-  margin-bottom: 20px;
+  margin-bottom: 50px;
 }
 .post-container-positioned .post-comment .post-comment-input {
   width: 65%;
-  margin-right: 5%;
+  margin-right: 3%;
+}
+.post-container-positioned .post-comment .comment-img {
+  border-radius: 99px;
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
+}
+.post-container-positioned .post-comment .input {
+  background-color: #f8f9f9;
 }
 .post-container-positioned .post-comment .input:active {
   border-color: #00309a !important;
@@ -43592,6 +43624,18 @@ textarea.form-control-lg {
   color: #00309a;
   font-size: 16px;
   cursor: pointer;
+}
+.post-container-positioned .post-comment .button {
+  font-size: 1rem;
+  background-color: #2B6BC7;
+  color: white;
+  border-radius: 20px;
+}
+.post-container-positioned .post-comment .button:hover {
+  background-color: #00309a;
+}
+.post-container-positioned .post-comment .button:focus {
+  background-color: #00309a;
 }
 @media (min-width: 1024px) {
   .post-container-positioned {
@@ -43614,7 +43658,7 @@ textarea.form-control-lg {
 }
 
 .comentario-container {
-  margin-bottom: 30px;
+  margin-bottom: 0px;
   margin-left: 16px;
 }
 
@@ -43732,5 +43776,40 @@ textarea.form-control-lg {
   }
   .information .information-options-option-data p {
     font-size: 14px;
+  }
+}
+
+.admin-posts {
+  width: calc(100% - 280px);
+  margin-left: 280px;
+}
+.admin-posts .title {
+  background-color: white;
+  justify-content: center;
+  display: flex;
+  padding-top: 20px;
+  font-size: x-large;
+  color: #00309a;
+  font-family: sans-serif;
+  margin-bottom: 0px !important;
+  padding-bottom: 1.5rem;
+}
+.admin-posts .b-table {
+  background-color: white;
+}
+.admin-posts .b-table .table-wrapper .has-mobile-cards {
+  margin-right: 20px;
+  margin-left: 20px;
+}
+.admin-posts .level {
+  justify-content: center !important;
+}
+.admin-posts .level .pagination .is-current {
+  background-color: #485fc7 !important;
+}
+@media screen and (max-width: 425px) {
+  .admin-posts {
+    width: calc(100% - 180px);
+    margin-left: 180px;
   }
 }

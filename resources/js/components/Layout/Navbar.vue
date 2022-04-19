@@ -5,7 +5,7 @@
             <a class="nav-item" tag="router-link" href="/">
                 <img
                     class="brand-img"
-                    src="/images/logo.png"
+                    src="/images/logo/logo.png"
                     alt="Erasmus Connect"
                 >
             </a>
@@ -18,19 +18,9 @@
         <div class="menu" id="menu">
             <!-- Utilidades -->
             <div class="menu-start">
-                <b-dropdown
-                    append-to-body
-                    aria-role="menu"
-                    scrollable
-                    max-height="200"
-                    trap-focus
-                >
+                <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
                     <template #trigger>
-                        <a
-                            class="navbar-item"
-                            role="button"
-                            style="padding-left: 20px;"
-                            >
+                        <a class="navbar-item" role="button" style="padding-left: 20px;">
                             <span style="margin-right: 10px;">{{selectedCity}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>
@@ -98,7 +88,7 @@
                         </a>
                     </template>
 
-                    <b-dropdown-item><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
+                    <b-dropdown-item @click="showProfile()"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
                     <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
                     </b-dropdown-item>
                 </b-dropdown>
@@ -140,7 +130,7 @@
                 { name: "Alquileres", link: "#"},
                 { name: "Eventos", link: "#"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Sobre nosotros", link: "#"},
+                { name: "Versión: 1.0.0", link: "#"},
             ]
       }
     },
@@ -166,14 +156,16 @@
     },
     methods: {
         getCities() {
-                axios.get(`/api/cities`)
-                    .then(response => {
-                        this.availableCities = response.data.cities;
-                    }).catch(error => {
-                        console.info(error)
-                    });
-            },
-
+            axios.get(`/api/cities`)
+                .then(response => {
+                    this.availableCities = response.data.cities;
+                }).catch(error => {
+                    console.info(error)
+                });
+        },
+        showProfile() {
+            window.location.href = "/" + this.user.nickname + "/profile";
+        },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {
                     id: selected
@@ -214,7 +206,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/users/' + this.user.img_url;
+                    this.profileImage = '/images/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });
@@ -241,7 +233,7 @@ $blue: #00309a;
 $yellow: #ffcd00;
 #closeIcon {
     display: none;
-}
+}    /* Modifica el texto de dentro */
 .navbar {
     position: fixed !important;
     display: flex;

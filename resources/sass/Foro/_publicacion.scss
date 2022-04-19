@@ -56,7 +56,16 @@
         width: 95%;
         .post-comment-input{
             width: 65%;
-            margin-right: 5%;
+            margin-right: 3%;
+        }
+        .comment-img{
+            border-radius: 99px;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+        }
+        .input{
+            background-color: rgb(248, 249, 249);
         }
         .input:active{
             border-color: #00309a !important;
@@ -72,7 +81,20 @@
             font-size: 16px;
             cursor: pointer;
         }
-        margin-bottom: 20px;
+        .button{
+            font-size: 1rem;
+            background-color: #2B6BC7;
+            color: white;
+            border-radius: 20px;
+        }
+        .button:hover{
+            background-color: #00309a;
+        }
+
+        .button:focus{
+            background-color: #00309a;
+        }
+        margin-bottom: 50px;
     }
 
     @media(min-width: $media-desktop-min){

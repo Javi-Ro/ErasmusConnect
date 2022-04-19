@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Tag;
+use Auth;
 
 class PostController extends Controller
 {
@@ -21,9 +23,33 @@ class PostController extends Controller
 
     public function create(Request $data)
     {
+        $post = json_decode($data->post, true);
+
+        if (trim($post['title']) == '') {
+            abort(422);
+        }
+
+        if (Auth::check()) {
+            $post['user_id'] = Auth::user()->id;
+        } else {
+            abort(403);
+        }
+
+        if ($data->hasFile('file')) {
+            $data->validate([
+                'file' => 'file|image'
+            ]);
+            $post['img_url'] = time().'.'.$data->file('file')->getClientOriginalExtension();
+            $data->file('file')->storeAs('/public/images/posts', $post['img_url']);
+        }
+
         $post = Post::create([
-            'title' => $data->title,
-            'user_id' => $data->user_id
+            'title' => $post['title'],
+            'text' => $post['text'],
+            'img_url' => $post['img_url'],
+            'city_id' => $post['city_id'],
+            'user_id' => $post['user_id'],
+            'post_id' => $post['post_id']
         ]);
 
         return response()->json(['success' => true, 'post' => $post]);
@@ -65,10 +91,18 @@ class PostController extends Controller
         }
         return response()->json(['success' => true, 'posts' => $posts]);
     }
-
+  
     public function getComments(Post $post) {
         $comments = $post->comments()->get();
         return response()->json(['success' => true, 'comments' => $comments]);
     }
+  
+    public function filterByTag(Request $data) {
+        $tag = Tag::findOrFail($data->tag);
+        $posts = $tag->posts()->get();
 
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
+    //TODO: update, not possible yet
 }
