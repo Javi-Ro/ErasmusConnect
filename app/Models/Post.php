@@ -10,7 +10,11 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'user_id'
+        'text',
+        'img_url',
+        'post_id',
+        'user_id',
+        'city_id'
     ];
 
     protected $casts = [
@@ -18,7 +22,8 @@ class Post extends Model
     ];
 
     protected $appends = [
-        "likes"   
+        "likes",
+        "comments"
     ];
 
     use HasFactory;
@@ -54,5 +59,9 @@ class Post extends Model
 
     public function getLikesAttribute() {
         return $this->likes()->get()->count();
+    }
+
+    public function getCommentsAttribute() {
+        return $this->comments()->get()->count();
     }
 }

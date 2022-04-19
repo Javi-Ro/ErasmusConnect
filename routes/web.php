@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
 
@@ -71,6 +72,11 @@ Route::get('/{nickname}/profile', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
+Route::get('/publicacion/{publicacion}', function($id){
+    $post = App\Models\Post::whereId($id)->first();
+
+    return view('foro.publicacion')->with('post', $post);
+});
 
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
 Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
@@ -123,6 +129,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
     Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
     Route::post('/countries', 'App\Http\Controllers\CountryController@create');
+    Route::put('/countries/{country}', 'App\Http\Controllers\CityController@update');
     Route::delete('/countries/{country}', 'App\Http\Controllers\CountryController@delete');
     Route::patch('/countries/{country}', 'App\Http\Controllers\CountryController@update');
 
@@ -143,6 +150,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
     Route::patch('/posts/{post}', 'App\Http\Controllers\PostController@update');
+    Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
@@ -156,13 +164,3 @@ Route::get('/register', function () {
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
-
-Route::get('/foro', function () {
-    return view('foro.foro');
-});
-Route::get('/perfil', function () {
-    return view('perfil.perfil');
-});
-Route::get('/apartments', function () {
-    return view('apartments.apartment');
-});

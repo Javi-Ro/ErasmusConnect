@@ -21,7 +21,7 @@ class Apartment extends Model
         'surface',
         'user_id',
         'city_id'
-       ];
+    ];
 
     public function users()
     {

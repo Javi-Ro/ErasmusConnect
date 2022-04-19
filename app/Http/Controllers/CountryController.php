@@ -27,12 +27,9 @@ class CountryController extends Controller
 
     public function delete(Country $country) {
 
-        if (Country::whereId($country->id)->count()) {
-            $country->delete();
-            return response()->json(['success' => true, 'country' => $country]);
-        }
-
-        return response()->json(['success' => false]);
+        $country = Country::find($country->id);
+        $country->delete();
+        return response()->json(['success' => true, 'country' => $country]);
     }
 
     public function update(Request $request, Country $country) {
