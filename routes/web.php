@@ -153,12 +153,4 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
 });
 
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
-});
-
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
