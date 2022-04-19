@@ -27,7 +27,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/storage/images/landing/foto-foro.png').default"
+                :src="require('@../../../public/images/landing/foto-foro.png').default"
                 alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">

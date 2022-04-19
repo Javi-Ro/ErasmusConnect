@@ -1,9 +1,8 @@
 <template>
   <section :class="['main-vp-publicacion', comment ? 'comment' : '']" :id="view">
     <div class="centered-container">
-
       <a href="/publicacion" style="color:black;" title="Ver publicación" v-if='view == ""'>
-        <div class="content-main" v-if="!comment">
+        <div class="content-main" v-if="!comment && post.img_url !== null">
           <img :src="imgUrl" alt="Foto" width="100%" height="auto">
         </div>
       </a>
@@ -144,10 +143,10 @@
 
     computed: {
       imgUrl() {
-        return "/images/" + this.post.img_url;
+        return "/storage/images/posts/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/users/" + this.user.img_url;
+        return "/images/" + this.user.img_url;
       }
     },
 
