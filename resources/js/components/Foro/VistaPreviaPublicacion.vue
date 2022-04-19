@@ -1,7 +1,7 @@
 <template>
   <section class="main-vp-publicacion">
     <div class="centered-container">
-      <div v-if="post" class="content-main">
+      <div v-if="post !== null && post.img_url !== null" class="content-main">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -86,10 +86,7 @@
       }
     },
 
-    },
-
     mounted() {
-      
     },
 
     created() {

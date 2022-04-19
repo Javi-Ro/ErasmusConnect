@@ -157,8 +157,8 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
           formData.append('post', JSON.stringify(this.post));
           formData.append('file', this.dropFiles[0]);
           axios.post(`/api/posts`, formData).then(response => {
-            // window.href.location = "/foro";
-            console.log(response);
+            window.location.href = "/foro";
+            // console.log(response);
           }).catch(error => {
             if (error.response.status === 403) {
               window.location.href = "/login";

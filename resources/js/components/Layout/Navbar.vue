@@ -206,7 +206,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/' + this.user.img_url;
+                    this.profileImage = '/storage/images/users/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });
@@ -214,6 +214,7 @@
         logout() {
             axios.post(`/logout`).then(response => {
                 this.getUser();
+                window.location.href = "/";
             }).catch(error => {
                 console.info(error);
             });
