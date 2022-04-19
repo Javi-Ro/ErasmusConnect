@@ -42,12 +42,10 @@ class CityController extends Controller
     public function delete(City $city)
     {
 
-        if (City::whereId($city->id)->count()) {
-            $city->delete();
-            return response()->json(['success' => true, 'city' => $city]);
-        }
+        $city = City::find($city->id);
+        $city->delete();
+        return response()->json(['success' => true, 'city' => $city]);
 
-        return response()->json(['success' => false]);
     }
 
     public function update(Request $request, City $city) {

@@ -122,6 +122,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
     Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
     Route::post('/countries', 'App\Http\Controllers\CountryController@create');
+    Route::put('/countries/{country}', 'App\Http\Controllers\CityController@update');
     Route::delete('/countries/{country}', 'App\Http\Controllers\CountryController@delete');
 
     //CITIES
@@ -130,7 +131,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('cities/{city}', 'App\Http\Controllers\CityController@get');
     Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
     Route::post('/cities', 'App\Http\Controllers\CityController@create');
-    Route::delete('/countries/{country}', 'App\Http\Controllers\CityController@delete');
+    Route::put('/cities', 'App\Http\Controllers\CityController@update');
+    Route::delete('/cities/{city}', 'App\Http\Controllers\CityController@delete');
 
 
     //POSTS

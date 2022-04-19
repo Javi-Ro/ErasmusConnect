@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-etiquetas">
+    <div class="admin-etiquetas" v-if="dataReady==true">
         <div class="title">
             ETIQUETAS
         </div>
@@ -19,8 +19,8 @@
                         Editar
                     </b-button> 
                 </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%">
-                    <b-button type="is-danger" title="Borrar etiqueta">
+                <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                    <b-button type="is-danger" title="Borrar etiqueta" @click="deleteTag(props.row.id)">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -61,15 +61,8 @@
     export default {
         data() {
             return {
-
-            
-               data: [
-                    { 'id': 1, 'name': 'Viaje'},
-                    { 'id': 2, 'name': 'Lugar'},
-                    { 'id': 3, 'name': 'Fiesta'},
-                    { 'id': 4, 'name': 'Cerveza'},
-                    { 'id': 5, 'name': 'Hoes'}
-                ],
+                dataReady: false,
+                availableTags: [],
                 columns: [
                     {
                         field: 'id',
@@ -95,6 +88,34 @@
                         centered:true,
                     }
                 ]
+            }
+        },
+        created(){
+            this.getTags();
+        },
+        computed:{
+            data(){
+                const a = this.availableTags.map((item) => ({id: item.id, name: item.name}));
+                return a;
+            }
+        },
+        methods: {
+            getTags(){
+                axios.get(`/api/tags`)
+                .then(response => {
+                    this.availableTags = response.data.tag;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            deleteTag(id){
+                axios.delete(`/api/tags/` + id)
+                .then(response => {
+                    this.getTags();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
             }
         }
     }
