@@ -44,5 +44,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ApartmentTagTableSeeder::class);
         $this->command->info('Apartment_Tag table seeded!');
+
+        $this->call(ReportsTableSeeder::class);
+        $this->command->info('Reports table seeded!');
     }
 }
