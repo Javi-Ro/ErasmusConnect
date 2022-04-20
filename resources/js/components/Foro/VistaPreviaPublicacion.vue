@@ -1,16 +1,12 @@
 <template>
   <section :class="['main-vp-publicacion', comment ? 'comment' : '']" :id="view">
     <div class="centered-container">
-<<<<<<< HEAD
-      <a href="/publicacion" style="color:black;" title="Ver publicación" v-if='view == ""'>
-        <div class="content-main" v-if="!comment && post.img_url !== null">
+      <a :href="'/publicacion/' + post.id" style="color:black;" title="Ver publicación" v-if='view == ""'>
+        <div class="content-main" v-if="!comment && post.img_url != null">
           <img :src="imgUrl" alt="Foto" width="100%" height="auto">
         </div>
       </a>
-      <div class="content-main" v-if="view == 'unique'">
-=======
-      <div v-if="post" class="content-main">
->>>>>>> develop
+      <div class="content-main" v-if="view == 'unique' && post.img_url != null">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -109,7 +105,12 @@
 
 <script>
   export default {
-    props: ['post'],
+    // props: ['post'],
+    props: {
+      post: Object,
+      comment: Boolean,
+      view: String
+    },
 
     data() {
       return {

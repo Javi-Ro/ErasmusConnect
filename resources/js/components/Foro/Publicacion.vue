@@ -3,7 +3,6 @@
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img">
-          <img src="/images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();">
           <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
           <div @click="goBack()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
@@ -23,25 +22,9 @@
           <b-input class="post-comment-input" size="is-medium" placeholder="Comenta tu respuesta..." rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Comentar</b-button>
         </div>
-        <!-- <vista-previa-publicacion :post="post" :comment="true"></vista-previa-publicacion> -->
         <div class="comentarios" v-if="data">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
             <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
-            <!-- <div class="imagen">
-              {{post.img_url}}
-            </div>
-            <div class="nickname">
-
-            </div>
-            <div class="comentario">
-              {{post.title}}
-            </div>
-            <div class="likes">
-              {{post.likes}}
-            </div>
-            <div class="boton me gusta">
-
-            </div> -->
           </div>
         </div>
       </div>
@@ -112,6 +95,9 @@
   }
 </script>
 <style>
+.button.is-link:hover {
+  color: #F2AF13;
+}
 .post-comment {
   margin: 0 0 10px 0;
 }
