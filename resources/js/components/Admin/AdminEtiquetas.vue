@@ -31,10 +31,10 @@
             <div class="crud">
 
                 <b-field class="field" label="Nombre">
-                    <b-input placeholder="Compra, Aire Libre..."></b-input>
+                    <b-input placeholder="Compra, Aire Libre..." v-model="tag.name"></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-success">Crear</b-button>
+                <b-button class="btn" type="is-success" @click="createTag()">Crear</b-button>
             </div>
 
 
@@ -61,6 +61,9 @@
     export default {
         data() {
             return {
+                tag:{
+                    name: null
+                },
                 dataReady: false,
                 availableTags: [],
                 columns: [
@@ -114,6 +117,14 @@
                 .then(response => {
                     this.getTags();
                 }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            createTag(){
+                axios.post(`/api/tags/`, this.tag)
+                .then(response =>{
+                    this.getTags();
+                }).catch(error=> {
                     console.info(error.response.data)
                 });
             }
