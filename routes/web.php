@@ -162,12 +162,4 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/reports/{report}', 'App\Http\Controllers\ReportController@delete');
 });
 
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
-});
-
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
