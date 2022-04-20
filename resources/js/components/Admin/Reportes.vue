@@ -28,10 +28,14 @@
                     <div class="modal-vue" :id="report.id">
                         <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
                         <b-button type="is-info" outlined 
-                        @click="showModal = report.id"
+                        @click.prevent="openPost(report.id);"
                         title="Visualiza la publicación y permite eliminarla"
                         > 
                         Ver publicación
+                        </b-button>
+                        <b-button type="is-danger"
+                            title="Borra la publicación de la base de datos">
+                            Eliminar publicación
                         </b-button>
                         <!-- overlay -->
                         <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
@@ -52,7 +56,7 @@
                         </div>
                     </div>
                     <!-- Fin del modal -->
-                    <b-button type="is-danger"
+                    <b-button type="is-danger" outlined
                     title="Borra el reporte de la base de datos">
                         Descartar reporte
                     </b-button>
@@ -62,9 +66,9 @@
     </div>
 </template>
 <script>
-import VistaPreviaPublicacion from '../Foro/VistaPreviaPublicacion.vue'
+import VistaPreviaPublicacionVue from '../Foro/VistaPreviaPublicacion.vue';
 export default {
-  components: { VistaPreviaPublicacion },
+//   components: { VistaPreviaPublicacion },
     props: {},
     data() {
         return {
@@ -92,6 +96,23 @@ export default {
                     text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
                 }
             ]
+        }
+    },
+    methods:{
+        openPost(post) {  //--> Programmatic way of creating the modal.
+            let vue = this;
+            vue.$buefy.modal.open({
+                parent: vue,
+                animation: 'none',
+                component: VistaPreviaPublicacionVue,
+                canCancel: true,
+                props: { post: post, comment:false, view:""},
+                width: 610,
+                events: {
+                    
+                },
+                onCancel: () => {}
+            });
         }
     }
 }

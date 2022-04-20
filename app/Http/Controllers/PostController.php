@@ -39,7 +39,7 @@ class PostController extends Controller
             $data->validate([
                 'file' => 'file|image'
             ]);
-            $post['img_url'] = time().'.'.$data->file('file')->getClientOriginalExtension();
+            $post['img_url'] = time() . '.' . $data->file('file')->getClientOriginalExtension();
             $data->file('file')->storeAs('/public/images/posts', $post['img_url']);
         }
 
@@ -57,41 +57,61 @@ class PostController extends Controller
 
     public function delete(Post $post)
     {
-
-        if (Post::whereId($post->id)->count()) {
-            $post->delete();
-            return response()->json(['success' => true, 'post' => $post]);
-        }
-
-        return response()->json(['success' => false]);
+        $post = Post::find($post->id);
+        $post->delete();
+        return response()->json(['success' => true, 'post' => $post]);
     }
+
 
     public function update(Request $request, Post $post) {
-        $newPost = Post::find($post->id);
-        $newPost->title = $request->title;
-        $newPost->text = $request->text;
-        $newPost->img_url = $request->img_url;
-        $newPost->city_id = $request->city_id;
-        $newPost->save();
+        
+        if($request->filled('title')) {
+            $post->title = $request->title;
+        }
+        if($request->filled('text')) {
+            $post->text = $request->text;
+        }
+        if($request->filled('img_url')) {
+            $post->img_url = $request->img_url;
+        }
+        if($request->filled('city_id')) {
+            $post->city_id = $request->city_id;
+        }
+        
+        $post->save();
     }
 
-    public function order(Request $data) {
+    public function order(Request $data)
+    {
         $posts = Post::all()->toArray();
 
         if ($data->criteria == 0) {
-            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? 1 : -1;});
+            usort($posts, function ($a, $b) {
+                return ($a["created_at"] < $b["created_at"]) ? 1 : -1;
+            });
         } elseif ($data->criteria == 1) {
-            usort($posts, function($a, $b) {return ($a["created_at"] < $b["created_at"]) ? -1 : 1;});
+            usort($posts, function ($a, $b) {
+                return ($a["created_at"] < $b["created_at"]) ? -1 : 1;
+            });
         } elseif ($data->criteria == 2) {
-            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? 1 : -1;});
+            usort($posts, function ($a, $b) {
+                return ($a["likes"] < $b["likes"]) ? 1 : -1;
+            });
         } elseif ($data->criteria == 3) {
-            usort($posts, function($a, $b) {return ($a["likes"] < $b["likes"]) ? -1 : 1;});
+            usort($posts, function ($a, $b) {
+                return ($a["likes"] < $b["likes"]) ? -1 : 1;
+            });
         } else {
             $posts = Post::all();
         }
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 
+    public function getComments(Post $post) {
+        $comments = $post->comments()->get();
+        return response()->json(['success' => true, 'comments' => $comments]);
+    }
+  
     public function filterByTag(Request $data) {
         $tag = Tag::findOrFail($data->tag);
         $posts = $tag->posts()->get();
@@ -100,5 +120,4 @@ class PostController extends Controller
     }
 
     //TODO: update, not possible yet
-
 }

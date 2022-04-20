@@ -1,26 +1,37 @@
 <template>
-    <div class="admin-etiquetas">
+    <section> 
+    <div class="admin-etiquetas" v-if="dataReady==true">
         <div class="title">
             ETIQUETAS
         </div>
         <b-table class="table"
             :data="data"
-            :debounce-search="1000"
-            :paginated=true
-            :per-page=5>
+            :paginated="isPaginated"
+            :per-page="perPage"
+            :current-page.sync="currentPage"
+            :pagination-simple="isPaginationSimple"
+            :pagination-position="paginationPosition"
+            :default-sort-direction="defaultSortDirection"
+            :pagination-rounded="isPaginationRounded"
+            :sort-icon="sortIcon"
+            :sort-icon-size="sortIconSize"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            :page-input="hasInput"
+            :pagination-order="paginationOrder"
+            :page-input-position="inputPosition"
+            :debounce-page-input="inputDebounce"
+        >
                 <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
                     {{ props.row.id }}
                 </b-table-column>
                 <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
                     {{ props.row.name }}
                 </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar etiqueta">
-                        Editar
-                    </b-button> 
-                </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%">
-                    <b-button type="is-danger" title="Borrar etiqueta">
+                <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                    <b-button type="is-danger" title="Borrar etiqueta" @click="deleteTag(props.row.id)">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -54,22 +65,28 @@
         </div>
   
     </div>
-    
+    </section>
 </template>
 
 <script>
     export default {
         data() {
             return {
-
-            
-               data: [
-                    { 'id': 1, 'name': 'Viaje'},
-                    { 'id': 2, 'name': 'Lugar'},
-                    { 'id': 3, 'name': 'Fiesta'},
-                    { 'id': 4, 'name': 'Cerveza'},
-                    { 'id': 5, 'name': 'Hoes'}
-                ],
+                dataReady: false,
+                availableTags: [],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
                 columns: [
                     {
                         field: 'id',
@@ -96,10 +113,43 @@
                     }
                 ]
             }
+        },
+        created(){
+            this.getTags();
+        },
+        computed:{
+            data(){
+                const a = this.availableTags.map((item) => ({id: item.id, name: item.name}));
+                return a;
+            }
+        },
+        methods: {
+            getTags(){
+                axios.get(`/api/tags`)
+                .then(response => {
+                    this.availableTags = response.data.tag;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            deleteTag(id){
+                axios.delete(`/api/tags/` + id)
+                .then(response => {
+                    this.getTags();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            }
         }
     }
 </script>
 <style lang="scss" scoped>
+    section{
+        height: 100vh;
+        background-color:#f8fafc;    
+    }
+
     .title {
         justify-content: center;
         display: flex;
@@ -116,7 +166,7 @@
     // El navbar mide 280px aprox
     // margin-left: 300px;
     height: 100%;
-    margin: 10px 30px 30px 330px;
+    margin: 10px 30px 0px 330px;
 
 
     .table{
@@ -137,8 +187,9 @@
             display:flex;
             flex-flow: column;
             width: 50%;
-            justify-content: space-between;
+            justify-content: baseline;
             align-items: center;
+            padding-bottom: 25px;
             .field{
                 width: 350px;
             }

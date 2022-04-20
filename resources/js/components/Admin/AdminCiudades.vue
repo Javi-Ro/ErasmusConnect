@@ -1,75 +1,125 @@
 <template>
-    <div class="admin-ciudades">
-        <div class="title">
-            CIUDADES
-        </div>
-        <b-table class="table"
-            :data="data"
-            :debounce-search="1000"
-            :paginated=true
-            :per-page=5>
-                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
-                    {{ props.row.id }}
-                </b-table-column>
-                <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
-                    {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar ciudad">
-                        Editar
-                    </b-button> 
-                </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%">
-                    <b-button type="is-danger" title="Borrar ciudad">
-                        Eliminar
-                    </b-button>
-                </b-table-column>
-        </b-table>
-
-        <div class="crud-container">
-
-            <div class="crud">
-
-                <b-field class="field" label="Nombre">
-                    <b-input placeholder="Madrid, Praga..."></b-input>
-                </b-field>
-
-                <b-button class="btn" type="is-success">Crear</b-button>
+    <section>
+        <div class="admin-ciudades" v-if="dataReady==true">
+            <div class="title">
+                CIUDADES
             </div>
+            <b-table class="table"
+                :data="data"
+                :paginated="isPaginated"
+                :per-page="perPage"
+                :current-page.sync="currentPage"
+                :pagination-simple="isPaginationSimple"
+                :pagination-position="paginationPosition"
+                :default-sort-direction="defaultSortDirection"
+                :pagination-rounded="isPaginationRounded"
+                :sort-icon="sortIcon"
+                :sort-icon-size="sortIconSize"
+                aria-next-label="Next page"
+                aria-previous-label="Previous page"
+                aria-page-label="Page"
+                aria-current-label="Current page"
+                :page-input="hasInput"
+                :pagination-order="paginationOrder"
+                :page-input-position="inputPosition"
+                :debounce-page-input="inputDebounce">
+                
+                    <b-table-column field="id" label="ID" numeric centered width="10%" sortable searchable  v-slot="props">
+                        {{ props.row.id }}
+                    </b-table-column>
+                    <b-table-column field="name" label="Nombre" width="20%" sortable searchable v-slot="props">
+                        {{ props.row.name }}
+                    </b-table-column>
+                    <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                        <b-button type="is-danger" title="Borrar ciudad" @click="deleteCity(props.row.id)">
+                            Eliminar
+                        </b-button>
+                    </b-table-column>
+            </b-table>
+
+            <div class="crud-container">
+
+                <div class="crud">
+                    <b-field class="field" label="País">
+                        <b-dropdown  scrollable max-height="150" append-to-body class="dropdown"> 
+                            <template #trigger="{ active }">
+                                <b-button style="width: 350px;"
+                                    label="Selecciona"
+                                    :icon-right="active ? 'menu-up' : 'menu-down'" />
+                            </template>
+
+                            <b-dropdown-item>Action</b-dropdown-item>
+                            <b-dropdown-item>Another action</b-dropdown-item>
+                            <b-dropdown-item>Something else</b-dropdown-item>
+                            <b-dropdown-item>Action</b-dropdown-item>
+                            <b-dropdown-item>Another action</b-dropdown-item>
+                        </b-dropdown>
+                    </b-field> 
+                    <b-field class="field" label="Nombre">
+                        <b-input placeholder="Madrid, Praga..." v-model="city.name"></b-input>
+                    </b-field>
+    <!--         
+                        <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
+                        <template #trigger>
+                            <a class="navbar-item" role="button" style="padding-left: 20px;">
+                                <span style="margin-right: 10px;">mario</span>
+                                <font-awesome-icon icon="fa-solid fa-caret-down" />
+                            </a>
+                        </template>
+
+                        <b-dropdown-item v-for="pais in paises" :key="pais[1]" 
+                        @click ="setSelected(pais[1])" 
+                        aria-role="listitem">
+                            {{pais[0]}}
+                        </b-dropdown-item>
+                    </b-dropdown>  -->
+
+                    <b-button class="btn" type="is-success" @click="createCity()">Crear</b-button>
+                </div>
 
 
-            <div class="crud">
+                <div class="crud">
 
-                <b-field class="field" label="Nombre">
-                    <b-input ></b-input>
-                </b-field>
+                    <b-field class="field" label="Nombre">
+                        <b-input ></b-input>
+                    </b-field>
 
-                <b-field class="field" label="Nuevo nombre">
-                    <b-input placeholder="Madrid, Praga..."></b-input>
-                </b-field>
+                    <b-field class="field" label="Nuevo nombre">
+                        <b-input placeholder="Madrid, Praga..."></b-input>
+                    </b-field>
 
-                <b-button class="btn" type="is-info">Actualizar</b-button>
+                    <b-button class="btn" type="is-info" @click="updateCity()">Actualizar</b-button>
+                </div>
+
             </div>
-
-        </div>
-  
-    </div>
     
+        </div>
+    </section>
 </template>
 
 <script>
     export default {
         data() {
             return {
-
-            
-               data: [
-	                { 'id': 1, 'name': 'Paris'},	
-                    { 'id': 2, 'name': 'Praga'},	
-                    { 'id': 3, 'name': 'Madrid'},	
-                    { 'id': 4, 'name': 'Berlin'},	
-                    { 'id': 5, 'name': 'Budapest'}
-                ],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
+                city: {
+                    name: null
+                },
+                paises: [],
+                dataReady: false,
+                availableCities: [],
                 columns: [
                     {
                         field: 'id',
@@ -96,10 +146,94 @@
                     }
                 ]
             }
+        },
+        created() {
+            this.getCities();
+            this.getCountries();
+        },
+        computed:{
+            data(){
+                const a = this.availableCities.map((item) => ({id: item.id, name: item.name}));
+                return a;
+            }
+        },
+        methods: {
+            getCountries(){
+                axios.get(`/api/countries`)
+                .then(response => {
+                    this.paises = response.data.countries;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            getCities() {
+                axios.get(`/api/cities`)
+                .then(response => {
+                    this.availableCities = response.data.cities;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            deleteCity(id){ 
+                axios.delete(`/api/cities/` + id)
+                .then(response => {
+                    this.getCities();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            createCity(){
+                axios.post(`/api/cities/`, this.city)
+                .then(response =>{
+                    console.log("aa");
+                    this.getCities();
+                }).catch(error=>{
+                    console.info(error.response.data)
+                });
+            },
+            updateCity(//TODO:id?
+            ){
+                axios.put(`/api/cities/` + id)
+                .then(response => {
+                    this.getCities();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            setSelected(option) {
+                console.log(this.dropFiles);
+                this.getSelected(option);
+            }
         }
     }
 </script>
+
+<style>
+    .custom{
+        background-color: pink;
+        width: 350px;
+    }
+
+    .dropdown:focus{
+        border-color: #00309a !important;
+        -webkit-box-shadow: 0 0 0 0.125em rgb(0 18 60 / 25%);
+        box-shadow: 0 0 0 0.125em  rgb(0 18 60 / 25%);
+    }
+    .button:focus, .button.is-focused {
+        border-color: #00309a;
+        /* color: #00309a; */
+    }
+
+</style>
+
 <style lang="scss" scoped>
+
+    section{
+        height: 100vh;
+        background-color:#f8fafc;    
+    }
+
     .title {
         justify-content: center;
         display: flex;
@@ -137,7 +271,7 @@
             display:flex;
             flex-flow: column;
             width: 50%;
-            justify-content: space-between;
+            justify-content: baseline;
             align-items: center;
             .field{
                 width: 350px;
