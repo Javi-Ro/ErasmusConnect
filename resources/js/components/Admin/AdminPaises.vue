@@ -135,11 +135,8 @@
                 });
             },            
             updateCountry(id){
-                console.log("a");
-                console.log(id);
-                //a = axios.get(`/api/countries/`+ id);
-        
-                axios.patch(`/api/countries/` + a)
+                //console.log("aaaaayy");
+                axios.patch(`/api/countries/` + id)
                 .then(response => {
                     this.getCountries();
                 }).catch(error => {
