@@ -1,5 +1,5 @@
 <template>
-    <div class="admin-paises">
+    <div class="admin-paises" v-if="dataReady==true">
         <div class="title">
             PAISES
         </div>
@@ -19,8 +19,8 @@
                         Editar
                     </b-button> 
                 </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%">
-                    <b-button type="is-danger" title="Borrar país">
+                <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                    <b-button type="is-danger" title="Borrar país" @click="deleteCountry(props.row.id)">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -28,27 +28,27 @@
 
         <div class="crud-container">
 
-            <div class="crud">
+            <div class="create">
 
                 <b-field class="field" label="Nombre">
-                    <b-input placeholder="Noruega, España..."></b-input>
+                    <b-input placeholder="Noruega, España..." v-model="country.name"></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-success">Crear</b-button>
+                <b-button class="btn" type="is-success" @click="createCountry()">Crear</b-button>
             </div>
 
 
-            <div class="crud">
+            <div class="update">
 
                 <b-field class="field" label="Nombre">
-                    <b-input ></b-input>
+                    <b-input v-model="country.name" ></b-input>
                 </b-field>
 
                 <b-field class="field" label="Nuevo nombre">
-                    <b-input placeholder="Noruega, España..."></b-input>
+                    <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-info">Actualizar</b-button>
+                <b-button class="btn" type="is-info" @click="updateCountry()">Actualizar</b-button>
             </div>
 
         </div>
@@ -61,15 +61,14 @@
     export default {
         data() {
             return {
-
-            
-               data: [
-	                { 'id': 1, 'name': 'Morolandia'},
-                    { 'id': 2, 'name': 'Republica Checa'},
-                    { 'id': 3, 'name': 'Croacia'},
-                    { 'id': 4, 'name': 'Polonia'},
-                    { 'id': 5, 'name': 'España'}
-                ],
+                dataReady: false,
+                availableCountries: [],
+                country:{
+                    name: null
+                },
+                newCountry:{
+                    name: null
+                },
                 columns: [
                     {
                         field: 'id',
@@ -96,6 +95,52 @@
                     }
                 ]
             }
+        },
+        created(){
+            this.getCountries();
+        },
+        computed:{
+            data(){
+                const a = this.availableCountries.map((item) => ({id: item.id, name: item.name}));
+                return a;
+            }
+        },
+        methods: {
+            getCountries(){
+                axios.get(`/api/countries`)
+                .then(response => {
+                    this.availableCountries = response.data.countries;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            deleteCountry(id){ 
+                axios.delete(`/api/countries/` + id)
+                .then(response => {
+                    this.getCountries();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            createCountry(){
+                axios.post(`/api/countries/`, this.country)
+                .then(response =>{
+                    console.log("aa");
+                    this.getCountries();
+                }).catch(error=>{
+                    console.info(error.response.data)
+                });
+            },            
+            updateCountry(id){
+                console.log("a");
+                axios.put(`/api/cities/` + id)
+                .then(response => {
+                    this.getCities();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
         }
     }
 </script>

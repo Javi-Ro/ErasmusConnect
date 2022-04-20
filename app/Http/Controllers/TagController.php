@@ -59,9 +59,14 @@ class TagController extends Controller
     }
 
     public function update(Request $request, Tag $tag) {
-        $newTag = Tag::find($tag->id);
-        $newTag->name = $request->name;
-        $newTag->post = $request->post;
-        $newTag->save();
+        
+        if($request->filled('name')) {
+            $tag->name = $request->name;
+        }
+        if($request->filled('post')) {
+            $tag->post = $request->post;
+        }
+
+        $tag->save();
     }
 }

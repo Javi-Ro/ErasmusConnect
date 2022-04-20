@@ -48,7 +48,7 @@
                     </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
-                    <b-button type="is-danger" @click="deletePost(props.row.id);" size="is-small" title="Borrar publicacion">
+                    <b-button type="is-danger" @click="deletePost(props.row.id)" size="is-small" title="Borrar publicacion">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -121,8 +121,13 @@
                 });
             },
             deletePost(post){
-                axios.delete(`/api/posts/` + post);
-            },
+                axios.delete(`/api/posts/`+post)
+                .then(response => {
+                    this.getPosts();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            }
         },
 
         created() {
