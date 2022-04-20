@@ -42,21 +42,21 @@ class CityController extends Controller
     public function delete(City $city)
     {
 
-        if (City::whereId($city->id)->count()) {
-            $city->delete();
-            return response()->json(['success' => true, 'city' => $city]);
-        }
+        $city = City::find($city->id);
+        $city->delete();
+        return response()->json(['success' => true, 'city' => $city]);
 
-        return response()->json(['success' => false]);
     }
 
     public function update(Request $request, City $city) {
-        $newCity = City::find($city->id);
-        $newCity->name = $request->name;
-        if($request->filled("country_id")) {
-            $newCity->country_id = $request->country_id;
+        
+        if($request->filled('name')) {
+            $city->name = $request->name;
         }
-        $newCity->save();
+        if($request->filled("country_id")) {
+            $city->country_id = $request->country_id;
+        }
+        $city->save();
     }
 
 }
