@@ -97,6 +97,10 @@ Route::get('/foro/crear', function () {
     return view('foro.crearpublicacion');
 });
 
+Route::get('/alquileres', function () {
+    return view('alquileres.main');
+});
+
 
 // API ROUTES
 
