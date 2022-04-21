@@ -1,115 +1,157 @@
+
 <template>
-    <div class="container" style="padding-top:100px">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Formulario de registro</div>
+  <section class="register-main">
+    <div class="contenedor">
+      <div class="titulo">
+          <p>Registro </p>
+      </div>
 
-                    <div class="card-body">
-                        <form action="" v-on:submit.prevent="newUser()">
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus v-model="name">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="nickname" class="col-md-4 col-form-label text-md-end">Nickname</label>
-
-                                <div class="col-md-6">
-                                    <input id="nickname" type="text" class="form-control" name="nickname" required autocomplete="nickname" autofocus v-model="nickname">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus v-model="email">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">Select Country:</label>
-                                <div class="col-md-6">
-                                    <select required class='form-control' v-model='country' @change='getCities()'>
-                                        <option value='0' >Select Country</option>
-                                        <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">Select City:</label>
-                                <div class="col-md-6">
-                                    <select required class='form-control' v-model='city'>
-                                        <option value='0' >Select City</option>
-                                        <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" v-model="password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirma la contraseña</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" v-model="confirmation_password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Registrar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="elemento"> 
+          <b-field size="is-medium" label="Nombre">
+            <b-input
+            v-model="name" 
+            size="is-medium"
+            placeholder="Nombre"> </b-input>
+          </b-field>
     </div>
+
+      <div class="elemento"> 
+          <b-field size="is-medium" label="Nombre de usuario">
+            <b-input
+            v-model="nickname" 
+            size="is-medium"
+            placeholder="Nombre de usuario"> </b-input>
+          </b-field>
+      </div>
+
+      <div class="elemento"> 
+          <b-field size="is-medium" label="Email">
+            <b-input
+            v-model="email" 
+            size="is-medium"
+            placeholder="Email"> </b-input>
+          </b-field>
+      </div>
+
+    <div class="elemento">
+        <b-select placeholder="Select Country" required v-model='country' @change='getCities()'>
+            <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
+        </b-select>
+    </div>
+    <div class="elemento">
+        <b-select placeholder="Select city" required v-model='city'>
+            <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
+        </b-select>
+    </div>
+
+      <div class="elemento"> 
+          <b-field size="is-medium" label="Contraseña">
+            <b-input type="password"
+              size="is-medium">
+            </b-input>
+        </b-field>
+      </div>
+
+      <div class="elemento"> 
+        
+          <b-field size="is-medium" label="Confirma contraseña">
+            <b-input type="password"
+              size="is-medium">
+            </b-input>
+        </b-field>
+      </div>
+
+
+      <b-button v-on:click="newUser()" 
+      class="button register is-primary" 
+      id="register"
+      size="is-large"
+      >
+        Registrate
+      </b-button>
+      
+    </div>
+
+    <div>
+      <footer-web></footer-web>
+    </div>
+  </section>
+
 </template>
 
-<script>
-    export default {
-        data() {
-            return {
-                form: {
-                    name: '',
-                    nickname: '',
-                    email: '',
-                    password: '',
-                    city: ''
-                },
-                name: '',
-                nickname: '',
-                email: '',
-                password: '',
-                confirmation_password: '',
-                user: null,
-                country: null,
-                city: null,
-                countries: [],
-                cities: [],
-                request: {
-                    country_id: null
-                }
-            }
-        },
+     
 
-        mounted() {
+<style lang="scss" scoped>
+
+  // html,body{
+  //   height: 100vh;
+  // }
+    .titulo{
+        color:#00309a;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        align-self: center;
+        margin-bottom: 20px;
+    }
+
+    .contenedor{
+      display:flex;
+      flex-flow: column wrap;
+    }
+
+   
+    .register-main{
+        margin-top: 130px;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .elemento{
+        margin-bottom: 20px;
+    }
+
+    .register {
+        margin-top: 30px;
+        margin-right: 0.5rem;
+        background-color: #00309a;
+        color: white;
+        align-self: center;
+    }
+    .register:hover {
+        margin-right: 0.5rem;
+        background-color: #00309a;;
+        color: #F2AF13;
+    }
+
+</style>
+
+<script>
+  export default {
+    props: {},
+    data() {
+      return {
+            name: '',
+            nickname: '',
+            email: '',
+            password: '',
+            confirmation_password: '',
+            user: null,
+            country: null,
+            city: null,
+            countries: [],
+            cities: [],
+            request: {
+                country_id: null
+            }
+      
+      }
+    },
+   
+    mounted() {
             console.log('Component mounted.')
         },
 
@@ -160,5 +202,6 @@
         created() {
             this.getCountries()
         }
-    }
+  }
+
 </script>
