@@ -15,11 +15,11 @@
                 >
             </b-input>
         </b-field>
-      </div>
+      </div -->
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
       </div>
-    <!--/div>
+    </div>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
     </a>

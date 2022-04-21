@@ -104,9 +104,7 @@ export default {
             }).catch(error => {
                 console.info(error.response.data)
             });
-        }
-    },
-    methods:{
+        },
         openPost(post) {  //--> Programmatic way of creating the modal.
             let vue = this;
             vue.$buefy.modal.open({
