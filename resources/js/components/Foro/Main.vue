@@ -15,9 +15,9 @@
                 >
             </b-input>
         </b-field>
-      </div -->
+      </div>-->
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
-        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
+        <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
     </div>
     <a href="/foro/crear" class="float" title="Publicar">

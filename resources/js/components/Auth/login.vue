@@ -20,6 +20,7 @@
           <b-field size="is-medium" label="Contraseña">
             <b-input type="password"
               size="is-medium"
+              v-model="password"
               password-reveal>
             </b-input>
         </b-field>
@@ -138,8 +139,6 @@
     methods: {
       loginUser() {
         axios.post(`/login`, {
-          nickname: this.nickname,
-          password: this.password
         }).then(response => {
           if (response.data.success) {
             window.location.href = "/";

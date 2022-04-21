@@ -3,8 +3,6 @@
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img">
-          <img src="/images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();">
-          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
           <div @click="goBack()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
@@ -13,7 +11,8 @@
           <p>Volver al foro</p>
         </div>
       </div>
-      <vista-previa-publicacion v-if="Object.entries(post).length!==0" class="post" :post="post"></vista-previa-publicacion>
+      <vista-previa-publicacion v-if="Object.entries(post).length!==0" class="post" :post="post" 
+      :comment="false" view="unique"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
           <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
@@ -22,21 +21,7 @@
         </div>
         <div class="comentarios" v-if="data">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
-            <div class="imagen">
-              {{post.img_url}}
-            </div>
-            <div class="nickname">
-
-            </div>
-            <div class="comentario">
-              {{post.title}}
-            </div>
-            <div class="likes">
-              {{post.likes}}
-            </div>
-            <div class="boton me gusta">
-
-            </div>
+            <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
         </div>
       </div>
@@ -107,6 +92,9 @@
   }
 </script>
 <style>
+.button.is-link:hover {
+  color: #F2AF13;
+}
 .post-comment {
   margin: 0 0 10px 0;
 }

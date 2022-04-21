@@ -1,7 +1,12 @@
 <template>
   <section :class="['main-vp-publicacion', comment ? 'comment' : '']" :id="view">
     <div class="centered-container">
-      <div v-if="post" class="content-main">
+      <a :href="'/publicacion/' + post.id" style="color:black;" title="Ver publicación" v-if='view == ""'>
+        <div class="content-main" v-if="!comment && post.img_url != null">
+          <img :src="imgUrl" alt="Foto" width="100%" height="auto">
+        </div>
+      </a>
+      <div class="content-main" v-if="view == 'unique' && post.img_url != null">
         <img :src="imgUrl" alt="Foto" width="100%" height="auto">
       </div>
       <div class="information">
@@ -43,6 +48,7 @@
               <b-tag type="is-info is-light">{{tag.name}}</b-tag>
             </div>
           </div>
+          <!-- Opciones para los comentarios -->
           <div class="information-options" v-if="comment">
             <div :class="[
               'information-options-option tag-' + option.id,
@@ -66,28 +72,42 @@
               </div>
             </div>
           </div>
+
+          <!-- Opciones para las publicaciones -->
           <div class="information-options" v-if="!comment">
             <div :class="[
               'information-options-option tag-' + option.id,
               liked && index == 0 ? 'liked' : ''
               ]" 
-            v-for="(option, index) in optionsData" :key="index"
-            :id="'select-option-' + option.id" @click="reaction(option.id, false)">
+              v-for="(option, index) in optionsData" :key="index"
+              :id="'select-option-' + option.id" @click="reaction(option.id, false)">
+            
+              <a :href="'/publicacion/' + post.id" v-if="index == 1" class="comment-option">
+                <div :id="'background-option-' + option.id">
+                <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Ver Comentarios"
+                v-if="index == 1"/>
+                </div>
+                <div class="information-options-option-data">
+                  <!-- <strong>{{ option.title }}</strong> -->
+                  <p>{{ option.data }}</p>
+                </div>
+              </a>
+
               <div :id="'background-option-' + option.id">
                 <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
                 v-if="index == 0 && liked == false"/>
                 <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
                 v-if="index == 0 && liked == true"/>
-                <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
-                v-if="index == 1"/>
+                <!-- <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
+                v-if="index == 1"/> -->
                 <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px; padding: 10px 10px;" title="Compartir"
                 v-if="index == 2" />
               </div>
-              <div class="information-options-option-data" v-if="index != 2 && liked == false">
+              <div class="information-options-option-data" v-if="index == 0 && liked == false">
                 <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
-              <div class="information-options-option-data" v-if="index != 2 && liked == true">
+              <div class="information-options-option-data" v-if="index == 0 && liked == true">
                 <!-- <strong>{{ option.title }}</strong> -->
                 <p>{{ option.data }}</p>
               </div>
@@ -100,7 +120,12 @@
 
 <script>
   export default {
-    props: ['post'],
+    // props: ['post'],
+    props: {
+      post: Object,
+      comment: Boolean,
+      view: String
+    },
 
     data() {
       return {
@@ -205,6 +230,16 @@
 <style lang="scss" scoped>
 $blue: #00309a;
 // Necesario para que el comentario ocupe todo el ancho
+.comment-option {
+  display:flex;
+  align-items: center;
+  color: #000;
+}
+
+.comment-option:hover {
+  color: $blue;
+}
+
 .comment {
   max-width: none !important;
 }
