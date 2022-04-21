@@ -6,20 +6,20 @@
     <div class="posts">
       <!-- <div class="searcher">
         <b-field>
-            <b-input placeholder="Search a profile..."
+            <b-input placeholder="Buscar en el foro..."
                 type="search"
                 icon="magnify"
-                icon-clickable>
-                @icon-click="searchIconClick"
+                icon-clickable
+                v-model="buscador"
+                
+                >
             </b-input>
         </b-field>
-      </div> -->
-      <div v-for="post in posts" :key="post.id" class="post" id="postContainer">
-        <!-- <a href="/publicacion" style="color:black;"> -->
-        <vista-previa-publicacion :post="post" :comment="false" view=""></vista-previa-publicacion>
-        <!-- </a> -->
       </div>
-    </div>
+      <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+        <a href="/publicacion" style="color:black;"><vista-previa-publicacion :post="post"></vista-previa-publicacion></a>
+      </div>
+    <!--/div>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
     </a>
@@ -32,7 +32,10 @@
 
     data() {
       return {
-        posts: []
+        posts: [],
+        buscador: '',
+        postsBuscar: [],
+        try: []
       }
     },
 
@@ -46,7 +49,11 @@
       },
     },
 
-    computed: {},
+    computed: {
+      buscar() {
+        return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+      },
+    },
 
     methods: {
       getPosts() {

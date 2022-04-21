@@ -12,7 +12,7 @@
                 </p>
             </div>
             <div class="botonPrincipal">
-                <button class="btn pulse-button">
+                <button class="btn pulse-button" @click="register()">
                     <p style="padding: 0 10px 0 10px; text-align: center;">
                         ¿No sabes dónde <span style="color: #F2AF13; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
                     </p>
@@ -81,6 +81,26 @@
     <footer-web/>
 </div>
 </template>
+
+<script>
+  export default {
+        props: {},
+        data() {
+            return {
+                
+            }
+        }, 
+        computed: {
+
+        },
+
+        methods: {
+            register() {
+                window.location.href = "/register";
+            }
+        }
+    }
+</script>
 
 <style lang="scss" scoped>
 $blue:#00309a;

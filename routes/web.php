@@ -151,14 +151,13 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
-});
 
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
+    //REPORTS
+    Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');
+    Route::get('/reports', 'App\Http\Controllers\ReportController@getReports');
+    Route::post('/reports', 'App\Http\Controllers\ReportController@create');
+    Route::patch('/reports/{report}', 'App\Http\Controllers\ReportController@update');
+    Route::delete('/reports/{report}', 'App\Http\Controllers\ReportController@delete');
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');

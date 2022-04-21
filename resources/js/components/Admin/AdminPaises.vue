@@ -4,6 +4,7 @@
             <div class="title">
                 PAISES
             </div>
+
             <b-table class="table"
                 :data="data"            
                 :paginated="isPaginated"
@@ -49,18 +50,17 @@
                 </div>
                 <div class="crud">
                     <b-field class="field" label="Nombre">
-                        <b-input v-model="country.name" ></b-input>
+                        <b-input v-model="countryUpdate.name" ></b-input>
                     </b-field>
 
                     <b-field class="field" label="Nuevo nombre">
                         <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
                     </b-field>
 
-                    <b-button class="btn" type="is-info" @click="updateCountry()">Actualizar</b-button>
+                <b-button class="btn" type="is-info" @click="updateCountry(newCountry.name)">Actualizar</b-button>
                 </div>
             </div>
         </div>
-  
    </section> 
 </template>
 
@@ -84,6 +84,9 @@
                 inputPosition: '',
                 inputDebounce: '',
                 country:{
+                    name: null
+                },
+                countryUpdate:{
                     name: null
                 },
                 newCountry:{
@@ -146,17 +149,16 @@
             createCountry(){
                 axios.post(`/api/countries/`, this.country)
                 .then(response =>{
-                    console.log("aa");
                     this.getCountries();
                 }).catch(error=>{
                     console.info(error.response.data)
                 });
             },            
             updateCountry(id){
-                console.log("a");
-                axios.put(`/api/cities/` + id)
+                //console.log("aaaaayy");
+                axios.patch(`/api/countries/` + id)
                 .then(response => {
-                    this.getCities();
+                    this.getCountries();
                 }).catch(error => {
                     console.info(error.response.data)
                 });

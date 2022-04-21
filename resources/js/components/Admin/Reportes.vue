@@ -1,5 +1,5 @@
 <template>
-    <div class="reportes">
+    <div class="reportes" v-if="dataReady==true">
         <div class="titulo-pagina">
             REPORTES
         </div>
@@ -56,8 +56,8 @@
                         </div>
                     </div>
                     <!-- Fin del modal -->
-                    <b-button type="is-danger" outlined
-                    title="Borra el reporte de la base de datos">
+                    <b-button type="is-danger"
+                    title="Borra el reporte de la base de datos" @click="deleteReport(report.id)">
                         Descartar reporte
                     </b-button>
                 </div>
@@ -73,29 +73,37 @@ export default {
     data() {
         return {
             showModal: 0,
-            reports: [
-                {
-                    id: 1,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                },
-                {
-                    id: 2,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario2",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                },
-                {
-                    id: 3,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario3",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                }
-            ]
+            reports: [],
+            dataReady: false
+        }
+    },
+    created(){
+        this.getReports();
+    },
+    computed:{
+        data(){
+            const a = this.reports.map((item) => ({id: item.id}));
+            return a;
+        }
+    },
+    methods: {
+        getReports(){
+            axios.get(`/api/reports`)
+                .then(response => {
+                    //console.log(a);
+                    this.reports = response.data.reports;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+        },
+        deleteReport(id){ 
+            axios.delete(`/api/reports/` + id)
+            .then(response => {
+                this.getReports();
+            }).catch(error => {
+                console.info(error.response.data)
+            });
         }
     },
     methods:{
