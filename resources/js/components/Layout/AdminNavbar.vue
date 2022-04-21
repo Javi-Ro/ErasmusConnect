@@ -72,7 +72,7 @@
                 { name: "Reportes", link: "/admin/reports"},
                 { name: "Usuarios", link: "/admin/users"},
                 { name: "Publicaciones", link: "/admin/posts"},
-                { name: "Alquileres", link: "#"},
+                // { name: "Alquileres", link: "#"},
                 { name: "Etiquetas", link: "/admin/tags"},
                 { name: "Ciudades", link: "/admin/cities"},
                 { name: "Paises", link: "/admin/countries"}

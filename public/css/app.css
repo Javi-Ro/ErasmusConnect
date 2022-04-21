@@ -43791,9 +43791,10 @@ textarea.form-control-lg {
 .admin-posts {
   width: calc(100% - 280px);
   margin-left: 280px;
+  height: 100vh;
+  background-color: #f8fafc;
 }
 .admin-posts .title {
-  background-color: white;
   justify-content: center;
   display: flex;
   padding-top: 20px;
@@ -43804,7 +43805,7 @@ textarea.form-control-lg {
   padding-bottom: 1.5rem;
 }
 .admin-posts .b-table {
-  background-color: white;
+  background-color: #f8fafc;
 }
 .admin-posts .b-table .table-wrapper .has-mobile-cards {
   margin-right: 20px;
@@ -43814,7 +43815,10 @@ textarea.form-control-lg {
   justify-content: center !important;
 }
 .admin-posts .level .pagination .is-current {
-  background-color: #485fc7 !important;
+  background-color: #00309a !important;
+}
+.admin-posts .level .pagination-link:hover {
+  border-color: #00309a;
 }
 @media screen and (max-width: 425px) {
   .admin-posts {

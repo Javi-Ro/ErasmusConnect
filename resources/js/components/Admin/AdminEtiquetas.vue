@@ -1,23 +1,34 @@
 <template>
+    <section> 
     <div class="admin-etiquetas" v-if="dataReady==true">
         <div class="title">
             ETIQUETAS
         </div>
         <b-table class="table"
             :data="data"
-            :debounce-search="1000"
-            :paginated=true
-            :per-page=5>
+            :paginated="isPaginated"
+            :per-page="perPage"
+            :current-page.sync="currentPage"
+            :pagination-simple="isPaginationSimple"
+            :pagination-position="paginationPosition"
+            :default-sort-direction="defaultSortDirection"
+            :pagination-rounded="isPaginationRounded"
+            :sort-icon="sortIcon"
+            :sort-icon-size="sortIconSize"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            :page-input="hasInput"
+            :pagination-order="paginationOrder"
+            :page-input-position="inputPosition"
+            :debounce-page-input="inputDebounce"
+        >
                 <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
                     {{ props.row.id }}
                 </b-table-column>
                 <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
                     {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar etiqueta">
-                        Editar
-                    </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
                     <b-button type="is-danger" title="Borrar etiqueta" @click="deleteTag(props.row.id)">
@@ -31,10 +42,10 @@
             <div class="crud">
 
                 <b-field class="field" label="Nombre">
-                    <b-input placeholder="Compra, Aire Libre..."></b-input>
+                    <b-input placeholder="Compra, Aire Libre..." v-model="tag.name"></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-success">Crear</b-button>
+                <b-button class="btn" type="is-success" @click="createTag()">Crear</b-button>
             </div>
 
 
@@ -54,15 +65,31 @@
         </div>
   
     </div>
-    
+    </section>
 </template>
 
 <script>
     export default {
         data() {
             return {
+                tag:{
+                    name: null
+                },
                 dataReady: false,
                 availableTags: [],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
                 columns: [
                     {
                         field: 'id',
@@ -116,11 +143,24 @@
                 }).catch(error => {
                     console.info(error.response.data)
                 });
+            },
+            createTag(){
+                axios.post(`/api/tags/`, this.tag)
+                .then(response =>{
+                    this.getTags();
+                }).catch(error=> {
+                    console.info(error.response.data)
+                });
             }
         }
     }
 </script>
 <style lang="scss" scoped>
+    section{
+        height: 100vh;
+        background-color:#f8fafc;    
+    }
+
     .title {
         justify-content: center;
         display: flex;
@@ -137,7 +177,7 @@
     // El navbar mide 280px aprox
     // margin-left: 300px;
     height: 100%;
-    margin: 10px 30px 30px 330px;
+    margin: 10px 30px 0px 330px;
 
 
     .table{
@@ -158,8 +198,9 @@
             display:flex;
             flex-flow: column;
             width: 50%;
-            justify-content: space-between;
+            justify-content: baseline;
             align-items: center;
+            padding-bottom: 25px;
             .field{
                 width: 350px;
             }

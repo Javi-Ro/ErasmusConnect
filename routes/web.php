@@ -30,6 +30,10 @@ Route::get('/register', function () {
 
 // ADMIN ROUTES
 
+Route::get('/admin', function () {
+    return view('/admin/home');
+});
+
 Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
@@ -154,14 +158,6 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/reports', 'App\Http\Controllers\ReportController@create');
     Route::patch('/reports/{report}', 'App\Http\Controllers\ReportController@update');
     Route::delete('/reports/{report}', 'App\Http\Controllers\ReportController@delete');
-});
-
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');
