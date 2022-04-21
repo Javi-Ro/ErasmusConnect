@@ -41,7 +41,7 @@ $yellow: #F2AF13;
     top: 90px;
     right: 70px;
     border-right: none;
-    box-shadow: rgb(0 0 0 / 24%) -5px 3px 8px;
+    box-shadow: -5px 0 5px -5px rgb(0 0 0 / 24%);
 }
 .content {
     padding: 30px 10px 10px 20px;
