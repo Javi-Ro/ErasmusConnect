@@ -43345,7 +43345,7 @@ textarea.form-control-lg {
 .main-vp-publicacion {
   display: flex;
   width: 100%;
-  max-width: 900px;
+  max-width: 600px;
   position: relative;
 }
 .main-vp-publicacion .centered-container {
@@ -43379,6 +43379,7 @@ textarea.form-control-lg {
   width: auto;
   display: flex;
   flex-flow: row wrap;
+  padding-top: 10px;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-img {
   height: 100%;
@@ -43461,7 +43462,7 @@ textarea.form-control-lg {
     justify-content: center;
     align-items: center;
     background-color: #f8f9f9;
-    max-width: 900px;
+    max-width: 600px;
   }
   .main-vp-publicacion .centered-container {
     align-items: flex-start;
@@ -43498,7 +43499,7 @@ textarea.form-control-lg {
 }
 
 .main-foro {
-  padding-top: 200px;
+  margin-top: 120px;
   display: flex;
   flex-direction: row;
   position: relative;
@@ -43511,7 +43512,6 @@ textarea.form-control-lg {
 }
 .main-foro .searcher .field {
   width: 95%;
-  margin-bottom: 20px;
 }
 .main-foro .input:active {
   border-color: #00309a !important;
@@ -43523,15 +43523,18 @@ textarea.form-control-lg {
 .main-foro .posts {
   display: flex;
   flex-direction: column;
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-top: 82px;
 }
 .main-foro .post {
   margin-bottom: 2rem;
-  cursor: pointer;
 }
 @media (min-width: 1500px) {
-  .main-foro {
-    margin-left: 150px;
-    padding-top: 140px;
+  .main-foro .posts {
+    margin-top: 0px;
+    margin-left: 400px;
+    margin-right: 400px;
   }
 }
 @media (min-width: 1024px) {
@@ -43551,15 +43554,19 @@ textarea.form-control-lg {
   display: flex;
   justify-content: center;
   flex-flow: column nowrap;
-  margin-top: 190px;
+  margin-top: 160px;
   align-items: flex-start;
 }
 .post-container-positioned .title-bar {
+  position: fixed;
+  background-color: whitesmoke;
+  padding: 10px;
+  z-index: 9;
+  top: 88px;
+  width: 100%;
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  margin-left: 10px;
-  margin-bottom: 25px;
 }
 .post-container-positioned .title-bar .title-bar-img {
   display: flex;
@@ -43646,14 +43653,16 @@ textarea.form-control-lg {
     border-top: none;
     background-color: white;
   }
+  .post-container-positioned .title-bar {
+    top: 88px;
+  }
   .post-container-positioned .title-bar p {
     font-size: 20px;
   }
 }
 @media (min-width: 1500px) {
   .post-container-positioned {
-    margin-top: 120px;
-    margin-left: 20%;
+    margin-top: 160px;
   }
 }
 
@@ -43782,9 +43791,10 @@ textarea.form-control-lg {
 .admin-posts {
   width: calc(100% - 280px);
   margin-left: 280px;
+  height: 100vh;
+  background-color: #f8fafc;
 }
 .admin-posts .title {
-  background-color: white;
   justify-content: center;
   display: flex;
   padding-top: 20px;
@@ -43795,7 +43805,7 @@ textarea.form-control-lg {
   padding-bottom: 1.5rem;
 }
 .admin-posts .b-table {
-  background-color: white;
+  background-color: #f8fafc;
 }
 .admin-posts .b-table .table-wrapper .has-mobile-cards {
   margin-right: 20px;
@@ -43805,7 +43815,10 @@ textarea.form-control-lg {
   justify-content: center !important;
 }
 .admin-posts .level .pagination .is-current {
-  background-color: #485fc7 !important;
+  background-color: #00309a !important;
+}
+.admin-posts .level .pagination-link:hover {
+  border-color: #00309a;
 }
 @media screen and (max-width: 425px) {
   .admin-posts {

@@ -1,19 +1,36 @@
 <template>
     <div class="filter-bar">
+        <a href="/foro/crear" class="button btn-publicar" id="publicar">
+            <p style="padding: 0 10px 0 10px; text-align: center;">
+                Publicar
+            </p>
+        </a>
+        <div class="clear-btn" v-if="this.selectedTags.length > 0">
+            <b-button type="is-danger is-light" style="border-radius: 10px border: 1px solid #cc0f35"
+            @click=clearFilter()>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x"/> 
+                &nbsp; Eliminar filtros
+            </b-button>
+        </div>
+        <div style="min-height:40px" v-if="this.selectedTags.length == 0"></div>
         <div class="tag" >
             <p class="cabecera">
                 Elige lo que más te interesa
             </p>
         </div>
-        <div class="tags">
-            <div class="tag-body" :id="setTagID(index)" 
-            v-for="(tag,index) in tags" :key="tag.id" @click="getPostsByTag(tag.id)"
+        
+        <div class="tag-body"
+        v-for="(tag) in tags" :key="tag.id" style="text-align: center;">
+            <input type="checkbox" class="btn-check" :id="tag.id" autocomplete="off"
+            v-model="selectedTags" :value="tag.id" @change="getPostsByTags()"
             >
-                <div class="tag">
+            <label class="checkbox-button check-btn-outline" :for="tag.id">
+                <div style="display:flex; margin-left: 20px">
                     <img :src="tag.img_url" alt="" width="36px" height="36px" style="margin-right: 20px">
-                    <p class="tagname vertical"></p>{{ tag.name }}
+                    <p class="tagname vertical">{{ tag.name }}</p>
                 </div>
-            </div>
+
+            </label>
         </div>
     </div>
 </template>
@@ -22,10 +39,15 @@ export default {
     data() {
         return {
             tags: [],
+            selectedTags: [],
             nTags: 0
         }
     },
     methods: {
+        clearFilter() {
+            this.selectedTags = []
+            // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
+        },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {
                 this.tags = response.data.tags;
@@ -34,16 +56,6 @@ export default {
                 console.info(error);
             });
         },
-        setTagID(index) {
-            // Es necesario distinguir entre la primera etiqueta y el resto
-            if(index == 0)
-                return "first-tag";
-            // Es necesario distinguir entre la última etiqueta y el resto
-            else if(index == this.nTags)
-                return "last-tag";
-            else
-                return "";
-        },
         // Evento on-click para cuando se pulse una etiqueta
         getPostsByTag(tag) {
             axios.get(`/api/posts/filter-by-tag`, {
@@ -51,21 +63,22 @@ export default {
                     tag: tag
                 }
             }).then(response => {
+                console.log(response.data.posts)
                 this.$parent.posts = response.data.posts;
             }).catch(error => {
                 console.info(error);
             });
         },
-        cardModal() {
-            this.$buefy.modal.open({
-                parent: this,
-                component: showAllTags,
-                hasModalCard: true,
-                customClass: 'custom-class custom-class-2',
-                // trapFocus: true
-            });
-        }
+        // Evento on-click para cuando se pulse una etiqueta
+        getPostsByTags() {
+            console.log(this.selectedTags)
+            for(var i=0; i < this.selectedTags.length; i++)
+            {
+                // TODO: Llamada en la que se le pasa una lista de tags?
+                this.getPostsByTag(this.selectedTags[i])
 
+            }
+        },
     },
 
     created() {
@@ -73,28 +86,73 @@ export default {
     }
 }
 </script>
+<style>
+.clear-btn > .button.is-danger.is-light {
+    background-color: #feecf0;
+    color: #cc0f35;
+    border: 1px solid #cc0f35;
+}
+</style>
 <style lang="scss" scoped>
 $blue:#00309a;
+$blue-hover:#00309a;
+$yellow: #F2AF13;
 // Indica el radio de la barra de filtros
 $radio: 10px;
+.clear-btn {
+    display:flex;
+    justify-content: center;
+}
+.btn-publicar {
+    width: 90%;
+    padding: 10px 20px;
+    margin: 25px 0px;
+
+    border: none;
+    border-radius: 30px;
+
+    box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);
+    background-color: $blue;
+    background-size:cover;
+    background-repeat: no-repeat;
+    /* Modifica el texto de dentro */
+    color: $yellow;
+    font-weight: bold;
+    font-size: 1.5rem;
+    font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
+    letter-spacing: .15rem;
+}
+#publicar {
+    margin-right: 0.5rem;
+    background-color: $blue;
+    color: white;
+}
+#publicar:hover {
+    margin-right: 0.5rem;
+    // background-color: darken($blue, 10%);
+    color: $yellow;
+}
 .filter-bar {
     display:none;
     // width: 20%;
     // height: 100%;
-    //border-radius: $radio;
     // 100px es la anchura del navbar
     border: 1px solid #dbdbdb;
     //flex-direction: column;
     overflow: hidden;
-    background-color: white;
+    background-color: whitesmoke;
     position: fixed;
     height: fit-content;
-    left: 0;
+    max-width: 370px;
+    min-width: 370px;
+    
     padding-top: 20px;
     height: 100%;
     top: 90px;
-    min-width: 300px;
-    box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+    left: 70px;
+    border-left: none;
+    border-right: 1px;
+    box-shadow: rgb(0 0 0 / 24%) 5px 3px 8px;
 
     @media(min-width: 1500px){
         display: block;
@@ -124,6 +182,7 @@ $radio: 10px;
     }
 
     .cabecera{
+        margin-top: 20px;
         margin-bottom: 20px;
         font-size: 1.5rem;
     }
@@ -131,44 +190,51 @@ $radio: 10px;
 
 .tag-body {
     width: 100%;
-    cursor: pointer;
     -webkit-transition: background-color 0.5s ease;
-}
-.tag-body:hover {
-    background-color: rgb(218, 218, 218);
-}
-
-// Primera etiqueta
-// #first-tag {
-//     border-radius: ($radio - 4px) ($radio - 4px) 0 0;
-//     cursor: default;
-    
-// }
-// #first-tag:hover {
-//     background-color: transparent;
-// }
-// Última etiqueta
-#last-tag{
-    border-radius: 0 0 ($radio - 4px) ($radio - 4px);
 }
 
 .cabecera {
-    // display: flex;
     font-weight: bold;
     font-size: 1.3rem;
 }
-    // /* Track */
-    // ::-webkit-scrollbar-track {
-    // background: #f1f1f1; 
-    // }
-    
-    // // /* Handle */
-    // // ::-webkit-scrollbar-thumb {
-    // // background: rgb(175, 175, 175); 
-    // // }
 
-    // // /* Handle on hover */
-    // // ::-webkit-scrollbar-thumb:hover {
-    // // background: #888; 
-    // // }
+// Modificando checkbox button
+.check-btn-outline {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: 10px 0 0 20px;
+    cursor: pointer;
+    padding: 10px 20px 10px 40px;
+    font-size: x-large;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.check-btn-outline {
+    border-radius: 30px;
+    color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:active {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.check-btn-outline:focus {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+
+.btn-check:checked + .check-btn-outline {
+    color: white;
+    background-color: $blue;
+    border-color: $blue;
+}
+.btn-check:checked + .check-btn-outline {
+    box-shadow: 0 0 0 0.05rem $blue;
+}
+.check-btn-outline:hover {
+    color: white;
+    background-color: $blue-hover;
+    border-color: $blue-hover;
+}
 </style>

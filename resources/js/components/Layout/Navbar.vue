@@ -230,7 +230,7 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 #closeIcon {
     display: none;
 }    /* Modifica el texto de dentro */
@@ -333,6 +333,7 @@ a.navbar-item:hover {
     .menu.is-active {
         display: block;
         flex-direction: column;
+        z-index: 99;
     }
     .navbar {
         flex-wrap: wrap;

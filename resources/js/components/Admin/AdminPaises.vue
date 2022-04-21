@@ -1,60 +1,67 @@
 <template>
-    <div class="admin-paises" v-if="dataReady==true">
-        <div class="title">
-            PAISES
-        </div>
-        <b-table class="table"
-            :data="data"
-            :debounce-search="1000"
-            :paginated=true
-            :per-page=5>
-                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
-                    {{ props.row.id }}
-                </b-table-column>
-                <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
-                    {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar país">
-                        Editar
-                    </b-button> 
-                </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
-                    <b-button type="is-danger" title="Borrar país" @click="deleteCountry(props.row.id)">
-                        Eliminar
-                    </b-button>
-                </b-table-column>
-        </b-table>
-
-        <div class="crud-container">
-
-            <div class="create">
-
-                <b-field class="field" label="Nombre">
-                    <b-input placeholder="Noruega, España..." v-model="country.name"></b-input>
-                </b-field>
-
-                <b-button class="btn" type="is-success" @click="createCountry()">Crear</b-button>
+    <section> 
+        <div class="admin-paises" v-if="dataReady==true">
+            <div class="title">
+                PAISES
             </div>
 
+            <b-table class="table"
+                :data="data"            
+                :paginated="isPaginated"
+                :per-page="perPage"
+                :current-page.sync="currentPage"
+                :pagination-simple="isPaginationSimple"
+                :pagination-position="paginationPosition"
+                :default-sort-direction="defaultSortDirection"
+                :pagination-rounded="isPaginationRounded"
+                :sort-icon="sortIcon"
+                :sort-icon-size="sortIconSize"
+                aria-next-label="Next page"
+                aria-previous-label="Previous page"
+                aria-page-label="Page"
+                aria-current-label="Current page"
+                :page-input="hasInput"
+                :pagination-order="paginationOrder"
+                :page-input-position="inputPosition"
+                :debounce-page-input="inputDebounce">
 
-            <div class="update">
+                    <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
+                        {{ props.row.id }}
+                    </b-table-column>
+                    <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
+                        {{ props.row.name }}
+                    </b-table-column>
+                    <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                        <b-button type="is-danger" title="Borrar país" @click="deleteCountry(props.row.id)">
+                            Eliminar
+                        </b-button>
+                    </b-table-column>
+            </b-table>
 
-                <b-field class="field" label="Nombre">
-                    <b-input v-model="countryUpdate.name" ></b-input>
-                </b-field>
+            <div class="crud-container">
+                <div class="crud">
 
-                <b-field class="field" label="Nuevo nombre">
-                    <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
-                </b-field>
+                    <b-field class="field" label="Nombre">
+                        <b-input placeholder="Noruega, España..." v-model="country.name"></b-input>
+                    </b-field>
+
+                    <b-button class="btn" type="is-success" @click="createCountry()">Crear</b-button>
+
+                </div>
+                <div class="crud">
+                    <b-field class="field" label="Nombre">
+                        <b-input v-model="countryUpdate.name" ></b-input>
+                    </b-field>
+
+                    <b-field class="field" label="Nuevo nombre">
+                        <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
+                    </b-field>
 
                 <b-button class="btn" type="is-info" @click="updateCountry(newCountry.name)">Actualizar</b-button>
+                </div>
             </div>
-
         </div>
-  
-    </div>
-    
+   </section> 
 </template>
 
 <script>
@@ -63,6 +70,19 @@
             return {
                 dataReady: false,
                 availableCountries: [],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
                 country:{
                     name: null
                 },
@@ -147,6 +167,11 @@
     }
 </script>
 <style lang="scss" scoped>
+    section{
+        height: 100vh;
+        background-color:#f8fafc;    
+    }
+
     .title {
         justify-content: center;
         display: flex;
@@ -184,7 +209,7 @@
             display:flex;
             flex-flow: column;
             width: 50%;
-            justify-content: space-between;
+            justify-content: baseline;
             align-items: center;
             .field{
                 width: 350px;

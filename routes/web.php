@@ -30,6 +30,10 @@ Route::get('/register', function () {
 
 // ADMIN ROUTES
 
+Route::get('/admin', function () {
+    return view('/admin/home');
+});
+
 Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
@@ -47,12 +51,6 @@ Route::get('/admin/cities', function () {
 Route::get('/admin/posts', function () {
     return view('/admin/posts');
 });
-
-Route::get('/admin/users', function () {
-    return view('/admin/usuarios');
-});
-
-// VIEWS ROUTES
 
 Route::get('/admin/users', function () {
     return view('/admin/usuarios');
