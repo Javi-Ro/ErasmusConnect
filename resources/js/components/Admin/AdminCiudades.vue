@@ -73,10 +73,8 @@
                             {{pais[0]}}
                         </b-dropdown-item>
                     </b-dropdown>  -->
-
                     <b-button class="btn" type="is-success" @click="createCity()">Crear</b-button>
                 </div>
-
 
                 <div class="crud">
 

@@ -43414,11 +43414,11 @@ textarea.form-control-lg {
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:hover {
   background-color: #00309a;
-  color: white;
+  color: #F2AF13;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-main .button:focus {
   background-color: #00309a;
-  color: white;
+  color: #F2AF13;
 }
 .main-vp-publicacion .centered-container .information .information-personal .information-personal-data .information-personal-data-date {
   display: flex;
@@ -43634,7 +43634,7 @@ textarea.form-control-lg {
 }
 .post-container-positioned .post-comment .button {
   font-size: 1rem;
-  background-color: #2B6BC7;
+  background-color: #00309a;
   color: white;
   border-radius: 20px;
 }
