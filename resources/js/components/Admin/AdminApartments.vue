@@ -1,7 +1,7 @@
 <template>
     <section class="admin-apartments">
         <div class="title">
-            APARTMENTS
+            ALQUILERES
         </div>
         <div class="main-table">
             <b-table
@@ -51,7 +51,7 @@
                 </b-table-column>
                 <b-table-column field="ver-publicacion" label="" width="5%" centered v-slot="props">
                     <b-button type="is-info" outlined @click.prevent="openApartment(props.row);"  title="Visualizar la publicación">
-                        Ver apartment
+                        Ver alquiler
                     </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
