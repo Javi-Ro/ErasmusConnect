@@ -139,9 +139,9 @@
           {name: "noche"}
         ],
         optionsData: [
-          {image: "/images/like.svg", title: "Me gusta", data: this.post.likes},
-          {image: "/images/comment.svg", title: "Comentarios", data: this.post.comments},
-          {image: "/images/share.svg", title: "Compartir", data: 0}
+          {id: 1, title: "Me gusta", data: this.post.likes},
+          {id: 2, title: "Comentarios", data: this.post.comments},
+          {id: 3, title: "Compartir", data: 0}
         ],
         user: {},
         postProp: this.post,
