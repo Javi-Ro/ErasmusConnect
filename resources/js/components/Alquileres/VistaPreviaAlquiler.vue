@@ -41,9 +41,10 @@
                 </div>
             </div>
             <!-- Mostrar iframe de Google maps -->
+            <!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47057.24154062818!2d1.5134132345759157!3d42.511158955609766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52b4a25fb0b%3A0xa00947091997280!2sAD500%20Andorra%20la%20Vieja%2C%20Andorra!5e0!3m2!1ses!2ses!4v1650629047845!5m2!1ses!2ses"  -->
             <div class="apartment-location">
                 <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47057.24154062818!2d1.5134132345759157!3d42.511158955609766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52b4a25fb0b%3A0xa00947091997280!2sAD500%20Andorra%20la%20Vieja%2C%20Andorra!5e0!3m2!1ses!2ses!4v1650629047845!5m2!1ses!2ses" 
+                :src="getMap(apartment.address)"
                 width="600" height="450" 
                 style="border:0;" 
                 allowfullscreen="" 
@@ -62,16 +63,18 @@ export default {
     data() {
         return {
             user: {},
-            gallery: false
+            gallery: false,
+            base_URL: "https://www.google.com/maps/embed/v1/search?q=",
+            apiKey:"&key=AIzaSyDmdTjO4HYVvCyI-kkmuW3Lc1kJAqv-u40"
         }
     },
     computed: {
     //   imgUrl() {
     //     return "/storage/images/posts/" + this.post.img_url;
     //   },
-      imgProfile() {
-        return "/images/users/" + this.user.img_url;
-      }
+        imgProfile() {
+            return "/images/users/" + this.user.img_url;
+        }
     },
     methods: {
         getUser() {
@@ -86,6 +89,10 @@ export default {
             value += 50
             return `https://picsum.photos/id/10${value}/1230/500`
         },
+        getMap(address) {
+            var map = this.base_URL + address + this.apiKey
+            return map
+        }
     },
     created() {
       setTimeout(() => {
