@@ -3,64 +3,71 @@
   <section class="register-main">
     <div class="contenedor">
       <div class="titulo">
-          <p>Registro </p>
+          <p>¡Regístrate! Es gratis</p>
       </div>
+      <div style="display:flex;">
+        <div style="display:flex; flex-direction: column; margin-right: 20px">
+          <div class="elemento"> 
+                <b-field size="is-medium" label="Nombre">
+                  <b-input
+                  v-model="name" 
+                  size="is-medium"
+                  placeholder="Nombre"> </b-input>
+                </b-field>
+          </div>
 
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Nombre de usuario">
+                <b-input
+                v-model="nickname" 
+                size="is-medium"
+                placeholder="Nombre de usuario" title="El resto de usuarios te veran con este nombre"> </b-input>
+              </b-field>
+          </div>
 
-    <div class="elemento"> 
-          <b-field size="is-medium" label="Nombre">
-            <b-input
-            v-model="name" 
-            size="is-medium"
-            placeholder="Nombre"> </b-input>
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Email">
+                <b-input
+                v-model="email" 
+                size="is-medium"
+                placeholder="Email"> </b-input>
+              </b-field>
+          </div>
+
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Contraseña">
+                <b-input type="password"
+                  size="is-medium">
+                </b-input>
+            </b-field>
+          </div>
+
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Confirma contraseña">
+                <b-input type="password"
+                  size="is-medium">
+                </b-input>
+              </b-field>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction: column; margin-left: 20px">
+          <b-field size="is-medium" label="¿A qué país viajas?" style="margin-bottom: 5px;">
           </b-field>
-    </div>
-
-      <div class="elemento"> 
-          <b-field size="is-medium" label="Nombre de usuario">
-            <b-input
-            v-model="nickname" 
-            size="is-medium"
-            placeholder="Nombre de usuario"> </b-input>
+          <div class="elemento">
+              <b-select placeholder="Elige un país" required  size="is-medium" v-model='country' @change='getCities()'>
+                  <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
+              </b-select>
+          </div>
+          <b-field size="is-medium" label="¡Elige tu ciudad de destino!">
           </b-field>
+          <div class="elemento">
+              <b-select placeholder="Elige una ciudad" required size="is-medium" v-model='city'>
+                  <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
+              </b-select>
+          </div>
+        </div>
       </div>
-
-      <div class="elemento"> 
-          <b-field size="is-medium" label="Email">
-            <b-input
-            v-model="email" 
-            size="is-medium"
-            placeholder="Email"> </b-input>
-          </b-field>
-      </div>
-
-    <div class="elemento">
-        <b-select placeholder="Select Country" required v-model='country' @change='getCities()'>
-            <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
-        </b-select>
-    </div>
-    <div class="elemento">
-        <b-select placeholder="Select city" required v-model='city'>
-            <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
-        </b-select>
-    </div>
-
-      <div class="elemento"> 
-          <b-field size="is-medium" label="Contraseña">
-            <b-input type="password"
-              size="is-medium">
-            </b-input>
-        </b-field>
-      </div>
-
-      <div class="elemento"> 
-        
-          <b-field size="is-medium" label="Confirma contraseña">
-            <b-input type="password"
-              size="is-medium">
-            </b-input>
-        </b-field>
-      </div>
+ 
 
 
       <b-button v-on:click="newUser()" 
@@ -68,7 +75,7 @@
       id="register"
       size="is-large"
       >
-        Registrate
+        Regístrate
       </b-button>
       
     </div>
@@ -80,7 +87,11 @@
 
 </template>
 
-     
+<style>
+.select select:active, .select select:focus {
+  border-color: #00309a
+}
+</style>
 
 <style lang="scss" scoped>
 
