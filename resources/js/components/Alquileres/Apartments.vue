@@ -1,4 +1,5 @@
 
+<!-- Lo que hay implementado aquí está ahora en Alquileres/Main.vue -->
 <template>
     <div class="container" style="margin-top:100px">
         <div class="row justify-content-center">
