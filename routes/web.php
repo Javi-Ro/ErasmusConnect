@@ -46,6 +46,9 @@ Route::get('/admin/tags', function () {
 Route::get('/admin/cities', function () {
     return view('/admin/ciudadesAdmin');
 });
+Route::get('/admin/alquileres', function () {
+    return view('/admin/apartmentsAdmin');
+});
 
 
 Route::get('/admin/posts', function () {
