@@ -24,7 +24,7 @@
                 </div>
                 <div class="apartment-rating">
                     <div class="rate">
-                        <b-rate :value="apartment.rating" show-score disabled/>
+                        <b-rate :value="getRanting(apartment.rating)" show-score disabled/>
                     </div>
                 </div>
                 <div class="apartment-info-data">
@@ -41,7 +41,6 @@
                 </div>
             </div>
             <!-- Mostrar iframe de Google maps -->
-            <!-- src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d47057.24154062818!2d1.5134132345759157!3d42.511158955609766!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a5f52b4a25fb0b%3A0xa00947091997280!2sAD500%20Andorra%20la%20Vieja%2C%20Andorra!5e0!3m2!1ses!2ses!4v1650629047845!5m2!1ses!2ses"  -->
             <div class="apartment-location">
                 <iframe 
                 :src="getMap(apartment.address)"
@@ -92,6 +91,9 @@ export default {
         getMap(address) {
             var map = this.base_URL + address + this.apiKey
             return map
+        },
+        getRanting(value) {
+            return parseInt(value)
         }
     },
     created() {
@@ -132,6 +134,13 @@ a:hover {
         width: 60%;
         background-color: white;
     }
+
+    @media screen and (max-width: 1200px) {
+        .apartment-preview {
+            width: 100%;
+        }
+    }
+
     .apartment-carrousel {
         display:flex;
     }
@@ -191,6 +200,14 @@ a:hover {
         display:flex;
         flex-direction: column;
         padding-bottom: 20px;
+    }
+    @media screen and (max-width: 425px) {
+        .apartment-data {
+            flex-direction: column;
+        }
+        .apartment-info, .apartment-location {
+            width: 100%;
+        }
     }
     
 </style>
