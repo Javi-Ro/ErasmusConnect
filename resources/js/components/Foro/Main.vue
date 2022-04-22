@@ -4,7 +4,7 @@
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
     <div class="posts">
-      <!-- <div class="searcher">
+       <div class="searcher">
         <b-field>
             <b-input placeholder="Buscar en el foro..."
                 type="search"
@@ -15,7 +15,7 @@
                 >
             </b-input>
         </b-field>
-      </div>-->
+      </div>
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
