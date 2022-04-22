@@ -93,7 +93,7 @@ export default {
             return map
         },
         getRanting(value) {
-            return parseInt(value)
+            return parseFloat(value)
         }
     },
     created() {
