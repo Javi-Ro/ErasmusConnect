@@ -3,12 +3,52 @@
     <div class="filter-header">
       <p>Filtra a tu gusto</p>
     </div>
+    <hr>
     <div class="filter-options">
-      <div class="filter-options-price">
-        <p class="filter-options-price-tag">Price</p>
-        <b-field>
-          <b-slider v-model="numbers" :min="1" :max="15" :step="0.5" ticks lazy></b-slider>
-        </b-field>
+      <div class="filter-option">
+        <p class="filter-option-tag">Precio</p>
+        <div class="filter-option-content range-filter">
+          <b-field class="range filter-option-input" v-model="minPrice">
+            <b-input placeholder="Min"
+              type="number"            
+              icon-pack="fas"    
+              icon="euro-sign" @select.prevent="inputActive()">
+            </b-input>
+          </b-field>
+          <div class="separator">-</div>
+          <b-field class="filter-option-input range" v-model="maxPrice">
+            <b-input placeholder="Max"
+              type="number"            
+              icon-pack="fas"    
+              icon="euro-sign">
+            </b-input>
+          </b-field>
+        </div>
+      </div>
+      <hr>
+      <div class="filter-option">
+        <p class="filter-option-tag">Habitaciones</p>
+        <div class="filter-option-content">
+          <b-field class="filter-option-input" v-model="habitaciones">
+            <b-numberinput type="is-light" rounded controls-rounded></b-numberinput>
+          </b-field>
+        </div>
+      </div>
+      <hr>
+      <div class="filter-option">
+        <p class="filter-option-tag">Metros cuadrados</p>
+        <div class="filter-option-content">
+          <b-field class="filter-option-input" v-model="metros">
+            <b-numberinput type="is-light" rounded controls-rounded></b-numberinput>
+          </b-field>
+        </div>
+      </div>
+      <hr>
+      <div class="filter-option">
+        <p class="filter-option-tag">Valoraciones</p>
+        <div class="filter-option-content">
+          <b-rate v-model="rate" spaced show-score></b-rate>
+        </div>
       </div>
     </div>
   </section>
@@ -20,7 +60,11 @@
 
     data() {
       return {
-        numbers: [0, 0],
+        minPrice: 0,
+        maxPrice: 0,
+        habitaciones: 0,
+        metros: 0,
+        rate: 0,
       }
     },
 
@@ -36,15 +80,80 @@
 
     computed: {},
 
-    methods: {},
+    methods: {
+      inputActive(){
+        var element = document.getElementsByClassName("fa-euro-sign");
+        for(var i = 0; i < element.length; i++){
+          element[i].className += " inputActived";
+        }
+        
+      }
+    },
 
     mounted() {}
   }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
   .filter-container{
+    left: 20px;
     position:fixed;
     top: 150px;
+    color: black;
+    padding: 20px 20px;
+    border: 1px solid black;
   }
+  hr{
+    background-color: gray;
+    height: 1px;
+  }
+  .filter-header{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+  }
+  .filter-options{
+    display: flex;
+    flex-flow: column nowrap;
+  }
+  .filter-option{
+    padding-bottom: 20px;
+  }
+  .filter-option-tag{
+    font-size: 1.25rem;
+    font-weight: 100;
+    padding-bottom: 10px;
+  }
+
+  .range-filter{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+
+    .separator{
+      margin: 0px 10px;
+    }
+  }
+  .filter-option-input{
+    width: 200px;
+    margin-bottom: 0px !important;
+  }
+  .range{
+    width: 150px;
+  }
+  .rate .rate-item.set-on .icon{
+    color: #00309a !important;
+  }
+  .mdi-plus{
+    color: #00309a !important;
+  }
+  .mdi-minus{
+    color: #00309a !important;
+  }
+
+  .fa-euro-sign .inputActived{
+    color: #00309a !important;
+  }
+
 </style>

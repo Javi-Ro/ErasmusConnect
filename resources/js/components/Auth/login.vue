@@ -35,7 +35,7 @@
 </template>
 
 <style>
-  i {
+  .mdi-eye {
     color: #00309a;
   }
   .input:focus{
