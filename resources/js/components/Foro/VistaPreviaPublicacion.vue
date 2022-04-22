@@ -184,15 +184,14 @@
           }
           else if(option == 1) {
             console.log("Dando me gusta a post...")
-            // var element = document.getElementById("select-option-" + option);
             // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
             if(!this.liked) {
-              // element.classList.add("liked");
               this.liked = true
+              this.likePost();
             }
             else {
-              // element.classList.remove("liked");
               this.liked = false
+              this.notLikePost();
             }
           }
         }
@@ -212,7 +211,20 @@
           }
         }
 
+      },
+      likePost() {
+        axios.post(`/api/posts/` + this.post.id + '/like')
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      notLikePost() {
+        axios.delete(`/api/posts/` + this.post.id + '/like')
+        .catch(error => {
+          console.info(error);
+        });
       }
+
     },
 
 

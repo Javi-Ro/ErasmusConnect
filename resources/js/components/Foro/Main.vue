@@ -4,7 +4,7 @@
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
     <div class="posts">
-      <!-- <div class="searcher">
+      <div class="searcher">
         <b-field>
             <b-input placeholder="Buscar en el foro..."
                 type="search"
@@ -15,7 +15,8 @@
                 >
             </b-input>
         </b-field>
-      </div>-->
+      </div>
+      <!-- <rightBar @post-buscar="capturaBusqueda"/> -->
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
@@ -27,15 +28,19 @@
 </template>
 
 <script>
+  import rightBar from "./rightBar.vue";
+
   export default {
+    components: { rightBar },
+    name: "Main",
     props: {},
 
     data() {
       return {
         posts: [],
         buscador: '',
+        users: [],
         postsBuscar: [],
-        try: []
       }
     },
 
@@ -51,7 +56,7 @@
 
     computed: {
       buscar() {
-        return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+        return this.posts.filter((item) => (item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0) || (item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0) )  ;
       },
     },
 
@@ -63,12 +68,17 @@
             console.info(error);
         })
       },
+      //capturaBusqueda(buscado) {
+      //  this.posts = buscado;
+      //},
     },
 
-    mounted() {},
+    mounted() {
+      //
+    },
     
     created() {
-      this.getPosts();  
+      this.getPosts();
     }
   }
 </script>

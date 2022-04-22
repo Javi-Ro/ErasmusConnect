@@ -119,5 +119,19 @@ class PostController extends Controller
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 
-    //TODO: update, not possible yet
+    public function likePost(Post $p) {
+        $post = Post::find($p->id);
+
+        if(! $post->likes->contains(Auth::user()->id)) {
+            $post->likes()->attach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+    }
+
+    public function notLikePost(Post $p) {
+        $post = Post::find($p->id);
+        $post->likes()->detach(Auth::user()->id);
+
+        return response()->json(['success' => true, 'post' => $post]);
+    }
 }
