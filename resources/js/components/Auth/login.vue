@@ -108,7 +108,10 @@
       return {
         nickname: '',
         password: '',
-        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+        csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        getVars: {
+          redirectTo: "/"
+        }
       }
     },
     watch: {
@@ -125,10 +128,11 @@
       loginUser() {
         axios.post(`/login`, {
           nickname: this.nickname,
-          password: this.password
+          password: this.password,
+          redirectTo: this.getVars["redirectTo"]
         }).then(response => {
           if (response.data.success) {
-            window.location.href = "/";
+            window.location.href = response.data.redirectTo;
           } else {
             alert("These credentials does not match any of our records!");
           }
@@ -137,7 +141,21 @@
         });
       }
     },
-    mounted() {}
+    mounted() {},
+    created() {
+      let uri = window.location.href.split('?');
+      if(uri.length == 2) {
+        let vars = uri[1].split('&');
+        let tmp = '';
+        let getVarsAux = {};
+        vars.forEach(function(variable) {
+          tmp = variable.split('=');
+          if(tmp.length == 2)
+            getVarsAux[tmp[0]] = tmp[1];
+        });
+        this.getVars = getVarsAux;
+      }
+    }
   }
 
 </script>
