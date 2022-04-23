@@ -25,8 +25,8 @@ class CreateApartmentsTable extends Migration
             $table->string('img_url');
             $table->double('surface');
             $table->string('rating')->nullable();
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('city_id')->nullable()->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('city_id')->nullable()->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

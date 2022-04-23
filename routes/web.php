@@ -30,6 +30,10 @@ Route::get('/register', function () {
 
 // ADMIN ROUTES
 
+Route::get('/admin', function () {
+    return view('/admin/home');
+});
+
 Route::get('/admin/reports', function () {
     return view('/admin/home');
 });
@@ -42,17 +46,14 @@ Route::get('/admin/tags', function () {
 Route::get('/admin/cities', function () {
     return view('/admin/ciudadesAdmin');
 });
+Route::get('/admin/apartments', function () {
+    return view('/admin/apartmentsAdmin');
+});
 
 
 Route::get('/admin/posts', function () {
     return view('/admin/posts');
 });
-
-Route::get('/admin/users', function () {
-    return view('/admin/usuarios');
-});
-
-// VIEWS ROUTES
 
 Route::get('/admin/users', function () {
     return view('/admin/usuarios');
@@ -107,15 +108,15 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/users', 'App\Http\Controllers\UserController@getUsers');
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
+    Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
 
     //TAGS
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
-    
+    Route::patch('/tags/{tag}', 'App\Http\Controllers\TagController@update');
     Route::post('/tags', 'App\Http\Controllers\TagController@create');
     Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
-
 
     //APARTMENTS
     Route::get('/apartments/{apartment}',  'App\Http\Controllers\ApartmentController@get');
@@ -123,13 +124,15 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/apartments', 'App\Http\Controllers\ApartmentController@create');
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
     Route::post('/apartments/order', 'App\Http\Controllers\ApartmentController@order');
-
+    Route::patch('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@update');
 
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
     Route::get('/countries', 'App\Http\Controllers\CountryController@getCountries');
     Route::post('/countries', 'App\Http\Controllers\CountryController@create');
+    Route::put('/countries/{country}', 'App\Http\Controllers\CityController@update');
     Route::delete('/countries/{country}', 'App\Http\Controllers\CountryController@delete');
+    Route::patch('/countries/{country}', 'App\Http\Controllers\CountryController@update');
 
     //CITIES
     Route::post('/get_cities_by_country', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
@@ -137,8 +140,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('cities/{city}', 'App\Http\Controllers\CityController@get');
     Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
     Route::post('/cities', 'App\Http\Controllers\CityController@create');
-    Route::delete('/countries/{country}', 'App\Http\Controllers\CityController@delete');
-
+    Route::delete('/cities/{city}', 'App\Http\Controllers\CityController@delete');
+    Route::patch('/cities/{city}', 'App\Http\Controllers\CityController@update');
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
@@ -148,18 +151,17 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
     Route::post('/posts/{post}', 'App\Http\Controllers\PostController@createComment');
-    Route::put('/posts/{post}', 'App\Http\Controllers\PostController@update');
+    Route::patch('/posts/{post}', 'App\Http\Controllers\PostController@update');
     Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
-});
 
-Route::get('/register', function () {
-    if (Auth::guest()) {
-        return view('auth/register');
-    }
-
-    return redirect(RouteServiceProvider::HOME);
+    //REPORTS
+    Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');
+    Route::get('/reports', 'App\Http\Controllers\ReportController@getReports');
+    Route::post('/reports', 'App\Http\Controllers\ReportController@create');
+    Route::patch('/reports/{report}', 'App\Http\Controllers\ReportController@update');
+    Route::delete('/reports/{report}', 'App\Http\Controllers\ReportController@delete');
 });
 
 Route::post('/logout', 'App\Http\Controllers\UserController@logout')->name('logout');

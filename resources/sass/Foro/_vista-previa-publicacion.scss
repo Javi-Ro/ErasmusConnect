@@ -1,8 +1,9 @@
 .main-vp-publicacion{
     display: flex;
     width: 100%;
-    max-width: 900px;
+    max-width: 600px;
     position: relative;
+    
 
     .centered-container{
         display: flex;
@@ -37,6 +38,7 @@
                 width: auto;
                 display: flex;
                 flex-flow: row wrap;
+                padding-top: 10px;
                 .information-personal-img{
                     height: 100%;
                     img{
@@ -68,12 +70,12 @@
 
                         .button:hover{
                             background-color: #00309a;
-                            color: white;
+                            color: #F2AF13;
                         }
 
                         .button:focus{
                             background-color: #00309a;
-                            color: white;
+                            color: #F2AF13;
                         }
                     }
                     .information-personal-data-date{
@@ -122,7 +124,7 @@
         justify-content: center;
         align-items: center;
         background-color: #f8f9f9;
-        max-width: 900px;
+        max-width: 600px;
 
         .centered-container{
             align-items: flex-start;

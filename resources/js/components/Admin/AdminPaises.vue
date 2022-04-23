@@ -1,75 +1,97 @@
 <template>
-    <div class="admin-paises">
-        <div class="title">
-            PAISES
-        </div>
-        <b-table class="table"
-            :data="data"
-            :debounce-search="1000"
-            :paginated=true
-            :per-page=5>
-                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
-                    {{ props.row.id }}
-                </b-table-column>
-                <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
-                    {{ props.row.name }}
-                </b-table-column>
-                <b-table-column field="editar" label="" width="5%" centered>
-                    <b-button type="is-info" outlined title="Editar país">
-                        Editar
-                    </b-button> 
-                </b-table-column>
-                <b-table-column field="eliminar" label="" centered width="5%">
-                    <b-button type="is-danger" title="Borrar país">
-                        Eliminar
-                    </b-button>
-                </b-table-column>
-        </b-table>
-
-        <div class="crud-container">
-
-            <div class="crud">
-
-                <b-field class="field" label="Nombre">
-                    <b-input placeholder="Noruega, España..."></b-input>
-                </b-field>
-
-                <b-button class="btn" type="is-success">Crear</b-button>
+    <section> 
+        <div class="admin-paises" v-if="dataReady==true">
+            <div class="title">
+                PAISES
             </div>
 
+            <b-table class="table"
+                :data="data"            
+                :paginated="isPaginated"
+                :per-page="perPage"
+                :current-page.sync="currentPage"
+                :pagination-simple="isPaginationSimple"
+                :pagination-position="paginationPosition"
+                :default-sort-direction="defaultSortDirection"
+                :pagination-rounded="isPaginationRounded"
+                :sort-icon="sortIcon"
+                :sort-icon-size="sortIconSize"
+                aria-next-label="Next page"
+                aria-previous-label="Previous page"
+                aria-page-label="Page"
+                aria-current-label="Current page"
+                :page-input="hasInput"
+                :pagination-order="paginationOrder"
+                :page-input-position="inputPosition"
+                :debounce-page-input="inputDebounce">
 
-            <div class="crud">
+                    <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
+                        {{ props.row.id }}
+                    </b-table-column>
+                    <b-table-column field="name" label="Nombre" width="20%" style="margin-left: 20px;" sortable searchable v-slot="props">
+                        {{ props.row.name }}
+                    </b-table-column>
+                    <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
+                        <b-button type="is-danger" title="Borrar país" @click="deleteCountry(props.row.id)">
+                            Eliminar
+                        </b-button>
+                    </b-table-column>
+            </b-table>
 
-                <b-field class="field" label="Nombre">
-                    <b-input ></b-input>
-                </b-field>
+            <div class="crud-container">
+                <div class="crud">
 
-                <b-field class="field" label="Nuevo nombre">
-                    <b-input placeholder="Noruega, España..."></b-input>
-                </b-field>
+                    <b-field class="field" label="Nombre">
+                        <b-input placeholder="Noruega, España..." v-model="country.name"></b-input>
+                    </b-field>
 
-                <b-button class="btn" type="is-info">Actualizar</b-button>
+                    <b-button class="btn" type="is-success" @click="createCountry()">Crear</b-button>
+
+                </div>
+                <div class="crud">
+                    <b-field class="field" label="Nombre">
+                        <b-input v-model="countryUpdate.name" ></b-input>
+                    </b-field>
+
+                    <b-field class="field" label="Nuevo nombre">
+                        <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
+                    </b-field>
+
+                <b-button class="btn" type="is-info" @click="updateCountry(newCountry.name)">Actualizar</b-button>
+                </div>
             </div>
-
         </div>
-  
-    </div>
-    
+   </section> 
 </template>
 
 <script>
     export default {
         data() {
             return {
-
-            
-               data: [
-	                { 'id': 1, 'name': 'Morolandia'},
-                    { 'id': 2, 'name': 'Republica Checa'},
-                    { 'id': 3, 'name': 'Croacia'},
-                    { 'id': 4, 'name': 'Polonia'},
-                    { 'id': 5, 'name': 'España'}
-                ],
+                dataReady: false,
+                availableCountries: [],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 5,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
+                country:{
+                    name: null
+                },
+                countryUpdate:{
+                    name: null
+                },
+                newCountry:{
+                    name: null
+                },
                 columns: [
                     {
                         field: 'id',
@@ -96,10 +118,60 @@
                     }
                 ]
             }
+        },
+        created(){
+            this.getCountries();
+        },
+        computed:{
+            data(){
+                const a = this.availableCountries.map((item) => ({id: item.id, name: item.name}));
+                return a;
+            }
+        },
+        methods: {
+            getCountries(){
+                axios.get(`/api/countries`)
+                .then(response => {
+                    this.availableCountries = response.data.countries;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            deleteCountry(id){ 
+                axios.delete(`/api/countries/` + id)
+                .then(response => {
+                    this.getCountries();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
+            createCountry(){
+                axios.post(`/api/countries/`, this.country)
+                .then(response =>{
+                    this.getCountries();
+                }).catch(error=>{
+                    console.info(error.response.data)
+                });
+            },            
+            updateCountry(id){
+                //console.log("aaaaayy");
+                axios.patch(`/api/countries/` + id)
+                .then(response => {
+                    this.getCountries();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            },
         }
     }
 </script>
 <style lang="scss" scoped>
+    section{
+        height: 100vh;
+        background-color:#f8fafc;    
+    }
+
     .title {
         justify-content: center;
         display: flex;
@@ -137,7 +209,7 @@
             display:flex;
             flex-flow: column;
             width: 50%;
-            justify-content: space-between;
+            justify-content: baseline;
             align-items: center;
             .field{
                 width: 350px;

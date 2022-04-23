@@ -1,9 +1,11 @@
 .admin-posts{
     width: calc(100% - 280px);
     margin-left: 280px;
+    height: 100vh;
+    background-color: #f8fafc;
 
 .title {
-    background-color: white;
+
     justify-content: center;
     display: flex;
     padding-top: 20px;
@@ -15,7 +17,7 @@
 }
 
     .b-table{
-        background-color: white;
+        background-color: #f8fafc;
 
         .table-wrapper .has-mobile-cards{
             margin-right: 20px;
@@ -27,12 +29,18 @@
         justify-content: center !important;
 
         .pagination .is-current{
-            background-color: #485fc7 !important;
+            background-color: #00309a !important;
         }
+
+        .pagination-link:hover {
+            border-color: #00309a;
+          }
     }
 
     @media screen and (max-width: 425px){
         width: calc(100% - 180px);
         margin-left: 180px;
     }
+
+
 }

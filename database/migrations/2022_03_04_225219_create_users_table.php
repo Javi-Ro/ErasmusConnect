@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('description')->nullable();
             $table->string('img_url')->default("default-profile-img.jpeg");
-            $table->foreignId('city_id')->nullable()->constrained();
+            $table->foreignId('city_id')->nullable()->constrained()->cascadeOnDelete();
             $table->rememberToken();
             $table->timestamps();
         });
