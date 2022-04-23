@@ -77,7 +77,7 @@ import Comentario from './Comentario.vue';
         }).catch(error => {
           console.info(error.response.data);
           if (error.response.status == 403) {
-            window.location.href = "/login";
+            window.location.href = "/login?redirectTo=" + window.location.href;
           } else if (error.response.status == 422) {
             alert("El comentario no puede estar vacio!");
           }

@@ -36,6 +36,7 @@
         postsBuscar: [],
         try: [],
         postsReady: false
+        posts: [],
       }
     },
 
