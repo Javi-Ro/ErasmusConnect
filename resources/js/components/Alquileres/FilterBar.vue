@@ -10,7 +10,8 @@
         <div class="filter-option-content range-filter">
           <b-field class="range filter-option-input" v-model="minPrice">
             <b-input placeholder="Min"
-              type="number"            
+              type="number"
+              min="0"            
               icon-pack="fas"    
               icon="euro-sign" @select.prevent="inputActive()">
             </b-input>
@@ -18,6 +19,7 @@
           <div class="separator">-</div>
           <b-field class="filter-option-input range" v-model="maxPrice">
             <b-input placeholder="Max"
+              min="0"
               type="number"            
               icon-pack="fas"    
               icon="euro-sign">
@@ -30,7 +32,7 @@
         <p class="filter-option-tag">Habitaciones</p>
         <div class="filter-option-content">
           <b-field class="filter-option-input" v-model="habitaciones">
-            <b-numberinput type="is-light" rounded controls-rounded></b-numberinput>
+            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
           </b-field>
         </div>
       </div>
@@ -39,7 +41,7 @@
         <p class="filter-option-tag">Metros cuadrados</p>
         <div class="filter-option-content">
           <b-field class="filter-option-input" v-model="metros">
-            <b-numberinput type="is-light" rounded controls-rounded></b-numberinput>
+            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
           </b-field>
         </div>
       </div>
@@ -82,7 +84,7 @@
 
     methods: {
       inputActive(){
-        var element = document.getElementsByClassName("fa-euro-sign");
+        var element = document.getElementsByClassName("fa-euro-sign");  // TODO: Que cuando input se active el color del emoji cambie de dentro se ponga azul, no negro
         for(var i = 0; i < element.length; i++){
           element[i].className += " inputActived";
         }
@@ -141,6 +143,9 @@
   }
   .range{
     width: 150px;
+    input{
+      border-radius: 9999px !important;
+    }
   }
   .rate .rate-item.set-on .icon{
     color: #00309a !important;
@@ -155,5 +160,12 @@
   .fa-euro-sign .inputActived{
     color: #00309a !important;
   }
-
+  .input:active{
+    border-color: #00309a !important;
+  }
+  .input:focus{
+    border-color: #00309a !important;
+    -webkit-box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25); 
+    box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25);
+  }
 </style>
