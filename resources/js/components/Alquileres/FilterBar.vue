@@ -52,6 +52,8 @@
           <b-rate v-model="rate" spaced show-score></b-rate>
         </div>
       </div>
+      <br>
+      <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
     </div>
   </section>
 </template>
@@ -98,12 +100,16 @@
 
 <style lang="scss">
   .filter-container{
-    left: 20px;
+    left: 0px;
     position:fixed;
-    top: 150px;
+    top: 120px;
+    height: 100%;
     color: black;
     padding: 20px 20px;
-    border: 1px solid black;
+    width: 370px;
+    border: 1px solid #dbdbdb;
+    box-shadow: rgb(0 0 0 / 24%) 5px 3px 8px;
+    background-color: whitesmoke;
   }
   hr{
     background-color: gray;
@@ -167,5 +173,19 @@
     border-color: #00309a !important;
     -webkit-box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25); 
     box-shadow: 0px 0px 0px 0.125em rgba(0,48,154,0.25);
+  }
+  .buttonFilter{
+    border-color: #00309a !important;
+    color: #00309a !important;
+  }
+
+  .buttonFilter:hover{
+      background-color: #00309a !important;
+      color: white !important;
+  }
+
+  .buttonFilter:focus{
+      background-color: #00309a !important;
+      color: white !important;
   }
 </style>
