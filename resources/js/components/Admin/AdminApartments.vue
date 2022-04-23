@@ -1,11 +1,11 @@
 <template>
-    <section class="admin-posts">
+    <section class="admin-apartments">
         <div class="title">
-            PUBLICACIONES
+            ALQUILERES
         </div>
         <div class="main-table">
             <b-table
-                :data="posts"
+                :data="apartments"
                 :paginated="isPaginated"
                 :per-page="perPage"
                 :current-page.sync="currentPage"
@@ -26,29 +26,36 @@
                 :debounce-page-input="inputDebounce"
                 >
 
-                <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
+                <b-table-column field="id" label="ID" numeric width="5%" sortable searchable centered v-slot="props">
                     {{ props.row.id }}
                 </b-table-column>
-                <b-table-column field="title" label="Titulo" width="20%" sortable searchable centered v-slot="props">
+                <b-table-column field="title" label="Titulo" width="25%" sortable searchable centered v-slot="props">
                     {{ props.row.title }}
                 </b-table-column>
-                <b-table-column field="post_id" label="Comentario de" width="20%" sortable searchable centered v-slot="props">
-                    <span v-if="props.row.post_id === null">-</span>
-                    <span v-else>{{ props.row.post_id }}</span>
+                <b-table-column field="phone" label="Teléfono" width="20%" sortable searchable centered v-slot="props">
+                    <span v-if="props.row.phone === null">-</span>
+                    <span v-else>{{ props.row.phone }}</span>
                 </b-table-column>
-                <b-table-column field="user_id" label="Usuario" sortable width="20%" searchable numeric centered v-slot="props">
+                <b-table-column field="email" label="Email" width="20%" sortable searchable centered v-slot="props">
+                    <span v-if="props.row.email === null">-</span>
+                    <span v-else>{{ props.row.email }}</span>
+                </b-table-column>
+                <b-table-column field="price" label="Precio" sortable width="5%" searchable numeric centered v-slot="props">
+                    {{ props.row.price }}
+                </b-table-column>
+                <b-table-column field="user_id" label="Usuario" sortable width="5%" searchable numeric centered v-slot="props">
                     {{ props.row.user_id }}
                 </b-table-column>
-                <b-table-column field="city_id" label="Ciudad" numeric sortable searchable width="20%" centered v-slot="props">
+                <b-table-column field="city_id" label="Ciudad" numeric sortable searchable width="5%" centered v-slot="props">
                     {{ props.row.city_id }}
                 </b-table-column>
                 <b-table-column field="ver-publicacion" label="" width="5%" centered v-slot="props">
-                    <b-button type="is-info" outlined @click.prevent="openPost(props.row);"  title="Visualizar la publicación">
-                        Ver publicación
+                    <b-button type="is-info" outlined @click.prevent="openApartment(props.row);"  title="Visualizar la publicación">
+                        Ver alquiler
                     </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
-                    <b-button type="is-danger" @click="deletePost(props.row.id)"  title="Borrar publicacion">
+                    <b-button type="is-danger" @click="deleteApartmen(props.row.id)"  title="Borrar publicacion">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -69,7 +76,7 @@
         data() {
             return {
                 post: {},
-                posts: [],
+                apartments: [],
                 isCardModalActive: false,
                 isPaginated: true,
                 isPaginationSimple: false,
@@ -98,32 +105,20 @@
 
         computed: {},
         methods: {
-            getPosts() {
-                axios.get(`/api/posts`).then(response => {
-                    this.posts = response.data.posts;
+            getApartments() {
+                axios.get(`/api/apartments`).then(response => {
+                    this.apartments = response.data.apartments;
                 }).catch(error => {
                     console.info(error);
                 })
             },
-            openPost(post) {  //--> Programmatic way of creating the modal.
-                let vue = this;
-                vue.$buefy.modal.open({
-                    parent: vue,
-                    animation: 'none',
-                    component: VistaPreviaPublicacionVue,
-                    canCancel: true,
-                    props: { post: post, comment:false, view:""},
-                    width: 610,
-                    events: {
-                        
-                    },
-                    onCancel: () => {}
-                });
+            openApartment(post) {  //--> Aqui se abriria el modal para ver el apartment concreto
+              
             },
-            deletePost(post){
-                axios.delete(`/api/posts/`+post)
+            deleteApartmen(post){
+                axios.delete(`/api/apartments/`+post)
                 .then(response => {
-                    this.getPosts();
+                    this.getApartments();
                 }).catch(error => {
                     console.info(error.response.data)
                 });
@@ -131,7 +126,55 @@
         },
 
         created() {
-            this.getPosts();
+            this.getApartments();
         }
     }
 </script>
+<style lang="scss" scoped>
+.admin-apartments{
+    width: calc(100% - 280px);
+    margin-left: 280px;
+    height: 100vh;
+    background-color: #f8fafc;
+
+.title {
+
+    justify-content: center;
+    display: flex;
+    padding-top: 20px;
+    font-size: x-large;
+    color: #00309a;
+    font-family: sans-serif;
+    margin-bottom: 0px !important;
+    padding-bottom: 1.5rem;
+}
+
+    .b-table{
+        background-color: #f8fafc;
+
+        .table-wrapper .has-mobile-cards{
+            margin-right: 20px;
+            margin-left: 20px;
+        }
+    }
+
+    .level{
+        justify-content: center !important;
+
+        .pagination .is-current{
+            background-color: #00309a !important;
+        }
+
+        .pagination-link:hover {
+            border-color: #00309a;
+          }
+    }
+
+    @media screen and (max-width: 425px){
+        width: calc(100% - 180px);
+        margin-left: 180px;
+    }
+
+
+}
+</style>

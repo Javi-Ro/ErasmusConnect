@@ -1,18 +1,18 @@
 <template>
   <section v-if="data === true" class="post-container">
     <div class="post-container-positioned">
-      <filter-bar></filter-bar>
-      <filter-bar-horizontal class="horizontal-menu"></filter-bar-horizontal>
       <div class="title-bar">
         <div class="title-bar-img">
-          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
           <div @click="goBack()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
         </div>
-        <p>Publicación</p>
+        <div>
+          <p>Volver al foro</p>
+        </div>
       </div>
-      <vista-previa-publicacion v-if="Object.entries(post).length!==0" class="post" :post="post"></vista-previa-publicacion>
+      <vista-previa-publicacion v-if="Object.entries(post).length!==0" class="post" :post="post" 
+      :comment="false" view="unique"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
           <img :src="userImg" class="comment-img" alt="" style="margin-right: 10px">
@@ -21,7 +21,7 @@
         </div>
         <div class="comentarios" v-if="commentsReady === true">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
-            <comentario :comment="comment"></comentario>
+            <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
         </div>
       </div>
@@ -123,3 +123,11 @@ import Comentario from './Comentario.vue';
     }
   }
 </script>
+<style>
+.button.is-link:hover {
+  color: #F2AF13;
+}
+.post-comment {
+  margin: 0 0 10px 0;
+}
+</style>

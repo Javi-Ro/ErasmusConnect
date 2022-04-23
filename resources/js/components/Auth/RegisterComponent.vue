@@ -1,115 +1,175 @@
+
 <template>
-    <div class="container" style="padding-top:100px">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Formulario de registro</div>
+  <section class="register-main">
+    <div class="contenedor">
+      <div class="titulo">
+          <p>¡Regístrate! Es gratis</p>
+      </div>
+      <div style="display:flex;">
+        <div style="display:flex; flex-direction: column; margin-right: 20px">
+          <div class="elemento"> 
+                <b-field size="is-medium" label="Nombre">
+                  <b-input
+                  v-model="name" 
+                  size="is-medium"
+                  placeholder="Nombre"> </b-input>
+                </b-field>
+          </div>
 
-                    <div class="card-body">
-                        <form action="" v-on:submit.prevent="newUser()">
-                            <div class="row mb-3">
-                                <label for="name" class="col-md-4 col-form-label text-md-end">Nombre</label>
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Nombre de usuario">
+                <b-input
+                v-model="nickname" 
+                size="is-medium"
+                placeholder="Nombre de usuario" title="El resto de usuarios te veran con este nombre"> </b-input>
+              </b-field>
+          </div>
 
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="name" required autocomplete="name" autofocus v-model="name">
-                                </div>
-                            </div>
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Email">
+                <b-input
+                v-model="email" 
+                size="is-medium"
+                placeholder="Email"> </b-input>
+              </b-field>
+          </div>
 
-                            <div class="row mb-3">
-                                <label for="nickname" class="col-md-4 col-form-label text-md-end">Nickname</label>
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Contraseña">
+                <b-input type="password"
+                  size="is-medium" v-model="password">
+                </b-input>
+            </b-field>
+          </div>
 
-                                <div class="col-md-6">
-                                    <input id="nickname" type="text" class="form-control" name="nickname" required autocomplete="nickname" autofocus v-model="nickname">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="email" class="col-md-4 col-form-label text-md-end">E-mail</label>
-
-                                <div class="col-md-6">
-                                    <input id="email" type="email" class="form-control" name="email" required autocomplete="email" autofocus v-model="email">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">Select Country:</label>
-                                <div class="col-md-6">
-                                    <select required class='form-control' v-model='country' @change='getCities()'>
-                                        <option value='0' >Select Country</option>
-                                        <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label class="col-md-4 col-form-label text-md-end">Select City:</label>
-                                <div class="col-md-6">
-                                    <select required class='form-control' v-model='city'>
-                                        <option value='0' >Select City</option>
-                                        <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password" class="col-md-4 col-form-label text-md-end">Contraseña</label>
-
-                                <div class="col-md-6">
-                                    <input id="password" type="password" class="form-control" name="password" required autocomplete="new-password" v-model="password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-3">
-                                <label for="password-confirm" class="col-md-4 col-form-label text-md-end">Confirma la contraseña</label>
-
-                                <div class="col-md-6">
-                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password" v-model="confirmation_password">
-                                </div>
-                            </div>
-
-                            <div class="row mb-0">
-                                <div class="col-md-6 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Registrar
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
+          <div class="elemento"> 
+              <b-field size="is-medium" label="Confirma contraseña">
+                <b-input type="password"
+                  size="is-medium" v-model="confirmation_password">
+                </b-input>
+              </b-field>
+          </div>
         </div>
+        <div style="display:flex; flex-direction: column; margin-left: 20px">
+          <b-field size="is-medium" label="¿A qué país viajas?" style="margin-bottom: 5px;">
+          </b-field>
+          <div class="elemento">
+              <b-select placeholder="Elige un país" required  size="is-medium" v-model='country' @change.native='getCities()'>
+                  <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
+              </b-select>
+          </div>
+          <b-field size="is-medium" label="¡Elige tu ciudad de destino!">
+          </b-field>
+          <div class="elemento">
+              <b-select placeholder="Elige una ciudad" required size="is-medium" v-model='city'>
+                  <option v-for='city in cities' :key='city.id' :value='city.id'>{{ city.name }}</option>
+              </b-select>
+          </div>
+        </div>
+      </div>
+ 
+
+
+      <b-button v-on:click="newUser()" 
+      class="button register is-primary" 
+      id="register"
+      size="is-large"
+      >
+        Regístrate
+      </b-button>
+      
     </div>
+
+    <div>
+      <footer-web></footer-web>
+    </div>
+  </section>
+
 </template>
 
+<style>
+.select select:active, .select select:focus {
+  border-color: #00309a
+}
+</style>
+
+<style lang="scss" scoped>
+
+  // html,body{
+  //   height: 100vh;
+  // }
+    .titulo{
+        color:#00309a;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        align-self: center;
+        margin-bottom: 20px;
+    }
+
+    .contenedor{
+      display:flex;
+      flex-flow: column wrap;
+    }
+
+   
+    .register-main{
+        margin-top: 130px;
+        display:flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: nowrap;
+    }
+
+    .elemento{
+        margin-bottom: 20px;
+    }
+
+    .register {
+        margin-top: 30px;
+        margin-right: 0.5rem;
+        background-color: #00309a;
+        color: white;
+        align-self: center;
+    }
+    .register:hover {
+        margin-right: 0.5rem;
+        background-color: #00309a;;
+        color: #F2AF13;
+    }
+
+</style>
+
 <script>
-    export default {
-        data() {
-            return {
-                form: {
-                    name: '',
-                    nickname: '',
-                    email: '',
-                    password: '',
-                    city: ''
-                },
+  export default {
+    props: {},
+    data() {
+      return {
+            form: {
                 name: '',
                 nickname: '',
                 email: '',
                 password: '',
-                confirmation_password: '',
-                user: null,
-                country: null,
-                city: null,
-                countries: [],
-                cities: [],
-                request: {
-                    country_id: null
-                }
+                city: ''
+            },
+            name: '',
+            nickname: '',
+            email: '',
+            password: '',
+            confirmation_password: '',
+            user: null,
+            country: null,
+            city: null,
+            countries: [],
+            cities: [],
+            request: {
+                country_id: null
             }
-        },
-
-        mounted() {
+      
+      }
+    },
+   
+    mounted() {
             console.log('Component mounted.')
         },
 
@@ -135,6 +195,7 @@
                 this.request.country_id = this.country
                 axios.post(`/api/get_cities_by_country`, this.request).then(response => {
                     this.cities = response.data.cities
+                    this.city = this.cities[0].id;
                 }).catch(error => {
                     console.info(error)
                 });
@@ -149,8 +210,8 @@
                 this.setFormData();
 
                 axios.post(`/api/users`, this.form).then(response => {
-                    this.user = response.data.user
-                    alert("User created. Success -> " + response.data.success)
+                    this.user = response.data.user;
+                    window.location.href = "/login";
                 }).catch(error => {
                     console.info(error)
                 });
@@ -160,5 +221,6 @@
         created() {
             this.getCountries()
         }
-    }
+  }
+
 </script>

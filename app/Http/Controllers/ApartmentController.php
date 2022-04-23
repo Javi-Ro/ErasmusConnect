@@ -49,15 +49,29 @@ class ApartmentController extends Controller
     }
 
     public function update(Request $request, Apartment $apartment) {
-        $newApartment = Apartment::find($apartment->id);
-        $newApartment->title = $request->title;
-        $newApartment->description = $request->description;
-        $newApartment->img_url = $request->img_url;
-        $newApartment->price = $request->price;
-        $newApartment->email = $request->email;
-        $newApartment->phone = $request->phone;
-        $newApartment->save();
-  
+         
+        if($request->filled('title')) {
+            $apartment->title = $request->title;
+        }
+        if($request->filled('description')) {
+            $apartment->description = $request->description;
+        }
+        if($request->filled('img_url')) {
+            $apartment->img_url = $request->img_url;
+        }
+        if($request->filled('price')) {
+            $apartment->price = $request->price;
+        }
+        if($request->filled('email')) {
+            $apartment->email = $request->email;
+        }
+        if($request->filled('phone')) {
+            $apartment->phone = $request->phone;
+        }
+        
+        $apartment->save();
+    }
+
     public function order(Request $data)
     {
         //Ordenar por precio

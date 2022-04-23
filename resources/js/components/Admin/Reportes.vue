@@ -1,5 +1,5 @@
 <template>
-    <div class="reportes">
+    <div class="reportes" v-if="dataReady==true">
         <div class="titulo-pagina">
             REPORTES
         </div>
@@ -28,10 +28,14 @@
                     <div class="modal-vue" :id="report.id">
                         <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
                         <b-button type="is-info" outlined 
-                        @click="showModal = report.id"
+                        @click.prevent="openPost(report.id);"
                         title="Visualiza la publicación y permite eliminarla"
                         > 
                         Ver publicación
+                        </b-button>
+                        <b-button type="is-danger"
+                            title="Borra la publicación de la base de datos">
+                            Eliminar publicación
                         </b-button>
                         <!-- overlay -->
                         <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
@@ -53,7 +57,7 @@
                     </div>
                     <!-- Fin del modal -->
                     <b-button type="is-danger"
-                    title="Borra el reporte de la base de datos">
+                    title="Borra el reporte de la base de datos" @click="deleteReport(report.id)">
                         Descartar reporte
                     </b-button>
                 </div>
@@ -62,43 +66,66 @@
     </div>
 </template>
 <script>
-import VistaPreviaPublicacion from '../Foro/VistaPreviaPublicacion.vue'
+import VistaPreviaPublicacionVue from '../Foro/VistaPreviaPublicacion.vue';
 export default {
-  components: { VistaPreviaPublicacion },
+//   components: { VistaPreviaPublicacion },
     props: {},
     data() {
         return {
             showModal: 0,
-            reports: [
-                {
-                    id: 1,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
+            reports: [],
+            dataReady: false
+        }
+    },
+    created(){
+        this.getReports();
+    },
+    computed:{
+        data(){
+            const a = this.reports.map((item) => ({id: item.id}));
+            return a;
+        }
+    },
+    methods: {
+        getReports(){
+            axios.get(`/api/reports`)
+                .then(response => {
+                    //console.log(a);
+                    this.reports = response.data.reports;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+        },
+        deleteReport(id){ 
+            axios.delete(`/api/reports/` + id)
+            .then(response => {
+                this.getReports();
+            }).catch(error => {
+                console.info(error.response.data)
+            });
+        },
+        openPost(post) {  //--> Programmatic way of creating the modal.
+            let vue = this;
+            vue.$buefy.modal.open({
+                parent: vue,
+                animation: 'none',
+                component: VistaPreviaPublicacionVue,
+                canCancel: true,
+                props: { post: post, comment:false, view:""},
+                width: 610,
+                events: {
+                    
                 },
-                {
-                    id: 2,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario2",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                },
-                {
-                    id: 3,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario3",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                }
-            ]
+                onCancel: () => {}
+            });
         }
     }
 }
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 .titulo-pagina {
     justify-content: center;
     display: flex;

@@ -43,6 +43,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'date:d/m/Y'
     ];
 
     public function city()
@@ -68,6 +69,10 @@ class User extends Authenticatable
     public function posts()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function reports() {
+        return $this->hasMany(Report::class);
     }
 
     public function savedPosts()

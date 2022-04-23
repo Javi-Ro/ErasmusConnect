@@ -25,19 +25,22 @@ import {faComment} from '@fortawesome/free-regular-svg-icons';
 // Importar el mismo pero en distintos estilos (gratuitos solo está solid y regular)
 import {faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as faHeartRegular} from '@fortawesome/free-regular-svg-icons';
+// --
+import {faBookmark as faBookmarkSolid} from '@fortawesome/free-solid-svg-icons';
+import {faBookmark as faBookmarkRegular} from '@fortawesome/free-regular-svg-icons';
 
 // Iconos generales
-import {faArrowLeft} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faPlus} from '@fortawesome/free-solid-svg-icons';
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
 
 // Añadimos iconos para navbar
 library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
 
 // Añadimos iconos generales
-library.add(faArrowLeft, faUpload)
+library.add(faArrowLeft, faUpload, faPlus)
 
 // Añadimos iconos para publicaciones
-library.add(faHeartSolid, faHeartRegular, faShareNodes, faComment)
+library.add(faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment)
 
 
 /* import font awesome icon component */
@@ -62,6 +65,7 @@ Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').defa
 Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
 Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+Vue.component('admin-apartments', require('./components/Admin/AdminApartments.vue').default);
 Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
 //---
 
@@ -74,10 +78,10 @@ Vue.component('register-component', require('./components/Auth/RegisterComponent
 Vue.component('vista-previa-publicacion', require('./components/Foro/VistaPreviaPublicacion.vue').default);
 Vue.component('crear-publicacion', require('./components/Foro/CrearPublicacion.vue').default);
 Vue.component('publicacion', require('./components/Foro/Publicacion.vue').default);
-Vue.component('comentario', require('./components/Foro/Comentario.vue').default);
 Vue.component('foro', require('./components/Foro/Main.vue').default);
 Vue.component('filter-bar', require('./components/Foro/filterBar.vue').default);
 Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHorizontal.vue').default);
+Vue.component('right-bar', require('./components/Foro/rightBar.vue').default);
 //---
 
 // Landing
@@ -106,5 +110,8 @@ Vue.component('apartment', require('./components/Apartments.vue').default);
  */
 
 const app = new Vue({
+    data: {
+        city: -1
+    },
     el: '#app',
 });
