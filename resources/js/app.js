@@ -65,6 +65,7 @@ Vue.component('admin-paises', require('./components/Admin/AdminPaises.vue').defa
 Vue.component('admin-ciudades', require('./components/Admin/AdminCiudades.vue').default);
 Vue.component('admin-etiquetas', require('./components/Admin/AdminEtiquetas.vue').default);
 Vue.component('admin-posts', require('./components/Admin/Publicaciones.vue').default);
+Vue.component('admin-apartments', require('./components/Admin/AdminApartments.vue').default);
 Vue.component('usuarios', require('./components/Admin/Usuarios.vue').default);
 //---
 
