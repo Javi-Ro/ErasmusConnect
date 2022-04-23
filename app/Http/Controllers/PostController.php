@@ -12,7 +12,7 @@ class PostController extends Controller
 
     public function get(Post $post)
     {
-        return response()->json(['post' => $post]);
+        return response()->json(['post' => $post, 'user' => $post->user()]);
     }
 
     public function getPosts()
@@ -108,7 +108,7 @@ class PostController extends Controller
     }
 
     public function getComments(Post $post) {
-        $comments = $post->comments()->get();
+        $comments = $post->comments()->orderBy('created_at', 'DESC')->get();
         return response()->json(['success' => true, 'comments' => $comments]);
     }
   
@@ -117,6 +117,28 @@ class PostController extends Controller
         $posts = $tag->posts()->get();
 
         return response()->json(['success' => true, 'posts' => $posts]);
+    }
+
+    public function createComment(Post $post, Request $request) {
+        $user_id = null;
+
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+        } else {
+            abort(403);
+        }
+
+        $request->validate([
+            'text' => 'required'
+        ]);
+
+        $post = Post::create([
+            'text' => $request->text,
+            'user_id' => $user_id,
+            'post_id' => $post->id
+        ]);
+
+        return response()->json(['success' => true, 'post' => $post]);
     }
 
     //TODO: update, not possible yet

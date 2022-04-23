@@ -1,8 +1,9 @@
 <template>
-  <section class="post-container">
+  <section v-if="data === true" class="post-container">
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img">
+          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
           <div @click="goBack()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
@@ -15,12 +16,13 @@
       :comment="false" view="unique"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
-          <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
-          <b-input class="post-comment-input" size="is-medium" placeholder="Comenta tu respuesta..." rounded></b-input>
-          <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Comentar</b-button>
+          <img :src="userImg" class="comment-img" alt="" style="margin-right: 10px">
+          <b-input class="post-comment-input" placeholder="Comenta..." v-model="comment.text" rounded></b-input>
+          <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>
-        <div class="comentarios" v-if="data">
+        <div class="comentarios" v-if="commentsReady === true">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
+            <comentario :comment="comment"></comentario>
             <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
         </div>
@@ -30,13 +32,22 @@
 </template>
 
 <script>
+import Comentario from './Comentario.vue';
   export default {
-    props:{post: Object},
+  components: { Comentario },
+    props:{id: null},
 
     data() {
       return {
         comments: [{id: null}],
-        data: false
+        commentsReady: false,
+        data: false,
+        post: {},
+        user: {},
+        auth: false,
+        comment: {
+          text: ''
+        }
       }
     },
 
@@ -50,40 +61,63 @@
       },
     },
 
-    computed: {},
+    computed: {
+      userImg() {
+        return "/storage/images/users/" + (this.auth === true ? this.user.img_url : "default-profile-img.jpeg");
+      }
+    },
 
     methods: {
       goBack(){
         window.location.href = "/foro";
       },
       sendComment(){
-        axios.post('/api/posts').catch(error => {
-          console.info(error);
-        })
+        axios.post(`/api/posts/` + this.id, this.comment).then(response => {
+          console.log(response.data);
+          this.comment.text = "";
+          this.getComments();
+        }).catch(error => {
+          console.info(error.response.data);
+          if (error.response.status == 403) {
+            window.location.href = "/login?redirectTo=" + window.location.href;
+          } else if (error.response.status == 422) {
+            alert("El comentario no puede estar vacio!");
+          }
+        });
       },
       getPostById(){
-        axios.get('/api/posts/' + this.post.id).then(response => {
+        axios.get('/api/posts/' + this.id).then(response => {
             this.post = response.data.post;
-          }).catch(error => {
-            console.info(error);
-          })
-      },
-      getComments() {
-        axios.get('/api/posts/'+ this.post.id +'/comments').then(response => {
-            this.comments = response.data.comments;
             this.data = true;
           }).catch(error => {
             console.info(error);
-          })
+          });
+      },
+      getComments() {
+        axios.get('/api/posts/'+ this.id +'/comments').then(response => {
+            this.comments = response.data.comments;
+            this.commentsReady = true;
+          }).catch(error => {
+            console.info(error);
+          });
       },
       getPost() {
         return this.post;
+      },
+      getAuthUser() {
+        axios.get(`/api/auth`).then(response => {
+          this.user = response.data.user;
+          this.auth = response.data.auth;
+        }).catch(error => {
+          console.info(error.response.data);
+        });
       }
     },
 
     mounted() {
-      this.getPostById()
-      this.getComments()
+      this.getAuthUser();
+      this.getPostById();
+      this.getComments();
     },
 
     created() {
