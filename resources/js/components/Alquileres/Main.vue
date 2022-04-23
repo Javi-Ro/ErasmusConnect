@@ -18,6 +18,9 @@
                 <vista-previa-alquiler :apartment="apartment"></vista-previa-alquiler>
             </div>
         </div>
+        <a href="/apartments/crear" class="float" title="Crear">
+            <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
+        </a>
     </div>
 </template>
 

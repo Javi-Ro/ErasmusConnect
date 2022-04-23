@@ -86,7 +86,7 @@ Vue.component('right-bar', require('./components/Foro/rightBar.vue').default);
 // Alquileres
 Vue.component('apartments', require('./components/Alquileres/Main.vue').default);
 Vue.component('vista-previa-apartment', require('./components/Alquileres/Main.vue').default);
-
+Vue.component('apartments-crear', require('./components/Alquileres/CrearApartment.vue').default);
 //---
 
 // Landing
