@@ -95,7 +95,11 @@ Route::get('/apartments', function () {
 });
 
 Route::get('/foro/crear', function () {
-    return view('foro.crearpublicacion');
+    if (Auth::check()) {
+        return view('foro.crearpublicacion');
+    } else {
+        return view('auth.login');
+    }
 });
 
 

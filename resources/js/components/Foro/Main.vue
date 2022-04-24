@@ -35,7 +35,7 @@
         buscador: '',
         postsBuscar: [],
         try: [],
-        postsReady: false
+        postsReady: false,
         posts: [],
       }
     },
