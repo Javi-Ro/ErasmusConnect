@@ -5,6 +5,8 @@
     <filter-bar-horizontal></filter-bar-horizontal>
     <div v-if="postsReady === true" class="posts">
       <!-- <div class="searcher">
+    <div class="posts">
+      <div class="searcher">
         <b-field>
             <b-input placeholder="Buscar en el foro..."
                 type="search"
@@ -15,7 +17,8 @@
                 >
             </b-input>
         </b-field>
-      </div>-->
+      </div>
+      <rightBar @post-buscar="capturaBusqueda"/> -->
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
@@ -27,12 +30,17 @@
 </template>
 
 <script>
+  import rightBar from "./rightBar.vue";
+
   export default {
+    components: { rightBar },
+    name: "Main",
     props: {},
 
     data() {
       return {
         buscador: '',
+        users: [],
         postsBuscar: [],
         try: [],
         postsReady: false,
@@ -62,9 +70,14 @@
             console.info(error.response.data);
         });
       },
+      //capturaBusqueda(buscado) {
+      //  this.posts = buscado;
+      //},
     },
 
-    mounted() {},
+    mounted() {
+      //
+    },
     
     created() {
       this.getPosts();
