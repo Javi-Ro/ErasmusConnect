@@ -16,6 +16,9 @@
             </b-input>
         </b-field>
       </div>-->
+      <div v-if="buscar == false" class="pagina-vacia" > 
+          <label> fasddddddddddd</label>  
+       </div>
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
@@ -35,7 +38,7 @@
         buscador: '',
         postsBuscar: [],
         try: [],
-        postsReady: false
+        postsReady: false,
         posts: [],
       }
     },
@@ -99,6 +102,11 @@
   .posts {
     margin-top: 128px;
   }
+}
+
+.pagina-vacia{
+  margin-top: 128px;
+  height: calc(100vh - 128px);
 }
 
 </style>
