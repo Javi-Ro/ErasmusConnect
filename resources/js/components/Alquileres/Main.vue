@@ -1,7 +1,7 @@
 <template>
   <section class="alquileres-container" style="background-color:whitesmoke; width:100%; height:940px">
     <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
-    <filter-bar-horizontal-alquiler></filter-bar-horizontal-alquiler>
+    <filter-bar-horizontal-alquiler v-model="filters"></filter-bar-horizontal-alquiler>
   </section>
 </template>
 

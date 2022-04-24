@@ -2,7 +2,6 @@
   <section class="filter-container-horizontal">
     <div class="filter-header-horiz" @click.prevent="openPost();">
       <i class="fa-solid fa-filter"></i>
-      <div>{{ this.minPricee }}</div>
     </div>
   </section>
 </template>
@@ -11,14 +10,10 @@
 import FilterBarVue from './FilterModal.vue';
   export default {
     props: {
-      minPricee: {
-        type: Number,
-        default: 0
-      },
-      maxPrice: Number,
-      habitaciones: Number,
-      metros: Number,
-      rate: Number,
+      value: {
+        type: Object,
+        required: true
+      }
     },
 
     data() {
@@ -47,21 +42,16 @@ import FilterBarVue from './FilterModal.vue';
                     component: FilterBarVue,
                     canCancel: true,
                     props: { 
-                      minPriceModal: this.minPricee,
-                      maxPriceModal: this.maxPrice,
-                      habitacionesModal: this.habitaciones,
-                      metrosModal: this.metros,
-                      rateModal: this.rate,
+                      value: this.value
                     },
                     events: {
-                        'filters': filters_array => {
-                          this.minPricee = filters_array[0];
-                          this.maxPrice = filters_array[1];
-                          this.habitaciones = filters_array[2];
-                          this.metros = filters_array[3];
-                          this.rate = filters_array[4];
-                          //console.log(this.minPrice);
-                        }
+                      'input': filters => {
+                        this.value.minPrice = filters.minPrice;
+                        this.value.maxPrice = filters.maxPrice;
+                        this.value.habitaciones = filters.habitaciones;
+                        this.value.metros = filters.metros;
+                        this.value.rate = filters.rate;
+                      }
                     },
                     onCancel: () => {
                     }

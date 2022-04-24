@@ -8,19 +8,21 @@
       <div class="filter-option">
         <p class="filter-option-tag">Precio</p>
         <div class="filter-option-content range-filter">
-          <b-field class="range filter-option-input" v-model="minPriceModal">
+          <b-field class="range filter-option-input">
             <b-input placeholder="Min"
               type="number"
-              min="0"            
+              min="0"
+              v-bind:value="value.minPrice" v-on:input="handleInput('minPrice', $event)"            
               icon-pack="fas"    
-              icon="euro-sign" @select.prevent="inputActive()">
+              icon="euro-sign">
             </b-input>
           </b-field>
           <div class="separator">-</div>
-          <b-field class="filter-option-input range" v-model="maxPriceModal">
+          <b-field class="filter-option-input range">
             <b-input placeholder="Max"
               min="0"
-              type="number"            
+              type="number"
+              v-bind:value="value.maxPrice" v-on:input="handleInput('maxPrice', $event)"            
               icon-pack="fas"    
               icon="euro-sign">
             </b-input>
@@ -31,8 +33,11 @@
       <div class="filter-option">
         <p class="filter-option-tag">Habitaciones</p>
         <div class="filter-option-content">
-          <b-field class="filter-option-input" v-model="habitacionesModal">
-            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
+          <b-field class="filter-option-input">
+            <b-numberinput min="0" type="is-light" rounded controls-rounded
+                            v-bind:value="value.habitaciones" v-on:input="handleInput('habitaciones', $event)">
+
+            </b-numberinput>
           </b-field>
         </div>
       </div>
@@ -40,8 +45,11 @@
       <div class="filter-option">
         <p class="filter-option-tag">Metros cuadrados</p>
         <div class="filter-option-content">
-          <b-field class="filter-option-input" v-model="metrosModal">
-            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
+          <b-field class="filter-option-input">
+            <b-numberinput min="0" type="is-light" rounded controls-rounded
+                            v-bind:value="value.metros" v-on:input="handleInput('metros', $event)">
+
+            </b-numberinput>
           </b-field>
         </div>
       </div>
@@ -49,7 +57,10 @@
       <div class="filter-option">
         <p class="filter-option-tag">Valoraciones</p>
         <div class="filter-option-content">
-          <b-rate v-model="rateModal" spaced show-score></b-rate>
+          <b-rate spaced show-score
+                  v-bind:value="value.rate" v-on:input="handleInput('rate', $event)">
+
+          </b-rate>
         </div>
       </div>
       <br>
@@ -61,11 +72,10 @@
 <script>
   export default {
     props: {
-      minPriceModal: Number,
-      maxPriceModal: Number,
-      habitacionesModal: Number,
-      metrosModal: Number,
-      rateModal: Number,
+      value: {
+        type: Object,
+        required: true
+      }
     },
 
     data() {
@@ -97,6 +107,9 @@
         let filters_array = [this.minPriceModal, this.maxPriceModal, this.habitacionesModal, this.metrosModal, this.rateModal];
         this.$emit('filters', filters_array);
         this.$emit('close');
+      },
+      handleInput(key, value) {
+        this.$emit('input', {...this.value, [key]: value})
       }
     },
 
