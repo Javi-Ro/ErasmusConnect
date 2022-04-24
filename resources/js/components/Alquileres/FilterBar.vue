@@ -11,7 +11,7 @@
           <b-field class="range filter-option-input">
             <b-input placeholder="Min"
               type="text"
-              v-bind:value="value" v-on:input="$emit('input', $event)"
+              v-bind:value="value.minPrice" v-on:input="handleInput('minPrice', $event)"
               icon-pack="fas"    
               icon="euro-sign">
             </b-input>
@@ -55,7 +55,7 @@
       </div>
       <br>
       <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
-      <div>{{value}}</div>
+      <div>{{value.minPrice}}</div>
     </div>
   </section>
 </template>
@@ -63,7 +63,10 @@
 <script>
   export default {
     props: {
-      value: 0
+      value: {
+        type: Object,
+        required: true
+      }
     },
     data() {
       return {
@@ -94,8 +97,10 @@
         for(var i = 0; i < element.length; i++){
           element[i].className += " inputActived";
         }
-        
       },
+      handleInput(key, value) {
+        this.$emit('input', {...this.value, [key]: value})
+      }
     },
 
     mounted() {}
