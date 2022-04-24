@@ -2,8 +2,6 @@
   <section class="alquileres-container" style="background-color:whitesmoke; width:100%; height:940px">
     <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
     <filter-bar-horizontal-alquiler></filter-bar-horizontal-alquiler>
-    <input style="position:fixed; top:150px" v-model="filters.minPrice">
-    <div style="position:fixed; top:200px">{{filters.minPrice}}</div> 
   </section>
 </template>
 
@@ -15,7 +13,10 @@
       return {
         filters: {
           minPrice: 0,
-          maxPrice: 0
+          maxPrice: 0,
+          habitaciones: 0,
+          metros: 0,
+          rate: 0
         }
       }
     },

@@ -10,17 +10,18 @@
         <div class="filter-option-content range-filter">
           <b-field class="range filter-option-input">
             <b-input placeholder="Min"
-              type="text"
+              type="number"
+              min="0"
               v-bind:value="value.minPrice" v-on:input="handleInput('minPrice', $event)"
               icon-pack="fas"    
               icon="euro-sign">
             </b-input>
-            <!--<input type="text" v-bind:value="value" v-on:input="$emit('input', $event.target.value)">-->
           </b-field>
           <div class="separator">-</div>
           <b-field class="filter-option-input range">
             <b-input placeholder="Max"
               min="0"
+              v-bind:value="value.maxPrice" v-on:input="handleInput('maxPrice', $event)"
               type="number"            
               icon-pack="fas"    
               icon="euro-sign">
@@ -33,7 +34,9 @@
         <p class="filter-option-tag">Habitaciones</p>
         <div class="filter-option-content">
           <b-field class="filter-option-input">
-            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
+            <b-numberinput min="0" type="is-light" rounded controls-rounded 
+                            v-bind:value="value.habitaciones" v-on:input="handleInput('habitaciones', $event)"  >
+            </b-numberinput>
           </b-field>
         </div>
       </div>
@@ -42,7 +45,10 @@
         <p class="filter-option-tag">Metros cuadrados</p>
         <div class="filter-option-content">
           <b-field class="filter-option-input">
-            <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
+            <b-numberinput min="0" type="is-light" rounded controls-rounded
+                            v-bind:value="value.metros" v-on:input="handleInput('metros', $event)">
+
+            </b-numberinput>
           </b-field>
         </div>
       </div>
@@ -50,12 +56,14 @@
       <div class="filter-option">
         <p class="filter-option-tag">Valoraciones</p>
         <div class="filter-option-content">
-          <b-rate spaced show-score></b-rate>
+          <b-rate spaced show-score
+                  v-bind:value="value.rate" v-on:input="handleInput('rate', $event)">
+
+          </b-rate>
         </div>
       </div>
       <br>
       <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
-      <div>{{value.minPrice}}</div>
     </div>
   </section>
 </template>
