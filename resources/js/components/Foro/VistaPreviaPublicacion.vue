@@ -133,6 +133,7 @@
         saved: false,
         // Variable que controla si se ha dado me gusta una publicación
         liked: false,
+        canLike: null,
         postTags: [
           {name: "comida"},
           {name: "fiesta"},
@@ -171,10 +172,11 @@
         });
       },
       reaction(option, isComment) {
+        if (this.canLike == false) {
+          window.location.href = "/login";
+        }
         if (!isComment) {
           if(option == 0) {
-            console.log("Guardando post...")
-            // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
             if(!this.saved) {
               this.saved = true
             }
@@ -183,35 +185,65 @@
             }
           }
           else if(option == 1) {
-            console.log("Dando me gusta a post...")
-            // var element = document.getElementById("select-option-" + option);
-            // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
             if(!this.liked) {
-              // element.classList.add("liked");
               this.liked = true
+              this.likePost();
             }
             else {
-              // element.classList.remove("liked");
               this.liked = false
+              this.notLikePost();
             }
           }
         }
         else {
           if(option == 1) {
-            console.log("Dando me gusta a comentario...")
             // var element = document.getElementById("select-comment-option-" + option);
-            // TODO: Falta hacer el cambio en la base de datos para que el cambio sea persistente
             if(!this.liked) {
               // element.classList.add("liked");
               this.liked = true
+              this.likePost();
             }
             else {
               // element.classList.remove("liked");
               this.liked = false
+              this.notLikePost();
             }
           }
         }
 
+      },
+      likePost() {
+        axios.post(`/api/posts/` + this.post.id + '/like').then(response => {
+          this.optionsData[0].data = response.data.post.likes;
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      notLikePost() {
+        axios.delete(`/api/posts/` + this.post.id + '/like').then(response => {
+          this.optionsData[0].data = response.data.post.likes;
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      userLikes() {
+        axios.get(`/api/posts/` + this.post.id + `/like`).then(response => {
+          if (response.data.auth == true) {
+            this.canLike = true;
+          } else {
+            this.canLike = false;
+          }
+          
+          if (response.data.success == true) {
+            this.liked = true;
+          } else {
+            this.liked = false;
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
       }
     },
     
@@ -220,6 +252,7 @@
 
     created() {
       this.getUser();
+      this.userLikes();
     }
   }
 </script>

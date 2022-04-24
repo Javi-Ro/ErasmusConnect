@@ -98,7 +98,6 @@ Route::get('/foro/crear', function () {
     return view('foro.crearpublicacion');
 });
 
-
 // API ROUTES
 
 Route::group(['prefix' => 'api'], function () {
@@ -155,6 +154,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
+    Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
+    Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
+    Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');
