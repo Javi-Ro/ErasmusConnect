@@ -22,6 +22,11 @@ import { faCaretDown, faUser, faBars, faX, faArrowRightFromBracket} from '@forta
 // Iconos para publicaciones
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import {faComment} from '@fortawesome/free-regular-svg-icons';
+import {faCircleXmark} from '@fortawesome/free-regular-svg-icons';
+import {faThumbsDown} from '@fortawesome/free-regular-svg-icons';
+import {faFlag} from '@fortawesome/free-regular-svg-icons';
+import {faArrowAltCircleLeft} from '@fortawesome/free-regular-svg-icons';
+
 // Importar el mismo pero en distintos estilos (gratuitos solo está solid y regular)
 import {faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as faHeartRegular} from '@fortawesome/free-regular-svg-icons';
@@ -40,7 +45,7 @@ library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
 library.add(faArrowLeft, faUpload, faPlus)
 
 // Añadimos iconos para publicaciones
-library.add(faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment)
+library.add(faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment, faCircleXmark,faThumbsDown,faFlag,faArrowAltCircleLeft)
 
 
 /* import font awesome icon component */
