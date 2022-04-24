@@ -37,7 +37,7 @@
           <div class="elemento"> 
               <b-field size="is-medium" label="Contraseña">
                 <b-input type="password"
-                  size="is-medium">
+                  size="is-medium" v-model="password">
                 </b-input>
             </b-field>
           </div>
@@ -45,7 +45,7 @@
           <div class="elemento"> 
               <b-field size="is-medium" label="Confirma contraseña">
                 <b-input type="password"
-                  size="is-medium">
+                  size="is-medium" v-model="confirmation_password">
                 </b-input>
               </b-field>
           </div>
@@ -54,7 +54,7 @@
           <b-field size="is-medium" label="¿A qué país viajas?" style="margin-bottom: 5px;">
           </b-field>
           <div class="elemento">
-              <b-select placeholder="Elige un país" required  size="is-medium" v-model='country' @change='getCities()'>
+              <b-select placeholder="Elige un país" required  size="is-medium" v-model='country' @change.native='getCities()'>
                   <option v-for='country in countries' :key='country.id' :value='country.id'>{{ country.name }}</option>
               </b-select>
           </div>
@@ -145,6 +145,13 @@
     props: {},
     data() {
       return {
+            form: {
+                name: '',
+                nickname: '',
+                email: '',
+                password: '',
+                city: ''
+            },
             name: '',
             nickname: '',
             email: '',
@@ -188,6 +195,7 @@
                 this.request.country_id = this.country
                 axios.post(`/api/get_cities_by_country`, this.request).then(response => {
                     this.cities = response.data.cities
+                    this.city = this.cities[0].id;
                 }).catch(error => {
                     console.info(error)
                 });
@@ -202,8 +210,8 @@
                 this.setFormData();
 
                 axios.post(`/api/users`, this.form).then(response => {
-                    this.user = response.data.user
-                    alert("User created. Success -> " + response.data.success)
+                    this.user = response.data.user;
+                    window.location.href = "/login";
                 }).catch(error => {
                     console.info(error)
                 });

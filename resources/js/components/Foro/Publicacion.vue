@@ -3,7 +3,6 @@
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img">
-          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
           <div @click="goBack()">
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
@@ -22,7 +21,6 @@
         </div>
         <div class="comentarios" v-if="commentsReady === true">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
-            <comentario :comment="comment"></comentario>
             <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
         </div>

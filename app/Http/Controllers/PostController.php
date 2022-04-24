@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
@@ -17,7 +18,7 @@ class PostController extends Controller
 
     public function getPosts()
     {
-        $posts = Post::all();
+        $posts = Post::where("post_id", null)->get();
         return response()->json(['posts' => $posts]);
     }
 

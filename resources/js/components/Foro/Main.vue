@@ -3,7 +3,7 @@
     <filter-bar></filter-bar>
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
-    <div class="posts">
+    <div v-if="postsReady === true" class="posts">
       <!-- <div class="searcher">
         <b-field>
             <b-input placeholder="Buscar en el foro..."
@@ -32,26 +32,24 @@
 
     data() {
       return {
-        posts: [],
         buscador: '',
         postsBuscar: [],
-        try: []
+        try: [],
+        postsReady: false
+        posts: [],
       }
     },
 
     watch: {
-      data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
+      allOrFilteredCities() {
+      }
     },
 
     computed: {
       buscar() {
-        return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+        let posts = this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+
+        return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
       },
     },
 
@@ -59,16 +57,17 @@
       getPosts() {
         axios.get(`/api/posts`).then(response => {
             this.posts = response.data.posts;
+            this.postsReady = true;
         }).catch(error => {
-            console.info(error);
-        })
+            console.info(error.response.data);
+        });
       },
     },
 
     mounted() {},
     
     created() {
-      this.getPosts();  
+      this.getPosts();
     }
   }
 </script>

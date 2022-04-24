@@ -110,5 +110,8 @@ Vue.component('apartment', require('./components/Apartments.vue').default);
  */
 
 const app = new Vue({
+    data: {
+        city: -1
+    },
     el: '#app',
 });
