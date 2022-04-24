@@ -1,5 +1,5 @@
 <template>
-  <section class="filter-container">
+  <section class="filter-container-modal">
     <div class="filter-header">
       <p>Filtra a tu gusto</p>
     </div>
@@ -8,17 +8,16 @@
       <div class="filter-option">
         <p class="filter-option-tag">Precio</p>
         <div class="filter-option-content range-filter">
-          <b-field class="range filter-option-input">
+          <b-field class="range filter-option-input" v-model="minPriceModal">
             <b-input placeholder="Min"
-              type="text"
-              v-bind:value="value" v-on:input="$emit('input', $event)"
+              type="number"
+              min="0"            
               icon-pack="fas"    
-              icon="euro-sign">
+              icon="euro-sign" @select.prevent="inputActive()">
             </b-input>
-            <!--<input type="text" v-bind:value="value" v-on:input="$emit('input', $event.target.value)">-->
           </b-field>
           <div class="separator">-</div>
-          <b-field class="filter-option-input range">
+          <b-field class="filter-option-input range" v-model="maxPriceModal">
             <b-input placeholder="Max"
               min="0"
               type="number"            
@@ -32,7 +31,7 @@
       <div class="filter-option">
         <p class="filter-option-tag">Habitaciones</p>
         <div class="filter-option-content">
-          <b-field class="filter-option-input">
+          <b-field class="filter-option-input" v-model="habitacionesModal">
             <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
           </b-field>
         </div>
@@ -41,7 +40,7 @@
       <div class="filter-option">
         <p class="filter-option-tag">Metros cuadrados</p>
         <div class="filter-option-content">
-          <b-field class="filter-option-input">
+          <b-field class="filter-option-input" v-model="metrosModal">
             <b-numberinput min="0" type="is-light" rounded controls-rounded></b-numberinput>
           </b-field>
         </div>
@@ -50,12 +49,11 @@
       <div class="filter-option">
         <p class="filter-option-tag">Valoraciones</p>
         <div class="filter-option-content">
-          <b-rate spaced show-score></b-rate>
+          <b-rate v-model="rateModal" spaced show-score></b-rate>
         </div>
       </div>
       <br>
-      <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
-      <div>{{value}}</div>
+      <b-button class="buttonFilter" type="is-link" @click="closeModal()" outlined>Filtrar</b-button>
     </div>
   </section>
 </template>
@@ -63,16 +61,15 @@
 <script>
   export default {
     props: {
-      value: 0
+      minPriceModal: Number,
+      maxPriceModal: Number,
+      habitacionesModal: Number,
+      metrosModal: Number,
+      rateModal: Number,
     },
+
     data() {
       return {
-        //value: 0
-        /*minPrice: 0,
-        maxPrice: 0,
-        habitaciones: 0,
-        metros: 0,
-        rate: 0,*/
       }
     },
 
@@ -96,6 +93,11 @@
         }
         
       },
+      closeModal() {
+        let filters_array = [this.minPriceModal, this.maxPriceModal, this.habitacionesModal, this.metrosModal, this.rateModal];
+        this.$emit('filters', filters_array);
+        this.$emit('close');
+      }
     },
 
     mounted() {}
@@ -103,20 +105,11 @@
 </script>
 
 <style lang="scss">
-  .filter-container{
-    left: 0px;
-    position:fixed;
-    top: 120px;
-    height: 100%;
+  .filter-container-modal{
     color: black;
     padding: 20px 20px;
-    width: 370px;
     border: 1px solid #dbdbdb;
-    box-shadow: rgb(0 0 0 / 24%) 5px 3px 8px;
     background-color: whitesmoke;
-    @media(max-width: 1500px) {
-      display: none;
-    }
   }
   hr{
     background-color: gray;
@@ -143,7 +136,7 @@
   .range-filter{
     display: flex;
     flex-flow: row wrap;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     .separator{
