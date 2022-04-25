@@ -63,7 +63,7 @@
         </div>
       </div>
       <br>
-      <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
+      <b-button class="buttonFilter" type="is-link" @click="handleFiltering()" outlined>Filtrar</b-button>
     </div>
   </section>
 </template>
@@ -108,6 +108,9 @@
       },
       handleInput(key, value) {
         this.$emit('input', {...this.value, [key]: value})
+      },
+      handleFiltering() {
+        this.$emit('filtering');
       }
     },
 

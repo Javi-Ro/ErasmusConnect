@@ -1,7 +1,13 @@
 <template>
   <section class="alquileres-container" style="background-color:whitesmoke; width:100%; height:940px">
-    <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
+    <filter-bar-alquiler v-model="filters" @filtering="handleFiltering()"></filter-bar-alquiler>
     <filter-bar-horizontal-alquiler v-model="filters"></filter-bar-horizontal-alquiler>
+    <div style="margin-top: 150px; margin-left: 500px">
+      <div v-for="(apartment, index) in apartments" :key="index"> 
+        <p>{{apartment.title}},{{apartment.price}}</p>
+        <br>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -12,12 +18,13 @@
     data() {
       return {
         filters: {
-          minPrice: 0,
-          maxPrice: 0,
+          minPrice: "",
+          maxPrice: "",
           habitaciones: 0,
           metros: 0,
           rate: 0
-        }
+        },
+        apartments: []
       }
     },
     watch: {
@@ -32,8 +39,26 @@
 
     computed: {},
 
-    methods: {},
+    methods: {
+      handleFiltering() {
+        axios.get(`/filteringAlquileres`).then(response => {
+            this.apartments = response.data.apartments;
+        }).catch(error => {
+            console.info(error);
+        })
+      },
+      getApartments() {
+        axios.get(`/api/apartments`).then(response => {
+            this.apartments = response.data.apartments;
+        }).catch(error => {
+            console.info(error);
+        })
+      }
+    },
 
-    mounted() {}
+    mounted() {},
+    created() {
+      this.getApartments();
+    }
   }
 </script>

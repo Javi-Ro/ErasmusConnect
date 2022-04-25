@@ -101,6 +101,7 @@ Route::get('/alquileres', function () {
     return view('alquileres.main');
 });
 
+Route::get('/filteringAlquileres', 'App\Http\Controllers\ApartmentController@applyFilters');
 
 // API ROUTES
 

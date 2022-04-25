@@ -93,4 +93,11 @@ class ApartmentController extends Controller
 
         return response()->json(['success' => true, 'apartments' => $apartments]);
     }
+
+    public function applyFilters(Object $filters) {
+        return Apartment::when($filters->minPrice != "", function ($query, $minPrice) {
+                                              $query->where('price', '>', $minPrice);
+                                        })
+                                        ->get();
+    }
 }
