@@ -46,6 +46,9 @@ Route::get('/admin/tags', function () {
 Route::get('/admin/cities', function () {
     return view('/admin/ciudadesAdmin');
 });
+Route::get('/admin/apartments', function () {
+    return view('/admin/apartmentsAdmin');
+});
 
 
 Route::get('/admin/posts', function () {
@@ -73,7 +76,7 @@ Route::get('/{nickname}/profile', function ($nickname) {
 Route::get('/publicacion/{publicacion}', function($id){
     $post = App\Models\Post::whereId($id)->first();
 
-    return view('foro.publicacion')->with('post', $post);
+    return view('foro.publicacion')->with('post_id', $post->id);
 });
 
 Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
@@ -91,10 +94,17 @@ Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
 
-Route::get('/foro/crear', function () {
-    return view('foro.crearpublicacion');
+Route::get('/apartments/crear', function () {
+    return view('apartments.crearapartment');
 });
 
+Route::get('/foro/crear', function () {
+    if (Auth::check()) {
+        return view('foro.crearpublicacion');
+    } else {
+        return view('auth.login');
+    }
+});
 
 // API ROUTES
 
@@ -111,7 +121,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
-    Route::patch('/tags/{tag}', 'App\Http\Controllers\TagController@update');
+    Route::patch('/tags/{tag1}/{tag2}', 'App\Http\Controllers\TagController@update');
     Route::post('/tags', 'App\Http\Controllers\TagController@create');
     Route::delete('/tags/{tag}', 'App\Http\Controllers\TagController@delete');
 
@@ -129,7 +139,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/countries', 'App\Http\Controllers\CountryController@create');
     Route::put('/countries/{country}', 'App\Http\Controllers\CityController@update');
     Route::delete('/countries/{country}', 'App\Http\Controllers\CountryController@delete');
-    Route::patch('/countries/{country}', 'App\Http\Controllers\CountryController@update');
+    Route::patch('/countries/{country1}/{country2}', 'App\Http\Controllers\CountryController@update');
+    Route::post('/get_country_by_id', 'App\Http\Controllers\CountryController@getCountryById');
 
     //CITIES
     Route::post('/get_cities_by_country', 'App\Http\Controllers\CityController@getCitiesByCountry'); //EL POST TIENE QUE ESTAR!
@@ -138,7 +149,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/cities', 'App\Http\Controllers\CityController@getCities');
     Route::post('/cities', 'App\Http\Controllers\CityController@create');
     Route::delete('/cities/{city}', 'App\Http\Controllers\CityController@delete');
-    Route::patch('/cities/{city}', 'App\Http\Controllers\CityController@update');
+    Route::patch('/cities/{city1}/{city2}', 'App\Http\Controllers\CityController@update');
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
@@ -147,10 +158,14 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
     Route::post('/posts/order', 'App\Http\Controllers\PostController@order');
+    Route::post('/posts/{post}', 'App\Http\Controllers\PostController@createComment');
     Route::patch('/posts/{post}', 'App\Http\Controllers\PostController@update');
     Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
+    Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
+    Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
+    Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');

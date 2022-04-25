@@ -7,15 +7,60 @@
                         type="search"
                         size="is-medium"
                         icon="magnify">
-                        <!-- icon-clickable -->
-                        @icon-click="searchIconClick"
+                        v-model="buscador"
+                        <!-- icon-clickable 
+                        @icon-click="searchIconClick"-->
                     </b-input>
                 </b-field>
             </div>
         </div>
     </div>
 </template>
-<script></script>
+
+<script>
+    export default {
+        name: "rightBar",
+        props: {},
+
+        data() {
+            return {
+                posts: [],
+                buscador: '',
+            }
+        },
+
+        computed: {
+            buscar() {
+                return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+            },
+        },
+
+        methods: {
+            getPosts() {
+                axios.get(`/api/posts`).then(response => {
+                this.posts = response.data.posts;
+            }).catch(error => {
+                    console.info(error);
+                })
+            },
+            sendMessageToParent() {
+                this.$emit("post-buscar", this.posts);
+            }
+        },
+
+        mounted() {
+            this.sendMessageToParent(); 
+        },
+    
+        created() {
+            setTimeout(() => {
+                this.getPosts();
+            }, 1000)
+            //console.log(this.posts);
+        }
+    }
+</script>
+
 <style>
 input[type="search" i] {
     border-radius: 20px;

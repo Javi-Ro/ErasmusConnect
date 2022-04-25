@@ -1,22 +1,22 @@
 <template>
-  <section class="comentario-container">
+  <section v-if="dataReady === true" class="comentario-container">
     <div class="information">
       <div class="information-personal">
         <div class="information-personal-img">
-          <img :src="user.img_url" alt="Profile image">
+          <img :src="imgUrl" alt="Profile image">
         </div>
         <div class="information-personal-data">
           <div class="information-personal-data-main">
             <p class="information-personal-data-main-user">{{ user.nickname }}</p>
           </div>
           <div class="information-personal-data-date">
-            <p>{{ post.created_at }}</p>
+            <p>{{ comment.created_at }}</p>
           </div>
         </div>
       </div>
       <div class="information-description">
         <p>
-          {{ post.text }}
+          {{ comment.text }}
         </p>
       </div>
       <div class="information-options">
@@ -35,15 +35,17 @@
 
 <script>
   export default {
-    props: {},
+    props: {
+      comment: {}
+    },
 
     data() {
       return {
+        dataReady: false,
         optionsData: [
-          {image: "/images/like.svg", title: "Me gusta", data: 45}
+          {image: "/images/like.svg", title: "Me gusta", data: this.comment.likes}
         ],
-        post: { id: 1, title: "Aquí en Eslovaquia", text: "Hola buienas ocmo estas y tu bien y yo de locos nene.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'},
-        user: { nickname: "Nick1", img_url: "/images/users/default.jpg"}
+        user: {}
       }
     },
 
@@ -57,10 +59,23 @@
       },
     },
 
-    computed: {},
+    computed: {
+      imgUrl() {
+        return "/storage/images/users/" + this.user.img_url;
+      }
+    },
 
     methods: {},
 
-    mounted() {}
+    mounted() {},
+    
+    created() {
+      axios.get(`/api/users/` + this.comment.user_id).then(response => {
+        this.user = response.data.user;
+        this.dataReady = true;
+      }).catch(error => {
+        console.info(error.response.data);
+      });
+    }
   }
 </script>

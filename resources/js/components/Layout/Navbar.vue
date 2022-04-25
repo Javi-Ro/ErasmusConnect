@@ -30,6 +30,10 @@
                         <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
                         <!-- <b-input id="buscador" v-model="searchTerm" placeholder="Buscar..." expanded /> -->
                     </b-dropdown-item>
+                    <b-dropdown-item
+                    @click="resetSelected()">
+                        Todas
+                    </b-dropdown-item>
                     <!-- Se le pasa la ciudad debido a un bug relacionado con usar index (más explicado abajo) -->
                     <b-dropdown-item 
                     v-for="city in filteredData" :key="city[1]" 
@@ -122,12 +126,12 @@
             availableCitiesNames: [],
             // Ahora se almacena directamente el nombre de la ciudad, el index daba problemas con la lista filtrada
             // Se cambiaba el index porque se cambiaba el tamaño de la lista
-            selected: 1,
+            selected: -1,
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
                 { name: "Foro", link: "/foro"},
-                { name: "Alquileres", link: "#"},
+                { name: "Alquileres", link: "/apartments"},
                 { name: "Eventos", link: "#"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
                 { name: "Versión: 1.0.0", link: "#"},
@@ -155,6 +159,11 @@
         }
     },
     methods: {
+        resetSelected() {
+            this.selected = -1;
+            this.$root.city = this.selected;
+            this.selectedCity = "Ciudad";
+        },
         getCities() {
             axios.get(`/api/cities`)
                 .then(response => {
@@ -164,7 +173,8 @@
                 });
         },
         showProfile() {
-            window.location.href = "/" + this.user.nickname + "/profile";
+            console.log(this.$root.city);
+            //window.location.href = "/" + this.user.nickname + "/profile";
         },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {
@@ -172,6 +182,7 @@
                 })
                     .then(response => {
                         this.selected = response.data.city.id; // ID de la clase seleccionada
+                        this.$root.city = this.selected;
                         this.selectedCity = response.data.city.name;
                     }).catch(error => {
                         console.info(error)
@@ -206,7 +217,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/' + this.user.img_url;
+                    this.profileImage = '/storage/images/users/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });
@@ -214,6 +225,7 @@
         logout() {
             axios.post(`/logout`).then(response => {
                 this.getUser();
+                window.location.href = "/";
             }).catch(error => {
                 console.info(error);
             });

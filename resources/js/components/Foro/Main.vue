@@ -3,8 +3,15 @@
     <filter-bar></filter-bar>
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
+
     <div class="posts">
        <div class="searcher">
+
+    <div v-if="postsReady === true" class="posts">
+      <!-- <div class="searcher">
+    <div class="posts">
+      <div class="searcher">
+
         <b-field>
             <b-input placeholder="Buscar en el foro..."
                 type="search"
@@ -16,6 +23,9 @@
             </b-input>
         </b-field>
       </div>
+
+      <rightBar @post-buscar="capturaBusqueda"/> -->
+
       <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
       </div>
@@ -27,31 +37,34 @@
 </template>
 
 <script>
+  import rightBar from "./rightBar.vue";
+
   export default {
+    components: { rightBar },
+    name: "Main",
     props: {},
 
     data() {
       return {
-        posts: [],
         buscador: '',
+        users: [],
         postsBuscar: [],
-        try: []
+        try: [],
+        postsReady: false,
+        posts: [],
       }
     },
 
     watch: {
-      data: {
-        immediate: true,
-        deep: true,
-        handler(val, oldVal) {
-          //do something
-        }
-      },
+      allOrFilteredCities() {
+      }
     },
 
     computed: {
       buscar() {
-        return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+        let posts = this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+
+        return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
       },
     },
 
@@ -59,16 +72,22 @@
       getPosts() {
         axios.get(`/api/posts`).then(response => {
             this.posts = response.data.posts;
+            this.postsReady = true;
         }).catch(error => {
-            console.info(error);
-        })
+            console.info(error.response.data);
+        });
       },
+      //capturaBusqueda(buscado) {
+      //  this.posts = buscado;
+      //},
     },
 
-    mounted() {},
+    mounted() {
+      //
+    },
     
     created() {
-      this.getPosts();  
+      this.getPosts();
     }
   }
 </script>
