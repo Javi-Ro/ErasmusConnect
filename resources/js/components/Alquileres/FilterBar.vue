@@ -110,7 +110,16 @@
         this.$emit('input', {...this.value, [key]: value})
       },
       handleFiltering() {
-        this.$emit('filtering');
+        axios.get(`/filteringAlquileres`, {
+          params: {
+            filters: this.value
+          } 
+        })
+        .then(response => {
+            this.$parent.apartments = response.data.apartments;
+        }).catch(error => {
+            console.info(error);
+        })
       }
     },
 

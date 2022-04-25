@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\DB;
 
 class ApartmentController extends Controller
 {
@@ -94,10 +95,14 @@ class ApartmentController extends Controller
         return response()->json(['success' => true, 'apartments' => $apartments]);
     }
 
-    public function applyFilters(Object $filters) {
-        return Apartment::when($filters->minPrice != "", function ($query, $minPrice) {
+    public function applyFilters(Request $data) {
+        /*$apartments = DB::table('apartments')->when($data->filters->minPrice != "", function ($query, $minPrice) {
                                               $query->where('price', '>', $minPrice);
                                         })
-                                        ->get();
+                                        ->get();*/
+        $pepe = $data->filters->minPrice;
+        $apartments = DB::table('apartments')->where('price', '>', 300)->get();       
+        
+        return response()->json(['success' => true, 'apartments' => $apartments]);
     }
 }

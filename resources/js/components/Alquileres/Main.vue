@@ -1,6 +1,6 @@
 <template>
   <section class="alquileres-container" style="background-color:whitesmoke; width:100%; height:940px">
-    <filter-bar-alquiler v-model="filters" @filtering="handleFiltering()"></filter-bar-alquiler>
+    <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
     <filter-bar-horizontal-alquiler v-model="filters"></filter-bar-horizontal-alquiler>
     <div style="margin-top: 150px; margin-left: 500px">
       <div v-for="(apartment, index) in apartments" :key="index"> 
@@ -40,13 +40,13 @@
     computed: {},
 
     methods: {
-      handleFiltering() {
+      /*handleFiltering() {
         axios.get(`/filteringAlquileres`).then(response => {
             this.apartments = response.data.apartments;
         }).catch(error => {
             console.info(error);
         })
-      },
+      },*/
       getApartments() {
         axios.get(`/api/apartments`).then(response => {
             this.apartments = response.data.apartments;
