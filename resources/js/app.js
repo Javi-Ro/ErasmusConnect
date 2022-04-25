@@ -84,6 +84,12 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('right-bar', require('./components/Foro/rightBar.vue').default);
 //---
 
+// Alquileres
+Vue.component('apartments', require('./components/Alquileres/Main.vue').default);
+Vue.component('vista-previa-apartment', require('./components/Alquileres/Main.vue').default);
+Vue.component('apartments-crear', require('./components/Alquileres/CrearApartment.vue').default);
+//---
+
 // Landing
 Vue.component('landing', require('./components/Landing/landingPage.vue').default);
 Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default);
@@ -100,7 +106,6 @@ Vue.component('perfil', require('./components/Perfil.vue').default);
 //---
 
 Vue.component('profile', require('./components/Profile.vue').default)
-Vue.component('apartment', require('./components/Apartments.vue').default);
 
 
 /**

@@ -1,5 +1,5 @@
 @extends('layouts.web')
 
 @section('content')
-<apartments></apartments>
+    <apartments-crear></apartments-crear>
 @endsection

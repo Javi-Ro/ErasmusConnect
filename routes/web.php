@@ -94,6 +94,10 @@ Route::get('/apartments', function () {
     return view('apartments.apartment');
 });
 
+Route::get('/apartments/crear', function () {
+    return view('apartments.crearapartment');
+});
+
 Route::get('/foro/crear', function () {
     if (Auth::check()) {
         return view('foro.crearpublicacion');
