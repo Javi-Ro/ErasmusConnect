@@ -112,7 +112,11 @@
       handleFiltering() {
         axios.get(`/filteringAlquileres`, {
           params: {
-            filters: this.value
+            minPrice: this.value.minPrice,
+            maxPrice: this.value.maxPrice,
+            habitaciones: this.value.habitaciones,
+            metros: this.value.metros,
+            rate: this.value.rate
           } 
         })
         .then(response => {
