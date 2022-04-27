@@ -51,12 +51,12 @@ class User extends Authenticatable
         return $this->belongsTo(City::class);
     }
 
-    public function friends()
+    public function followers()
     {
         return $this->belongsToMany(User::class);
     }
-    
-    public function curasan()
+
+    public function following()
     {
         return $this->belongsToMany(User::class);
     }

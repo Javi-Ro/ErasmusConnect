@@ -41,27 +41,22 @@
 
                 <div class="crud">
 
-                    <!--
                     <b-field class="field" label="País">
                         <b-dropdown  scrollable max-height="150" append-to-body class="dropdown"> 
                             <template #trigger="{ active }">
                                 <b-button style="width: 350px;"
-                                    label="Selecciona"
+                                    :label="selectedCountry"
                                     :icon-right="active ? 'menu-up' : 'menu-down'" />
                             </template>
 
-                            <b-dropdown-item v-model="city.country_id"
-                            v-for="country in filteredData" :key="country[1]"
+                            <b-dropdown-item
+                            v-for="country in filteredData" :value="country[1]" :key="country[1]"
                             @click="setSelected(country[1])" 
                             aria-role="listitem"> 
                                 {{country[0]}} 
                             </b-dropdown-item>
                         </b-dropdown>
 
-                    </b-field> -->
-
-                    <b-field class="field" label="pais ID">
-                        <b-input placeholder="1, 2, 3 ..." v-model="city.country_id"></b-input>
                     </b-field>
 
                     <b-field class="field" label="Nombre">
@@ -93,8 +88,8 @@
         data() {
             return {
 
-                selected: 1,
-                selectedCountry: 'Pais',
+                selected: -1,
+                selectedCountry: 'Select Country',
 
                 isPaginated: true,
                 isPaginationSimple: false,
@@ -112,7 +107,7 @@
  
                 city: {
                     name: null,
-                    country_id: null
+                    country_id: -1
                 },
 
 
@@ -194,6 +189,7 @@
                 });
             },
             createCity(){
+                this.city.country_id = this.selected;
                 axios.post(`/api/cities/`, this.city)
                 .then(response =>{
                     this.getCities();
