@@ -143,4 +143,29 @@ class PostController extends Controller
     }
 
     //TODO: update, not possible yet
+    public function likePost(Post $post) {
+        if(Auth::check() && !$post->likes()->get()->contains("id", Auth::user()->id)) {
+            $post->likes()->attach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function notLikePost(Post $post) {
+        if(Auth::check() && $post->likes()->get()->contains("id", Auth::user()->id)) {
+            $post->likes()->detach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function likedByUser(Post $post) {
+        if(Auth::check() && $post->likes()->get()->contains("id", Auth::user()->id)) {
+            return response()->json(['success' => true, 'post' => $post, 'auth' => Auth::check()]);
+        }
+
+        return response()->json(['success' => false, 'auth' => Auth::check()]);
+    }
 }

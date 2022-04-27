@@ -1,6 +1,6 @@
 
 <template>
-  <section class="login-main">
+  <section class="login-main" id="login">
     <div class="contenedor">
       <div class="titulo">
           <p> Iniciar sesión </p>
@@ -48,9 +48,9 @@
 </template>
 
 <style>
-  i {
+  /* i {
     color: #00309a;
-  }
+  } */
   .input:focus{
     border-color: #00309a !important;
     -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);

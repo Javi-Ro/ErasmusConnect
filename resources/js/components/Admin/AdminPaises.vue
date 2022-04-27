@@ -57,7 +57,7 @@
                         <b-input placeholder="Noruega, España..." v-model="newCountry.name"></b-input>
                     </b-field>
 
-                <b-button class="btn" type="is-info" @click="updateCountry(newCountry.name)">Actualizar</b-button>
+                <b-button class="btn" type="is-info" @click="updateCountry(countryUpdate.name, newCountry.name)">Actualizar</b-button>
                 </div>
             </div>
         </div>
@@ -154,9 +154,8 @@
                     console.info(error.response.data)
                 });
             },            
-            updateCountry(id){
-                //console.log("aaaaayy");
-                axios.patch(`/api/countries/` + id)
+            updateCountry(country1,country2){
+                axios.patch(`/api/countries/` + country1 + `/` + country2)
                 .then(response => {
                     this.getCountries();
                 }).catch(error => {

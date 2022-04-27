@@ -52,14 +52,14 @@
             <div class="crud">
 
                 <b-field class="field" label="Nombre">
-                    <b-input ></b-input>
+                    <b-input v-model="tagUpdate.name"></b-input>
                 </b-field>
 
                 <b-field class="field" label="Nuevo nombre">
-                    <b-input placeholder="Compra, Aire Libre..."></b-input>
+                    <b-input placeholder="Compra, Aire Libre..." v-model="newTag.name"></b-input>
                 </b-field>
 
-                <b-button class="btn" type="is-info">Actualizar</b-button>
+                <b-button class="btn" type="is-info" @click="updateTag(tagUpdate.name, newTag.name)">Actualizar</b-button>
             </div>
 
         </div>
@@ -73,6 +73,12 @@
         data() {
             return {
                 tag:{
+                    name: null
+                },
+                tagUpdate:{
+                    name: null
+                },
+                newTag:{
                     name: null
                 },
                 dataReady: false,
@@ -149,6 +155,14 @@
                 .then(response =>{
                     this.getTags();
                 }).catch(error=> {
+                    console.info(error.response.data)
+                });
+            },
+            updateTag(tag1,tag2){
+                axios.patch(`/api/tags/` + tag1 + `/` + tag2)
+                .then(response => {
+                    this.getTags();
+                }).catch(error =>{
                     console.info(error.response.data)
                 });
             }
