@@ -1,8 +1,22 @@
 <template>
     <div class="navbar">
         <!-- Logo -->
-        <div class="brand">
+        <div class="brand" v-if="!auth">
             <a class="nav-item" tag="router-link" href="/">
+                <img
+                    class="brand-img"
+                    src="/images/logo/logo.png"
+                    alt="Erasmus Connect"
+                >
+            </a>
+            <!-- Botón para desplegar el menú, aparece cuando desaparece el menú -->
+            <a class="navurguesa" @click="openMenu()" id="navurguesa">
+                <font-awesome-icon id="openIcon" icon="fa-solid fa-bars" style="width:30px; height:30px"/>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" style="width:30px; height:30px"/>
+            </a>
+        </div>
+        <div class="brand" v-if="auth">
+            <a class="nav-item" tag="router-link" href="/foro">
                 <img
                     class="brand-img"
                     src="/images/logo/logo.png"
@@ -42,31 +56,11 @@
                         {{city[0]}}
                     </b-dropdown-item>
                 </b-dropdown>
-                <!-- <b-navbar-dropdown :label="getSelected(selected)">
-                    <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
-                        {{city}}
-                    </b-navbar-item>
-                </b-navbar-dropdown> -->
-                <!-- <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
-                    {{option.name}}
-                </b-navbar-item> -->
                 <a class="nav-item btn-start" 
                 v-for="(option,index) in publicMenu" :key="index" :href="option.link"
                 >
                     {{option.name}}
                 </a>
-                <!-- <a class="nav-item btn-start" href="#">
-                    Foro
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Alquileres
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Eventos
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Sobre nosotros
-                </a> -->
             </div>
             <!-- Usuario ya registrado -->
             <div v-if="auth">
@@ -92,7 +86,7 @@
                         </a>
                     </template>
 
-                    <b-dropdown-item @click="showProfile()"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
+                    <b-dropdown-item :href="'/' + this.user.nickname + '/profile'"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
                     <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
                     </b-dropdown-item>
                 </b-dropdown>
@@ -172,10 +166,10 @@
                     console.info(error)
                 });
         },
-        showProfile() {
-            console.log(this.$root.city);
-            //window.location.href = "/" + this.user.nickname + "/profile";
-        },
+        // showProfile() {
+        //     console.log(this.$root.city);
+        //     // window.location.href = "/" + this.user.nickname + "/profile";
+        // },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {
                     id: selected
