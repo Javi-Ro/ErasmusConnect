@@ -136,7 +136,7 @@
                 <b-tab-item value="0">
                         <div class="ventana-reportes">
                             <div class="label">
-                                <label style="font-weight:bold; text-align:center; self-align:center; font-family:Roboto, Helvetica, Arial, sans-serif; font-size:1.5rem; margin-left: 25px;" > ¿Por qué quieres denunciar esta publicación? </label>
+                                <label> ¿Por qué quieres denunciar esta publicación? </label>
                             </div>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Es spam'"> Es spam </b-button>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1;motivo='Desnudos o actividad sexual'"> Desnudos o actividad sexual </b-button>
@@ -148,34 +148,29 @@
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Informacion falsa'"> Información falsa </b-button>
                         </div>
                 </b-tab-item>
-                <b-tab-item value="1" visible="false">
-                      <span id='backIcon' @click="activeTab = 0"> <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-left fa-2xl" style="position:absolute; top: 7px; left: 15px;font-size: 25px; 
+                <b-tab-item value="1">
+                      <span id='backIcon' @click="activeTab = 0"> <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-left fa-2xl" style="position:absolute; top: -5px; left: 15px;font-size: 25px; 
             padding: 10px 10px; cursor:pointer; z-index:999;"/></span>
                             <div class="label">
-                                <label style="font-weight:bold; text-align:center; self-align:center; font-family:Roboto, Helvetica, Arial, sans-serif; font-size:1.5rem;" > ¿Por qué quieres denunciar esta publicación? </label>
+                                <label> ¿Por qué quieres denunciar esta publicación? </label>
                             </div>
-                            <div class="ventana-reportes">
-                            
-                                <label style="font-size: 20px; color: rgba(0, 0, 0, 0.7);"> {{this.motivo}} </label>
-                                <b-input maxlength="200"  placeholder="Escribe el motivo de tu reporte" type="textarea" style="width: 400px;"></b-input>  
+                            <div class="ventana-reportes2">
+                                <label class="motivo"> {{this.motivo}} </label>
+                                <b-input maxlength="200"  placeholder="Escribe el motivo de tu reporte" type="textarea"></b-input>  
                                 <b-button size="is-medium" type="is-light" style="width:100%; " @click="activeTab = 2"> Enviar </b-button>
-                                
                             </div>
                     </b-tab-item>
-
-                    <b-tab-item value="2" visible="false">
+                    <b-tab-item value="2">
                             <!-- <div class="label">
                             </div> -->
                             <div class="ventana-gracias">
-                                <label style="font-weight:bold; width: 100%; text-align:center; self-align:center; text-align:center; font-family:Roboto, Helvetica, Arial, sans-serif; font-size:1.5rem;" > Gracias por informarnos </label>
+                                <label class="label" > Gracias por informarnos </label>
 
-                                <label style="font-size: 20px; color: rgba(0, 0, 0, 0.7); text-align:center;"> Tus comentarios son importantes para ayudarnos a conseguir que la comunidad de ErasmusConnect siga siendo un lugar seguro </label>
+                                <label class="motivo"> Tus comentarios son importantes para ayudarnos a conseguir que la comunidad de ErasmusConnect siga siendo un lugar seguro </label>
                             </div>
                                 <b-button size="is-medium" type="is-light" style="width:100%; " @click="showModal = 0, activeTab=0"> Aceptar </b-button>
-
                     </b-tab-item>
             </b-tabs>
-
             </div>
         </div>
   </section>
@@ -331,6 +326,34 @@
     border-color: #00309a;
     -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
     box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+}
+
+
+.textarea{
+  width: 400px;
+}
+
+@media (max-width: 400px) {  
+
+.button.is-medium {
+    font-size: 12px;
+    text-align: center;
+}
+
+.textarea {
+    display: block;
+    min-width: 150px;
+    max-width: 150px;
+    min-height: 80px;
+    max-height: 100px;
+    font-size: 13px;
+}
+
+textarea:not([rows]) {
+    min-height: 80px;
+    max-height: 100px
+}
+
 }
 
 </style>
@@ -492,6 +515,14 @@ $blue: #00309a;
   min-height:340px;
 }
 
+.ventana-reportes2{
+  display:flex;
+  flex-flow: column wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height:340px;
+}
+
 .ventana-gracias{
   min-height:370px;
   display:flex;
@@ -499,4 +530,75 @@ $blue: #00309a;
   align-items: center;
   justify-content: center;
 }
+
+.label{
+  font-weight:bold; 
+  text-align:center; 
+  font-family:Roboto, Helvetica, Arial, sans-serif; 
+  font-size:1.5rem; 
+  margin-left: 25px;
+}
+
+.motivo{
+  font-size: 20px; 
+  color: rgba(0, 0, 0, 0.7);
+  text-align: center;
+}
+
+@media (max-width: 400px) {
+  .modal-vue .modal{
+        margin-top: 50px;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        height: auto;
+        justify-content: space-between;
+        height: 400px;
+        background-color:blue;
+        width: 250px;
+        overflow-x: hidden;
+        min-height: 0px;
+  }
+
+  .ventana-reportes{
+    font-size: 15px;
+    width: 250px;
+    height: 340px;
+  }
+
+  .ventana-reportes2{
+    font-size: 15px;
+    width: 250px;
+    height: 260px;
+    min-height:0px;
+  }
+  
+  .motivo{
+    font-size: 15px;
+    margin-left:0px;
+    text-align: center;
+  }
+
+  .label{
+    max-width: 250px;
+    font-weight:bold; 
+    text-align:center; 
+    font-family:Roboto, Helvetica, Arial, sans-serif; 
+    font-size:15px; 
+    margin-top: 30px;
+    align-self: center;
+    margin-left: 0px;
+    text-align: center;
+  }
+  
+  .ventana-gracias{
+    font-size: 15px;
+    text-align: center;
+    height: 310px;
+    min-height:0px;
+  }
+
+}
+
 </style>
