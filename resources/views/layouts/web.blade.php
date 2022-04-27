@@ -28,13 +28,13 @@
 <style lang="scss" scoped>
     html {
         width: 100%;
-        height: auto;
+        height: 100%;
         scroll-behavior: smooth;
     }
     body {
         display: flex;
         width: 100%;
-        height: auto;
+        height: 100%;
     }
     #app {
         display: flex;
