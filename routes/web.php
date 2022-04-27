@@ -113,8 +113,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
     Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
-
+    Route::get('/users/siguiendo/{user1}/{user2}', 'App\Http\Controllers\UserController@siguiendo');
     Route::post('/users/{user1}/{user2}',  'App\Http\Controllers\UserController@addFollower');
+    Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');

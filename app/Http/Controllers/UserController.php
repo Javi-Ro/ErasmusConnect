@@ -83,8 +83,23 @@ class UserController extends Controller
         return response()->json([], 204);
     }
 
-    public function addFollower(User $user1,User $user2)
+    public function addFollower(User $user1, User $user2)
     {
         $user2->followers()->attach($user1->id);
+    }
+
+    public function deleteFollower(User $user1, User $user2)
+    {
+        $user2->followers()->detach($user1->id);
+    }
+
+
+    public function siguiendo(User $user1, User $user2)
+    {
+        for ($i = 0; $i < $user1->following()->count(); $i++) {
+            if ($user1->following[$i]->id == $user2->id) {
+                return response(true);
+            }
+        }
     }
 }
