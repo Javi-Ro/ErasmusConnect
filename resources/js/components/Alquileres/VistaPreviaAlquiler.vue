@@ -1,6 +1,6 @@
 <template>
     <div class="apartment-preview">
-        <b-carousel :indicator-inside="false">
+        <b-carousel :indicator-inside="false" :autoplay="false">
             <b-carousel-item v-for="(item, i) in 5" :key="i">
                 <!-- <img :src="getImgUrl(i)"> -->
                 <b-image class="image" :src="getImgUrl(i)"></b-image>
@@ -104,6 +104,9 @@ export default {
 }
 </script>
 <style>
+.carousel-item{
+    display: block;
+}
 a {
     color: revert;
 }
