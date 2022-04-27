@@ -102,7 +102,11 @@ class ApartmentController extends Controller
                                             })->when($data->maxPrice, function ($query, $maxPrice) {
                                                 $query->where('price', '<', (int)$maxPrice);
                                             })->when($data->habitaciones, function ($query, $habitaciones) {
-                                                $query->where('price', '<', (int)$habitaciones);
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
                                             })
                                             ->get();
 

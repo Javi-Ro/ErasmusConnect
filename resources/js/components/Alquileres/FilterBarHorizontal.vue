@@ -10,7 +10,7 @@
 import FilterBarVue from './FilterModal.vue';
   export default {
     props: {
-      value: {
+      filters: {
         type: Object,
         required: true
       }
@@ -42,15 +42,31 @@ import FilterBarVue from './FilterModal.vue';
                     component: FilterBarVue,
                     canCancel: true,
                     props: { 
-                      value: this.value
+                      filters: this.filters
                     },
                     events: {
                       'input': filters => {
-                        this.value.minPrice = filters.minPrice;
-                        this.value.maxPrice = filters.maxPrice;
-                        this.value.habitaciones = filters.habitaciones;
-                        this.value.metros = filters.metros;
-                        this.value.rate = filters.rate;
+                        this.filters.minPrice = filters.minPrice;
+                        this.filters.maxPrice = filters.maxPrice;
+                        this.filters.habitaciones = filters.habitaciones;
+                        this.filters.metros = filters.metros;
+                        this.filters.rate = filters.rate;
+                      },
+                      'filters': () => {
+                        axios.get(`/filteringAlquileres`, {
+                          params: {
+                            minPrice: this.filters.minPrice,
+                            maxPrice: this.filters.maxPrice,
+                            habitaciones: this.filters.habitaciones,
+                            metros: this.filters.metros,
+                            rate: this.filters.rate
+                          } 
+                        })
+                        .then(response => {
+                            this.$parent.apartments = response.data.apartments;
+                        }).catch(error => {
+                            console.info(error);
+                        })
                       }
                     },
                     onCancel: () => {
@@ -91,6 +107,7 @@ import FilterBarVue from './FilterModal.vue';
       i:hover{
         border-radius: 9999px;
         background-color: #dbdbdb;
+        cursor: pointer;
       }
     }
 

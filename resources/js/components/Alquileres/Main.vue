@@ -1,8 +1,8 @@
 <template>
   <section class="alquileres-container" style="background-color:whitesmoke; width:100%; height:940px">
     <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
-    <filter-bar-horizontal-alquiler v-model="filters"></filter-bar-horizontal-alquiler>
-    <div style="margin-top: 150px; margin-left: 500px">
+    <filter-bar-horizontal-alquiler :filters="filters"></filter-bar-horizontal-alquiler>
+    <div style="margin-top: 400px; margin-left: 500px">
       <div v-for="(apartment, index) in apartments" :key="index"> 
         <p>{{apartment.title}},{{apartment.price}}</p>
         <br>
