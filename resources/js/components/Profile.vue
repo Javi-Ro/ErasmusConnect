@@ -30,11 +30,8 @@
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
                 </button>
-                
-                <button v-else
-                class="edit" type="button">
-                    <span style="margin-left: 20px;">Añadir a amigos</span>
-                </button>
+                                
+                <b-button v-if="user!=nickname" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
 
                 <a v-if="user == nickname"
                 class="column-item btn-start" href="#">
@@ -124,16 +121,19 @@ export default {
         ModalSeguidores
     },
     props: {
-        // nickname del perfil que estamos viendo
+        // nickname del perfil que estamos viendo (el id vamos)
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
-        user: String
+        user: String,
     },
     data() {
         return {
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
-
+            currentUser: {
+                name: null,
+                id: null
+            },
             name: "",
             // nickname: "Willyrex",
             city: "Madrid",
@@ -153,11 +153,28 @@ export default {
         }
     },
     created() {
-        console.log(this.nickname);
-        console.log(typeof(this.user));
-        console.log(this.user);
         this.name = this.user;
+        this.getCurrentUser();
     },
+    methods:{
+        follow(){
+            axios.post(`/api/users/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getCurrentUser(){
+            axios.get(`/api/auth`)
+            .then(response =>{
+                this.currentUser = response.data.user;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        }
+    }
     // methods: {
     //     getNickName(nickname) {
     //         console.log("Perfil de: " + nickname);
