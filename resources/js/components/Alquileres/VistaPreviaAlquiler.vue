@@ -13,7 +13,7 @@
             <div class="apartment-info">
                 <div class="apartment-owner-info">
                     <div class="apartment-owner-img">
-                        <img :src="imgProfile" alt="Profile image">
+                        <img :src="imgProfile" alt="Profile image" style="border-radius: 50%;">
                     </div>
                     <div class="apartment-owner-nickname">
                         <p>@{{user.nickname}}</p>
@@ -178,10 +178,14 @@ a:hover {
     .apartment-owner-info {
         display:flex;
         flex-direction: row;
+        align-items: center;
     }
 
     .apartment-owner-img {
         display:flex;
+        object-fit: cover;
+        height: 48px;
+        width: 48px;
     }
 
     .apartment-owner-nickname {
