@@ -1,5 +1,5 @@
 <template>
-    <div id="perfil">
+    <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -30,8 +30,9 @@
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
                 </button>
-                                
-                <b-button v-if="user!=nickname" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                
+                <b-button v-if="user!=nickname && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="user!=nickname && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
                 <a v-if="user == nickname"
                 class="column-item btn-start" href="#">
@@ -128,6 +129,8 @@ export default {
     },
     data() {
         return {
+            dataReady: false,
+            siguiendo: null,
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
             currentUser: {
@@ -155,6 +158,7 @@ export default {
     created() {
         this.name = this.user;
         this.getCurrentUser();
+        console.log(siguiendo);
     },
     methods:{
         follow(){
@@ -162,6 +166,19 @@ export default {
             .then(response =>{
                 console.log(this.currentUser.id);
                 console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=1;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        unfollow(){
+            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=0;
             }).catch(error=>{
                 console.info(error.response.data)
             });
@@ -170,6 +187,19 @@ export default {
             axios.get(`/api/auth`)
             .then(response =>{
                 this.currentUser = response.data.user;
+                this.checkSiguiendo();
+                this.dataReady=true;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+
+        },
+        checkSiguiendo(){
+            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.nickname)
+            .then(response=>{
+                this.siguiendo = response.data;
+                console.log(this.siguiendo);
+                console.log("hola");
             }).catch(error=>{
                 console.info(error.response.data)
             });
