@@ -1,5 +1,6 @@
 <template>
-  <section v-if="data === true" class="post-container">
+  <!-- El padding-bottom es para que el tamaño de la página no varie cuando se despliega el botón de más opciones -->
+  <section v-if="data === true" class="post-container" style="padding-bottom: 100px;">
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img">

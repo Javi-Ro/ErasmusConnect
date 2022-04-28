@@ -29,9 +29,6 @@
             <div class="information-personal-data">
               <div class="information-personal-data-main">
                 <p class="information-personal-data-main-user">{{ user.nickname }}</p>
-                <!-- <b-button class="information-personal-data-main-button" type="is-link" outlined v-if="!comment">
-                  Guardar
-                </b-button> -->
               </div>
               <div class="information-personal-data-date">
                 <p>{{ post.created_at }}</p>
@@ -48,75 +45,82 @@
               <b-tag type="is-info is-light">{{tag.name}}</b-tag>
             </div>
           </div>
-          <!-- Opciones para los comentarios -->
-          <div class="information-options" v-if="comment">
-            <div :class="[
-              'information-options-option tag-' + option.id,
-              liked && index == 0 ? 'liked' : ''
-              ]" 
-            v-for="(option, index) in optionsData" :key="index" 
-            :id="'select-comment-option-' + option.id" @click="reaction(option.id, true)">
-              <div :id="'background-comment-option-' + option.id">
-                <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
-                v-if="index == 0 && liked == false"/>
-                <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
-                v-if="index == 0 && liked == true"/>
-              </div>
-              <div class="information-options-option-data" v-if="index == 0 && liked == false">
-                <!-- <strong>{{ option.title }}</strong> -->
-                <p>{{ option.data }}</p>
-              </div>
-              <div class="information-options-option-data" v-if="index == 0 && liked == true">
-                <!-- <strong>{{ option.title }}</strong> -->
-                <p>{{ option.data }}</p>
-              </div>
-            </div>
-          </div>
 
-          <!-- Opciones para las publicaciones -->
-          <div class="information-options" v-if="!comment">
-            <div :class="[
-              'information-options-option tag-' + option.id,
-              liked && index == 0 ? 'liked' : ''
-              ]" 
-              v-for="(option, index) in optionsData" :key="index"
-              :id="'select-option-' + option.id" @click="reaction(option.id, false)">
-            
-              <a :href="'/publicacion/' + post.id" v-if="index == 1" class="comment-option">
-                <div :id="'background-option-' + option.id">
-                <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Ver Comentarios"
-                v-if="index == 1"/>
+          
+          <div style="display:flex; justify-content: space-between;">
+            <!-- Opciones para los comentarios -->
+            <div class="information-options" v-if="comment">
+              <div :class="[
+                'information-options-option tag-' + option.id,
+                liked && index == 0 ? 'liked' : ''
+                ]" 
+              v-for="(option, index) in optionsData" :key="index" 
+              :id="'select-comment-option-' + option.id" @click="reaction(option.id, true)">
+                <div :id="'background-comment-option-' + option.id">
+                  <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
+                  v-if="index == 0 && liked == false"/>
+                  <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
+                  v-if="index == 0 && liked == true"/>
                 </div>
-                <div class="information-options-option-data">
-                  <!-- <strong>{{ option.title }}</strong> -->
+                <div class="information-options-option-data" v-if="index == 0 && liked == false">
                   <p>{{ option.data }}</p>
                 </div>
-              </a>
+                <div class="information-options-option-data" v-if="index == 0 && liked == true">
+                  <p>{{ option.data }}</p>
+                </div>
+              </div>
+            </div>
+            <!-- Opciones para las publicaciones -->
+            <div class="information-options" v-if="!comment">
+              <div :class="[
+                'information-options-option tag-' + option.id,
+                liked && index == 0 ? 'liked' : ''
+                ]" 
+                v-for="(option, index) in optionsData" :key="index"
+                :id="'select-option-' + option.id" @click="reaction(option.id, false)">
+              
+                <a :href="'/publicacion/' + post.id" v-if="index == 1" class="comment-option">
+                  <div :id="'background-option-' + option.id">
+                  <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Ver Comentarios"
+                  v-if="index == 1"/>
+                  </div>
+                  <div class="information-options-option-data">
+                    <p>{{ option.data }}</p>
+                  </div>
+                </a>
 
-              <div :id="'background-option-' + option.id">
-                <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
-                v-if="index == 0 && liked == false"/>
-                <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
-                v-if="index == 0 && liked == true"/>
-                <!-- <font-awesome-icon icon="fa-regular fa-comment" style="font-size: 25px; padding: 4px 4px;" title="Comentarios"
-                v-if="index == 1"/> -->
-                <font-awesome-icon icon="fa-solid fa-share-nodes" style="font-size: 25px; padding: 4px 4px; padding: 10px 10px;" title="Compartir"
-                v-if="index == 2" />
-                <!-- este icono es pro asi que no se que hacer -->
-                <font-awesome-icon icon="fa-regular fa-thumbs-down" title="Reportar" v-if="index ==3" @click="showModal = 1"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"></font-awesome-icon>
-                
-                <!-- <font-awesome-icon icon="fa-regular fa-flag" title="Reportar" v-if="index ==3" @click="showModal = 1"  style="cursor: pointer; font-size: 25px; padding: 4px 4px;"></font-awesome-icon> -->
-
-                <!-- <b-button v-if="index ==3" @click="showModal = 1"> reportar </b-button> -->
+                <div :id="'background-option-' + option.id">
+                  <font-awesome-icon icon="fa-regular fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Me gusta"
+                  v-if="index == 0 && liked == false"/>
+                  <font-awesome-icon icon="fa-solid fa-heart" style="font-size: 25px; padding: 4px 4px;" title="Ya no me gusta"
+                  v-if="index == 0 && liked == true"/>
+                </div>
+                <div class="information-options-option-data" v-if="index == 0 && liked == false">
+                  <p>{{ option.data }}</p>
+                </div>
+                <div class="information-options-option-data" v-if="index == 0 && liked == true">
+                  <p>{{ option.data }}</p>
+                </div>
               </div>
-              <div class="information-options-option-data" v-if="index == 0 && liked == false">
-                <!-- <strong>{{ option.title }}</strong> -->
-                <p>{{ option.data }}</p>
-              </div>
-              <div class="information-options-option-data" v-if="index == 0 && liked == true">
-                <!-- <strong>{{ option.title }}</strong> -->
-                <p>{{ option.data }}</p>
-              </div>
+            </div>
+            <div style="display:flex">
+              <b-dropdown aria-role="list">
+                <template #trigger>
+                  <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/>
+                </template>
+                <b-dropdown-item aria-role="listitem">
+                  <div style="display:flex; align-items: center" @click="reaction(3, false)">
+                    <font-awesome-icon icon="fa-solid fa-share-nodes" title="Compartir" style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
+                    Compartir
+                  </div>
+                </b-dropdown-item>
+                <b-dropdown-item aria-role="listitem">
+                  <div style="display:flex; align-items: center" @click="reaction(4, false)">
+                    <font-awesome-icon icon="fa-regular fa-flag" title="Reportar"  style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
+                    Reportar
+                  </div>
+                </b-dropdown-item>
+              </b-dropdown>
             </div>
           </div>
       </div>
@@ -264,6 +268,9 @@
               this.liked = false
               this.notLikePost();
             }
+          }
+          else if(option == 4) {
+            this.showModal = 1;
           }
         }
         else {

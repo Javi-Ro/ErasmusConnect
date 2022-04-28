@@ -87,7 +87,7 @@
                     </template>
 
                     <b-dropdown-item :href="'/' + this.user.nickname + '/profile'"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
-                    <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
+                    <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Cerrar sesión
                     </b-dropdown-item>
                 </b-dropdown>
             </div>
