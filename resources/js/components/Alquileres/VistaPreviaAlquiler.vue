@@ -12,9 +12,9 @@
         <div class="apartment-data"> 
             <div class="apartment-info">
                 <div class="apartment-owner-info">
-                    <div class="apartment-owner-img">
+                    <a class="apartment-owner-img" :href="'/' + this.user.nickname + '/profile'">
                         <img :src="imgProfile" alt="Profile image" style="border-radius: 50%;">
-                    </div>
+                    </a>
                     <div class="apartment-owner-nickname">
                         <p>@{{user.nickname}}</p>
                     </div>
