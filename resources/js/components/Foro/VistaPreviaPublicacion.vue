@@ -23,9 +23,9 @@
             </div>
           </div>
           <div class="information-personal">
-            <div v-if="post" class="information-personal-img">
+            <a v-if="post" class="information-personal-img" :href="'/' + this.user.nickname + '/profile'">
               <img v-if="Object.entries(user).length!==0" :src="imgProfile" alt="Profile image">
-            </div>
+            </a>
             <div class="information-personal-data">
               <div class="information-personal-data-main">
                 <p class="information-personal-data-main-user">{{ user.nickname }}</p>

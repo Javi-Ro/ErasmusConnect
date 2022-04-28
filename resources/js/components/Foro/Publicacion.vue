@@ -19,7 +19,7 @@
           <b-input class="post-comment-input" placeholder="Comenta..." v-model="comment.text" rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>
-        <div class="comentarios" v-if="commentsReady === true">
+        <div class="comentarios" style="min-width: 100%;" v-if="commentsReady === true">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
             <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
