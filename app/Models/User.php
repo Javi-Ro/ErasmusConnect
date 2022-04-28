@@ -46,19 +46,21 @@ class User extends Authenticatable
         'created_at' => 'date:d/m/Y'
     ];
 
+    protected $appends = [
+        'followers'
+    ];
+
     public function city()
     {
         return $this->belongsTo(City::class);
     }
 
-    public function friends()
-    {
-        return $this->belongsToMany(User::class);
+    public function followers() {
+        return $this->belongsToMany(User::class, "friends", "user2_id", "user_id");
     }
     
-    public function curasan()
-    {
-        return $this->belongsToMany(User::class);
+    public function following() {
+        return $this->belongsToMany(User::class, "friends", "user_id", "user2_id");
     }
 
     public function apartments()
@@ -83,5 +85,9 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function getFollowersAttribute() {
+        return $this->followers()->get()->count();
     }
 }

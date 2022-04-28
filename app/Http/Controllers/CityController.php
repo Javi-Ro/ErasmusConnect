@@ -48,15 +48,10 @@ class CityController extends Controller
 
     }
 
-    public function update(Request $request, City $city) {
-        
-        if($request->filled('name')) {
-            $city->name = $request->name;
-        }
-        if($request->filled("country_id")) {
-            $city->country_id = $request->country_id;
-        }
-        $city->save();
+    public function update(string $city1, string $city2) {    
+        $newCity = City::whereName($city1)->first();
+        $newCity->name = $city2;
+        $newCity->save();
     }
 
 }

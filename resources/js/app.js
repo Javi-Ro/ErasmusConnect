@@ -22,6 +22,11 @@ import { faCaretDown, faUser, faBars, faX, faArrowRightFromBracket} from '@forta
 // Iconos para publicaciones
 import {faShareNodes} from '@fortawesome/free-solid-svg-icons';
 import {faComment} from '@fortawesome/free-regular-svg-icons';
+import {faCircleXmark} from '@fortawesome/free-regular-svg-icons';
+import {faThumbsDown} from '@fortawesome/free-regular-svg-icons';
+import {faFlag} from '@fortawesome/free-regular-svg-icons';
+import {faArrowAltCircleLeft} from '@fortawesome/free-regular-svg-icons';
+
 // Importar el mismo pero en distintos estilos (gratuitos solo está solid y regular)
 import {faHeart as faHeartSolid} from '@fortawesome/free-solid-svg-icons';
 import {faHeart as faHeartRegular} from '@fortawesome/free-regular-svg-icons';
@@ -40,7 +45,7 @@ library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
 library.add(faArrowLeft, faUpload, faPlus)
 
 // Añadimos iconos para publicaciones
-library.add(faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment)
+library.add(faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment, faCircleXmark,faThumbsDown,faFlag,faArrowAltCircleLeft)
 
 
 /* import font awesome icon component */
@@ -84,6 +89,12 @@ Vue.component('filter-bar-horizontal', require('./components/Foro/filterBarHoriz
 Vue.component('right-bar', require('./components/Foro/rightBar.vue').default);
 //---
 
+// Alquileres
+Vue.component('apartments', require('./components/Alquileres/Main.vue').default);
+Vue.component('vista-previa-apartment', require('./components/Alquileres/Main.vue').default);
+Vue.component('apartments-crear', require('./components/Alquileres/CrearApartment.vue').default);
+//---
+
 // Landing
 Vue.component('landing', require('./components/Landing/landingPage.vue').default);
 Vue.component('InfoCards', require('./components/Landing/InfoCards.vue').default);
@@ -100,7 +111,6 @@ Vue.component('perfil', require('./components/Perfil.vue').default);
 //---
 
 Vue.component('profile', require('./components/Profile.vue').default)
-Vue.component('apartment', require('./components/Apartments.vue').default);
 
 
 /**

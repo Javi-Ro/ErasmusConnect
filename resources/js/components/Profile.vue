@@ -64,7 +64,14 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light">Ver amigos</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidores = true">{{this.seguidores.length}} Seguidores</b-button>
+                                <b-modal v-model="showSeguidores">
+                                    <modal-seguidores :seguidores="seguidores"></modal-seguidores>
+                                </b-modal>
+                            <b-button type="is-info is-light" @click="showSeguidos=true">{{this.seguidos.length}} Seguidos</b-button>
+                            <b-modal v-model="showSeguidos">
+                                    <modal-seguidos :seguidos="seguidos"></modal-seguidos>
+                            </b-modal>
                         </div>
                         <div class="ciudad">
                             <template>
@@ -107,7 +114,15 @@
     </div>
 </template>
 <script>
+import ModalSeguidores from './VistaSeguidores.vue'
+import ModalSeguidos from './VistaSeguidos.vue'
+
+
 export default {
+    components:{
+        ModalSeguidos,
+        ModalSeguidores
+    },
     props: {
         // nickname del perfil que estamos viendo
         nickname: String,
@@ -130,6 +145,11 @@ export default {
             myPosts: [1],
             LikedPosts: [1, 2],
             SavedPosts: [1, 3, 4],
+            //SEGUIDORES Y SEGUIDOS
+            seguidores: new Array(40),
+            seguidos: new Array(15),
+            showSeguidores: false,
+            showSeguidos:false
         }
     },
     created() {
@@ -137,7 +157,7 @@ export default {
         console.log(typeof(this.user));
         console.log(this.user);
         this.name = this.user;
-    }
+    },
     // methods: {
     //     getNickName(nickname) {
     //         console.log("Perfil de: " + nickname);
@@ -147,6 +167,7 @@ export default {
     // mounted() {
     //     this.getNickName(this.$route);
     // }
+    
 }
 </script>
 <style lang="scss">

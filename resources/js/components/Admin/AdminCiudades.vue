@@ -40,57 +40,45 @@
             <div class="crud-container">
 
                 <div class="crud">
+
                     <b-field class="field" label="País">
                         <b-dropdown  scrollable max-height="150" append-to-body class="dropdown"> 
                             <template #trigger="{ active }">
                                 <b-button style="width: 350px;"
-                                    label="Selecciona"
+                                    :label="selectedCountry"
                                     :icon-right="active ? 'menu-up' : 'menu-down'" />
                             </template>
 
-                            <b-dropdown-item>Action</b-dropdown-item>
-                            <b-dropdown-item>Another action</b-dropdown-item>
-                            <b-dropdown-item>Something else</b-dropdown-item>
-                            <b-dropdown-item>Action</b-dropdown-item>
-                            <b-dropdown-item>Another action</b-dropdown-item>
+                            <b-dropdown-item
+                            v-for="country in filteredData" :value="country[1]" :key="country[1]"
+                            @click="setSelected(country[1])" 
+                            aria-role="listitem"> 
+                                {{country[0]}} 
+                            </b-dropdown-item>
                         </b-dropdown>
-                    </b-field> 
+
+                    </b-field>
+
                     <b-field class="field" label="Nombre">
                         <b-input placeholder="Madrid, Praga..." v-model="city.name"></b-input>
                     </b-field>
-    <!--         
-                        <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
-                        <template #trigger>
-                            <a class="navbar-item" role="button" style="padding-left: 20px;">
-                                <span style="margin-right: 10px;">mario</span>
-                                <font-awesome-icon icon="fa-solid fa-caret-down" />
-                            </a>
-                        </template>
 
-                        <b-dropdown-item v-for="pais in paises" :key="pais[1]" 
-                        @click ="setSelected(pais[1])" 
-                        aria-role="listitem">
-                            {{pais[0]}}
-                        </b-dropdown-item>
-                    </b-dropdown>  -->
                     <b-button class="btn" type="is-success" @click="createCity()">Crear</b-button>
                 </div>
 
                 <div class="crud">
 
                     <b-field class="field" label="Nombre">
-                        <b-input ></b-input>
+                        <b-input v-model="cityUpdate.name"></b-input>
                     </b-field>
 
                     <b-field class="field" label="Nuevo nombre">
-                        <b-input placeholder="Madrid, Praga..."></b-input>
+                        <b-input placeholder="Madrid, Praga..." v-model="newCity.name"></b-input>
                     </b-field>
 
-                    <b-button class="btn" type="is-info" @click="updateCity()">Actualizar</b-button>
+                    <b-button class="btn" type="is-info" @click="updateCity(cityUpdate.name, newCity.name)">Actualizar</b-button>
                 </div>
-
             </div>
-    
         </div>
     </section>
 </template>
@@ -99,6 +87,10 @@
     export default {
         data() {
             return {
+
+                selected: -1,
+                selectedCountry: 'Select Country',
+
                 isPaginated: true,
                 isPaginationSimple: false,
                 isPaginationRounded: false,
@@ -112,7 +104,17 @@
                 paginationOrder: 'is-centered',
                 inputPosition: '',
                 inputDebounce: '',
+ 
                 city: {
+                    name: null,
+                    country_id: -1
+                },
+
+
+                cityUpdate:{
+                    name: null
+                },
+                newCity: {
                     name: null
                 },
                 paises: [],
@@ -153,6 +155,11 @@
             data(){
                 const a = this.availableCities.map((item) => ({id: item.id, name: item.name}));
                 return a;
+            },
+            filteredData() {
+                const b = this.paises.map((item) => [item.name, item.id]);
+                console.log(b);
+                return b;
             }
         },
         methods: {
@@ -182,17 +189,16 @@
                 });
             },
             createCity(){
+                this.city.country_id = this.selected;
                 axios.post(`/api/cities/`, this.city)
                 .then(response =>{
-                    console.log("aa");
                     this.getCities();
                 }).catch(error=>{
                     console.info(error.response.data)
                 });
             },
-            updateCity(//TODO:id?
-            ){
-                axios.put(`/api/cities/` + id)
+            updateCity(city1,city2){
+                axios.patch(`/api/cities/` + city1 + `/` + city2)
                 .then(response => {
                     this.getCities();
                 }).catch(error => {
@@ -200,8 +206,18 @@
                 });
             },
             setSelected(option) {
-                console.log(this.dropFiles);
                 this.getSelected(option);
+            },
+            getSelected(selected) {
+                axios.post(`/api/get_country_by_id`, {
+                    id: selected
+                })
+                    .then(response => {
+                        this.selected = response.data.country.id; // ID de la clase seleccionada
+                        this.selectedCountry = response.data.country.name;
+                    }).catch(error => {
+                        console.info(error)
+                    });
             }
         }
     }
