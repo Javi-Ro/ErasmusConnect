@@ -5,7 +5,23 @@
         </div>
         <b-table class="table"
             :data="data"
-            :debounce-search="1000">
+            :paginated="isPaginated"
+            :per-page="perPage"
+            :current-page.sync="currentPage"
+            :pagination-simple="isPaginationSimple"
+            :pagination-position="paginationPosition"
+            :default-sort-direction="defaultSortDirection"
+            :pagination-rounded="isPaginationRounded"
+            :sort-icon="sortIcon"
+            :sort-icon-size="sortIconSize"
+            aria-next-label="Next page"
+            aria-previous-label="Previous page"
+            aria-page-label="Page"
+            aria-current-label="Current page"
+            :page-input="hasInput"
+            :pagination-order="paginationOrder"
+            :page-input-position="inputPosition"
+            :debounce-page-input="inputDebounce">
 
                 <b-table-column field="id" label="ID" numeric width="10%" sortable searchable centered v-slot="props">
                     {{ props.row.id }}
@@ -16,7 +32,7 @@
                 <b-table-column field="email" label="Correo electrónico" width="20%" style="margin-left: 20px;" centered sortable searchable v-slot="props">
                     {{ props.row.email }}
                 </b-table-column>
-                <b-table-column field="created_at" label="Fecha de unión" width="20%" style="margin-left: 20px;" sortable v-slot="props">
+                <b-table-column field="created_at" label="Fecha de unión" width="20%" style="margin-left: 20px;" centered sortable v-slot="props">
                     {{ props.row.created_at }}
                 </b-table-column>
                 <b-table-column field="followers" label="Seguidores" width="5%" style="margin-left: 20px;" centered sortable v-slot="props">
@@ -36,23 +52,22 @@
     .table{
     background-color: #f8fafc;
     }
-    .pagination.is-simple .info {
-        margin-right: auto;
-    }
-
-    .pagination{
-        display: flex;
-        align-items: center;
-
-    }
-
-    .pagination-link{
-        align-self: center;
-    }
 
     .table > :not(:first-child){
         border-top:none;
     }
+
+    .level{
+    justify-content: center !important;
+        }
+    .pagination .is-current{
+        background-color: #00309a !important;
+    }
+    .pagination-link:hover {
+        border-color: #00309a;
+    }
+
+
 </style>
 
 <style lang="scss" scoped>
@@ -64,7 +79,6 @@
           font-size: x-large;
           color:#00309a;
           font-family: sans-serif;
-
           font-weight: bold;
     }
 
@@ -72,7 +86,6 @@
       width: 500px;
      
     }
-
 
     .titulo{
         color:#00309a;
@@ -86,6 +99,8 @@
         background-color: #f8fafc;
     }
 
+
+    
 </style>
 
  <script>
@@ -95,6 +110,19 @@
             return {
                 dataReady: false,
                 availableUsers: [],
+                isPaginated: true,
+                isPaginationSimple: false,
+                isPaginationRounded: false,
+                paginationPosition: 'bottom',
+                defaultSortDirection: 'asc',
+                sortIcon: 'arrow-up',
+                sortIconSize: 'is-small',
+                currentPage: 1,
+                perPage: 10,
+                hasInput: false,
+                paginationOrder: 'is-centered',
+                inputPosition: '',
+                inputDebounce: '',
                 columns: [
                     {
                         field: 'id',
@@ -127,6 +155,7 @@
                         sortable:true,
                         centered: true
                     },
+                    
 
                 ]
             }

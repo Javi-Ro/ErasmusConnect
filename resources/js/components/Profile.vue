@@ -1,5 +1,5 @@
 <template>
-    <div id="perfil">
+    <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -31,10 +31,8 @@
                     <span>Editar perfil</span>
                 </button>
                 
-                <button v-else
-                class="edit" type="button">
-                    <span style="margin-left: 20px;">Añadir a amigos</span>
-                </button>
+                <b-button v-if="user!=nickname && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="user!=nickname && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
                 <a v-if="user == nickname"
                 class="column-item btn-start" href="#">
@@ -64,7 +62,14 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light">Ver amigos</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidores = true">{{this.seguidores.length}} Seguidores</b-button>
+                                <b-modal v-model="showSeguidores">
+                                    <modal-seguidores :seguidores="seguidores"></modal-seguidores>
+                                </b-modal>
+                            <b-button type="is-info is-light" @click="showSeguidos=true">{{this.seguidos.length}} Seguidos</b-button>
+                            <b-modal v-model="showSeguidos">
+                                    <modal-seguidos :seguidos="seguidos"></modal-seguidos>
+                            </b-modal>
                         </div>
                         <div class="ciudad">
                             <template>
@@ -107,18 +112,31 @@
     </div>
 </template>
 <script>
+import ModalSeguidores from './VistaSeguidores.vue'
+import ModalSeguidos from './VistaSeguidos.vue'
+
+
 export default {
+    components:{
+        ModalSeguidos,
+        ModalSeguidores
+    },
     props: {
-        // nickname del perfil que estamos viendo
+        // nickname del perfil que estamos viendo (el id vamos)
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
-        user: String
+        user: String,
     },
     data() {
         return {
+            dataReady: false,
+            siguiendo: null,
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
-
+            currentUser: {
+                name: null,
+                id: null
+            },
             name: "",
             // nickname: "Willyrex",
             city: "Madrid",
@@ -130,13 +148,62 @@ export default {
             myPosts: [1],
             LikedPosts: [1, 2],
             SavedPosts: [1, 3, 4],
+            //SEGUIDORES Y SEGUIDOS
+            seguidores: new Array(40),
+            seguidos: new Array(15),
+            showSeguidores: false,
+            showSeguidos:false
         }
     },
     created() {
-        console.log(this.nickname);
-        console.log(typeof(this.user));
-        console.log(this.user);
         this.name = this.user;
+        this.getCurrentUser();
+        console.log(siguiendo);
+    },
+    methods:{
+        follow(){
+            axios.post(`/api/users/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=1;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        unfollow(){
+            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=0;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getCurrentUser(){
+            axios.get(`/api/auth`)
+            .then(response =>{
+                this.currentUser = response.data.user;
+                this.checkSiguiendo();
+                this.dataReady=true;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+
+        },
+        checkSiguiendo(){
+            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.nickname)
+            .then(response=>{
+                this.siguiendo = response.data;
+                console.log(this.siguiendo);
+                console.log("hola");
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        }
     }
     // methods: {
     //     getNickName(nickname) {
@@ -147,6 +214,7 @@ export default {
     // mounted() {
     //     this.getNickName(this.$route);
     // }
+    
 }
 </script>
 <style lang="scss">

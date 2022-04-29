@@ -72,7 +72,7 @@
                 { name: "Reportes", link: "/admin/reports"},
                 { name: "Usuarios", link: "/admin/users"},
                 { name: "Publicaciones", link: "/admin/posts"},
-                { name: "Alquileres", link: "#"},
+                { name: "Alquileres", link: "/admin/apartments"},
                 { name: "Etiquetas", link: "/admin/tags"},
                 { name: "Ciudades", link: "/admin/cities"},
                 { name: "Paises", link: "/admin/countries"}
@@ -90,7 +90,7 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 .navbar {
     height: 100%;
     max-width: 280px;
