@@ -1,5 +1,5 @@
 <template>
-    <div id="perfil">
+    <div v-if="dataReady == true" id="perfil">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -14,7 +14,7 @@
                     font-weight: bold;
                     font-size: 20px;
                 ">
-                {{this.name}}
+                {{this.userProfileJSON.name}}
                 </p>
                 <p style="
                     opacity: 0.5;
@@ -25,7 +25,7 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="user == nickname"
+                <button v-if="userJSON && userJSON.nickname == nickname"
                 class="edit" type="button">
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
@@ -36,15 +36,15 @@
                     <span style="margin-left: 20px;">Añadir a amigos</span>
                 </button>
 
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Gestionar amigos
                 </a>
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="user == nickname" 
+                <a v-if="userJSON && userJSON.nickname == nickname" 
                 class="column-item btn-start" href="#" >
                     Cambiar contraseña
                 </a>                                
@@ -127,7 +127,8 @@ export default {
         // nickname del perfil que estamos viendo
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
-        user: String
+        user: String,
+        userProfile: String
     },
     data() {
         return {
@@ -149,14 +150,20 @@ export default {
             seguidores: new Array(40),
             seguidos: new Array(15),
             showSeguidores: false,
-            showSeguidos:false
+            showSeguidos:false,
+            dataReady: false,
+            userProfileJSON: {},
+            userJSON: {}
         }
     },
     created() {
-        console.log(this.nickname);
-        console.log(typeof(this.user));
-        console.log(this.user);
-        this.name = this.user;
+        this.userProfileJSON = JSON.parse(this.userProfile);
+        if (this.user != null) {
+            this.userJSON = JSON.parse(this.user);
+            console.log(this.userJSON.nickname);
+            console.log(this.nickname);
+        }
+        this.dataReady = true;
     },
     // methods: {
     //     getNickName(nickname) {

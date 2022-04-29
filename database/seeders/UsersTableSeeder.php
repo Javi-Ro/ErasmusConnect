@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use DB;
 use Illuminate\Database\Seeder;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UsersTableSeeder extends Seeder
 {
@@ -20,60 +21,36 @@ class UsersTableSeeder extends Seeder
         User::create(
             [
                 'id' => 1,
-                'name' => 'User1',
-                'nickname' => 'Nick1',
-                'email' => 'hola1@gmail.com',
-                'password' => 'contra1',
-                'description' => 'i am good1',
-                'city_id' => 1
+                'name' => 'Administrator',
+                'nickname' => 'admin',
+                'email' => 'admin@admin.com',
+                'password' => Hash::make('admin'),
+                'description' => 'I am the administrator of ErasmusConnect',
+                'city_id' => null
             ]
         );
             
         User::create(
             [
                 'id' => 2,
-                'name' => 'User2',
-                'nickname' => 'Nick2',
-                'email' => 'hola2@gmail.com',
-                'password' => 'contra2',
-                'description' => 'i am good2',
-                'city_id' => 2
+                'name' => 'Adri el Grande',
+                'nickname' => 'dsg',
+                'email' => 'dsg@dsg.com',
+                'password' => Hash::make('dsg'),
+                'description' => 'Cuenta oficial de DSG+R^2',
+                'city_id' => null
             ]
         );
-            
+
         User::create(
             [
                 'id' => 3,
-                'name' => 'User3',
-                'nickname' => 'Nick3',
-                'email' => 'hola3@gmail.com',
-                'password' => 'contra3',
-                'description' => 'i am good3',
-                'city_id' => 3
-            ]
-        );
-            
-        User::create(
-            [
-                'id' => 4,
-                'name' => 'User4',
-                'nickname' => 'Nick4',
-                'email' => 'hola4@gmail.com',
-                'password' => 'contra4',
-                'description' => 'i am good4',
-                'city_id' => 4
-            ]
-        );
-            
-        User::create(
-            [
-                'id' => 5,
-                'name' => 'User5',
-                'nickname' => 'Nick5',
-                'email' => 'hola5@gmail.com',
-                'password' => 'contra5',
-                'description' => 'i am good5',
-                'city_id' => 5
+                'name' => 'Madani el Moro',
+                'nickname' => 'moro',
+                'email' => 'moro@dsg.com',
+                'password' => Hash::make('moro'),
+                'description' => 'Cuenta oficial del moro hungaro',
+                'city_id' => null
             ]
         );
     }

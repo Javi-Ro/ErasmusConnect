@@ -52,7 +52,7 @@ class PostsTableSeeder extends Seeder
             [
                 'id' => 4,
                 'title' => "Experiencias en Oslo",
-                'user_id' => 4,
+                'user_id' => 3,
                 'text' => 'Solo hay Teslas, una cerveza cuesta un riñon. No vi ninguna aurora boreal, decepcionante. En fin, mucho frio y tampoco hay pinguinos por la calle :(',
                 'img_url' => 'ejemplo-oslo.jpeg'
             ]

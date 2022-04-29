@@ -72,9 +72,9 @@ Route::get('/{nickname}/profile', function ($nickname) {
     }
     $loggedUser = null;
     if (Auth::check())
-        $loggedUser = auth()->user()->nickname;
+        $loggedUser = auth()->user();
 
-    return view('profile', ["nickname" => $nickname, "user" => $loggedUser]);
+    return view('profile', ["nickname" => $nickname, "user" => json_encode($loggedUser), "userProfile" => json_encode($userProfile->first())]);
 });
 
 Route::get('/publicacion/{publicacion}', function($id){
