@@ -97,7 +97,9 @@ class ApartmentController extends Controller
     }
 
     public function applyFilters(Request $data) {
-        $apartments = DB::table('apartments')->when($data->minPrice, function ($query, $minPrice) {
+        if ($data->criteria == 0){
+            $apartments = DB::table('apartments')->orderBy('price', 'DESC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
                                               $query->where('price', '>', (int)$minPrice);
                                             })->when($data->maxPrice, function ($query, $maxPrice) {
                                                 $query->where('price', '<', (int)$maxPrice);
@@ -109,6 +111,82 @@ class ApartmentController extends Controller
                                                 $query->where('rating', '>=', (int)$rate);
                                             })
                                             ->get();
+        }
+        if ($data->criteria == 1){
+            $apartments = DB::table('apartments')->orderBy('price', 'ASC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+        }
+        if ($data->criteria == 2){
+            $apartments = DB::table('apartments')->orderBy('rating', 'DESC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+        }
+        if ($data->criteria == 3){
+            $apartments = DB::table('apartments')->orderBy('rating', 'ASC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+        }
+        if ($data->criteria == 4){
+            $apartments = DB::table('apartments')->orderBy('surface', 'DESC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+        }
+        if ($data->criteria == 5){
+            $apartments = DB::table('apartments')->orderBy('surface', 'ASC')
+                                            ->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+        }
 
         //$apartments = DB::table('apartments')->where('price', '>', (int)$data->minPrice)->get();       
         
