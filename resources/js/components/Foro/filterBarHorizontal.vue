@@ -54,6 +54,8 @@ export default {
         clearFilter() {
             this.selectedTagsHorizontal = []
             // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
+            this.$parent.getPosts();
+
         },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {

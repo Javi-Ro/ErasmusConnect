@@ -73,16 +73,13 @@ Route::get('/{nickname}/profile', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
-Route::get('/publicacion/{publicacion}', function($id){
+Route::get('/publicacion/{publicacion}', function ($id) {
     $post = App\Models\Post::whereId($id)->first();
 
     return view('foro.publicacion')->with('post_id', $post->id);
 });
 
-Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
-Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
-
-Route::get('/publicacion', function(){
+Route::get('/publicacion', function () {
     return view('foro.publicacion');
 });
 
@@ -120,6 +117,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
     Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
+    Route::get('/users/siguiendo/{user1}/{user2}', 'App\Http\Controllers\UserController@siguiendo');
+    Route::post('/users/{user1}/{user2}',  'App\Http\Controllers\UserController@addFollower');
+    Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');

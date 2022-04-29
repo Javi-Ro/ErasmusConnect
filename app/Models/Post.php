@@ -53,19 +53,23 @@ class Post extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function reports() {
+    public function reports()
+    {
         return $this->hasMany(Report::class);
     }
 
-    public function getLikesAttribute() {
+    public function getLikesAttribute()
+    {
         return $this->likes()->get()->count();
     }
 
-    public function getCommentsAttribute() {
+    public function getCommentsAttribute()
+    {
         return $this->comments()->get()->count();
     }
 }

@@ -4,11 +4,6 @@
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
 
-    <div class="posts">
-       <div class="searcher">
-       </div>
-    </div>
-
     <div v-if="postsReady === true" class="posts">
       <!-- <div class="searcher">
     <div class="posts">
