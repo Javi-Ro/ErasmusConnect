@@ -63,7 +63,7 @@
         </div>
       </div>
       <br>
-      <b-button class="buttonFilter" type="is-link" outlined>Filtrar</b-button>
+      <b-button class="buttonFilter" type="is-link" @click="handleFiltering()" outlined>Filtrar</b-button>
     </div>
   </section>
 </template>
@@ -108,6 +108,22 @@
       },
       handleInput(key, value) {
         this.$emit('input', {...this.value, [key]: value})
+      },
+      handleFiltering() {
+        axios.get(`/filteringAlquileres`, {
+          params: {
+            minPrice: this.value.minPrice,
+            maxPrice: this.value.maxPrice,
+            habitaciones: this.value.habitaciones,
+            metros: this.value.metros,
+            rate: this.value.rate
+          } 
+        })
+        .then(response => {
+            this.$parent.apartments = response.data.apartments;
+        }).catch(error => {
+            console.info(error);
+        })
       }
     },
 

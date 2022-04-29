@@ -12,7 +12,7 @@
             <b-input placeholder="Min"
               type="number"
               min="0"
-              v-bind:value="value.minPrice" v-on:input="handleInput('minPrice', $event)"            
+              v-model="filters.minPrice" v-on:input="handleInput('minPrice', $event)"            
               icon-pack="fas"    
               icon="euro-sign">
             </b-input>
@@ -22,7 +22,7 @@
             <b-input placeholder="Max"
               min="0"
               type="number"
-              v-bind:value="value.maxPrice" v-on:input="handleInput('maxPrice', $event)"            
+              v-model="filters.maxPrice" v-on:input="handleInput('maxPrice', $event)"            
               icon-pack="fas"    
               icon="euro-sign">
             </b-input>
@@ -35,7 +35,7 @@
         <div class="filter-option-content">
           <b-field class="filter-option-input">
             <b-numberinput min="0" type="is-light" rounded controls-rounded
-                            v-bind:value="value.habitaciones" v-on:input="handleInput('habitaciones', $event)">
+                            v-model="filters.habitaciones" v-on:input="handleInput('habitaciones', $event)">
 
             </b-numberinput>
           </b-field>
@@ -47,7 +47,7 @@
         <div class="filter-option-content">
           <b-field class="filter-option-input">
             <b-numberinput min="0" type="is-light" rounded controls-rounded
-                            v-bind:value="value.metros" v-on:input="handleInput('metros', $event)">
+                            v-model="filters.metros" v-on:input="handleInput('metros', $event)">
 
             </b-numberinput>
           </b-field>
@@ -58,7 +58,7 @@
         <p class="filter-option-tag">Valoraciones</p>
         <div class="filter-option-content">
           <b-rate spaced show-score
-                  v-bind:value="value.rate" v-on:input="handleInput('rate', $event)">
+                  v-model="filters.rate" v-on:input="handleInput('rate', $event)">
 
           </b-rate>
         </div>
@@ -72,7 +72,7 @@
 <script>
   export default {
     props: {
-      value: {
+      filters: {
         type: Object,
         required: true
       }
@@ -104,12 +104,11 @@
         
       },
       closeModal() {
-        let filters_array = [this.minPriceModal, this.maxPriceModal, this.habitacionesModal, this.metrosModal, this.rateModal];
-        this.$emit('filters', filters_array);
+        this.$emit('filters');
         this.$emit('close');
       },
       handleInput(key, value) {
-        this.$emit('input', {...this.value, [key]: value})
+        this.$emit('input', {...this.filters, [key]: value})
       }
     },
 

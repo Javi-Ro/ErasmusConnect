@@ -46,6 +46,7 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
         mounted() {
             console.log('Component mounted.')
         },
+        
 
         methods: {
             getApartments() {

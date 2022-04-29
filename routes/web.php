@@ -99,6 +99,7 @@ Route::get('/alquileres', function () {
     return view('alquileres.main');
 });
 
+Route::get('/filteringAlquileres', 'App\Http\Controllers\ApartmentController@applyFilters');
 Route::get('/foro/crear', function () {
     if (Auth::check()) {
         return view('foro.crearpublicacion');
