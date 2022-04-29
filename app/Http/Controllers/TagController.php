@@ -58,15 +58,9 @@ class TagController extends Controller
         return response()->json(['success' => true, 'tags' => $tags]);        
     }
 
-    public function update(Request $request, Tag $tag) {
-        
-        if($request->filled('name')) {
-            $tag->name = $request->name;
-        }
-        if($request->filled('post')) {
-            $tag->post = $request->post;
-        }
-
-        $tag->save();
+    public function update(string $tag1, string $tag2) {    
+        $newTag = Tag::whereName($tag1)->first();
+        $newTag->name = $tag2;
+        $newTag->save();
     }
 }

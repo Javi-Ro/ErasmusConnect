@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
@@ -12,12 +13,12 @@ class PostController extends Controller
 
     public function get(Post $post)
     {
-        return response()->json(['post' => $post]);
+        return response()->json(['post' => $post, 'user' => $post->user()]);
     }
 
     public function getPosts()
     {
-        $posts = Post::all();
+        $posts = Post::where("post_id", null)->get();
         return response()->json(['posts' => $posts]);
     }
 
@@ -108,7 +109,7 @@ class PostController extends Controller
     }
 
     public function getComments(Post $post) {
-        $comments = $post->comments()->get();
+        $comments = $post->comments()->orderBy('created_at', 'DESC')->get();
         return response()->json(['success' => true, 'comments' => $comments]);
     }
   
@@ -119,5 +120,52 @@ class PostController extends Controller
         return response()->json(['success' => true, 'posts' => $posts]);
     }
 
+    public function createComment(Post $post, Request $request) {
+        $user_id = null;
+
+        if (Auth::check()) {
+            $user_id = Auth::user()->id;
+        } else {
+            abort(403);
+        }
+
+        $request->validate([
+            'text' => 'required'
+        ]);
+
+        $post = Post::create([
+            'text' => $request->text,
+            'user_id' => $user_id,
+            'post_id' => $post->id
+        ]);
+
+        return response()->json(['success' => true, 'post' => $post]);
+    }
+
     //TODO: update, not possible yet
+    public function likePost(Post $post) {
+        if(Auth::check() && !$post->likes()->get()->contains("id", Auth::user()->id)) {
+            $post->likes()->attach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function notLikePost(Post $post) {
+        if(Auth::check() && $post->likes()->get()->contains("id", Auth::user()->id)) {
+            $post->likes()->detach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function likedByUser(Post $post) {
+        if(Auth::check() && $post->likes()->get()->contains("id", Auth::user()->id)) {
+            return response()->json(['success' => true, 'post' => $post, 'auth' => Auth::check()]);
+        }
+
+        return response()->json(['success' => false, 'auth' => Auth::check()]);
+    }
 }

@@ -1,5 +1,5 @@
 @extends('layouts.web')
 
 @section('content')
-    <publicacion :post="{{$post}}"></publicacion>
+    <publicacion :id="{{$post_id}}"></publicacion>
 @endsection
