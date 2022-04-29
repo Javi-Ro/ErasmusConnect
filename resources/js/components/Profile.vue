@@ -1,5 +1,5 @@
 <template>
-    <div v-if="dataReady == true" id="perfil">
+    <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -31,10 +31,8 @@
                     <span>Editar perfil</span>
                 </button>
                 
-                <button v-else
-                class="edit" type="button">
-                    <span style="margin-left: 20px;">Añadir a amigos</span>
-                </button>
+                <b-button v-if="user!=nickname && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="user!=nickname && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
@@ -124,7 +122,7 @@ export default {
         ModalSeguidores
     },
     props: {
-        // nickname del perfil que estamos viendo
+        // nickname del perfil que estamos viendo (el id vamos)
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
         user: String,
@@ -132,9 +130,14 @@ export default {
     },
     data() {
         return {
+            dataReady: false,
+            siguiendo: null,
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
-
+            currentUser: {
+                name: null,
+                id: null
+            },
             name: "",
             // nickname: "Willyrex",
             city: "Madrid",
@@ -164,7 +167,55 @@ export default {
             console.log(this.nickname);
         }
         this.dataReady = true;
+        this.name = this.userJSON.nickname;
+        this.getCurrentUser();
+        console.log(siguiendo);
     },
+    methods:{
+        follow(){
+            axios.post(`/api/users/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=1;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        unfollow(){
+            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.nickname)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.nickname);
+                //window.location.href = window.location.href;
+                this.siguiendo=0;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getCurrentUser(){
+            axios.get(`/api/auth`)
+            .then(response =>{
+                this.currentUser = response.data.user;
+                this.checkSiguiendo();
+                this.dataReady=true;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+
+        },
+        checkSiguiendo(){
+            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.nickname)
+            .then(response=>{
+                this.siguiendo = response.data;
+                console.log(this.siguiendo);
+                console.log("hola");
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        }
+    }
     // methods: {
     //     getNickName(nickname) {
     //         console.log("Perfil de: " + nickname);

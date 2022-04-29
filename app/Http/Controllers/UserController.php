@@ -42,25 +42,25 @@ class UserController extends Controller
 
         return response()->json(['success' => false]);
     }
-    
+
 
 
     public function update(Request $request, User $user)
     {
-        
-        if($request->filled('name')) {
+
+        if ($request->filled('name')) {
             $user->name = $request->name;
         }
-        if($request->filled('nickname')) {
+        if ($request->filled('nickname')) {
             $user->nickname = $request->nickname;
         }
-        if($request->filled('img_url')) {
+        if ($request->filled('img_url')) {
             $user->img_url = $request->img_url;
         }
-        if($request->filled('city_id')) {
+        if ($request->filled('city_id')) {
             $user->city_id = $request->city_id;
         }
-        if($request->filled('email')) {
+        if ($request->filled('email')) {
             $user->email = $request->email;
         }
 
@@ -83,17 +83,23 @@ class UserController extends Controller
         return response()->json([], 204);
     }
 
-
-    public function listFollowers(User $user)
-    {
-        return response()->json($user->friends()->get());
-    }
-
     public function addFollower(User $user1, User $user2)
     {
-        //$user1 = new User(['name' => 'root']);
-        //$user1->save();
-        //$user1->friends()->array_push($user1->friends(), $user2);
-        $user1->friends()->attach($user2->id);
+        $user2->followers()->attach($user1->id);
+    }
+
+    public function deleteFollower(User $user1, User $user2)
+    {
+        $user2->followers()->detach($user1->id);
+    }
+
+
+    public function siguiendo(User $user1, User $user2)
+    {
+        for ($i = 0; $i < $user1->following()->count(); $i++) {
+            if ($user1->following[$i]->id == $user2->id) {
+                return response(true);
+            }
+        }
     }
 }
