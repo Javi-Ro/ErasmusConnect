@@ -10,7 +10,7 @@
 import FilterBarVue from './FilterModal.vue';
   export default {
     props: {
-      filters: {
+      value: {
         type: Object,
         required: true
       }
@@ -46,20 +46,22 @@ import FilterBarVue from './FilterModal.vue';
                     },
                     events: {
                       'input': filters => {
-                        this.filters.minPrice = filters.minPrice;
-                        this.filters.maxPrice = filters.maxPrice;
-                        this.filters.habitaciones = filters.habitaciones;
-                        this.filters.metros = filters.metros;
-                        this.filters.rate = filters.rate;
+                        this.value.minPrice = filters.minPrice;
+                        this.value.maxPrice = filters.maxPrice;
+                        this.value.habitaciones = filters.habitaciones;
+                        this.value.metros = filters.metros;
+                        this.value.rate = filters.rate;
+                        this.value.order = filters.order;
                       },
                       'filters': () => {
                         axios.get(`/filteringAlquileres`, {
                           params: {
-                            minPrice: this.filters.minPrice,
-                            maxPrice: this.filters.maxPrice,
-                            habitaciones: this.filters.habitaciones,
-                            metros: this.filters.metros,
-                            rate: this.filters.rate
+                            minPrice: this.value.minPrice,
+                            maxPrice: this.value.maxPrice,
+                            habitaciones: this.value.habitaciones,
+                            metros: this.value.metros,
+                            rate: this.value.rate,
+                            order: this.value.order
                           } 
                         })
                         .then(response => {
