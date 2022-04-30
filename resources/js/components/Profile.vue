@@ -31,8 +31,8 @@
                     <span>Editar perfil</span>
                 </button>
                 
-                <b-button v-if="user!=nickname && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
-                <b-button v-if="user!=nickname && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
@@ -169,26 +169,26 @@ export default {
         this.dataReady = true;
         this.name = this.userJSON.nickname;
         this.getCurrentUser();
-        console.log(siguiendo);
+        //console.log(siguiendo); 
+        console.log(this.userJSON.id); //ID del currentUser
+        console.log(this.userProfileJSON.id); //ID del profile user
     },
     methods:{
         follow(){
-            axios.post(`/api/users/`+this.currentUser.id + `/` + this.nickname)
+            axios.post(`/api/users/`+this.currentUser.id + `/` + this.userProfileJSON.id)
             .then(response =>{
                 console.log(this.currentUser.id);
-                console.log(this.nickname);
-                //window.location.href = window.location.href;
+                console.log(this.userProfileJSON.id);
                 this.siguiendo=1;
             }).catch(error=>{
                 console.info(error.response.data)
             });
         },
         unfollow(){
-            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.nickname)
+            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.userProfileJSON.id)
             .then(response =>{
                 console.log(this.currentUser.id);
-                console.log(this.nickname);
-                //window.location.href = window.location.href;
+                console.log(this.userProfileJSON.id);
                 this.siguiendo=0;
             }).catch(error=>{
                 console.info(error.response.data)
@@ -206,7 +206,7 @@ export default {
 
         },
         checkSiguiendo(){
-            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.nickname)
+            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.userProfileJSON.id)
             .then(response=>{
                 this.siguiendo = response.data;
                 console.log(this.siguiendo);
