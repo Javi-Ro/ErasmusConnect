@@ -7,7 +7,7 @@
     <div class="filter-options">
       <div class="filter-option">
         <p class="filter-option-tag">Order</p>
-        <select v-bind:value="value.order" v-on:input="handleInput('order', $event.target.value)" @change=";">
+        <select v-bind:value="value.order" v-on:input="handleInput('order', $event.target.value)" class="filter-dropdown">
             <option value="-1" selected >Mostrar todos</option>
             <option value="0">Más caros primeros</option>
             <option value="1">Más baratos primeros</option>
@@ -146,6 +146,12 @@
 </script>
 
 <style lang="scss">
+  .filter-dropdown{
+    padding: 10px 10px;
+    border: 1px solid #dbdbdb;
+    background-color: white;
+    border-radius: 10px;
+  }
   .filter-container{
     left: 0px;
     position:fixed;
