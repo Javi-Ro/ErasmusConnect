@@ -66,11 +66,15 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/{nickname}/profile', function ($nickname) {
-    $user = "";
+    $userProfile = App\Models\User::whereNickname($nickname)->get();
+    if ($userProfile->count() == 0) {
+        abort(404);
+    }
+    $loggedUser = null;
     if (Auth::check())
-        $user = auth()->user()->nickname;
+        $loggedUser = auth()->user();
 
-    return view('profile', ["nickname" => $nickname, "user" => $user]);
+    return view('profile', ["nickname" => $nickname, "user" => json_encode($loggedUser), "userProfile" => json_encode($userProfile->first())]);
 });
 
 Route::get('/publicacion/{publicacion}', function ($id) {

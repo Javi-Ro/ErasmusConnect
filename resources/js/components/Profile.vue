@@ -14,7 +14,7 @@
                     font-weight: bold;
                     font-size: 20px;
                 ">
-                {{this.name}}
+                {{this.userProfileJSON.name}}
                 </p>
                 <p style="
                     opacity: 0.5;
@@ -25,7 +25,7 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="user == nickname"
+                <button v-if="userJSON && userJSON.nickname == nickname"
                 class="edit" type="button">
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
@@ -34,15 +34,15 @@
                 <b-button v-if="user!=nickname && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
                 <b-button v-if="user!=nickname && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Gestionar amigos
                 </a>
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="user == nickname" 
+                <a v-if="userJSON && userJSON.nickname == nickname" 
                 class="column-item btn-start" href="#" >
                     Cambiar contraseña
                 </a>                                
@@ -126,6 +126,7 @@ export default {
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
         user: String,
+        userProfile: String
     },
     data() {
         return {
@@ -152,11 +153,21 @@ export default {
             seguidores: new Array(40),
             seguidos: new Array(15),
             showSeguidores: false,
-            showSeguidos:false
+            showSeguidos:false,
+            dataReady: false,
+            userProfileJSON: {},
+            userJSON: {}
         }
     },
     created() {
-        this.name = this.user;
+        this.userProfileJSON = JSON.parse(this.userProfile);
+        if (this.user != null) {
+            this.userJSON = JSON.parse(this.user);
+            console.log(this.userJSON.nickname);
+            console.log(this.nickname);
+        }
+        this.dataReady = true;
+        this.name = this.userJSON.nickname;
         this.getCurrentUser();
         console.log(siguiendo);
     },
