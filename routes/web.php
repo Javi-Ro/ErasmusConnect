@@ -111,6 +111,7 @@ Route::get('/foro/crear', function () {
         return view('auth.login');
     }
 });
+Route::get('/users/suggestions',  'App\Http\Controllers\UserController@suggestions');
 
 // API ROUTES
 
