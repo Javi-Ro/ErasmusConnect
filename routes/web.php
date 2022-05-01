@@ -96,7 +96,7 @@ Route::get('/apartments', function () {
 
 Route::get('/apartments/crear', function () {
     return view('apartments.crearapartment');
-});
+})->middleware('auth');
 
 Route::get('/foro/crear', function () {
     if (Auth::check()) {
