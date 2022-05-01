@@ -42,7 +42,7 @@ import FilterBarVue from './FilterModal.vue';
                     component: FilterBarVue,
                     canCancel: true,
                     props: { 
-                      filters: this.filters
+                      filters: this.value
                     },
                     events: {
                       'input': filters => {
@@ -96,6 +96,7 @@ import FilterBarVue from './FilterModal.vue';
     @media(min-width: 1500px){
       display: none;
     }
+    z-index: 3;
 
     .filter-header-horiz{
       display: flex;

@@ -7,7 +7,7 @@
     <div class="filter-options">
       <div class="filter-option">
         <p class="filter-option-tag">Order</p>
-        <select v-model="filters.order" v-on:input="handleInput('order', $event)">
+        <select v-bind:value="filters.order" v-on:input="handleInput('order', $event.target.value)" class="filter-dropdown">
             <option value="-1" selected >Mostrar todos</option>
             <option value="0">Más caros primeros</option>
             <option value="1">Más baratos primeros</option>
@@ -17,6 +17,7 @@
             <option value="5">Menos metros cuadrados primero</option>
         </select>
       </div>
+      <hr>
       <div class="filter-option">
         <p class="filter-option-tag">Precio</p>
         <div class="filter-option-content range-filter">
@@ -134,6 +135,7 @@
     padding: 20px 20px;
     border: 1px solid #dbdbdb;
     background-color: whitesmoke;
+    z-index: 999;
   }
   hr{
     background-color: gray;

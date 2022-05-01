@@ -61,7 +61,7 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
     }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
     .main-apartments {
         height: auto;
         width: 100%;
@@ -71,6 +71,19 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
     .apartments {
         display:flex;
         flex-direction: column;
+        margin-left: 200px;
+        margin-top: 10px;
+        width: 100%;
+        i{
+            color: #00309a !important;
+        }
+        .carousel-arrow .icon:hover{
+            border: 1px solid #00309a !important;
+        }
+        @media(max-width: 1500px) {
+            margin-top: 100px;
+            margin-left: 0px;
+        }
     }
 
     .apartment {
