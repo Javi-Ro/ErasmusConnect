@@ -111,6 +111,10 @@ Vue.component('perfil', require('./components/Perfil.vue').default);
 //---
 
 Vue.component('profile', require('./components/Profile.vue').default)
+Vue.component('alquileres-main', require('./components/Alquileres/Main.vue').default);
+Vue.component('filter-bar-alquiler', require('./components/Alquileres/FilterBar.vue').default);
+Vue.component('filter-bar-horizontal-alquiler', require('./components/Alquileres/FilterBarHorizontal.vue').default);
+Vue.component('filter-modal', require('./components/Alquileres/FilterModal.vue').default);
 
 
 /**

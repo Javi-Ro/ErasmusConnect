@@ -1,5 +1,5 @@
 <template>
-    <div id="perfil">
+    <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -14,7 +14,7 @@
                     font-weight: bold;
                     font-size: 20px;
                 ">
-                {{this.name}}
+                {{this.userProfileJSON.name}}
                 </p>
                 <p style="
                     opacity: 0.5;
@@ -25,26 +25,24 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="user == nickname"
+                <button v-if="userJSON && userJSON.nickname == nickname"
                 class="edit" type="button">
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
                 </button>
                 
-                <button v-else
-                class="edit" type="button">
-                    <span style="margin-left: 20px;">Añadir a amigos</span>
-                </button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
 
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Gestionar amigos
                 </a>
-                <a v-if="user == nickname"
+                <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="user == nickname" 
+                <a v-if="userJSON && userJSON.nickname == nickname" 
                 class="column-item btn-start" href="#" >
                     Cambiar contraseña
                 </a>                                
@@ -124,16 +122,22 @@ export default {
         ModalSeguidores
     },
     props: {
-        // nickname del perfil que estamos viendo
+        // nickname del perfil que estamos viendo (el id vamos)
         nickname: String,
         // Es solo el nickname del usuario que ha iniciado sesión
-        user: String
+        user: String,
+        userProfile: String
     },
     data() {
         return {
+            dataReady: false,
+            siguiendo: null,
             // Nick del usuario que ha iniciado sesión
             // actualNickname: "Willyrex",
-
+            currentUser: {
+                name: null,
+                id: null
+            },
             name: "",
             // nickname: "Willyrex",
             city: "Madrid",
@@ -149,15 +153,69 @@ export default {
             seguidores: new Array(40),
             seguidos: new Array(15),
             showSeguidores: false,
-            showSeguidos:false
+            showSeguidos:false,
+            dataReady: false,
+            userProfileJSON: {},
+            userJSON: {}
         }
     },
     created() {
-        console.log(this.nickname);
-        console.log(typeof(this.user));
-        console.log(this.user);
-        this.name = this.user;
+        this.userProfileJSON = JSON.parse(this.userProfile);
+        if (this.user != null) {
+            this.userJSON = JSON.parse(this.user);
+            console.log(this.userJSON.nickname);
+            console.log(this.nickname);
+        }
+        this.dataReady = true;
+        this.name = this.userJSON.nickname;
+        this.getCurrentUser();
+        //console.log(siguiendo); 
+        console.log(this.userJSON.id); //ID del currentUser
+        console.log(this.userProfileJSON.id); //ID del profile user
     },
+    methods:{
+        follow(){
+            axios.post(`/api/users/`+this.currentUser.id + `/` + this.userProfileJSON.id)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.userProfileJSON.id);
+                this.siguiendo=1;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        unfollow(){
+            axios.post(`/api/users/unfollow/`+this.currentUser.id + `/` + this.userProfileJSON.id)
+            .then(response =>{
+                console.log(this.currentUser.id);
+                console.log(this.userProfileJSON.id);
+                this.siguiendo=0;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getCurrentUser(){
+            axios.get(`/api/auth`)
+            .then(response =>{
+                this.currentUser = response.data.user;
+                this.checkSiguiendo();
+                this.dataReady=true;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+
+        },
+        checkSiguiendo(){
+            axios.get(`/api/users/siguiendo/` + this.currentUser.id + `/` + this.userProfileJSON.id)
+            .then(response=>{
+                this.siguiendo = response.data;
+                console.log(this.siguiendo);
+                console.log("hola");
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        }
+    }
     // methods: {
     //     getNickName(nickname) {
     //         console.log("Perfil de: " + nickname);

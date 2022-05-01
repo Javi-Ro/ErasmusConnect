@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use Illuminate\Support\Facades\DB;
+use Whoops\Run;
 
 class ApartmentController extends Controller
 {
@@ -91,6 +93,25 @@ class ApartmentController extends Controller
             $apartments = Apartment::all();
         }
 
+        return response()->json(['success' => true, 'apartments' => $apartments]);
+    }
+
+    public function applyFilters(Request $data) {
+        $apartments = DB::table('apartments')->when($data->minPrice, function ($query, $minPrice) {
+                                              $query->where('price', '>', (int)$minPrice);
+                                            })->when($data->maxPrice, function ($query, $maxPrice) {
+                                                $query->where('price', '<', (int)$maxPrice);
+                                            })->when($data->habitaciones, function ($query, $habitaciones) {
+                                                $query->where('bedrooms', '>=', (int)$habitaciones);
+                                            })->when($data->metros, function ($query, $metros) {
+                                                $query->where('surface', '>=', (int)$metros);
+                                            })->when($data->rate, function ($query, $rate) {
+                                                $query->where('rating', '>=', (int)$rate);
+                                            })
+                                            ->get();
+
+        //$apartments = DB::table('apartments')->where('price', '>', (int)$data->minPrice)->get();       
+        
         return response()->json(['success' => true, 'apartments' => $apartments]);
     }
 }
