@@ -28,7 +28,7 @@
                     <div class="modal-vue" :id="report.id">
                         <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
                         <b-button type="is-info" outlined 
-                        @click.prevent="openPost(report.id);"
+                        @click.prevent="openPost(report.post_id);"
                         title="Visualiza la publicación y permite eliminarla"
                         > 
                         Ver publicación
@@ -39,21 +39,21 @@
                         </b-button>
                         <!-- overlay -->
                         <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
-                        <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div>
+                        <!-- <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div> -->
                         
                         <!-- modal -->
                         <!-- Solo aparece cuando showModal tiene el mismo valor que el id del reporte al que corresponde -->
-                        <div class="modal" v-if="showModal == report.id">
+                        <!-- <div class="modal" v-if="showModal == report.id">
                             <div class="vista-previa">
                                 <div class="publicacion">
                                     <vista-previa-publicacion></vista-previa-publicacion>
                                 </div>
                                 <div class="btn-delete">
-                                    <!-- TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) -->
+                                    TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) 
                                     <b-button type="is-danger" outlined >Borrar publicación ({{report.id}})</b-button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Fin del modal -->
                     <b-button type="is-danger"
@@ -72,6 +72,7 @@ export default {
     props: {},
     data() {
         return {
+            post: {},
             showModal: 0,
             reports: [],
             dataReady: false
@@ -105,21 +106,30 @@ export default {
                 console.info(error.response.data)
             });
         },
-        openPost(post) {  //--> Programmatic way of creating the modal.
+        getPostById(id){
+            axios.get('/api/posts/' + id).then(response => {
+                this.post = response.data.post;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
+        openPost(postId) {  //--> Programmatic way of creating the modal.
+            console.log("POST: " + postId)
+            this.getPostById(postId);
             let vue = this;
             vue.$buefy.modal.open({
                 parent: vue,
                 animation: 'none',
                 component: VistaPreviaPublicacionVue,
                 canCancel: true,
-                props: { post: post, comment:false, view:""},
+                props: { post: this.post, comment:false, view:""},
                 width: 610,
                 events: {
                     
                 },
                 onCancel: () => {}
             });
-        }
+        },
     }
 }
 </script>

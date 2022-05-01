@@ -239,6 +239,8 @@
           }
       },
       getUser() {
+        console.log(this.post.id);
+        console.log(this.post.user_id)
         axios.get(`/api/users/` + this.post.user_id).then(response => {
           this.user = response.data.user;
           console.log(this.user);
@@ -329,6 +331,7 @@
     },
 
     created() {
+      
       this.getUser();
       this.userLikes();
     }
