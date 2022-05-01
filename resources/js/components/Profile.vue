@@ -62,13 +62,13 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light" @click="showSeguidores = true">{{this.seguidores.length}} Seguidores</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
                                 <b-modal v-model="showSeguidores">
-                                    <modal-seguidores :seguidores="seguidores"></modal-seguidores>
+                                    <modal-seguidores :userId="userProfileJSON.id"></modal-seguidores>
                                 </b-modal>
-                            <b-button type="is-info is-light" @click="showSeguidos=true">{{this.seguidos.length}} Seguidos</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidos=true">{{ userProfileJSON.following }} Seguidos</b-button>
                             <b-modal v-model="showSeguidos">
-                                    <modal-seguidos :seguidos="seguidos"></modal-seguidos>
+                                    <modal-seguidos :userId="userProfileJSON.id"></modal-seguidos>
                             </b-modal>
                         </div>
                         <div class="ciudad">
@@ -150,8 +150,6 @@ export default {
             LikedPosts: [1, 2],
             SavedPosts: [1, 3, 4],
             //SEGUIDORES Y SEGUIDOS
-            seguidores: new Array(40),
-            seguidos: new Array(15),
             showSeguidores: false,
             showSeguidos:false,
             dataReady: false,
@@ -180,6 +178,7 @@ export default {
                 console.log(this.currentUser.id);
                 console.log(this.userProfileJSON.id);
                 this.siguiendo=1;
+                this.userProfileJSON.followers += 1;
             }).catch(error=>{
                 console.info(error.response.data)
             });
@@ -190,6 +189,7 @@ export default {
                 console.log(this.currentUser.id);
                 console.log(this.userProfileJSON.id);
                 this.siguiendo=0;
+                this.userProfileJSON.followers -= 1;
             }).catch(error=>{
                 console.info(error.response.data)
             });
