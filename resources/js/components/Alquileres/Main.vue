@@ -1,6 +1,7 @@
-
 <template>
-    <div class="main-apartments">
+    <div class="main-apartments" style="background-color:whitesmoke; width:100%; height:100%">
+        <filter-bar-alquiler v-model="filters"></filter-bar-alquiler>
+        <filter-bar-horizontal-alquiler v-model="filters"></filter-bar-horizontal-alquiler>
         <!-- Ordenar por precio // rating // surface -->
         <select @change="sortBy(sortingBy)" v-model="sortingBy" style="margin-left: 20px;">
             <option value="-1" selected >Mostrar todos</option>
@@ -31,13 +32,21 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
         data() {
             return {
                 sortingBy: null,
-                apartments: []
+                apartments: [],
+                filters: {
+                    minPrice: 0,
+                    maxPrice: 0,
+                    habitaciones: 0,
+                    metros: 0,
+                    rate: 0
+                }
             }
         },
 
         mounted() {
             console.log('Component mounted.')
         },
+        
 
         methods: {
             getApartments() {
