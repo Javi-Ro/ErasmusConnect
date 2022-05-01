@@ -31,9 +31,8 @@
 </template>
 
 <script>
-import Comentario from './Comentario.vue';
   export default {
-  components: { Comentario },
+  components: { },
     props:{id: null},
 
     data() {
