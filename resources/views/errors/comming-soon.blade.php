@@ -3,7 +3,7 @@
 @section("content")
 <div class="wrapper">
     <h1 class="title-wrapper">Próximamente<span class="dot">.</span></h1>
-    <p class="content-wrapper">Conoce en persona a nuevas personas increíbles...</p>
+    <p class="content-wrapper">Vive experiencias increíbles con personas que aún no conoces...</p>
     <div class="iconss">
       <a href=""><i class="fa-brands fa-twitter"></i></a>
       <a href=""><i class="fa-brands fa-instagram"></i></a>
