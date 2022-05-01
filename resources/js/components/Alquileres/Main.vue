@@ -90,4 +90,22 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
         display: flex;
         justify-content: center;
     }
+
+.float{
+    display: flex;
+	position:fixed;
+	width:70px;
+	height:70px;
+	bottom:40px;
+	right:40px;
+	background-color:#00309a;
+	color:#F2AF13;
+	border-radius:50px;
+	box-shadow: 2px 2px 3px #999;
+}
+
+.my-float{
+    margin-top: 22px;
+    margin-left: 22px
+}
 </style>
