@@ -112,8 +112,11 @@ Route::get('/foro/crear', function () {
     }
 });
 
-// API ROUTES
+Route::get('/events', function () {
+    return view('errors.comming-soon');
+});
 
+// API ROUTES
 Route::group(['prefix' => 'api'], function () {
 
     //USERS

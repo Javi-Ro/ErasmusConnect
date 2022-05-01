@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css2?family=Poppins:wght@900&family=Roboto:wght@300&display=swap);
+@import url(https://fonts.googleapis.com/css2?family=Mulish:wght@600&family=Poppins:wght@900&family=Roboto:wght@300&display=swap);
 /*!
  * Font Awesome Free 6.1.1 by @fontawesome - https://fontawesome.com
  * License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License)
@@ -51304,7 +51306,7 @@ textarea.form-control-lg {
   flex-direction: column;
   margin-left: 0px;
   margin-right: 0px;
-  /*margin-top: 82px;*/
+  margin-top: 82px;
 }
 .main-foro .post {
   margin-bottom: 2rem;

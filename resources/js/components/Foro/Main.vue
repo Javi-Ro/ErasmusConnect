@@ -4,14 +4,14 @@
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
     <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
-        <b-tab-item label="Discover" icon="fa-thin fa-globe" icon-pack="fa">
+        <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
             <div v-if="postsReady === true" class="posts">
               <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
                 <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
               </div>
             </div>
         </b-tab-item>
-        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
+        <b-tab-item label="Siguiendo" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
     </b-tabs>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
