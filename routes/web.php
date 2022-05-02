@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,34 +30,35 @@ Route::get('/register', function () {
 });
 
 // ADMIN ROUTES
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/admin', function () {
+        return view('/admin/home');
+    });
 
-Route::get('/admin', function () {
-    return view('/admin/home');
-});
-
-Route::get('/admin/reports', function () {
-    return view('/admin/home');
-});
-Route::get('/admin/countries', function () {
-    return view('/admin/paisesAdmin');
-});
-Route::get('/admin/tags', function () {
-    return view('/admin/etiquetasAdmin');
-});
-Route::get('/admin/cities', function () {
-    return view('/admin/ciudadesAdmin');
-});
-Route::get('/admin/apartments', function () {
-    return view('/admin/apartmentsAdmin');
-});
+    Route::get('/admin/reports', function () {
+        return view('/admin/home');
+    });
+    Route::get('/admin/countries', function () {
+        return view('/admin/paisesAdmin');
+    });
+    Route::get('/admin/tags', function () {
+        return view('/admin/etiquetasAdmin');
+    });
+    Route::get('/admin/cities', function () {
+        return view('/admin/ciudadesAdmin');
+    });
+    Route::get('/admin/apartments', function () {
+        return view('/admin/apartmentsAdmin');
+    });
 
 
-Route::get('/admin/posts', function () {
-    return view('/admin/posts');
-});
+    Route::get('/admin/posts', function () {
+        return view('/admin/posts');
+    });
 
-Route::get('/admin/users', function () {
-    return view('/admin/usuarios');
+    Route::get('/admin/users', function () {
+        return view('/admin/usuarios');
+    });
 });
 
 // VIEWS ROUTES
@@ -66,23 +68,24 @@ Route::get('/', function () {
 })->name('home');
 
 Route::get('/{nickname}/profile', function ($nickname) {
-    $user = "";
+    $userProfile = App\Models\User::whereNickname($nickname)->get();
+    if ($userProfile->count() == 0) {
+        abort(404);
+    }
+    $loggedUser = null;
     if (Auth::check())
-        $user = auth()->user()->nickname;
+        $loggedUser = auth()->user();
 
-    return view('profile', ["nickname" => $nickname, "user" => $user]);
+    return view('profile', ["nickname" => $nickname, "user" => json_encode($loggedUser), "userProfile" => json_encode($userProfile->first())]);
 });
 
-Route::get('/publicacion/{publicacion}', function($id){
+Route::get('/publicacion/{publicacion}', function ($id) {
     $post = App\Models\Post::whereId($id)->first();
 
     return view('foro.publicacion')->with('post_id', $post->id);
 });
 
-Route::get('/profile/{user}/followers', 'App\Http\Controllers\UserController@listFollowers');
-Route::get('/followers/{user1}/{user2}', 'App\Http\Controllers\UserController@addFollower'); //TODO: maybe a post? review 
-
-Route::get('/publicacion', function(){
+Route::get('/publicacion', function () {
     return view('foro.publicacion');
 });
 
@@ -98,6 +101,11 @@ Route::get('/apartments/crear', function () {
     return view('apartments.crearapartment');
 })->middleware('auth');
 
+Route::get('/alquileres', function () {
+    return view('alquileres.main');
+});
+
+Route::get('/filteringAlquileres', 'App\Http\Controllers\ApartmentController@applyFilters');
 Route::get('/foro/crear', function () {
     if (Auth::check()) {
         return view('foro.crearpublicacion');
@@ -116,6 +124,23 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users', 'App\Http\Controllers\UserController@create');
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
     Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
+    Route::get('/users/siguiendo/{user1}/{user2}', 'App\Http\Controllers\UserController@siguiendo');
+    Route::get('/users/siguiendo/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "following" => $user->following()->get()]);
+    });
+    Route::get('/users/seguidores/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "followers" => $user->followers()->get()]);
+    });
+    Route::post('/users/{user1}/{user2}',  'App\Http\Controllers\UserController@addFollower');
+    Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');

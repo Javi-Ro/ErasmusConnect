@@ -33,21 +33,21 @@ class FriendsTableSeeder extends Seeder
         DB::table('friends')->insert(
             [
                 'user_id' => 2,
-                'user2_id' => 4
+                'user2_id' => 3
             ]
         );
 
         DB::table('friends')->insert(
             [
                 'user_id' => 3,
-                'user2_id' => 5
+                'user2_id' => 2
             ]
         );
 
         DB::table('friends')->insert(
             [
                 'user_id' => 2,
-                'user2_id' => 3
+                'user2_id' => 1
             ]
         );
     }

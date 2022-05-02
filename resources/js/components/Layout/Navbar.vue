@@ -173,8 +173,8 @@
                 });
         },
         showProfile() {
-            console.log(this.$root.city);
-            //window.location.href = "/" + this.user.nickname + "/profile";
+            //console.log(this.$root.city);
+            window.location.href = "/" + this.user.nickname + "/profile";
         },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {

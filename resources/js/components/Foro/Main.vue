@@ -33,6 +33,17 @@
       </div>
 
     </div>
+
+    <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
+        <b-tab-item label="Discover" icon="fa-thin fa-globe" icon-pack="fa">
+            <div v-if="postsReady === true" class="posts">
+              <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+                <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+              </div>
+            </div>
+        </b-tab-item>
+        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
+    </b-tabs>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
     </a>
@@ -94,7 +105,14 @@
     }
   }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
+.b-tabs .tab-content{
+  padding: 0 !important;
+  padding-top: 3rem !important; 
+}
+.tabs ul {
+  border-bottom-style: solid !important;
+}
 .float{
   display: flex;
 	position:fixed;
@@ -117,10 +135,18 @@
     display: none;
   }
 }
+@media(max-width: 1500px){
+  .b-tabs .tabs{
+    margin-top: 70px;
+  }
+}
 
 @media(max-width: 500px){
   .posts {
-    margin-top: 128px;
+    //margin-top: 128px;
+  }
+  .b-tabs .tabs{
+    margin-top: 110px;
   }
 }
 
