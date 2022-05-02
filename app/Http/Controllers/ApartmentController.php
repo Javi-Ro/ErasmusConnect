@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Apartment;
+use Auth;
 use Illuminate\Support\Facades\DB;
 use Whoops\Run;
+
 
 class ApartmentController extends Controller
 {
@@ -22,6 +24,10 @@ class ApartmentController extends Controller
 
     public function create(Request $data)
     {
+        $filename = time() . '.' . $data->file('file')->getClientOriginalExtension();
+        $data->file('file')->storeAs('/public/images/apartments', $filename);
+        $data = json_decode($data['apartment']);
+
         $apartment = Apartment::create([
             'title' => $data->title,
             'description' => $data->description,
@@ -30,9 +36,9 @@ class ApartmentController extends Controller
             'bedrooms' => $data->bedrooms,
             'phone' => $data->phone,
             'email' => $data->email,
-            'img_url' => $data->img_url,
+            'img_url' => $filename,
             'surface' => $data->surface,
-            'user_id' => $data->user_id,
+            'user_id' => Auth::user()->id,
             'city_id' => $data->city_id
         ]);
 

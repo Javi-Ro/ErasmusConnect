@@ -3,6 +3,37 @@
     <filter-bar></filter-bar>
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
+
+    <div v-if="postsReady === true" class="posts">
+      <!-- <div class="searcher">
+    <div class="posts">
+      <div class="searcher">
+
+        <b-field>
+            <b-input placeholder="Buscar en el foro..."
+                type="search"
+                icon="magnify"
+                icon-clickable
+                v-model="buscador"
+                
+                >
+            </b-input>
+        </b-field>
+      </div>
+
+      <rightBar @post-buscar="capturaBusqueda"/> -->
+
+      <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+        <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+      </div>
+      <div v-if="buscar == false" class="pagina-vacia" > 
+          <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+          <br>
+          <label style="font-size: 22px; width:100%; text-align:center;"> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+      </div>
+
+    </div>
+
     <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
         <b-tab-item label="Discover" icon="fa-thin fa-globe" icon-pack="fa">
             <div v-if="postsReady === true" class="posts">
@@ -117,6 +148,11 @@
   .b-tabs .tabs{
     margin-top: 110px;
   }
+}
+
+.pagina-vacia{
+  margin-top: 128px;
+  height: calc(100vh - 128px);
 }
 
 </style>

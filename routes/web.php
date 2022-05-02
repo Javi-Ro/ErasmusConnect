@@ -99,7 +99,7 @@ Route::get('/apartments', function () {
 
 Route::get('/apartments/crear', function () {
     return view('apartments.crearapartment');
-});
+})->middleware('auth');
 
 Route::get('/alquileres', function () {
     return view('alquileres.main');
