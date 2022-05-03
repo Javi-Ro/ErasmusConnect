@@ -23,9 +23,9 @@
 
       <rightBar @post-buscar="capturaBusqueda"/> -->
 
-      <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+      <!--<div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
-      </div>
+      </div>-->
       <div v-if="buscar == false" class="pagina-vacia" > 
           <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
           <br>
