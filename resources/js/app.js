@@ -107,10 +107,11 @@ Vue.component('admin-navbar', require('./components/Layout/AdminNavbar.vue').def
 //---
 
 //TODO: delete 
-Vue.component('perfil', require('./components/Perfil.vue').default);
+//Vue.component('perfil', require('./components/Perfil.vue').default);
 //---
 
-Vue.component('profile', require('./components/Profile.vue').default)
+Vue.component('profile', require('./components/Perfil/Profile.vue').default);
+Vue.component('editar-perfil', require('./components/Perfil/editarPerfil.vue').default);
 
 
 /**

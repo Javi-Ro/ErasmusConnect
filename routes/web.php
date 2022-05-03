@@ -73,6 +73,14 @@ Route::get('/{nickname}/profile', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => $user]);
 });
 
+Route::get('/{nickname}/profile/edit', function ($nickname) {
+    $user = "";
+    if (Auth::check())
+        $user = auth()->user()->nickname;
+
+    return view('editarPerfil', ["nickname" => $nickname, "user" => $user]);
+});
+
 Route::get('/publicacion/{publicacion}', function($id){
     $post = App\Models\Post::whereId($id)->first();
 

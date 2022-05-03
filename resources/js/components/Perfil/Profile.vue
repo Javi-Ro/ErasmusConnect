@@ -114,8 +114,8 @@
     </div>
 </template>
 <script>
-import ModalSeguidores from './VistaSeguidores.vue'
-import ModalSeguidos from './VistaSeguidos.vue'
+import ModalSeguidores from '../VistaSeguidores.vue'
+import ModalSeguidos from '../VistaSeguidos.vue'
 
 
 export default {
