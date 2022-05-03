@@ -182,6 +182,7 @@ Route::group(['prefix' => 'api'], function () {
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
+    Route::post('/posts/tags', 'App\Http\Controllers\PostController@addTags');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
@@ -194,6 +195,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
     Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
     Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
+    Route::get('/posts/{post}/tags', 'App\Http\Controllers\PostController@getTags');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');

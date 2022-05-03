@@ -23,14 +23,9 @@
 
       <rightBar @post-buscar="capturaBusqueda"/> -->
 
-      <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+      <!--<div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
         <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
-      </div>
-      <div v-if="buscar == false" class="pagina-vacia" > 
-          <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
-          <br>
-          <label style="font-size: 22px; width:100%; text-align:center;"> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
-      </div>
+      </div>-->
 
     </div>
 
@@ -43,6 +38,12 @@
             </div>
         </b-tab-item>
         <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
+        <div v-if="buscar == false" class="pagina-vacia" > 
+          <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+          <br>
+          <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+      </div>
+
     </b-tabs>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
@@ -107,11 +108,11 @@
 </script>
 <style lang="scss">
 .b-tabs .tab-content{
-  padding: 0 !important;
-  padding-top: 3rem !important; 
+  padding: 0;
+  padding-top: 3rem; 
 }
 .tabs ul {
-  border-bottom-style: solid !important;
+  border-bottom-style: solid;
 }
 .float{
   display: flex;
