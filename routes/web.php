@@ -143,6 +143,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
+    Route::get('/tags/apartments', 'App\Http\Controllers\TagController@getApartmentsTags');
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
@@ -157,6 +158,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
     Route::post('/apartments/order', 'App\Http\Controllers\ApartmentController@order');
     Route::patch('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@update');
+    Route::post('/apartments/tags', 'App\Http\Controllers\ApartmentController@addTags');
+
 
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');

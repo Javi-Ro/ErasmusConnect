@@ -76,5 +76,56 @@ class TagsTableSeeder extends Seeder
                 'post' => false
             ]
         );
+
+        Tag::create(
+            [
+                'id' => 8,
+                'name' => "garaje",
+                'post' => false
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 9,
+                'name' => "se permite fumar",
+                'post' => false
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 10,
+                'name' => "se permiten mascotas",
+                'post' => false
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 11,
+                'name' => "vida social",
+                'post' => true,
+                'img_url' => "/images/restaurant.svg"
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 12,
+                'name' => "viajes",
+                'post' => true,
+                'img_url' => "/images/restaurant.svg"
+            ]
+        );
+
+        Tag::create(
+            [
+                'id' => 13,
+                'name' => "compras",
+                'post' => true,
+                'img_url' => "/images/restaurant.svg"
+            ]
+        );
     }
 }
