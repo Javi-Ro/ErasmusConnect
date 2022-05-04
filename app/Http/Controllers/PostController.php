@@ -207,8 +207,7 @@ class PostController extends Controller
     public function getTags(Post $post){
         $tags = $post->tags()->get();
         return response()->json(['success' => true, 'tags' => $tags]);
-
-
+    }
     
     public function getPostsFollowing() {
         if (!Auth::check()) {
