@@ -3,6 +3,32 @@
     <filter-bar></filter-bar>
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
+
+    <div v-if="postsReady === true" class="posts">
+      <!-- <div class="searcher">
+    <div class="posts">
+      <div class="searcher">
+
+        <b-field>
+            <b-input placeholder="Buscar en el foro..."
+                type="search"
+                icon="magnify"
+                icon-clickable
+                v-model="buscador"
+                
+                >
+            </b-input>
+        </b-field>
+      </div>
+
+      <rightBar @post-buscar="capturaBusqueda"/> -->
+
+      <!--<div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+        <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+      </div>-->
+
+    </div>
+
     <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
         <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
             <div v-if="postsReady === true" class="posts">
@@ -11,7 +37,26 @@
               </div>
             </div>
         </b-tab-item>
-        <b-tab-item label="Siguiendo" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
+        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" >
+          <div v-if="followingPostsReady === true" class="posts">
+            <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
+              <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+            </div>
+          </div>
+          <div v-if="buscarFollowing == false" class="pagina-vacia" > 
+            <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+            <br>
+            <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
+              <a href="/foro" style="color:#00309a;"> foro </a>
+            </label> 
+          </div>
+        </b-tab-item>
+        <div v-if="buscar == false" class="pagina-vacia" > 
+          <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+          <br>
+          <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+      </div>
+
     </b-tabs>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
@@ -31,9 +76,10 @@
       return {
         buscador: '',
         users: [],
-        postsBuscar: [],
+        postsFollowing: [],
         try: [],
         postsReady: false,
+        followingPostsReady: false,
         posts: [],
       }
     },
@@ -49,6 +95,11 @@
 
         return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
       },
+      buscarFollowing() {
+        let posts = this.postsFollowing.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+
+        return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
+      }
     },
 
     methods: {
@@ -60,6 +111,19 @@
             console.info(error.response.data);
         });
       },
+      getPostsFollowing() {
+        axios.get(`/api/posts/following`).then(response => {
+            console.log(response);
+            this.postsFollowing = response.data.posts;
+            this.followingPostsReady = true;
+        }).catch(error => {
+            console.info(error.response.data);
+
+            if (error.response.status === 403) {
+              console.info("Loggeate primero!")
+            }
+        });
+      }
       //capturaBusqueda(buscado) {
       //  this.posts = buscado;
       //},
@@ -71,6 +135,7 @@
     
     created() {
       this.getPosts();
+      this.getPostsFollowing();
     }
   }
 </script>
@@ -117,6 +182,11 @@
   .b-tabs .tabs{
     margin-top: 110px;
   }
+}
+
+.pagina-vacia{
+  margin-top: 128px;
+  height: calc(100vh - 128px);
 }
 
 </style>

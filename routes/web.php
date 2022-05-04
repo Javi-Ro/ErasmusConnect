@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,34 +30,35 @@ Route::get('/register', function () {
 });
 
 // ADMIN ROUTES
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/admin', function () {
+        return view('/admin/home');
+    });
 
-Route::get('/admin', function () {
-    return view('/admin/home');
-});
-
-Route::get('/admin/reports', function () {
-    return view('/admin/home');
-});
-Route::get('/admin/countries', function () {
-    return view('/admin/paisesAdmin');
-});
-Route::get('/admin/tags', function () {
-    return view('/admin/etiquetasAdmin');
-});
-Route::get('/admin/cities', function () {
-    return view('/admin/ciudadesAdmin');
-});
-Route::get('/admin/apartments', function () {
-    return view('/admin/apartmentsAdmin');
-});
+    Route::get('/admin/reports', function () {
+        return view('/admin/home');
+    });
+    Route::get('/admin/countries', function () {
+        return view('/admin/paisesAdmin');
+    });
+    Route::get('/admin/tags', function () {
+        return view('/admin/etiquetasAdmin');
+    });
+    Route::get('/admin/cities', function () {
+        return view('/admin/ciudadesAdmin');
+    });
+    Route::get('/admin/apartments', function () {
+        return view('/admin/apartmentsAdmin');
+    });
 
 
-Route::get('/admin/posts', function () {
-    return view('/admin/posts');
-});
+    Route::get('/admin/posts', function () {
+        return view('/admin/posts');
+    });
 
-Route::get('/admin/users', function () {
-    return view('/admin/usuarios');
+    Route::get('/admin/users', function () {
+        return view('/admin/usuarios');
+    });
 });
 
 // VIEWS ROUTES
@@ -97,7 +99,7 @@ Route::get('/apartments', function () {
 
 Route::get('/apartments/crear', function () {
     return view('apartments.crearapartment');
-});
+})->middleware('auth');
 
 Route::get('/alquileres', function () {
     return view('alquileres.main');
@@ -126,6 +128,20 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
     Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
     Route::get('/users/siguiendo/{user1}/{user2}', 'App\Http\Controllers\UserController@siguiendo');
+    Route::get('/users/siguiendo/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "following" => $user->following()->get()]);
+    });
+    Route::get('/users/seguidores/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "followers" => $user->followers()->get()]);
+    });
     Route::post('/users/{user1}/{user2}',  'App\Http\Controllers\UserController@addFollower');
     Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
@@ -165,6 +181,7 @@ Route::group(['prefix' => 'api'], function () {
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
+    Route::get('/posts/following', 'App\Http\Controllers\PostController@getPostsFollowing');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');

@@ -140,7 +140,7 @@
                             </div>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Es spam'"> Es spam </b-button>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1;motivo='Desnudos o actividad sexual'"> Desnudos o actividad sexual </b-button>
-                            <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Lenguaje o símbolos que incitan al odio'"> Lenguaje o símbolos que incitan al odio </b-button>
+                            <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Lenguaje o simbolos que incitan al odio'"> Lenguaje o símbolos que incitan al odio </b-button>
                             <!-- <b-button size="is-medium" type="is-light" style="width:100%;"> Violencia u organizaciones peligrosas </b-button> -->
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Venta de productos ilegales o regulados'"> Venta de productos ilegales o regulados</b-button>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Bullying o acoso'"> Bullying o acoso</b-button>
@@ -156,8 +156,8 @@
                             </div>
                             <div class="ventana-reportes2">
                                 <label class="motivo"> {{this.motivo}} </label>
-                                <b-input maxlength="200"  placeholder="Escribe el motivo de tu reporte" type="textarea"></b-input>  
-                                <b-button size="is-medium" type="is-light" style="width:100%; " @click="activeTab = 2"> Enviar </b-button>
+                                <b-input maxlength="200" v-model="report.text" placeholder="Escribe el motivo de tu reporte" type="textarea"></b-input>  
+                                <b-button size="is-medium" type="is-light" style="width:100%; " @click="activeTab = 2; sendReport()"> Enviar </b-button>
                             </div>
                     </b-tab-item>
                     <b-tab-item value="2">
@@ -195,6 +195,12 @@
         // Variable que controla si se ha dado me gusta una publicación
         liked: false,
         canLike: null,
+        report: {
+          title: '',
+          text: '',
+          post_id: null,
+          user_id: null
+        },
         postTags: [
           {name: "comida"},
           {name: "fiesta"},
@@ -208,6 +214,7 @@
         ],
         user: {},
         postProp: this.post,
+        authUser: {}
       }
     },
 
@@ -299,6 +306,25 @@
           console.info(error);
         });
       },
+      getAuthUser() {
+        axios.get(`/api/auth`).then(response => {
+          this.authUser = response.data.user;
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      },
+      sendReport() {
+        this.report.title = this.motivo;
+        this.report.post_id = this.post.id;
+        this.report.user_id = this.authUser.id;
+        console.log(this.report.title);
+
+        axios.post(`/api/reports`, this.report).then(response => {
+          console.log(response.data.success);
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      },
       userLikes() {
         axios.get(`/api/posts/` + this.post.id + `/like`).then(response => {
           if (response.data.auth == true) {
@@ -322,6 +348,7 @@
     },
 
     created() {
+      this.getAuthUser();
       this.getUser();
       this.userLikes();
     }

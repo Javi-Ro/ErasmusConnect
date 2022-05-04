@@ -5,7 +5,7 @@
             <p>CREA UNA PUBLICACIÓN</p>
         </div>
         <div class="contenedor-dropdown"> 
-          <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
+          <b-dropdown append-to-body aria-role="menu" style="left:3%;" scrollable max-height="200" trap-focus>
             <template #trigger>
                 <a class="navbar-item" role="button">
                     <span style="margin-right: 10px;">{{selectedCity}}</span>
@@ -40,7 +40,7 @@
 
             <b-tab-item label="Multimedia">
                 <b-field>
-                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple drag-drop>
+                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
                       <section class="custom-section">
                           <div class="content has-text-centered">
                               <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-bottom: 20px; height:40px"/>
@@ -245,8 +245,6 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
   .footer{
     display:flex;
   }
-
-
   
   section{
         margin-top: 130px;

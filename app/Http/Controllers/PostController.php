@@ -168,4 +168,21 @@ class PostController extends Controller
 
         return response()->json(['success' => false, 'auth' => Auth::check()]);
     }
+    
+    public function getPostsFollowing() {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
+        $following = Auth::user()->following()->get();
+
+        $posts = [];
+
+        foreach ($following as $user) {
+            $user_posts = $user->posts()->get();
+            array_push($posts, ...$user_posts);
+        }
+
+        return response()->json(['success' => true, 'posts' => $posts]);
+    }
 }
