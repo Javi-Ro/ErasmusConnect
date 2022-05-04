@@ -213,4 +213,12 @@ class ApartmentController extends Controller
         
         return response()->json(['success' => true, 'apartments' => $apartments]);
     }
+
+    public function addTags(Request $data){
+        $apartment = Apartment::whereId($data->apartment['id'])->first();
+        // return response($data->tags);
+        $apartment->tags()->attach(array_map(function($variable) {
+            return $variable['id'];
+        } , $data->tags));
+    }
 }

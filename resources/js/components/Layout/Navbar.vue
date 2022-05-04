@@ -132,7 +132,7 @@
             publicMenu: [
                 { name: "Foro", link: "/foro"},
                 { name: "Alquileres", link: "/apartments"},
-                { name: "Eventos", link: "#"},
+                { name: "Eventos", link: "/events"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
                 { name: "Versión: 1.0.0", link: "#"},
             ]

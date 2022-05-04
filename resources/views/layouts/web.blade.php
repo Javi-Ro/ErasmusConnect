@@ -14,7 +14,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" style="background-color: whitesmoke">
+    <div id="app" style="background-color: whitesmoke; ">
         @include('partials.navbar')
         <!-- <main class="main-container"> -->
             @yield('content')
