@@ -16,6 +16,16 @@ use App\Models\User;
 |
 */
 
+//ABOUT US
+
+Route::get('/aboutUs', function () {
+    return view('aboutUs');
+});
+
+
+
+
+
 // AUTH ROUTES
 
 Auth::routes();
