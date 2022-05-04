@@ -45,6 +45,21 @@
                     <b-input placeholder="Compra, Aire Libre..." v-model="tag.name"></b-input>
                 </b-field>
 
+            <div class="botonRadio"> 
+                <b-radio v-model="tag.post"
+                    name="name"
+                    native-value=1>
+                    Post
+                </b-radio>
+                
+                <b-radio v-model="tag.post"
+                    name="name"
+                    native-value=0>
+                    Report
+                </b-radio>
+            </div>
+
+
                 <b-button class="btn" type="is-success" @click="createTag()">Crear</b-button>
             </div>
 
@@ -73,7 +88,8 @@
         data() {
             return {
                 tag:{
-                    name: null
+                    name: null,
+                    post: null
                 },
                 tagUpdate:{
                     name: null
@@ -223,6 +239,11 @@
             }
 
         }
+    }
+    .botonRadio{
+        margin-top: 40px;
+        margin-bottom: 40px;
+        display: flex;
     }
     
     
