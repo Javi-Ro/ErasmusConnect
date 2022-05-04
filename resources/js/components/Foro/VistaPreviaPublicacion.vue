@@ -133,7 +133,7 @@
             <span id='clickableAwesomeFont' @click="showModal = 0, activeTab = 0"> <font-awesome-icon icon="fa-regular fa-circle-xmark fa-2xl"/></span>
 
             <b-tabs v-model="activeTab">
-                <b-tab-item value="0">
+                <b-tab-item value="0" style="padding-top: 0; ">
                         <div class="ventana-reportes">
                             <div class="label">
                                 <label> ¿Por qué quieres denunciar esta publicación? </label>
@@ -148,7 +148,7 @@
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Informacion falsa'"> Información falsa </b-button>
                         </div>
                 </b-tab-item>
-                <b-tab-item value="1">
+                <b-tab-item value="1" style="padding-top: 0; ">
                       <span id='backIcon' @click="activeTab = 0"> <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-left fa-2xl" style="position:absolute; top: -5px; left: 15px;font-size: 25px; 
             padding: 10px 10px; cursor:pointer; z-index:999;"/></span>
                             <div class="label">
@@ -194,6 +194,8 @@
         saved: false,
         // Variable que controla si se ha dado me gusta una publicación
         liked: false,
+        canLike: null,
+        postTags: [],
         canReact: null,
         report: {
           title: '',
@@ -201,11 +203,7 @@
           post_id: null,
           user_id: null
         },
-        postTags: [
-          {name: "comida"},
-          {name: "fiesta"},
-          {name: "noche"}
-        ],
+
         optionsData: [
           {id: 1, title: "Me gusta", data: this.post.likes},
           {id: 2, title: "Comentarios", data: this.post.comments},
@@ -360,6 +358,19 @@
           console.info(error.response.data);
         });
       },
+
+      getTags() {
+                   
+        axios.get('api/posts/' + this.post.id + '/tags')
+            .then(response => {
+     console.log('hola',response);
+                this.postTags = response.data.tags;
+
+            }).catch(error => {
+                console.info(error)
+            });
+        },
+
       userSaved() {
         axios.get(`/api/posts/` + this.post.id + `/save`).then(response => {
           if (response.data.auth == true) {
@@ -377,6 +388,7 @@
           console.info(error.response.data);
         });
       }
+
     },
     
     mounted() {
@@ -386,32 +398,39 @@
       this.getAuthUser();
       this.getUser();
       this.userLikes();
+      this.getTags();
       this.userSaved();
     }
   }
 </script>
 
 <style>
+
+.nav.tabs{
+  heigt:0px;
+}
+.b-tabs .tab-content{
+  padding-top: 0 !important; 
+  margin-top: 0px;
+}
+
+.modal{
+  padding: 0;
+} 
+
 .tabs li.is-active a {
     border-bottom-color: transparent !important;
     color: transparent !important;
-}
 
-.tabs li.is-active a {
-    border-bottom-color: transparent;
-    color: transparent;
-}
-
-.tabs li.is-active a {
-    border-bottom-color: transparent;
-    color: transparent;
 }
 
 .tabs a {
   border-bottom-style: none;
 }
-.tabs ul {
-  border-bottom-style: none;
+
+
+element.style {
+    padding-top: 0% !important;
 }
 
 .select select:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .input:focus, .select select.is-focused, .taginput .is-focused.taginput-container.is-focusable, .is-focused.textarea, .is-focused.input, .select select:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .input:active, .select select.is-active, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .is-active.input {
@@ -423,6 +442,22 @@
 
 .textarea{
   width: 400px;
+}
+
+.tabs ul {
+  border-bottom-style: none !important;
+}
+
+@media(max-width: 1500px){
+  .b-tabs .tabs{
+    margin-top: 70px;
+  }
+}
+
+@media(max-width: 500px){
+  .b-tabs .tabs{
+    margin-top: 30px;
+  }
 }
 
 @media (max-width: 400px) {  
@@ -445,6 +480,11 @@ textarea:not([rows]) {
     min-height: 80px;
     max-height: 100px
 }
+
+.tabs ul {
+  border-bottom-style: none !important; 
+}
+
 
 }
 

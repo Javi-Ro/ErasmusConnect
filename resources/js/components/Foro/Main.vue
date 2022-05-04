@@ -141,11 +141,11 @@
 </script>
 <style lang="scss">
 .b-tabs .tab-content{
-  padding: 0 !important;
-  padding-top: 3rem !important; 
+  padding: 0;
+  padding-top: 3rem; 
 }
 .tabs ul {
-  border-bottom-style: solid !important;
+  border-bottom-style: solid;
 }
 .float{
   display: flex;

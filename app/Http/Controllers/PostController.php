@@ -194,6 +194,21 @@ class PostController extends Controller
 
         return response()->json(['success' => false, 'auth' => Auth::check()]);
     }
+
+
+    public function addTags(Request $data){
+        $post = Post::whereId($data->post['id'])->first();
+        // return response($data->tags);
+        $post->tags()->attach(array_map(function($variable) {
+            return $variable['id'];
+        } , $data->tags));
+    }
+
+    public function getTags(Post $post){
+        $tags = $post->tags()->get();
+        return response()->json(['success' => true, 'tags' => $tags]);
+
+
     
     public function getPostsFollowing() {
         if (!Auth::check()) {
@@ -210,5 +225,6 @@ class PostController extends Controller
         }
 
         return response()->json(['success' => true, 'posts' => $posts]);
+
     }
 }
