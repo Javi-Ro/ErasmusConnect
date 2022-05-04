@@ -6,7 +6,24 @@
                     <img src="/images/default-profile-img.jpeg" alt="NOP" style="border-radius: 400px; max-width: 800px">
                 </div>
                 <div class="boton-foto">
-                    <b-button type="is-info" expanded size="is-small" style="width:300px;" >Cambiar foto de perfil</b-button>
+                    <b-field class="file is-primary" :class="{'has-name': !!file}">
+                        <b-upload v-model="file" class="file-label" drag-drop type="is-info" accept=".jpeg">
+                            <section class="section">
+                                <div class="content has-text-centered" style="display:flex; align-items:center; justify-content:center;">
+                                    <p style="margin:auto;">
+                                        <b-icon
+                                            icon="upload"
+                                            size="is-large">
+                                        </b-icon>
+                                    </p>
+                                    <p>Cambia tu foto de perfil</p>
+                                </div>
+                            </section>
+                            <span class="file-name" v-if="file">
+                                {{ file.name }}
+                            </span>
+                        </b-upload>
+                    </b-field>
                 </div>
             </div>
             <div class="campos">
@@ -29,8 +46,9 @@
                     </b-input>
                 </b-field>
                 <div class="guardar-cambios">
-                    <b-button type="is-danger" expanded style="width:400px; ">Cancelar</b-button>
-                    <b-button type="is-info" expanded style="width:400px; margin-left:40px;background-color:#00309a;">Confirmar cambios</b-button>
+                    <b-button type="is-info" expanded style="width:400px; background-color: #3DDC0A;">Confirmar cambios</b-button>
+
+                    <b-button type="is-danger" expanded style="width:400px; margin-top:15px;">Cancelar</b-button>
                 </div>
             </div>
         </div>
@@ -38,8 +56,13 @@
     </div>
 </template>
 <script>
-
-
+    export default {
+        data() {
+            return {
+                file: null
+            }
+        }
+    }
 </script>
 <style lang="scss" scoped>
     #editar-perfil{
@@ -68,7 +91,6 @@
             width: 60%;
             display: flex;
             flex-flow: column;
-            align-items: center;
             .nueva-contra{
                 display: flex;
                 flex-flow: column;
@@ -78,6 +100,7 @@
                 margin: 20px;
                 color: #00309a;
                 display: flex;
+                flex-flow: column;
                 justify-content: center;
             }
         }
