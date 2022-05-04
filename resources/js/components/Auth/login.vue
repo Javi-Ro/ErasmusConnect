@@ -50,7 +50,10 @@
 <style>
   .mdi-eye {
     color: #00309a;
-  } */
+  }
+  .mdi-eye-off {
+    color: #00309a;
+  }
   .input:focus{
     border-color: #00309a !important;
     -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
