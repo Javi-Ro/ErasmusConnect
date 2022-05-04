@@ -178,6 +178,7 @@ Route::group(['prefix' => 'api'], function () {
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
+    Route::get('/posts/following', 'App\Http\Controllers\PostController@getPostsFollowing');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');

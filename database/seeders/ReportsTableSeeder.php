@@ -21,7 +21,6 @@ class ReportsTableSeeder extends Seeder
                 'title' => "Report for abuse",
                 'text' => "This user abused me on this post",
                 'post_id' => 1,
-                'tag_id' => 2,
                 'user_id' => 1
             ]
         );
@@ -31,7 +30,6 @@ class ReportsTableSeeder extends Seeder
                 'title' => "Report for bad word",
                 'text' => "This post has bad words",
                 'post_id' => 3,
-                'tag_id' => 2,
                 'user_id' => 2
             ]
         );
