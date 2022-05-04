@@ -18,7 +18,6 @@ class CreateReportsTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->string('text')->nullable();
-            $table->foreignId('tag_id')->constrained()->cascadeOnDelete();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->foreignId('user_id')->constrained()->cascadeOnDelete();
         });

@@ -97,7 +97,7 @@ class UserController extends Controller
     public function siguiendo(User $user1, User $user2)
     {
         for ($i = 0; $i < $user1->following()->count(); $i++) {
-            if ($user1->following[$i]->id == $user2->id) {
+            if ($user1->following()->get()[$i]->id == $user2->id) {
                 return response(true);
             }
         }
