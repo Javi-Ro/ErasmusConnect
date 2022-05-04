@@ -131,9 +131,13 @@ Route::get('/foro/crear', function () {
         return view('auth.login');
     }
 });
+Route::get('/users/suggestions',  'App\Http\Controllers\UserController@suggestions');
+
+Route::get('/events', function () {
+    return view('errors.comming-soon');
+});
 
 // API ROUTES
-
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
@@ -161,6 +165,7 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
+    Route::get('/tags/apartments', 'App\Http\Controllers\TagController@getApartmentsTags');
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
@@ -175,6 +180,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
     Route::post('/apartments/order', 'App\Http\Controllers\ApartmentController@order');
     Route::patch('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@update');
+    Route::post('/apartments/tags', 'App\Http\Controllers\ApartmentController@addTags');
+
 
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
@@ -196,7 +203,9 @@ Route::group(['prefix' => 'api'], function () {
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
+    Route::get('/posts/following', 'App\Http\Controllers\PostController@getPostsFollowing');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
+    Route::post('/posts/tags', 'App\Http\Controllers\PostController@addTags');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
@@ -209,6 +218,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
     Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
     Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
+    Route::get('/posts/{post}/tags', 'App\Http\Controllers\PostController@getTags');
+    Route::get('/posts/{post}/save', 'App\Http\Controllers\PostController@savedByUser');
+    Route::post('/posts/{post}/save', 'App\Http\Controllers\PostController@savePost');
+    Route::delete('/posts/{post}/unsave', 'App\Http\Controllers\PostController@unsavePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');

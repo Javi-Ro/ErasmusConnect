@@ -61,6 +61,20 @@
                 <b-input style="width:100%;"  type="number" min="0" v-model="apartment.surface"></b-input>
             </b-field>
 
+            <b-field class="campo" label="Selecciona algunas etiquetas para mejorar la búsqueda">
+                <b-taginput
+                    v-model="tags"
+                    :data="filteredTags"
+                    autocomplete
+                    :open-on-focus="openOnFocus"
+                    field="name"
+                    icon="label"
+                    placeholder="Añade una etiqueta"
+                    @typing="getFilteredTags"
+                    >
+                </b-taginput>
+            </b-field>
+
             <b-field class="campo2" >
                 <b-upload v-model="dropFiles" style="height:300px; width:100%" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
                     <div class="content has-text-centered" >
@@ -124,6 +138,10 @@
                 availableCities: [],
                 availableCitiesNames: [],
                 selectedCity: 'Ciudad',
+                tags: [],
+                filteredTags: [],
+                data: this.getTags(),
+                openOnFocus: false
             }
         },
         computed: {
@@ -135,13 +153,20 @@
 
         methods: {
             createApartment() {
+                console.log(this.tags);
                 const formData = new FormData();
                 formData.append('apartment', JSON.stringify(this.apartment));
 
                 formData.append('file', this.dropFiles[0]);
                 console.log(formData);
                 axios.post(`/api/apartments`, formData).then(response => {
-                console.log(response);
+                console.log(response.data.apartment);
+                axios.post('/api/apartments/tags', {
+                    apartment:response.data.apartment, 
+                    tags:this.tags,
+
+                }).then(response=> {console.log(response.data)});
+
                 window.location.href = "/apartments";
                 }).catch(error => {
                     if (error.response.status === 403) {
@@ -178,10 +203,38 @@
                 console.log(this.dropFiles);
                 this.getSelected(option);
             },
+
+            getTags() {
+     
+            axios.get(`/api/tags/apartments`)
+                .then(response => {
+                    this.data = response.data.tags;
+                }).catch(error => {
+                    console.info(error)
+                });
+            },
+
+            getFilteredTags(text) {
+
+                this.filteredTags = this.data.filter((option) => {
+                    return option.name
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(text.toLowerCase()) >= 0
+                })
+            }
+            // getTags() {
+            // axios.get(`/api/tags/posts`).then(response => {
+            //     this.tags = response.data.tags;
+            // }).catch(error => {
+            //     console.info(error);
+            // });
+
         },
 
         created() {
             this.getCities();
+            this.getTags();
         },
     }
 
