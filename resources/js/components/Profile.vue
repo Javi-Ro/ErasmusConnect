@@ -57,7 +57,7 @@
                 <div class="user-info">
                     <div class="biografia">
                         <p>
-                            {{ this.bio }}
+                            {{ this.userProfileJSON.description }}
                         </p>
                     </div>
                     <div class="amigos-ciudad">
