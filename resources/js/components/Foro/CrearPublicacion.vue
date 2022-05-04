@@ -45,6 +45,7 @@
                     field="name"
                     icon="label"
                     placeholder="Añade una etiqueta"
+                    maxtags="3"
                     @typing="getFilteredTags"
                     >
                 </b-taginput>
@@ -201,7 +202,7 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
                     console.info(error)
                 });
             },
-
+            
             getFilteredTags(text) {
             this.filteredTags = this.data.filter((option) => {
                 return option.name
@@ -314,9 +315,6 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
         height: calc(100% - 130px);
   }
 }
-
-
-
 
   .input-size{
     width: 550px;
