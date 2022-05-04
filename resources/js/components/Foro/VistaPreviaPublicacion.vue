@@ -194,7 +194,7 @@
         saved: false,
         // Variable que controla si se ha dado me gusta una publicación
         liked: false,
-        canLike: null,
+        canReact: null,
         report: {
           title: '',
           text: '',
@@ -250,25 +250,27 @@
         });
       },
       reaction(option, isComment) {
-        if (this.canLike == false) {
+        if (this.canReact == false) {
           window.location.href = "/login";
         }
         if (!isComment) {
           if(option == 0) {
             if(!this.saved) {
-              this.saved = true
+              this.saved = true;
+              this.savePost();
             }
             else {
-              this.saved = false
+              this.saved = false;
+              this.unsavePost();
             }
           }
           else if(option == 1) {
             if(!this.liked) {
-              this.liked = true
+              this.liked = true;
               this.likePost();
             }
             else {
-              this.liked = false
+              this.liked = false;
               this.notLikePost();
             }
           }
@@ -306,6 +308,22 @@
           console.info(error);
         });
       },
+      savePost() {
+        axios.post(`/api/posts/` + this.post.id + '/save').then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      unsavePost() {
+        axios.delete(`/api/posts/` + this.post.id + '/unsave').then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
       getAuthUser() {
         axios.get(`/api/auth`).then(response => {
           this.authUser = response.data.user;
@@ -328,15 +346,32 @@
       userLikes() {
         axios.get(`/api/posts/` + this.post.id + `/like`).then(response => {
           if (response.data.auth == true) {
-            this.canLike = true;
+            this.canReact = true;
           } else {
-            this.canLike = false;
+            this.canReact = false;
           }
           
           if (response.data.success == true) {
             this.liked = true;
           } else {
             this.liked = false;
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      },
+      userSaved() {
+        axios.get(`/api/posts/` + this.post.id + `/save`).then(response => {
+          if (response.data.auth == true) {
+            this.canReact = true;
+          } else {
+            this.canReact = false;
+          }
+          
+          if (response.data.success == true) {
+            this.saved = true;
+          } else {
+            this.saved = false;
           }
         }).catch(error => {
           console.info(error.response.data);
@@ -351,6 +386,7 @@
       this.getAuthUser();
       this.getUser();
       this.userLikes();
+      this.userSaved();
     }
   }
 </script>

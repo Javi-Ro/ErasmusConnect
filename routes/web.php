@@ -192,6 +192,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
     Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
     Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
+    Route::get('/posts/{post}/save', 'App\Http\Controllers\PostController@savedByUser');
+    Route::post('/posts/{post}/save', 'App\Http\Controllers\PostController@savePost');
+    Route::delete('/posts/{post}/unsave', 'App\Http\Controllers\PostController@unsavePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');
