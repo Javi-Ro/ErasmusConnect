@@ -1,5 +1,6 @@
 <template>
-  <section v-if="data === true" class="post-container">
+  <!-- El padding-bottom es para que el tamaño de la página no varie cuando se despliega el botón de más opciones -->
+  <section v-if="data === true" class="post-container" style="padding-bottom: 100px;">
     <div class="post-container-positioned">
       <div class="title-bar">
         <div class="title-bar-img" @click="goBack()">
@@ -19,7 +20,7 @@
           <b-input class="post-comment-input" placeholder="Comenta..." v-model="comment.text" rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>
-        <div class="comentarios" v-if="commentsReady === true">
+        <div class="comentarios" style="min-width: 100%;" v-if="commentsReady === true">
           <div class="comentario" v-for="comment in comments" :key="comment.id">
             <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
           </div>
@@ -30,9 +31,8 @@
 </template>
 
 <script>
-import Comentario from './Comentario.vue';
   export default {
-  components: { Comentario },
+  components: { },
     props:{id: null},
 
     data() {
@@ -61,6 +61,7 @@ import Comentario from './Comentario.vue';
 
     computed: {
       userImg() {
+        console.log("por aquí")
         return "/storage/images/users/" + (this.auth === true ? this.user.img_url : "default-profile-img.jpeg");
       }
     },

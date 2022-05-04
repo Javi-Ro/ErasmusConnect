@@ -10,14 +10,14 @@
                     #{{ report.id }}
                 </p>
                 <div id="tag">
-                    <b-tag type="is-warning" size="is-medium">{{ report.tagName }}</b-tag>
+                    <b-tag type="is-warning" size="is-medium">{{ getTagName(report.tag_id) }}</b-tag>
                 </div>
                 <div class="info">
                     <div id="titulo">
                         {{ report.title }}
                     </div>
                     <div id="user">
-                        (@{{ report.userName }})
+                        (@ {{getUserName(report.user_id)}} )
                     </div>
                 </div>
             </div>
@@ -27,33 +27,36 @@
                     <!-- Inicio de modal -->
                     <div class="modal-vue" :id="report.id">
                         <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
-                        <b-button type="is-info" outlined 
-                        @click.prevent="openPost(report.id);"
+                        <!-- <b-button type="is-info" outlined 
+                        @click.prevent="openPost(report.post_id);"
                         title="Visualiza la publicación y permite eliminarla"
                         > 
                         Ver publicación
-                        </b-button>
+                        </b-button> -->
+                        <b-button type="is-info" outlined @click.prevent="openPost(report.post_id);"  title="Visualizar la publicación">
+                            Ver publicación
+                        </b-button> 
                         <b-button type="is-danger"
                             title="Borra la publicación de la base de datos">
                             Eliminar publicación
                         </b-button>
                         <!-- overlay -->
                         <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
-                        <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div>
+                        <!-- <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div> -->
                         
                         <!-- modal -->
                         <!-- Solo aparece cuando showModal tiene el mismo valor que el id del reporte al que corresponde -->
-                        <div class="modal" v-if="showModal == report.id">
+                        <!-- <div class="modal" v-if="showModal == report.id">
                             <div class="vista-previa">
                                 <div class="publicacion">
                                     <vista-previa-publicacion></vista-previa-publicacion>
                                 </div>
                                 <div class="btn-delete">
-                                    <!-- TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) -->
+                                    TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) 
                                     <b-button type="is-danger" outlined >Borrar publicación ({{report.id}})</b-button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Fin del modal -->
                     <b-button type="is-danger"
@@ -72,9 +75,10 @@ export default {
     props: {},
     data() {
         return {
+            post: {},
             showModal: 0,
             reports: [],
-            dataReady: false
+            dataReady: false,
         }
     },
     created(){
@@ -87,6 +91,23 @@ export default {
         }
     },
     methods: {
+        getTagName(id) {
+            axios.get(`/api/tags/` + id).then(response => {
+                console.log(response.data.tag.name)
+                return response.data.tag.name
+            }).catch(error => {
+                console.info(error)
+            });
+        },
+        getUserName(id) {
+            console.log(id)
+            axios.get(`/api/users/` + id).then(response => {
+                console.log(response.data.user.nickname)
+                return response.data.user.nickname;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
         getReports(){
             axios.get(`/api/reports`)
                 .then(response => {
@@ -105,21 +126,30 @@ export default {
                 console.info(error.response.data)
             });
         },
-        openPost(post) {  //--> Programmatic way of creating the modal.
+        getPostById(id){
+            axios.get('/api/posts/' + id).then(response => {
+                this.post = response.data.post;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
+        openPost(postId) {  //--> Programmatic way of creating the modal.
+            console.log("POST: " + postId)
+            this.getPostById(postId);
             let vue = this;
             vue.$buefy.modal.open({
                 parent: vue,
                 animation: 'none',
                 component: VistaPreviaPublicacionVue,
                 canCancel: true,
-                props: { post: post, comment:false, view:""},
+                props: { post: this.post, comment:false, view:""},
                 width: 610,
                 events: {
                     
                 },
                 onCancel: () => {}
             });
-        }
+        },
     }
 }
 </script>
