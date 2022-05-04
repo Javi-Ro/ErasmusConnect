@@ -2,7 +2,7 @@
     <section>
         <div class="contenedor">
             <div class="titulo-pagina">
-                <p>CREA UNA APARTAMENTO</p>
+                <p>PUBLICA UN ALQUILER</p>
             </div>
 
             <div class="contenedor-dropdown"> 
@@ -27,72 +27,90 @@
                 </b-dropdown>
             </div>
 
-            <b-tabs v-model="activeTab">
+            <b-field class="campo" label="Título" >
+                <b-input maxlength="300" style="width:100%;" v-model="apartment.title"></b-input>
+            </b-field>
 
-                <b-tab-item label="Texto">
-                <b-field label="Título" >
-                    <b-input maxlength="300" v-model="apartment.title"></b-input>
-                </b-field>
+            <b-field class="campo"   label="Descripción">
+                <b-input v-model="apartment.description" minlength="0" style="width:100%;" type="textarea"></b-input>
+            </b-field>
 
-                <b-field label="Descripción">
-                    <b-input v-model="apartment.description" minlength="0" style="width:550px;" type="textarea" class="custom-input" ></b-input>
-                </b-field>
-                <b-field label="Precio" >
-                    <b-input maxlength="300" v-model="apartment.price"></b-input>
-                </b-field>
-                <b-field label="Dirección" >
-                    <b-input maxlength="300" v-model="apartment.address"></b-input>
-                </b-field>
-                <b-field label="Habitaciones" >
-                    <b-input maxlength="300" v-model="apartment.bedrooms"></b-input>
-                </b-field>
-                <b-field label="Teléfono" >
-                    <b-input maxlength="300" v-model="apartment.phone"></b-input>
-                </b-field>
-                <b-field label="E-mail" >
-                    <b-input maxlength="300" v-model="apartment.email"></b-input>
-                </b-field>
-                <b-field label="Superfície(m2)" >
-                    <b-input maxlength="300" v-model="apartment.surface"></b-input>
-                </b-field>
+            <b-field class="campo"  label="Precio mensual (€)" >
+                <b-input v-model="apartment.price" minlength="0" style="width:100%;" type="number" min="0"> </b-input> 
+            </b-field>
 
-                </b-tab-item>
+            <b-field class="campo" label="Dirección" >
+                <b-input maxlength="300" id="autocomplete" style="width:100%;" v-model="apartment.address"></b-input>
+            </b-field>
 
-                <b-tab-item label="Multimedia">
-                    <b-field>
-                    <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple drag-drop>
-                        <section class="custom-section">
-                            <div class="content has-text-centered">
-                                <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-bottom: 20px; height:40px"/>
-                                <p>Arrastra y suelta o selecciona</p>
-                            </div>
-                        </section>
-                    </b-upload>
-                </b-field>
-                <div class="tags">
-                    <span v-for="(file, index) in dropFiles"
-                        :key="index"
-                        class="tag is-primary" >
-                        {{file.name}}
-                        <button class="delete is-small"
-                            type="button"
-                            @click="deleteDropFile(index)">
-                        </button>
-                    </span>
-                </div>
+            <b-field class="campo"  label="Número de habitaciones" >
+                <b-slider size="is-medium" style="margin-top:4%; margin-bottom:4%" v-model="apartment.bedrooms" :min="0" :max="10">
+                    <template v-for="val in [2, 4, 6, 8]">
+                        <b-slider-tick :value="val" :key="val">{{ val }}</b-slider-tick>
+                    </template>
+                </b-slider>
+            </b-field>
+
+            <b-field class="campo"  label="Teléfono de contacto" >
+                <b-input maxlength="300" style="width:100%;" v-model="apartment.phone"></b-input>
+            </b-field>
+            <b-field class="campo"   label="E-mail" >
+                <b-input maxlength="300" style="width:100%;" type="email" v-model="apartment.email"></b-input>
+            </b-field>
+            <b-field class="campo"   label="Superficie en metros cuadrados" >
+                <b-input style="width:100%;"  type="number" min="0" v-model="apartment.surface"></b-input>
+            </b-field>
+
+            <b-field class="campo" label="Selecciona algunas etiquetas para mejorar la búsqueda">
+                <b-taginput
+                    v-model="tags"
+                    :data="filteredTags"
+                    autocomplete
+                    :open-on-focus="openOnFocus"
+                    field="name"
+                    icon="label"
+                    placeholder="Añade una etiqueta"
+                    @typing="getFilteredTags"
+                    >
+                </b-taginput>
+            </b-field>
+
+            <b-field class="campo2" >
+                <b-upload v-model="dropFiles" style="height:300px; width:100%" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
+                    <div class="content has-text-centered" >
+                        <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-top: 20%; height:40px"/>
+                        <br>
+                        <br>
+                        <p style="text-align:center;" >Arrastra y suelta o selecciona</p>
+                    </div>
+                </b-upload>
+
+            </b-field>
+
+            <div class="tags campo" >
+                <span v-for="(file, index) in dropFiles"
+                    :key="index"
+                    class="tag is-primary" >
+                    {{file.name}}
+                    <button class="delete is-small"
+                        type="button"
+                        @click="deleteDropFile(index)">
+                    </button>
+                </span>
+            </div>
                 
-                </b-tab-item>
 
-            </b-tabs>
-            <button class="btn" @click="createApartment()">
+        <button class="btn" @click="createApartment()">
             <p style="text-align: center;">
-                Crear
+                Publicar
             </p>
         </button>
+
         </div>
         <footer-web></footer-web>
     </section>
 </template>
+
 
 <script>
 
@@ -120,7 +138,10 @@
                 availableCities: [],
                 availableCitiesNames: [],
                 selectedCity: 'Ciudad',
-                activeTab: 0,
+                tags: [],
+                filteredTags: [],
+                data: this.getTags(),
+                openOnFocus: false
             }
         },
         computed: {
@@ -132,11 +153,21 @@
 
         methods: {
             createApartment() {
+                console.log(this.tags);
                 const formData = new FormData();
                 formData.append('apartment', JSON.stringify(this.apartment));
+
                 formData.append('file', this.dropFiles[0]);
+                console.log(formData);
                 axios.post(`/api/apartments`, formData).then(response => {
-                    console.log(response);
+                console.log(response.data.apartment);
+                axios.post('/api/apartments/tags', {
+                    apartment:response.data.apartment, 
+                    tags:this.tags,
+
+                }).then(response=> {console.log(response.data)});
+
+                window.location.href = "/apartments";
                 }).catch(error => {
                     if (error.response.status === 403) {
                         window.location.href = "/login";
@@ -172,16 +203,94 @@
                 console.log(this.dropFiles);
                 this.getSelected(option);
             },
+
+            getTags() {
+     
+            axios.get(`/api/tags/apartments`)
+                .then(response => {
+                    this.data = response.data.tags;
+                }).catch(error => {
+                    console.info(error)
+                });
+            },
+
+            getFilteredTags(text) {
+
+                this.filteredTags = this.data.filter((option) => {
+                    return option.name
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(text.toLowerCase()) >= 0
+                })
+            }
+            // getTags() {
+            // axios.get(`/api/tags/posts`).then(response => {
+            //     this.tags = response.data.tags;
+            // }).catch(error => {
+            //     console.info(error);
+            // });
+
         },
 
         created() {
             this.getCities();
+            this.getTags();
         },
     }
 
 </script>
 
+
+<style lang="scss">
+    .b-slider.is-primary .b-slider-fill {
+        background: #00309a !important;
+    }
+    .b-tooltip.is-primary .tooltip-content {
+        background: #00309a;
+        color: #fff;
+    }
+
+    .campo{
+        width: 30%;
+    }
+
+    .campo2{
+        width: 30%;
+        margin-top:2%;
+    }
+
+    .upload-draggable{
+        width: 100%;
+    }
+
+@media(max-width: 500px){
+    .campo{
+        width: 60%;
+    }
+
+    .campo2{
+        width: 60%;
+    }
+
+    .textarea{
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+}
+</style>
 <style lang="scss" scoped>
+
+  .upload-draggable{
+    width: 100%;
+    height: 300px;
+
+  }
+
+    .navbar-item {
+    color: #00309a;
+    padding: 0px;
+  }
 
   .titulo-pagina {
       justify-content: center;
@@ -192,19 +301,46 @@
       font-family: sans-serif;
     }
 
-   .upload-draggable{
-        width: 550px;
-        height: 300px;
-    }
-
-   .custom-section{
-        width: 550px;
-        height: 300px;
-    }
-
     .contenedor{
-      display:flex;
-      flex-flow: column wrap;
-      // justify-content: space-between;
+        margin-top: 130px;
+        display:flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        align-items: center;
+        height: auto;
+        justify-content: space-between;
+        width: 100%;
     }
+
+    .contenedor-dropdown{
+        width: 30%;
+        margin-bottom:2%;
+        left:0%;
+    }
+
+    .btn {
+        justify-content: center;
+        width: 10%;
+        display:flex;
+        background-color: #00309a;
+        font-weight: bold;
+        font-size: 1.2rem;
+        font-family: Arial, Helvetica, sans-serif; 
+        padding: .6rem 5.5rem;
+        border-radius: 10rem;
+        position: relative;
+        overflow: hidden;
+        color:white;
+        align-self:center;
+        text-align: center;
+    }
+
+    .btn:hover {
+    color: #F2AF13;
+    }
+
+    a.navbar-item:focus, a.navbar-item:focus-within, a.navbar-item:hover, a.navbar-item.is-active, .navbar-link:focus, .navbar-link:focus-within, .navbar-link:hover, .navbar-link.is-active {
+    background-color: transparent;
+}
+
 </style>

@@ -25,11 +25,11 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="userJSON && userJSON.nickname == nickname"
-                class="edit" type="button">
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
+                class="edit" type="button" >
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
-                </button>
+                </a>
                 
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
@@ -43,7 +43,7 @@
                     Privacidad y seguridad
                 </a>
                 <a v-if="userJSON && userJSON.nickname == nickname" 
-                class="column-item btn-start" href="#" >
+                class="column-item btn-start" href=# >
                     Cambiar contraseña
                 </a>                                
             </div>
@@ -57,18 +57,18 @@
                 <div class="user-info">
                     <div class="biografia">
                         <p>
-                            {{ this.bio }}
+                            {{ this.userProfileJSON.description }}
                         </p>
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light" @click="showSeguidores = true">{{this.seguidores.length}} Seguidores</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
                                 <b-modal v-model="showSeguidores">
-                                    <modal-seguidores :seguidores="seguidores"></modal-seguidores>
+                                    <modal-seguidores :userId="userProfileJSON.id"></modal-seguidores>
                                 </b-modal>
-                            <b-button type="is-info is-light" @click="showSeguidos=true">{{this.seguidos.length}} Seguidos</b-button>
+                            <b-button type="is-info is-light" @click="showSeguidos=true">{{ userProfileJSON.following }} Seguidos</b-button>
                             <b-modal v-model="showSeguidos">
-                                    <modal-seguidos :seguidos="seguidos"></modal-seguidos>
+                                    <modal-seguidos :userId="userProfileJSON.id"></modal-seguidos>
                             </b-modal>
                         </div>
                         <div class="ciudad">
@@ -112,8 +112,8 @@
     </div>
 </template>
 <script>
-import ModalSeguidores from './VistaSeguidores.vue'
-import ModalSeguidos from './VistaSeguidos.vue'
+import ModalSeguidores from '../VistaSeguidores.vue'
+import ModalSeguidos from '../VistaSeguidos.vue'
 
 
 export default {
@@ -150,8 +150,6 @@ export default {
             LikedPosts: [1, 2],
             SavedPosts: [1, 3, 4],
             //SEGUIDORES Y SEGUIDOS
-            seguidores: new Array(40),
-            seguidos: new Array(15),
             showSeguidores: false,
             showSeguidos:false,
             dataReady: false,
@@ -180,6 +178,7 @@ export default {
                 console.log(this.currentUser.id);
                 console.log(this.userProfileJSON.id);
                 this.siguiendo=1;
+                this.userProfileJSON.followers += 1;
             }).catch(error=>{
                 console.info(error.response.data)
             });
@@ -190,6 +189,7 @@ export default {
                 console.log(this.currentUser.id);
                 console.log(this.userProfileJSON.id);
                 this.siguiendo=0;
+                this.userProfileJSON.followers -= 1;
             }).catch(error=>{
                 console.info(error.response.data)
             });

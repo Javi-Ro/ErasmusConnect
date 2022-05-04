@@ -97,9 +97,24 @@ class UserController extends Controller
     public function siguiendo(User $user1, User $user2)
     {
         for ($i = 0; $i < $user1->following()->count(); $i++) {
-            if ($user1->following[$i]->id == $user2->id) {
+            if ($user1->following()->get()[$i]->id == $user2->id) {
                 return response(true);
             }
         }
+    }
+
+    public function suggestions(Request $data) {
+        $users = User::selectRaw('users.id, cities.name, count(posts.id) as posts')
+            ->join('posts', 'users.id', '=', 'posts.user_id')
+            ->join('cities', 'posts.city_id', '=', 'cities.id')
+            ->groupBy('users.id', 'cities.name')
+            ->having('cities.name', '=', $data->city)
+            ->orderBy('posts', 'DESC')
+            ->get();
+        if($users->count() > 5) {
+            $users = $users->toArray();
+            $users = array_slice($users, 0, 5, false);
+        } 
+        return response()->json(['success' => true, 'users' => $users]);
     }
 }

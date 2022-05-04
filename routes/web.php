@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Providers\RouteServiceProvider;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,34 +30,35 @@ Route::get('/register', function () {
 });
 
 // ADMIN ROUTES
+Route::group(['middleware' => 'admin'], function() {
+    Route::get('/admin', function () {
+        return view('/admin/home');
+    });
 
-Route::get('/admin', function () {
-    return view('/admin/home');
-});
-
-Route::get('/admin/reports', function () {
-    return view('/admin/home');
-});
-Route::get('/admin/countries', function () {
-    return view('/admin/paisesAdmin');
-});
-Route::get('/admin/tags', function () {
-    return view('/admin/etiquetasAdmin');
-});
-Route::get('/admin/cities', function () {
-    return view('/admin/ciudadesAdmin');
-});
-Route::get('/admin/apartments', function () {
-    return view('/admin/apartmentsAdmin');
-});
+    Route::get('/admin/reports', function () {
+        return view('/admin/home');
+    });
+    Route::get('/admin/countries', function () {
+        return view('/admin/paisesAdmin');
+    });
+    Route::get('/admin/tags', function () {
+        return view('/admin/etiquetasAdmin');
+    });
+    Route::get('/admin/cities', function () {
+        return view('/admin/ciudadesAdmin');
+    });
+    Route::get('/admin/apartments', function () {
+        return view('/admin/apartmentsAdmin');
+    });
 
 
-Route::get('/admin/posts', function () {
-    return view('/admin/posts');
-});
+    Route::get('/admin/posts', function () {
+        return view('/admin/posts');
+    });
 
-Route::get('/admin/users', function () {
-    return view('/admin/usuarios');
+    Route::get('/admin/users', function () {
+        return view('/admin/usuarios');
+    });
 });
 
 // VIEWS ROUTES
@@ -77,7 +79,15 @@ Route::get('/{nickname}/profile', function ($nickname) {
     return view('profile', ["nickname" => $nickname, "user" => json_encode($loggedUser), "userProfile" => json_encode($userProfile->first())]);
 });
 
-Route::get('/publicacion/{publicacion}', function ($id) {
+Route::get('/{nickname}/profile/edit', function ($nickname) {
+    $user = "";
+    if (Auth::check())
+        $user = auth()->user()->nickname;
+
+    return view('editarPerfil', ["nickname" => $nickname, "user" => $user]);
+});
+
+Route::get('/publicacion/{publicacion}', function($id){
     $post = App\Models\Post::whereId($id)->first();
 
     return view('foro.publicacion')->with('post_id', $post->id);
@@ -97,7 +107,7 @@ Route::get('/apartments', function () {
 
 Route::get('/apartments/crear', function () {
     return view('apartments.crearapartment');
-});
+})->middleware('auth');
 
 Route::get('/alquileres', function () {
     return view('alquileres.main');
@@ -111,9 +121,13 @@ Route::get('/foro/crear', function () {
         return view('auth.login');
     }
 });
+Route::get('/users/suggestions',  'App\Http\Controllers\UserController@suggestions');
+
+Route::get('/events', function () {
+    return view('errors.comming-soon');
+});
 
 // API ROUTES
-
 Route::group(['prefix' => 'api'], function () {
 
     //USERS
@@ -123,10 +137,25 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/users/{user}', 'App\Http\Controllers\UserController@delete');
     Route::patch('/users/{user}', 'App\Http\Controllers\UserController@update');
     Route::get('/users/siguiendo/{user1}/{user2}', 'App\Http\Controllers\UserController@siguiendo');
+    Route::get('/users/siguiendo/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "following" => $user->following()->get()]);
+    });
+    Route::get('/users/seguidores/{user1}', function($user) {
+        $user = User::whereId($user)->first();
+        if (!$user) {
+            abort(404);
+        }
+        return response()->json(["success" => true, "followers" => $user->followers()->get()]);
+    });
     Route::post('/users/{user1}/{user2}',  'App\Http\Controllers\UserController@addFollower');
     Route::post('/users/unfollow/{user1}/{user2}',  'App\Http\Controllers\UserController@deleteFollower');
 
     //TAGS
+    Route::get('/tags/apartments', 'App\Http\Controllers\TagController@getApartmentsTags');
     Route::get('/tags/posts', 'App\Http\Controllers\TagController@getPostsTags');
     Route::get('/tags/{tag}',  'App\Http\Controllers\TagController@get');
     Route::get('/tags', 'App\Http\Controllers\TagController@getTags');
@@ -141,6 +170,8 @@ Route::group(['prefix' => 'api'], function () {
     Route::delete('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@delete');
     Route::post('/apartments/order', 'App\Http\Controllers\ApartmentController@order');
     Route::patch('/apartments/{apartment}', 'App\Http\Controllers\ApartmentController@update');
+    Route::post('/apartments/tags', 'App\Http\Controllers\ApartmentController@addTags');
+
 
     //COUNTRIES
     Route::get('/countries/{country}', 'App\Http\Controllers\CountryController@get');
@@ -162,7 +193,9 @@ Route::group(['prefix' => 'api'], function () {
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
+    Route::get('/posts/following', 'App\Http\Controllers\PostController@getPostsFollowing');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
+    Route::post('/posts/tags', 'App\Http\Controllers\PostController@addTags');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
     Route::post('/posts', 'App\Http\Controllers\PostController@create');
     Route::delete('/posts/{post}', 'App\Http\Controllers\PostController@delete');
@@ -175,6 +208,10 @@ Route::group(['prefix' => 'api'], function () {
     Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
     Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
     Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
+    Route::get('/posts/{post}/tags', 'App\Http\Controllers\PostController@getTags');
+    Route::get('/posts/{post}/save', 'App\Http\Controllers\PostController@savedByUser');
+    Route::post('/posts/{post}/save', 'App\Http\Controllers\PostController@savePost');
+    Route::delete('/posts/{post}/unsave', 'App\Http\Controllers\PostController@unsavePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');

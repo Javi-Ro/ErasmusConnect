@@ -137,14 +137,14 @@
             <span id='clickableAwesomeFont' @click="showModal = 0, activeTab = 0"> <font-awesome-icon icon="fa-regular fa-circle-xmark fa-2xl"/></span>
 
             <b-tabs v-model="activeTab">
-                <b-tab-item value="0">
+                <b-tab-item value="0" style="padding-top: 0; ">
                         <div class="ventana-reportes">
                             <div class="label">
                                 <label> ¿Por qué quieres denunciar esta publicación? </label>
                             </div>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Es spam'"> Es spam </b-button>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1;motivo='Desnudos o actividad sexual'"> Desnudos o actividad sexual </b-button>
-                            <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Lenguaje o símbolos que incitan al odio'"> Lenguaje o símbolos que incitan al odio </b-button>
+                            <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1; motivo='Lenguaje o simbolos que incitan al odio'"> Lenguaje o símbolos que incitan al odio </b-button>
                             <!-- <b-button size="is-medium" type="is-light" style="width:100%;"> Violencia u organizaciones peligrosas </b-button> -->
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Venta de productos ilegales o regulados'"> Venta de productos ilegales o regulados</b-button>
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Bullying o acoso'"> Bullying o acoso</b-button>
@@ -152,7 +152,7 @@
                             <b-button size="is-medium" type="is-light" style="width:100%;" @click="activeTab = 1, motivo='Informacion falsa'"> Información falsa </b-button>
                         </div>
                 </b-tab-item>
-                <b-tab-item value="1">
+                <b-tab-item value="1" style="padding-top: 0; ">
                       <span id='backIcon' @click="activeTab = 0"> <font-awesome-icon icon="fa-regular fa-arrow-alt-circle-left fa-2xl" style="position:absolute; top: -5px; left: 15px;font-size: 25px; 
             padding: 10px 10px; cursor:pointer; z-index:999;"/></span>
                             <div class="label">
@@ -160,8 +160,8 @@
                             </div>
                             <div class="ventana-reportes2">
                                 <label class="motivo"> {{this.motivo}} </label>
-                                <b-input maxlength="200"  placeholder="Escribe el motivo de tu reporte" type="textarea"></b-input>  
-                                <b-button size="is-medium" type="is-light" style="width:100%; " @click="activeTab = 2"> Enviar </b-button>
+                                <b-input maxlength="200" v-model="report.text" placeholder="Escribe el motivo de tu reporte" type="textarea"></b-input>  
+                                <b-button size="is-medium" type="is-light" style="width:100%; " @click="activeTab = 2; sendReport()"> Enviar </b-button>
                             </div>
                     </b-tab-item>
                     <b-tab-item value="2">
@@ -199,11 +199,15 @@
         // Variable que controla si se ha dado me gusta una publicación
         liked: false,
         canLike: null,
-        postTags: [
-          {name: "comida"},
-          {name: "fiesta"},
-          {name: "noche"}
-        ],
+        postTags: [],
+        canReact: null,
+        report: {
+          title: '',
+          text: '',
+          post_id: null,
+          user_id: null
+        },
+
         optionsData: [
           {id: 1, title: "Me gusta", data: this.post.likes},
           {id: 2, title: "Comentarios", data: this.post.comments},
@@ -212,6 +216,7 @@
         ],
         user: {},
         postProp: this.post,
+        authUser: {}
       }
     },
 
@@ -249,25 +254,27 @@
         });
       },
       reaction(option, isComment) {
-        if (this.canLike == false) {
+        if (this.canReact == false) {
           window.location.href = "/login";
         }
         if (!isComment) {
           if(option == 0) {
             if(!this.saved) {
-              this.saved = true
+              this.saved = true;
+              this.savePost();
             }
             else {
-              this.saved = false
+              this.saved = false;
+              this.unsavePost();
             }
           }
           else if(option == 1) {
             if(!this.liked) {
-              this.liked = true
+              this.liked = true;
               this.likePost();
             }
             else {
-              this.liked = false
+              this.liked = false;
               this.notLikePost();
             }
           }
@@ -308,12 +315,47 @@
           console.info(error);
         });
       },
+      savePost() {
+        axios.post(`/api/posts/` + this.post.id + '/save').then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      unsavePost() {
+        axios.delete(`/api/posts/` + this.post.id + '/unsave').then(response => {
+          console.log(response.data);
+        })
+        .catch(error => {
+          console.info(error);
+        });
+      },
+      getAuthUser() {
+        axios.get(`/api/auth`).then(response => {
+          this.authUser = response.data.user;
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      },
+      sendReport() {
+        this.report.title = this.motivo;
+        this.report.post_id = this.post.id;
+        this.report.user_id = this.authUser.id;
+        console.log(this.report.title);
+
+        axios.post(`/api/reports`, this.report).then(response => {
+          console.log(response.data.success);
+        }).catch(error => {
+          console.info(error.response.data);
+        });
+      },
       userLikes() {
         axios.get(`/api/posts/` + this.post.id + `/like`).then(response => {
           if (response.data.auth == true) {
-            this.canLike = true;
+            this.canReact = true;
           } else {
-            this.canLike = false;
+            this.canReact = false;
           }
           
           if (response.data.success == true) {
@@ -324,41 +366,80 @@
         }).catch(error => {
           console.info(error.response.data);
         });
+      },
+
+      getTags() {
+                   
+        axios.get('api/posts/' + this.post.id + '/tags')
+            .then(response => {
+     console.log('hola',response);
+                this.postTags = response.data.tags;
+
+            }).catch(error => {
+                console.info(error)
+            });
+        },
+
+      userSaved() {
+        axios.get(`/api/posts/` + this.post.id + `/save`).then(response => {
+          if (response.data.auth == true) {
+            this.canReact = true;
+          } else {
+            this.canReact = false;
+          }
+          
+          if (response.data.success == true) {
+            this.saved = true;
+          } else {
+            this.saved = false;
+          }
+        }).catch(error => {
+          console.info(error.response.data);
+        });
       }
+
     },
     
     mounted() {
     },
 
     created() {
-      
+      this.getAuthUser();
       this.getUser();
       this.userLikes();
+      this.getTags();
+      this.userSaved();
     }
   }
 </script>
 
 <style>
+
+.nav.tabs{
+  heigt:0px;
+}
+.b-tabs .tab-content{
+  padding-top: 0 !important; 
+  margin-top: 0px;
+}
+
+.modal{
+  padding: 0;
+} 
+
 .tabs li.is-active a {
     border-bottom-color: transparent !important;
     color: transparent !important;
-}
 
-.tabs li.is-active a {
-    border-bottom-color: transparent;
-    color: transparent;
-}
-
-.tabs li.is-active a {
-    border-bottom-color: transparent;
-    color: transparent;
 }
 
 .tabs a {
   border-bottom-style: none;
 }
-.tabs ul {
-  border-bottom-style: none;
+
+
+element.style {
+    padding-top: 0% !important;
 }
 
 .select select:focus, .taginput .taginput-container.is-focusable:focus, .textarea:focus, .input:focus, .select select.is-focused, .taginput .is-focused.taginput-container.is-focusable, .is-focused.textarea, .is-focused.input, .select select:active, .taginput .taginput-container.is-focusable:active, .textarea:active, .input:active, .select select.is-active, .taginput .is-active.taginput-container.is-focusable, .is-active.textarea, .is-active.input {
@@ -370,6 +451,22 @@
 
 .textarea{
   width: 400px;
+}
+
+.tabs ul {
+  border-bottom-style: none !important;
+}
+
+@media(max-width: 1500px){
+  .b-tabs .tabs{
+    margin-top: 70px;
+  }
+}
+
+@media(max-width: 500px){
+  .b-tabs .tabs{
+    margin-top: 30px;
+  }
 }
 
 @media (max-width: 400px) {  
@@ -392,6 +489,11 @@ textarea:not([rows]) {
     min-height: 80px;
     max-height: 100px
 }
+
+.tabs ul {
+  border-bottom-style: none !important; 
+}
+
 
 }
 

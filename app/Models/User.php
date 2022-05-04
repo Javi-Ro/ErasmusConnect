@@ -47,7 +47,8 @@ class User extends Authenticatable
     ];
 
     protected $appends = [
-        'followers'
+        'followers',
+        'following'
     ];
 
     public function city()
@@ -77,9 +78,9 @@ class User extends Authenticatable
         return $this->hasMany(Report::class);
     }
 
-    public function savedPosts()
+    public function saved_posts() 
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class, "saved_posts");
     }
 
     public function likes()
@@ -89,5 +90,9 @@ class User extends Authenticatable
 
     public function getFollowersAttribute() {
         return $this->followers()->get()->count();
+    }
+
+    public function getFollowingAttribute() {
+        return $this->following()->get()->count();
     }
 }

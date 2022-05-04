@@ -3,8 +3,8 @@
   <section v-if="data === true" class="post-container" style="padding-bottom: 100px;">
     <div class="post-container-positioned">
       <div class="title-bar">
-        <div class="title-bar-img">
-          <div @click="goBack()">
+        <div class="title-bar-img" @click="goBack()">
+          <div>
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
         </div>

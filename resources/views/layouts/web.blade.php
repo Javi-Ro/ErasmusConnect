@@ -14,7 +14,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" style="background-color: whitesmoke">
+    <div id="app" style="background-color: whitesmoke; ">
         @include('partials.navbar')
         <!-- <main class="main-container"> -->
             @yield('content')
@@ -27,20 +27,23 @@
 </html>
 <style lang="scss" scoped>
     html {
+        min-height: 100vh;
         width: 100%;
         height: auto;
         scroll-behavior: smooth;
     }
     body {
+        min-height: 100vh;
         display: flex;
         width: 100%;
         height: auto;
     }
     #app {
+        min-height: 100vh;
         display: flex;
         width: 100%;
         flex-direction: column;
-        height: 100%;
+        height: auto;
         color: #000;
     }
     p {

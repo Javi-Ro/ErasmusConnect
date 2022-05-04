@@ -5,7 +5,7 @@
             <p>CREA UNA PUBLICACIÓN</p>
         </div>
         <div class="contenedor-dropdown"> 
-          <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
+          <b-dropdown append-to-body aria-role="menu" style="left:3%;" scrollable max-height="200" trap-focus>
             <template #trigger>
                 <a class="navbar-item" role="button">
                     <span style="margin-right: 10px;">{{selectedCity}}</span>
@@ -35,12 +35,28 @@
 
               <b-field label="Texto">
                   <b-input minlength="0" style="width:550px;" type="textarea" class="custom-input" v-model="post.text"></b-input>
-              </b-field>
+              </b-field>   
+              <b-field label="Selecciona algunas etiquetas para mejorar la búsqueda">
+                <b-taginput
+                    v-model="tags"
+                    :data="filteredTags"
+                    autocomplete
+                    :open-on-focus="openOnFocus"
+                    field="name"
+                    icon="label"
+                    placeholder="Añade una etiqueta"
+                    maxtags="3"
+                    @typing="getFilteredTags"
+                    >
+                </b-taginput>
+            </b-field>
+
+
             </b-tab-item>
 
             <b-tab-item label="Multimedia">
                 <b-field>
-                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple drag-drop>
+                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
                       <section class="custom-section">
                           <div class="content has-text-centered">
                               <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-bottom: 20px; height:40px"/>
@@ -105,7 +121,11 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
             availableCities: [],
             availableCitiesNames: [],
             selectedCity: 'Ciudad',
-            dropFiles: []
+            dropFiles: [],
+            tags: [],
+            filteredTags: [],
+            data: this.getTags(),
+            openOnFocus: false
         }
     },
     watch: {
@@ -155,8 +175,15 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
           const formData = new FormData();
           formData.append('post', JSON.stringify(this.post));
           formData.append('file', this.dropFiles[0]);
+          console.log('gordo', this.tags);
           axios.post(`/api/posts`, formData).then(response => {
-            window.location.href = "/foro";
+            axios.post('/api/posts/tags', {
+            post:response.data.post, 
+            tags:this.tags,
+          }).then(response=> {
+              window.location.href = "/foro";
+              console.log(response.data)});
+
             // console.log(response);
           }).catch(error => {
             if (error.response.status === 403) {
@@ -165,7 +192,26 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
               alert("El titulo es obligatorio");
             }
           })
-        }
+        },
+        getTags() {
+     
+            axios.get(`/api/tags/posts`)
+                .then(response => {
+                    this.data = response.data.tags;
+                }).catch(error => {
+                    console.info(error)
+                });
+            },
+            
+            getFilteredTags(text) {
+            this.filteredTags = this.data.filter((option) => {
+                return option.name
+                    .toString()
+                    .toLowerCase()
+                    .indexOf(text.toLowerCase()) >= 0
+            })
+            }
+
     },
     mounted() {},
     created() {
@@ -245,8 +291,6 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
   .footer{
     display:flex;
   }
-
-
   
   section{
         margin-top: 130px;
@@ -271,9 +315,6 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
         height: calc(100% - 130px);
   }
 }
-
-
-
 
   .input-size{
     width: 550px;
