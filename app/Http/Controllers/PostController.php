@@ -161,6 +161,32 @@ class PostController extends Controller
         return response()->json(['success' => false]);
     }
 
+    public function savePost(Post $post) {
+        if(Auth::check() && !$post->saved_by()->get()->contains("id", Auth::user()->id)) {
+            $post->saved_by()->attach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function unsavePost(Post $post) {
+        if(Auth::check() && $post->saved_by()->get()->contains("id", Auth::user()->id)) {
+            $post->saved_by()->detach(Auth::user()->id);
+            return response()->json(['success' => true, 'post' => $post]);
+        }
+
+        return response()->json(['success' => false]);
+    }
+
+    public function savedByUser(Post $post) {
+        if(Auth::check() && $post->saved_by()->get()->contains("id", Auth::user()->id)) {
+            return response()->json(['success' => true, 'post' => $post, 'auth' => Auth::check()]);
+        }
+
+        return response()->json(['success' => false, 'auth' => Auth::check()]);
+    }    
+
     public function likedByUser(Post $post) {
         if(Auth::check() && $post->likes()->get()->contains("id", Auth::user()->id)) {
             return response()->json(['success' => true, 'post' => $post, 'auth' => Auth::check()]);
@@ -168,6 +194,7 @@ class PostController extends Controller
 
         return response()->json(['success' => false, 'auth' => Auth::check()]);
     }
+
 
     public function addTags(Request $data){
         $post = Post::whereId($data->post['id'])->first();
@@ -180,6 +207,24 @@ class PostController extends Controller
     public function getTags(Post $post){
         $tags = $post->tags()->get();
         return response()->json(['success' => true, 'tags' => $tags]);
+
+
+    
+    public function getPostsFollowing() {
+        if (!Auth::check()) {
+            abort(403);
+        }
+
+        $following = Auth::user()->following()->get();
+
+        $posts = [];
+
+        foreach ($following as $user) {
+            $user_posts = $user->posts()->get();
+            array_push($posts, ...$user_posts);
+        }
+
+        return response()->json(['success' => true, 'posts' => $posts]);
 
     }
 }

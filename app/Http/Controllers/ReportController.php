@@ -19,7 +19,10 @@ class ReportController extends Controller
 
     public function create(Request $data) {
         $report = Report::create([
-            'name' => $data->name
+            'title' => $data->title,
+            'text' => $data->text,
+            'post_id' => $data->post_id,
+            'user_id' => $data->user_id
         ]);
 
         return response()->json(['success' => true, 'report' => $report]);

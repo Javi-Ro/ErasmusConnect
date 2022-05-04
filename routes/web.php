@@ -113,6 +113,7 @@ Route::get('/foro/crear', function () {
         return view('auth.login');
     }
 });
+Route::get('/users/suggestions',  'App\Http\Controllers\UserController@suggestions');
 
 // API ROUTES
 
@@ -181,6 +182,7 @@ Route::group(['prefix' => 'api'], function () {
 
     //POSTS
     Route::get('/posts/filter-by-tag', 'App\Http\Controllers\PostController@filterByTag');
+    Route::get('/posts/following', 'App\Http\Controllers\PostController@getPostsFollowing');
     Route::get('/posts/{post}', 'App\Http\Controllers\PostController@get');
     Route::post('/posts/tags', 'App\Http\Controllers\PostController@addTags');
     Route::get('/posts', 'App\Http\Controllers\PostController@getPosts');
@@ -196,6 +198,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/posts/{post}/like', 'App\Http\Controllers\PostController@likePost');
     Route::delete('/posts/{post}/like', 'App\Http\Controllers\PostController@notLikePost');
     Route::get('/posts/{post}/tags', 'App\Http\Controllers\PostController@getTags');
+    Route::get('/posts/{post}/save', 'App\Http\Controllers\PostController@savedByUser');
+    Route::post('/posts/{post}/save', 'App\Http\Controllers\PostController@savePost');
+    Route::delete('/posts/{post}/unsave', 'App\Http\Controllers\PostController@unsavePost');
 
     //REPORTS
     Route::get('/reports/{report}', 'App\Http\Controllers\ReportController@get');

@@ -63,6 +63,11 @@ class Post extends Model
         return $this->hasMany(Report::class);
     }
 
+    public function saved_by() 
+    {
+        return $this->belongsToMany(User::class, "saved_posts");
+    }
+
     public function getLikesAttribute()
     {
         return $this->likes()->get()->count();

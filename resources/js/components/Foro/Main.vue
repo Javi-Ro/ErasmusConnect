@@ -37,7 +37,20 @@
               </div>
             </div>
         </b-tab-item>
-        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" ></b-tab-item>
+        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" >
+          <div v-if="followingPostsReady === true" class="posts">
+            <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
+              <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+            </div>
+          </div>
+          <div v-if="buscarFollowing == false" class="pagina-vacia" > 
+            <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+            <br>
+            <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
+              <a href="/foro" style="color:#00309a;"> foro </a>
+            </label> 
+          </div>
+        </b-tab-item>
         <div v-if="buscar == false" class="pagina-vacia" > 
           <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
           <br>
@@ -63,9 +76,10 @@
       return {
         buscador: '',
         users: [],
-        postsBuscar: [],
+        postsFollowing: [],
         try: [],
         postsReady: false,
+        followingPostsReady: false,
         posts: [],
       }
     },
@@ -81,6 +95,11 @@
 
         return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
       },
+      buscarFollowing() {
+        let posts = this.postsFollowing.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+
+        return this.$root.city == -1 ? posts : posts.filter((item) => item.city_id == this.$root.city);
+      }
     },
 
     methods: {
@@ -92,6 +111,19 @@
             console.info(error.response.data);
         });
       },
+      getPostsFollowing() {
+        axios.get(`/api/posts/following`).then(response => {
+            console.log(response);
+            this.postsFollowing = response.data.posts;
+            this.followingPostsReady = true;
+        }).catch(error => {
+            console.info(error.response.data);
+
+            if (error.response.status === 403) {
+              console.info("Loggeate primero!")
+            }
+        });
+      }
       //capturaBusqueda(buscado) {
       //  this.posts = buscado;
       //},
@@ -103,6 +135,7 @@
     
     created() {
       this.getPosts();
+      this.getPostsFollowing();
     }
   }
 </script>
