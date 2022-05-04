@@ -115,8 +115,11 @@ Route::get('/foro/crear', function () {
 });
 Route::get('/users/suggestions',  'App\Http\Controllers\UserController@suggestions');
 
-// API ROUTES
+Route::get('/events', function () {
+    return view('errors.comming-soon');
+});
 
+// API ROUTES
 Route::group(['prefix' => 'api'], function () {
 
     //USERS

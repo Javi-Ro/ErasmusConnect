@@ -30,7 +30,7 @@
     </div>
 
     <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
-        <b-tab-item label="Discover" icon="fa-thin fa-globe" icon-pack="fa">
+        <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
             <div v-if="postsReady === true" class="posts">
               <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
                 <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
