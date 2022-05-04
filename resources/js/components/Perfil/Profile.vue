@@ -25,11 +25,11 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <button v-if="userJSON && userJSON.nickname == nickname"
-                class="edit" type="button">
+                <a v-if="userJSON && userJSON.nickname == nickname"
+                class="edit" type="button" href=#>
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
-                </button>
+                </a>
                 
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
@@ -43,7 +43,7 @@
                     Privacidad y seguridad
                 </a>
                 <a v-if="userJSON && userJSON.nickname == nickname" 
-                class="column-item btn-start" href="#" >
+                class="column-item btn-start" href=# >
                     Cambiar contraseña
                 </a>                                
             </div>

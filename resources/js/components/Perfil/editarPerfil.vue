@@ -3,42 +3,38 @@
         <div class="container">
             <div class="foto-perfil">
                 <div class="foto">
-                    <img src="/images/default-profile-img.jpeg" alt="NOP" style="border-radius: 200px; max-width: 400px">
+                    <img src="/images/default-profile-img.jpeg" alt="NOP" style="border-radius: 400px; max-width: 800px">
                 </div>
                 <div class="boton-foto">
-                    <b-button type="is-info" expanded style="width:300px; background-color:#00309a;" >Cambiar</b-button>
+                    <b-button type="is-info" expanded size="is-small" style="width:300px;" >Cambiar foto de perfil</b-button>
                 </div>
             </div>
             <div class="campos">
-                <b-field label="Name">
-                    <b-input ></b-input>
+                <b-field label="Nombre" style="width:100%;">
+                    <b-input  ></b-input>
                 </b-field>
-                <b-field label="Description">
+                <b-field label="Biografía" style="width:100%;">
                      <b-input maxlength="300" type="textarea"></b-input>
                 </b-field>
-            </div>
-        </div>
-        <div class="container-password">
-            <div class="old-pass">
                 <b-field label="Contraseña">
-                    <b-input type="password" password-reveal style="width:500px">
+                    <b-input type="password" required validation-message="La contraseña es obligatoria para guardar cambios" password-reveal style="width:500px">
                     </b-input>
                 </b-field>
-            </div>
-            <div class="new-pass">
                 <b-field label="Nueva contraseña">
-                    <b-input type="password" password-reveal style="width:500px">
+                    <b-input type="password" placeholder="Nueva contraseña" password-reveal style="width:500px">
                     </b-input>
                 </b-field>
-                    <b-input type="password" password-reveal style="width:500px">
+                <b-field>
+                    <b-input type="password" placeholder="Repite tu nueva contraseña" password-reveal style="width:500px">
                     </b-input>
-                
+                </b-field>
+                <div class="guardar-cambios">
+                    <b-button type="is-danger" expanded style="width:400px; ">Cancelar</b-button>
+                    <b-button type="is-info" expanded style="width:400px; margin-left:40px;background-color:#00309a;">Confirmar cambios</b-button>
+                </div>
             </div>
-
         </div>
-        <div class="guardar-cambios">
-            <b-button type="is-info" expanded style="width:300px; background-color:#00309a;">Guardar</b-button>
-        </div>
+        
     </div>
 </template>
 <script>
@@ -47,19 +43,17 @@
 </script>
 <style lang="scss" scoped>
     #editar-perfil{
-        margin: 120px;
+        margin: 112px;
 
     }
     .container{
-        margin-bottom: 20px;
         display: flex;
         flex-flow: row;
-        gap: 60px;
         .foto-perfil{
-            width: 50%;
+            width: 40%;
             display: flex;
             flex-flow: column;
-            justify-content: center;
+            margin-top: 5%;
             .foto{
                 display: flex;
                 justify-content: center;
@@ -71,33 +65,22 @@
             }
         }
         .campos{
-            width: 50%;
+            width: 60%;
             display: flex;
             flex-flow: column;
-        }
-    }
+            align-items: center;
+            .nueva-contra{
+                display: flex;
+                flex-flow: column;
+            }
 
-    .container-password{
-        margin-bottom: 20px;
-        width: 100%;
-        display: flex;
-        gap: 60px;
-        .old-pass{
-            width: 50%;
-            display: flex;
-            justify-content: center;
-        }
-        .new-pass{
-            width: 50%;
-            display: flex;
-            flex-flow: column;
-            justify-content: center;
+            .guardar-cambios{
+                margin: 20px;
+                color: #00309a;
+                display: flex;
+                justify-content: center;
+            }
         }
     }
-
-    .guardar-cambios{
-        color: #00309a;
-        display: flex;
-        justify-content: center;
-    }
+    
 </style>
