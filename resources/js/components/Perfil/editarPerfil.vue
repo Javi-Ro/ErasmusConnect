@@ -46,9 +46,11 @@
                     </b-input>
                 </b-field>
                 <div class="guardar-cambios">
-                    <b-button type="is-info" expanded style="width:400px; background-color: #3DDC0A;">Confirmar cambios</b-button>
-
-                    <b-button type="is-danger" expanded style="width:400px; margin-top:15px;">Cancelar</b-button>
+                    <b-button type="is-success" size="is-medium" expanded style="width:400px;">Confirmar cambios</b-button>
+                    <a :href="'/' + user.nickname + '/profile'">
+                        <b-button type="is-danger"
+                        outlined expanded style="width:200px; margin-top:15px;">Cancelar</b-button>
+                    </a>
                 </div>
             </div>
         </div>
@@ -59,9 +61,25 @@
     export default {
         data() {
             return {
+                user: null,
                 file: null
             }
-        }
+        },
+        methods: {
+            getUser() {
+                axios.get(`/api/auth`).then(response => {
+                    this.user = response.data.user;
+                    this.auth = response.data.auth;
+                    if (this.auth)
+                        this.profileImage = '/storage/images/users/' + this.user.img_url;
+                }).catch(error => {
+                    console.info(error);
+                });
+            },
+        },
+        mounted() {
+            this.getUser();
+        },
     }
 </script>
 <style lang="scss" scoped>
@@ -102,6 +120,7 @@
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
+                align-items: center;
             }
         }
     }
