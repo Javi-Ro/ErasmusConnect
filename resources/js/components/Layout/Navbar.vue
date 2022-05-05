@@ -128,7 +128,7 @@
                 { name: "Alquileres", link: "/apartments"},
                 { name: "Eventos", link: "/events"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Versión: 1.0.0", link: "#"},
+                { name: "Versión: 1.5.0", link: "#"},
             ]
       }
     },
