@@ -1,8 +1,22 @@
 <template>
     <div class="navbar">
         <!-- Logo -->
-        <div class="brand">
+        <div class="brand" v-if="!auth">
             <a class="nav-item" tag="router-link" href="/">
+                <img
+                    class="brand-img"
+                    src="/images/logo/logo.png"
+                    alt="Erasmus Connect"
+                >
+            </a>
+            <!-- Botón para desplegar el menú, aparece cuando desaparece el menú -->
+            <a class="navurguesa" @click="openMenu()" id="navurguesa">
+                <font-awesome-icon id="openIcon" icon="fa-solid fa-bars" style="width:30px; height:30px"/>
+                <font-awesome-icon id="closeIcon" icon="fa-solid fa-x" style="width:30px; height:30px"/>
+            </a>
+        </div>
+        <div class="brand" v-if="auth">
+            <a class="nav-item" tag="router-link" href="/foro">
                 <img
                     class="brand-img"
                     src="/images/logo/logo.png"
@@ -18,19 +32,9 @@
         <div class="menu" id="menu">
             <!-- Utilidades -->
             <div class="menu-start">
-                <b-dropdown
-                    append-to-body
-                    aria-role="menu"
-                    scrollable
-                    max-height="200"
-                    trap-focus
-                >
+                <b-dropdown append-to-body aria-role="menu" scrollable max-height="200" trap-focus>
                     <template #trigger>
-                        <a
-                            class="navbar-item"
-                            role="button"
-                            style="padding-left: 20px;"
-                            >
+                        <a class="navbar-item" role="button" style="padding-left: 20px;">
                             <span style="margin-right: 10px;">{{selectedCity}}</span>
                             <font-awesome-icon icon="fa-solid fa-caret-down" />
                         </a>
@@ -40,6 +44,10 @@
                         <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
                         <!-- <b-input id="buscador" v-model="searchTerm" placeholder="Buscar..." expanded /> -->
                     </b-dropdown-item>
+                    <b-dropdown-item
+                    @click="resetSelected()">
+                        Todas
+                    </b-dropdown-item>
                     <!-- Se le pasa la ciudad debido a un bug relacionado con usar index (más explicado abajo) -->
                     <b-dropdown-item 
                     v-for="city in filteredData" :key="city[1]" 
@@ -48,31 +56,11 @@
                         {{city[0]}}
                     </b-dropdown-item>
                 </b-dropdown>
-                <!-- <b-navbar-dropdown :label="getSelected(selected)">
-                    <b-navbar-item v-for="(city, index) in availableCities" :key="index" @click="setSelected(index)" href="#">
-                        {{city}}
-                    </b-navbar-item>
-                </b-navbar-dropdown> -->
-                <!-- <b-navbar-item v-for="(option,index) in menu" :key="index" :href="option.link">
-                    {{option.name}}
-                </b-navbar-item> -->
                 <a class="nav-item btn-start" 
                 v-for="(option,index) in publicMenu" :key="index" :href="option.link"
                 >
                     {{option.name}}
                 </a>
-                <!-- <a class="nav-item btn-start" href="#">
-                    Foro
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Alquileres
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Eventos
-                </a>
-                <a class="nav-item btn-start" href="#">
-                    Sobre nosotros
-                </a> -->
             </div>
             <!-- Usuario ya registrado -->
             <div v-if="auth">
@@ -98,8 +86,8 @@
                         </a>
                     </template>
 
-                    <b-dropdown-item @click="showProfile()"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
-                    <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Salir
+                    <b-dropdown-item :href="'/' + this.user.nickname + '/profile'"><font-awesome-icon icon="fa-solid fa-user" style="margin-right: 10px;"/>Perfil</b-dropdown-item>
+                    <b-dropdown-item @click="logout()"><font-awesome-icon icon="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10px;"/>Cerrar sesión
                     </b-dropdown-item>
                 </b-dropdown>
             </div>
@@ -132,15 +120,15 @@
             availableCitiesNames: [],
             // Ahora se almacena directamente el nombre de la ciudad, el index daba problemas con la lista filtrada
             // Se cambiaba el index porque se cambiaba el tamaño de la lista
-            selected: 1,
+            selected: -1,
             selectedCity: 'Ciudad',
             // Nombre cambiado
             publicMenu: [
                 { name: "Foro", link: "/foro"},
-                { name: "Alquileres", link: "#"},
-                { name: "Eventos", link: "#"},
+                { name: "Alquileres", link: "/apartments"},
+                { name: "Eventos", link: "/events"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Versión: 1.0.0", link: "#"},
+                { name: "Versión: 1.5.0", link: "#"},
             ]
       }
     },
@@ -165,6 +153,11 @@
         }
     },
     methods: {
+        resetSelected() {
+            this.selected = -1;
+            this.$root.city = this.selected;
+            this.selectedCity = "Ciudad";
+        },
         getCities() {
             axios.get(`/api/cities`)
                 .then(response => {
@@ -173,15 +166,17 @@
                     console.info(error)
                 });
         },
-        showProfile() {
-            window.location.href = "/" + this.user.nickname + "/profile";
-        },
+        // showProfile() {
+        //     console.log(this.$root.city);
+        //     // window.location.href = "/" + this.user.nickname + "/profile";
+        // },
         getSelected(selected) {
                 axios.post(`/api/get_city_by_id`, {
                     id: selected
                 })
                     .then(response => {
                         this.selected = response.data.city.id; // ID de la clase seleccionada
+                        this.$root.city = this.selected;
                         this.selectedCity = response.data.city.name;
                     }).catch(error => {
                         console.info(error)
@@ -216,7 +211,7 @@
                 this.user = response.data.user;
                 this.auth = response.data.auth;
                 if (this.auth)
-                    this.profileImage = '/images/' + this.user.img_url;
+                    this.profileImage = '/storage/images/users/' + this.user.img_url;
             }).catch(error => {
                 console.info(error);
             });
@@ -224,6 +219,7 @@
         logout() {
             axios.post(`/logout`).then(response => {
                 this.getUser();
+                window.location.href = "/";
             }).catch(error => {
                 console.info(error);
             });
@@ -240,7 +236,7 @@
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 #closeIcon {
     display: none;
 }    /* Modifica el texto de dentro */
@@ -343,6 +339,7 @@ a.navbar-item:hover {
     .menu.is-active {
         display: block;
         flex-direction: column;
+        z-index: 99;
     }
     .navbar {
         flex-wrap: wrap;

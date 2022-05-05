@@ -12,9 +12,9 @@
                 </p>
             </div>
             <div class="botonPrincipal">
-                <button class="btn pulse-button">
+                <button class="btn pulse-button" @click="register()">
                     <p style="padding: 0 10px 0 10px; text-align: center;">
-                        ¿No sabes dónde <span style="color: #ffcd00; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
+                        ¿No sabes dónde <span style="color: #F2AF13; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
                     </p>
                 </button>
             </div>
@@ -27,7 +27,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/storage/images/landing/foto-foro.png').default"
+                :src="require('@../../../public/images/landing/foto-foro.png').default"
                 alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">
@@ -81,6 +81,26 @@
     <footer-web/>
 </div>
 </template>
+
+<script>
+  export default {
+        props: {},
+        data() {
+            return {
+                
+            }
+        }, 
+        computed: {
+
+        },
+
+        methods: {
+            register() {
+                window.location.href = "/register";
+            }
+        }
+    }
+</script>
 
 <style lang="scss" scoped>
 $blue:#00309a;

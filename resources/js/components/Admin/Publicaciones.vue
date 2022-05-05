@@ -43,12 +43,12 @@
                     {{ props.row.city_id }}
                 </b-table-column>
                 <b-table-column field="ver-publicacion" label="" width="5%" centered v-slot="props">
-                    <b-button type="is-info" outlined size="is-small" @click.prevent="openPost(props.row);"  title="Visualizar la publicación">
+                    <b-button type="is-info" outlined @click.prevent="openPost(props.row);"  title="Visualizar la publicación">
                         Ver publicación
                     </b-button> 
                 </b-table-column>
                 <b-table-column field="eliminar" label="" centered width="5%" v-slot="props">
-                    <b-button type="is-danger" @click="deletePost(props.row.id);" size="is-small" title="Borrar publicacion">
+                    <b-button type="is-danger" @click="deletePost(props.row.id)"  title="Borrar publicacion">
                         Eliminar
                     </b-button>
                 </b-table-column>
@@ -112,8 +112,8 @@
                     animation: 'none',
                     component: VistaPreviaPublicacionVue,
                     canCancel: true,
-                    props: { post: post },
-                    width: 640,
+                    props: { post: post, comment:false, view:""},
+                    width: 610,
                     events: {
                         
                     },
@@ -121,8 +121,13 @@
                 });
             },
             deletePost(post){
-                axios.delete(`/api/posts/` + post);
-            },
+                axios.delete(`/api/posts/`+post)
+                .then(response => {
+                    this.getPosts();
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+            }
         },
 
         created() {

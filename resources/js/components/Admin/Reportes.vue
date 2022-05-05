@@ -1,5 +1,5 @@
 <template>
-    <div class="reportes">
+    <div class="reportes" v-if="dataReady==true">
         <div class="titulo-pagina">
             REPORTES
         </div>
@@ -10,14 +10,14 @@
                     #{{ report.id }}
                 </p>
                 <div id="tag">
-                    <b-tag type="is-warning" size="is-medium">{{ report.tagName }}</b-tag>
+                    <b-tag type="is-warning" size="is-medium">{{ getTagName(report.tag_id) }}</b-tag>
                 </div>
                 <div class="info">
                     <div id="titulo">
                         {{ report.title }}
                     </div>
                     <div id="user">
-                        (@{{ report.userName }})
+                        (@ {{getUserName(report.user_id)}} )
                     </div>
                 </div>
             </div>
@@ -27,33 +27,40 @@
                     <!-- Inicio de modal -->
                     <div class="modal-vue" :id="report.id">
                         <!-- Cuando se clicka sobre Ver publicación showModal pasa a valer lo mismo que el id del repote -->
-                        <b-button type="is-info" outlined 
-                        @click="showModal = report.id"
+                        <!-- <b-button type="is-info" outlined 
+                        @click.prevent="openPost(report.post_id);"
                         title="Visualiza la publicación y permite eliminarla"
                         > 
                         Ver publicación
+                        </b-button> -->
+                        <b-button type="is-info" outlined @click.prevent="openPost(report.post_id);"  title="Visualizar la publicación">
+                            Ver publicación
+                        </b-button> 
+                        <b-button type="is-danger"
+                            title="Borra la publicación de la base de datos">
+                            Eliminar publicación
                         </b-button>
                         <!-- overlay -->
                         <!-- Cuando se clicka fuera del modal pasa a valer 0 -->
-                        <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div>
+                        <!-- <div class="overlay" v-if="showModal == report.id" @click="showModal = 0"></div> -->
                         
                         <!-- modal -->
                         <!-- Solo aparece cuando showModal tiene el mismo valor que el id del reporte al que corresponde -->
-                        <div class="modal" v-if="showModal == report.id">
+                        <!-- <div class="modal" v-if="showModal == report.id">
                             <div class="vista-previa">
                                 <div class="publicacion">
                                     <vista-previa-publicacion></vista-previa-publicacion>
                                 </div>
                                 <div class="btn-delete">
-                                    <!-- TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) -->
+                                    TODO: Hay que eliminar el report.id (lo dejo para que se puedan distinguir) 
                                     <b-button type="is-danger" outlined >Borrar publicación ({{report.id}})</b-button>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                     <!-- Fin del modal -->
                     <b-button type="is-danger"
-                    title="Borra el reporte de la base de datos">
+                    title="Borra el reporte de la base de datos" @click="deleteReport(report.id)">
                         Descartar reporte
                     </b-button>
                 </div>
@@ -62,43 +69,93 @@
     </div>
 </template>
 <script>
-import VistaPreviaPublicacion from '../Foro/VistaPreviaPublicacion.vue'
+import VistaPreviaPublicacionVue from '../Foro/VistaPreviaPublicacion.vue';
 export default {
-  components: { VistaPreviaPublicacion },
+//   components: { VistaPreviaPublicacion },
     props: {},
     data() {
         return {
+            post: {},
             showModal: 0,
-            reports: [
-                {
-                    id: 1,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                },
-                {
-                    id: 2,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario2",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                },
-                {
-                    id: 3,
-                    tagName: "Insulta a otros usuarios",
-                    title: "Bloquear a este usuario3",
-                    userName: "XxManoloxX",
-                    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque vitae eros et velit pulvinar aliquet sed sed sem. Etiam id elementum nibh. Phasellus ut hendrerit sapien. Vestibulum eleifend varius tortor malesuada consequat. Vestibulum id purus rutrum lorem posuere dictum in vel mauris. Cras scelerisque consequat neque non rutrum. Quisque tempor velit vitae mi pharetra pretium. Vivamus fermentum, risus eu egestas semper, sapien urna rhoncus purus, eu ultrices dui augue eget lectus. Proin sodales quis diam ac pellentesque."
-                }
-            ]
+            reports: [],
+            dataReady: false,
         }
+    },
+    created(){
+        this.getReports();
+    },
+    computed:{
+        data(){
+            const a = this.reports.map((item) => ({id: item.id}));
+            return a;
+        }
+    },
+    methods: {
+        getTagName(id) {
+            axios.get(`/api/tags/` + id).then(response => {
+                console.log(response.data.tag.name)
+                return response.data.tag.name
+            }).catch(error => {
+                console.info(error)
+            });
+        },
+        getUserName(id) {
+            console.log(id)
+            axios.get(`/api/users/` + id).then(response => {
+                console.log(response.data.user.nickname)
+                return response.data.user.nickname;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
+        getReports(){
+            axios.get(`/api/reports`)
+                .then(response => {
+                    //console.log(a);
+                    this.reports = response.data.reports;
+                    this.dataReady = true;
+                }).catch(error => {
+                    console.info(error.response.data)
+                });
+        },
+        deleteReport(id){ 
+            axios.delete(`/api/reports/` + id)
+            .then(response => {
+                this.getReports();
+            }).catch(error => {
+                console.info(error.response.data)
+            });
+        },
+        getPostById(id){
+            axios.get('/api/posts/' + id).then(response => {
+                this.post = response.data.post;
+            }).catch(error => {
+                console.info(error);
+            });
+        },
+        openPost(postId) {  //--> Programmatic way of creating the modal.
+            console.log("POST: " + postId)
+            this.getPostById(postId);
+            let vue = this;
+            vue.$buefy.modal.open({
+                parent: vue,
+                animation: 'none',
+                component: VistaPreviaPublicacionVue,
+                canCancel: true,
+                props: { post: this.post, comment:false, view:""},
+                width: 610,
+                events: {
+                    
+                },
+                onCancel: () => {}
+            });
+        },
     }
 }
 </script>
 <style lang="scss" scoped>
 $blue: #00309a;
-$yellow: #ffcd00;
+$yellow: #F2AF13;
 .titulo-pagina {
     justify-content: center;
     display: flex;

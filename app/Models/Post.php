@@ -10,7 +10,11 @@ class Post extends Model
 
     protected $fillable = [
         'title',
-        'user_id'
+        'text',
+        'img_url',
+        'post_id',
+        'user_id',
+        'city_id'
     ];
 
     protected $casts = [
@@ -18,7 +22,8 @@ class Post extends Model
     ];
 
     protected $appends = [
-        "likes"   
+        "likes",
+        "comments"
     ];
 
     use HasFactory;
@@ -48,11 +53,28 @@ class Post extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function likes() {
+    public function likes()
+    {
         return $this->belongsToMany(User::class);
     }
 
-    public function getLikesAttribute() {
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
+    public function saved_by() 
+    {
+        return $this->belongsToMany(User::class, "saved_posts");
+    }
+
+    public function getLikesAttribute()
+    {
         return $this->likes()->get()->count();
+    }
+
+    public function getCommentsAttribute()
+    {
+        return $this->comments()->get()->count();
     }
 }

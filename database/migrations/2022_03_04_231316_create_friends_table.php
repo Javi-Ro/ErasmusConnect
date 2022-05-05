@@ -13,9 +13,9 @@ class CreateFriendsTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('user2_id')->constrained('users');
+        Schema::create('friends', function (Blueprint $table) {
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->foreignId('user2_id')->constrained('users')->cascadeOnDelete();
             $table->primary(['user_id', 'user2_id']);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));

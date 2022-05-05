@@ -7,6 +7,12 @@ use App\Models\Country;
 
 class CountryController extends Controller
 {
+
+    public function getCountryById(Request $data) {
+        $country = Country::whereId($data->id)->first();
+        return response()->json(['country' => $country]);
+    }
+
     public function get(Country $country) {
         return response()->json(['country' => $country]);
     }
@@ -27,17 +33,14 @@ class CountryController extends Controller
 
     public function delete(Country $country) {
 
-        if (Country::whereId($country->id)->count()) {
-            $country->delete();
-            return response()->json(['success' => true, 'country' => $country]);
-        }
-
-        return response()->json(['success' => false]);
+        $country = Country::find($country->id);
+        $country->delete();
+        return response()->json(['success' => true, 'country' => $country]);
     }
 
-    public function update(Request $request, Country $country) {
-        $newCountry = Country::find($country->id);
-        $newCountry->name = $request->name;
+    public function update(string $country1, string $country2) {    
+        $newCountry = Country::whereName($country1)->first();
+        $newCountry->name = $country2;
         $newCountry->save();
     }
 }

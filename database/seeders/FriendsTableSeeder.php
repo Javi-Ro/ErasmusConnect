@@ -14,40 +14,40 @@ class FriendsTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('user_user')->delete();
+        DB::table('friends')->delete();
 
-        DB::table('user_user')->insert(
+        DB::table('friends')->insert(
             [
                 'user_id' => 1,
                 'user2_id' => 2
             ]
         );
 
-        DB::table('user_user')->insert(
+        DB::table('friends')->insert(
             [
                 'user_id' => 1,
                 'user2_id' => 3
             ]
         );
 
-        DB::table('user_user')->insert(
-            [
-                'user_id' => 2,
-                'user2_id' => 4
-            ]
-        );
-
-        DB::table('user_user')->insert(
-            [
-                'user_id' => 3,
-                'user2_id' => 5
-            ]
-        );
-
-        DB::table('user_user')->insert(
+        DB::table('friends')->insert(
             [
                 'user_id' => 2,
                 'user2_id' => 3
+            ]
+        );
+
+        DB::table('friends')->insert(
+            [
+                'user_id' => 3,
+                'user2_id' => 2
+            ]
+        );
+
+        DB::table('friends')->insert(
+            [
+                'user_id' => 2,
+                'user2_id' => 1
             ]
         );
     }

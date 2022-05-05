@@ -17,11 +17,15 @@ class Tag extends Model
 
     public function apartments() 
     {
-        return $this->hasMany(Apartment::class);
+        return $this->belongsToMany(Apartment::class);
     }
 
     public function posts() 
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function reports() {
+        return $this->hasMany(Report::class);
     }
 }

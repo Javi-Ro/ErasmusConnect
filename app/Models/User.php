@@ -43,6 +43,12 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'created_at' => 'date:d/m/Y'
+    ];
+
+    protected $appends = [
+        'followers',
+        'following'
     ];
 
     public function city()
@@ -50,14 +56,12 @@ class User extends Authenticatable
         return $this->belongsTo(City::class);
     }
 
-    public function friends()
-    {
-        return $this->belongsToMany(User::class);
+    public function followers() {
+        return $this->belongsToMany(User::class, "friends", "user2_id", "user_id");
     }
     
-    public function curasan()
-    {
-        return $this->belongsToMany(User::class);
+    public function following() {
+        return $this->belongsToMany(User::class, "friends", "user_id", "user2_id");
     }
 
     public function apartments()
@@ -70,13 +74,25 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
-    public function savedPosts()
+    public function reports() {
+        return $this->hasMany(Report::class);
+    }
+
+    public function saved_posts() 
     {
-        return $this->hasMany(Post::class);
+        return $this->belongsToMany(Post::class, "saved_posts");
     }
 
     public function likes()
     {
         return $this->belongsToMany(Post::class);
+    }
+
+    public function getFollowersAttribute() {
+        return $this->followers()->get()->count();
+    }
+
+    public function getFollowingAttribute() {
+        return $this->following()->get()->count();
     }
 }

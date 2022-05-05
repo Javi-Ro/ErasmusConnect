@@ -14,7 +14,7 @@
     <link href="{{ asset('/css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app" style="background-color: #f8f9f9">
+    <div id="app" style="background-color: whitesmoke; ">
         @include('partials.navbar')
         <!-- <main class="main-container"> -->
             @yield('content')
@@ -27,25 +27,32 @@
 </html>
 <style lang="scss" scoped>
     html {
+        min-height: 100vh;
         width: 100%;
         height: auto;
         scroll-behavior: smooth;
     }
     body {
+        min-height: 100vh;
         display: flex;
         width: 100%;
         height: auto;
     }
     #app {
+        min-height: 100vh;
         display: flex;
         width: 100%;
         flex-direction: column;
-        height: 100%;
+        height: auto;
+        color: #000;
     }
     p {
         text-align: justify;
     }
-    /*Para cambiar la barra de desplazamiento*/
+
+
+    @media(min-width: 600px) {
+    /* Para cambiar la barra de desplazamiento */
     /* width */
     ::-webkit-scrollbar {
         width: 10px;
@@ -66,5 +73,6 @@
     /* Handle on hover */
     ::-webkit-scrollbar-thumb:hover {
         background: #888
+    }
     }
 </style>

@@ -1,26 +1,30 @@
 <template>
-  <section class="post-container">
+  <!-- El padding-bottom es para que el tamaño de la página no varie cuando se despliega el botón de más opciones -->
+  <section v-if="data === true" class="post-container" style="padding-bottom: 100px;">
     <div class="post-container-positioned">
-      <filter-bar></filter-bar>
-      <filter-bar-horizontal class="horizontal-menu"></filter-bar-horizontal>
       <div class="title-bar">
-        <div class="title-bar-img">
-          <!-- <img src="images/arrow-left.svg" alt="Arrow left" width="14px" height="11px" @click="goBack();"> -->
-          <div @click="goBack()">
+        <div class="title-bar-img" @click="goBack()">
+          <div>
             <font-awesome-icon icon="fa-solid fa-arrow-left" width="14px" height="11px"/>
           </div>
         </div>
-        <p>Publicación</p>
+        <div>
+          <p>Volver al foro</p>
+        </div>
       </div>
-      <vista-previa-publicacion class="post" :post="post"></vista-previa-publicacion>
+      <vista-previa-publicacion v-if="Object.entries(post).length!==0" class="post" :post="post" 
+      :comment="false" view="unique"></vista-previa-publicacion>
       <div class="comments-container">
         <div class="post-comment">
-          <img src="images/placeholders/default-profile-img.jpeg" class="comment-img" alt="" style="margin-right: 10px">
-          <b-input class="post-comment-input" placeholder="Comenta..." rounded></b-input>
+          <img :src="userImg" class="comment-img" alt="" style="margin-right: 10px">
+          <b-input class="post-comment-input" placeholder="Comenta..." v-model="comment.text" rounded></b-input>
           <b-button class="information-personal-data-main-button" type="is-link" @click="sendComment()">Publicar</b-button>
         </div>
-        <comentario></comentario>
-        <comentario></comentario>
+        <div class="comentarios" style="min-width: 100%;" v-if="commentsReady === true">
+          <div class="comentario" v-for="comment in comments" :key="comment.id">
+            <vista-previa-publicacion :post="comment" :comment="true"></vista-previa-publicacion>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -28,12 +32,20 @@
 
 <script>
   export default {
-    props: {
-    },
+  components: { },
+    props:{id: null},
 
     data() {
       return {
-          post: { id: 1, title: "Aquí en Praga", text: "Praga es una de las ciudades mas bonitas que he conocido.", img_url: 'ejemplo-praga.jpeg', user_id:1, likes:15 , created_at: '2022-04-03 17:47:11'}
+        comments: [{id: null}],
+        commentsReady: false,
+        data: false,
+        post: {},
+        user: {},
+        auth: false,
+        comment: {
+          text: ''
+        }
       }
     },
 
@@ -47,17 +59,76 @@
       },
     },
 
-    computed: {},
+    computed: {
+      userImg() {
+        console.log("por aquí")
+        return "/storage/images/users/" + (this.auth === true ? this.user.img_url : "default-profile-img.jpeg");
+      }
+    },
 
     methods: {
       goBack(){
         window.location.href = "/foro";
       },
       sendComment(){
-
+        axios.post(`/api/posts/` + this.id, this.comment).then(response => {
+          console.log(response.data);
+          this.comment.text = "";
+          this.getComments();
+        }).catch(error => {
+          console.info(error.response.data);
+          if (error.response.status == 403) {
+            window.location.href = "/login?redirectTo=" + window.location.href;
+          } else if (error.response.status == 422) {
+            alert("El comentario no puede estar vacio!");
+          }
+        });
+      },
+      getPostById(){
+        axios.get('/api/posts/' + this.id).then(response => {
+            this.post = response.data.post;
+            this.data = true;
+          }).catch(error => {
+            console.info(error);
+          });
+      },
+      getComments() {
+        axios.get('/api/posts/'+ this.id +'/comments').then(response => {
+            this.comments = response.data.comments;
+            this.commentsReady = true;
+          }).catch(error => {
+            console.info(error);
+          });
+      },
+      getPost() {
+        return this.post;
+      },
+      getAuthUser() {
+        axios.get(`/api/auth`).then(response => {
+          this.user = response.data.user;
+          this.auth = response.data.auth;
+        }).catch(error => {
+          console.info(error.response.data);
+        });
       }
     },
 
-    mounted() {}
+    mounted() {
+      this.getAuthUser();
+      this.getPostById();
+      this.getComments();
+    },
+
+    created() {
+
+    }
   }
 </script>
+<style>
+.button.is-link:hover {
+  color: #F2AF13;
+}
+.post-comment {
+  margin: 0 0 10px 0;
+}
+</style>

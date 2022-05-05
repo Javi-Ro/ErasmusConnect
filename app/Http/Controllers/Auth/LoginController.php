@@ -49,7 +49,7 @@ class LoginController extends Controller
      
         $credentials = $request->only('nickname', 'password');
         if (Auth::attempt($credentials)) {
-            return response()->json(["success" => true]);
+            return response()->json(["success" => true, "redirectTo" => $request->redirectTo]);
         }
     
         return response()->json(["success" => false]);

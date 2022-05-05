@@ -42,18 +42,29 @@ class UserController extends Controller
 
         return response()->json(['success' => false]);
     }
-    
+
 
 
     public function update(Request $request, User $user)
     {
-        $newUser = User::find($user->id);
-        $newUser->name = $request->name;
-        $newUser->nickname = $request->nickname;
-        $newUser->img_url = $request->img_url;
-        $newUser->city_id = $request->city_id;
-        $newUser->email = $request->email;
-        $newUser->save();
+
+        if ($request->filled('name')) {
+            $user->name = $request->name;
+        }
+        if ($request->filled('nickname')) {
+            $user->nickname = $request->nickname;
+        }
+        if ($request->filled('img_url')) {
+            $user->img_url = $request->img_url;
+        }
+        if ($request->filled('city_id')) {
+            $user->city_id = $request->city_id;
+        }
+        if ($request->filled('email')) {
+            $user->email = $request->email;
+        }
+
+        $user->save();
     }
 
     public function auth()
@@ -72,17 +83,38 @@ class UserController extends Controller
         return response()->json([], 204);
     }
 
-
-    public function listFollowers(User $user)
-    {
-        return response()->json($user->friends()->get());
-    }
-
     public function addFollower(User $user1, User $user2)
     {
-        //$user1 = new User(['name' => 'root']);
-        //$user1->save();
-        //$user1->friends()->array_push($user1->friends(), $user2);
-        $user1->friends()->attach($user2->id);
+        $user2->followers()->attach($user1->id);
+    }
+
+    public function deleteFollower(User $user1, User $user2)
+    {
+        $user2->followers()->detach($user1->id);
+    }
+
+
+    public function siguiendo(User $user1, User $user2)
+    {
+        for ($i = 0; $i < $user1->following()->count(); $i++) {
+            if ($user1->following()->get()[$i]->id == $user2->id) {
+                return response(true);
+            }
+        }
+    }
+
+    public function suggestions(Request $data) {
+        $users = User::selectRaw('users.id, cities.name, count(posts.id) as posts')
+            ->join('posts', 'users.id', '=', 'posts.user_id')
+            ->join('cities', 'posts.city_id', '=', 'cities.id')
+            ->groupBy('users.id', 'cities.name')
+            ->having('cities.name', '=', $data->city)
+            ->orderBy('posts', 'DESC')
+            ->get();
+        if($users->count() > 5) {
+            $users = $users->toArray();
+            $users = array_slice($users, 0, 5, false);
+        } 
+        return response()->json(['success' => true, 'users' => $users]);
     }
 }

@@ -9,14 +9,20 @@
     display: flex;
     justify-content: center;
     flex-flow: column nowrap;
-    margin-top: 190px;
+    margin-top: 160px;
     align-items: flex-start;
     .title-bar{
+        position: fixed;
+        background-color: whitesmoke;
+        padding: 10px;
+        z-index: 9;
+        top: 88px;
+        width: 100%;
         display: flex;
         flex-flow: row wrap;
         align-items: center;
-        margin-left: 10px;
-        margin-bottom: 25px;
+        // margin-left: 10px;
+        // margin-bottom: 25px;
         .title-bar-img{
             display: flex;
             justify-content: center;
@@ -83,7 +89,7 @@
         }
         .button{
             font-size: 1rem;
-            background-color: #2B6BC7;
+            background-color: #00309a;
             color: white;
             border-radius: 20px;
         }
@@ -106,6 +112,7 @@
             background-color: white;
         }
         .title-bar{
+            top: 88px;
             p{
                 font-size: 20px;
             }
@@ -113,8 +120,7 @@
     }
 
     @media(min-width: 1500px){
-        margin-top: 120px;
-        margin-left: 20%;
+        margin-top: 160px;
     }
 
     
