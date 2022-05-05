@@ -115,12 +115,11 @@
             }
 
             .guardar-cambios{
-                margin: 20px;
+                margin: 20px 20px 20px 0;
                 color: #00309a;
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
-                align-items: center;
             }
         }
     }
