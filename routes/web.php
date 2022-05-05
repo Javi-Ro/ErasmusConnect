@@ -203,6 +203,9 @@ Route::group(['prefix' => 'api'], function () {
     Route::post('/posts/{post}', 'App\Http\Controllers\PostController@createComment');
     Route::patch('/posts/{post}', 'App\Http\Controllers\PostController@update');
     Route::get('/posts/{post}/comments', 'App\Http\Controllers\PostController@getComments');
+    Route::get('/posts/user/{user}', 'App\Http\Controllers\PostController@getPostsByUser');
+    Route::get('/posts/liked/{user}', 'App\Http\Controllers\PostController@getLikedPosts');
+    Route::get('/posts/saved/{user}', 'App\Http\Controllers\PostController@getSavedPosts');
 
     Route::get('/auth', 'App\Http\Controllers\UserController@auth');
     Route::get('/posts/{post}/like', 'App\Http\Controllers\PostController@likedByUser');
