@@ -3,11 +3,11 @@
         <div class="container">
             <div class="foto-perfil">
                 <div class="foto">
-                    <img src="/images/default-profile-img.jpeg" alt="NOP" style="border-radius: 400px; max-width: 800px">
+                    <img src="/images/default-profile-img.jpg" alt="NOP" style="border-radius: 400px; max-width: 800px">
                 </div>
                 <div class="boton-foto">
                     <b-field class="file is-primary" :class="{'has-name': !!file}">
-                        <b-upload v-model="file" class="file-label" drag-drop type="is-info" accept=".jpeg">
+                        <b-upload v-model="file" class="file-label" drag-drop type="is-info" accept=".jpg">
                             <section class="section">
                                 <div class="content has-text-centered" style="display:flex; align-items:center; justify-content:center;">
                                     <p style="margin:auto;">

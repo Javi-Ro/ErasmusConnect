@@ -62,7 +62,7 @@
     computed: {
       userImg() {
         console.log("por aquí")
-        return "/storage/images/users/" + (this.auth === true ? this.user.img_url : "default-profile-img.jpeg");
+        return "/storage/images/users/" + (this.auth === true ? this.user.img_url : "default-profile-img.jpg");
       }
     },
 

@@ -4,7 +4,7 @@
         <div class="columna" id="izq">
             <div class="profile-img">
                 <img
-                    src="/images/default-profile-img.jpeg"
+                    src="/images/default-profile-img.jpg"
                     alt="Imagen de perfil"
                     style="border-radius: 100px; max-width: 200px"
                 >

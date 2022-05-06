@@ -20,7 +20,7 @@ class CitiesTableSeeder extends Seeder
         City::create(
             [
                 'id' => 1,
-                'name' => 'Prague',
+                'name' => 'Praga',
                 'country_id' => 1
             ]
         );
@@ -28,7 +28,7 @@ class CitiesTableSeeder extends Seeder
         City::create(
             [
                 'id' => 2,
-                'name' => 'Milan',
+                'name' => 'Cracovia',
                 'country_id' => 2
             ]
         );
@@ -44,7 +44,7 @@ class CitiesTableSeeder extends Seeder
         City::create(
             [
                 'id' => 4,
-                'name' => 'Berlin',
+                'name' => 'Oslo',
                 'country_id' => 4
             ]
         );
@@ -52,7 +52,7 @@ class CitiesTableSeeder extends Seeder
         City::create(
             [
                 'id' => 5,
-                'name' => 'Gdansk',
+                'name' => 'Liubliana',
                 'country_id' => 5
             ]
         );

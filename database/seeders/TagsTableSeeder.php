@@ -106,7 +106,7 @@ class TagsTableSeeder extends Seeder
                 'id' => 11,
                 'name' => "vida social",
                 'post' => true,
-                'img_url' => "/images/restaurant.svg"
+                'img_url' => "/images/vida-social.svg"
             ]
         );
 
@@ -115,7 +115,7 @@ class TagsTableSeeder extends Seeder
                 'id' => 12,
                 'name' => "viajes",
                 'post' => true,
-                'img_url' => "/images/restaurant.svg"
+                'img_url' => "/images/viajes.svg"
             ]
         );
 
@@ -124,7 +124,7 @@ class TagsTableSeeder extends Seeder
                 'id' => 13,
                 'name' => "compras",
                 'post' => true,
-                'img_url' => "/images/restaurant.svg"
+                'img_url' => "/images/compras.svg"
             ]
         );
     }

@@ -56,7 +56,7 @@
 
             <b-tab-item label="Multimedia">
                 <b-field>
-                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
+                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple accept=".jpg" validationMessage="Solo se permite el formato jpg" drag-drop>
                       <section class="custom-section">
                           <div class="content has-text-centered">
                               <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-bottom: 20px; height:40px"/>

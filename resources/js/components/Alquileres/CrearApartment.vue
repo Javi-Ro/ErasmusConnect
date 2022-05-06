@@ -76,7 +76,7 @@
             </b-field>
 
             <b-field class="campo2" >
-                <b-upload v-model="dropFiles" style="height:300px; width:100%" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
+                <b-upload v-model="dropFiles" style="height:300px; width:100%" multiple accept=".jpg" validationMessage="Solo se permite el formato jpg" drag-drop>
                     <div class="content has-text-centered" >
                         <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-top: 20%; height:40px"/>
                         <br>
