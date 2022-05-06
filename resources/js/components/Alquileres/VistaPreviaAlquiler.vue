@@ -37,7 +37,7 @@
                 </div>
                 <div class="apartment-desc">
                     <h3 style="font-size: 25px; margin: 10px 0px;">Descripción</h3>
-                    <p>{{apartment.description}}}</p>
+                    <p>{{apartment.description}}</p>
                 </div>
             </div>
             <!-- Mostrar iframe de Google maps -->
