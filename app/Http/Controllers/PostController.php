@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Tag;
 use Auth;
 
@@ -225,5 +226,20 @@ class PostController extends Controller
 
         return response()->json(['success' => true, 'posts' => $posts]);
 
+    }
+
+    public function getPostsByUser(User $user) {
+        $posts = Post::where("user_id", $user->id)->get();
+        return response()->json(['posts' => $posts]);
+    }
+
+    public function getLikedPosts(User $user) {
+        $posts = $user->likes()->get();
+        return response()->json(['posts' => $posts]);
+    }
+
+    public function getSavedPosts(User $user) {
+        $posts = $user->saved_posts()->get();
+        return response()->json(['posts' => $posts]);
     }
 }
