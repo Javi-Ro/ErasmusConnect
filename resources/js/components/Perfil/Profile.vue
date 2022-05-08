@@ -25,7 +25,7 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + nickname + '/profile/edit'"
                 class="edit" type="button" >
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>

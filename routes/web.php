@@ -77,7 +77,7 @@ Route::get('/{nickname}/profile', function ($nickname) {
         $loggedUser = auth()->user();
 
     return view('profile', ["nickname" => $nickname, "user" => json_encode($loggedUser), "userProfile" => json_encode($userProfile->first())]);
-});
+})->middleware('auth');
 
 Route::get('/{nickname}/profile/edit', function ($nickname) {
     $user = "";
