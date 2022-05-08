@@ -42,9 +42,9 @@
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="userJSON && userJSON.nickname == nickname" 
-                class="column-item btn-start" href=# >
-                    Cambiar contraseña
+                <a v-if="userJSON && userJSON.nickname == nickname" style="color:red;" @click="deleteAccount()" 
+                class="column-item btn-start">
+                    Eliminar cuenta
                 </a>                                
             </div>
         </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
+                            <b-button class="seguidores" type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
                                 <b-modal v-model="showSeguidores">
                                     <modal-seguidores :userId="userProfileJSON.id"></modal-seguidores>
                                 </b-modal>
@@ -75,8 +75,9 @@
                             <template>
                                 <section>
                                     <b-field>
-                                        <b-tag rounded size="is-medium">
-                                            <strong>{{ this.city }}</strong>, {{ this.country }}</b-tag>
+                                        <b-tag rounded size="is-medium" v-if="this.userProfileJSON.city_id != null">
+                                            Actualmente en: <strong>{{ this.city.name }}</strong>, {{ this.country }}
+                                        </b-tag>
                                     </b-field>
                                 </section>
                             </template>
@@ -130,6 +131,8 @@ export default {
     },
     data() {
         return {
+            postsSubidos: [],
+            postsMg: [],
             dataReady: false,
             siguiendo: null,
             // Nick del usuario que ha iniciado sesión
@@ -140,10 +143,10 @@ export default {
             },
             name: "",
             // nickname: "Willyrex",
-            city: "Madrid",
+            city: {},
             bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
             ,
-            country: "ESPAÑA",
+            country: "",
             activeTab: 0,
             // Lista con las distintas publicaciones
             myPosts: [1],
@@ -167,6 +170,7 @@ export default {
         this.dataReady = true;
         this.name = this.userJSON.nickname;
         this.getCurrentUser();
+        this.getCity();
         //console.log(siguiendo); 
         console.log(this.userJSON.id); //ID del currentUser
         console.log(this.userProfileJSON.id); //ID del profile user
@@ -214,6 +218,46 @@ export default {
             }).catch(error=>{
                 console.info(error.response.data)
             });
+        },
+        deleteAccount() {
+            if(confirm('¿Seguro que quiere eliminar su cuenta?')){
+                axios.delete('/api/users/' + this.currentUser.id)
+                .then(() => {
+                    window.location.href = "/login";
+                }).catch(error=>{
+                    console.info(error.response.data)
+                })
+            }
+        },
+        getCity() {
+            axios.get(`/api/cities/` + this.userProfileJSON.city_id)
+            .then(response => {
+                this.city = response.data.city;
+            })
+            .then(() => {
+                this.getCountry();
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getCountry() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getPostsSubidos() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
         }
     }
     // methods: {
@@ -240,6 +284,10 @@ $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+
+.seguidores{
+    margin-right: 10px;
+}
 
 #perfil {
     display: flex;
@@ -319,7 +367,7 @@ $izq-column-width: 258px;
     flex-direction: column;
 }
 .amigos-ciudad {
-    margin: 10px 30px 0 30px;
+    margin: 10px 30px 0 00px;
     display: flex;
     justify-content: space-between;
     align-items: center;
