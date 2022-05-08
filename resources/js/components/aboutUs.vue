@@ -100,7 +100,7 @@
           
       <div class="card">
         <div class="circle-container">
-            <h1 style="color:#fff;">R</h1>
+            <h1 style="color:#fff;">RMR</h1>
          </div>
          <br>
          <h4> Frontend dev</h4>
@@ -108,7 +108,7 @@
 
       <div class="card">
         <div class="circle-container">
-            <h1 style="color:#fff;">R</h1>
+            <h1 style="color:#fff;">RBM</h1>
          </div>
          <br>
          <h4> Full-stack dev</h4>
