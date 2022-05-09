@@ -49,7 +49,7 @@
                 <!-- <a class="column-item btn btn-delete">
                     Eliminar cuenta
                 </a>                            -->
-                <button class="btn btn-delete" @click="borrarCuenta()">
+                <button v-if="userJSON && userJSON.nickname == nickname" class="btn btn-delete" @click="borrarCuenta()">
                     <span class="mdi mdi-delete mdi-24px"></span>
                     <span class="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Eliminar cuenta</span>

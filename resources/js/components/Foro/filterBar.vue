@@ -48,6 +48,7 @@ export default {
             this.selectedTags = []
             // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
             this.$parent.getPosts();
+            this.$parent.getPostsFollowing();
         },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {
@@ -59,15 +60,17 @@ export default {
         },
         // Evento on-click para cuando se pulse una etiqueta
         getPostsByTag(tag) {
+            this.$parent.posts = [];
+            this.$parent.postsFollowing = [];
             axios.get(`/api/posts/filter-by-tag`, {
                 params: {
                     tag: tag
                 }
             }).then(response => {
-                console.log(response.data.posts)
-                this.$parent.posts = response.data.posts;
+                this.$parent.posts.push(...response.data.posts);
+                this.$parent.postsFollowing.push(...response.data.postsFollowing);
             }).catch(error => {
-                console.info(error);
+                console.info(error.response.data);
             });
         },
         // Evento on-click para cuando se pulse una etiqueta

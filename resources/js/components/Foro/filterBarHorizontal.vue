@@ -77,12 +77,15 @@ export default {
         },
         // Evento on-click para cuando se pulse una etiqueta
         getPostsByTag(tag) {
+            this.$parent.posts = [];
+            this.$parent.postsFollowing = [];
             axios.get(`/api/posts/filter-by-tag`, {
                 params: {
                     tag: tag
                 }
             }).then(response => {
-                this.$parent.posts = response.data.posts;
+                this.$parent.posts.push(...response.data.posts);
+                this.$parent.postsFollowing.push(...response.data.postsFollowing);
             }).catch(error => {
                 console.info(error);
             });
