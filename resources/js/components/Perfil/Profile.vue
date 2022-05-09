@@ -41,10 +41,6 @@
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
-                </a>
-                <a v-if="userJSON && userJSON.nickname == nickname" style="color:red;" @click="deleteAccount()" 
-                class="column-item btn-start">
-                    Eliminar cuenta
                 </a>                                
             </div>
         </div>
@@ -218,16 +214,6 @@ export default {
             }).catch(error=>{
                 console.info(error.response.data)
             });
-        },
-        deleteAccount() {
-            if(confirm('¿Seguro que quiere eliminar su cuenta?')){
-                axios.delete('/api/users/' + this.currentUser.id)
-                .then(() => {
-                    window.location.href = "/login";
-                }).catch(error=>{
-                    console.info(error.response.data)
-                })
-            }
         },
         getCity() {
             axios.get(`/api/cities/` + this.userProfileJSON.city_id)
