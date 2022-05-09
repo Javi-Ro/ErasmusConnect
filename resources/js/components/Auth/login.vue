@@ -152,7 +152,7 @@
           if (response.data.success) {
             window.location.href = response.data.redirectTo;
           } else {
-            alert("These credentials does not match any of our records!");
+            alert("Los datos introducidos no coinciden con nuestros registros");
           }
         }).catch(error => {
           console.info(error.response.data);

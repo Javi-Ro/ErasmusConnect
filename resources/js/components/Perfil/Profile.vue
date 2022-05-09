@@ -25,7 +25,7 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + nickname + '/profile/edit'"
                 class="edit" type="button" >
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
@@ -41,7 +41,12 @@
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
-                </a>                                
+                </a>
+                <button class="btn btn-delete" @click="borrarCuenta()">
+                    <span class="mdi mdi-delete mdi-24px"></span>
+                    <span class="mdi mdi-delete-empty mdi-24px"></span>
+                    <span>Eliminar cuenta</span>
+                </button>
             </div>
         </div>
         <!-- Columna en la que aparece el nombre, la biografia y debajo las publicaciones  -->
@@ -87,19 +92,19 @@
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
                         <b-tab-item label="Mis publicaciones">
                             <div class="publicacion" v-for='post in myPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones a las que le has dado me gusta -->
                         <b-tab-item label="Me gusta">
                             <div class="publicacion" v-for='post in LikedPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones guardadas -->
                         <b-tab-item label="Guardados">
                             <div class="publicacion" v-for='post in SavedPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                     </b-tabs>
@@ -145,9 +150,9 @@ export default {
             country: "",
             activeTab: 0,
             // Lista con las distintas publicaciones
-            myPosts: [1],
-            LikedPosts: [1, 2],
-            SavedPosts: [1, 3, 4],
+            myPosts: [],
+            LikedPosts: [],
+            SavedPosts: [],
             //SEGUIDORES Y SEGUIDOS
             showSeguidores: false,
             showSeguidos:false,
@@ -170,8 +175,35 @@ export default {
         //console.log(siguiendo); 
         console.log(this.userJSON.id); //ID del currentUser
         console.log(this.userProfileJSON.id); //ID del profile user
+        this.getPostsByUser();
+        this.getLikedPosts();
+        this.getSavedPosts();
     },
     methods:{
+        getPostsByUser() {
+            axios.get('/api/posts/user/' + this.userProfileJSON.id).
+            then(response => {
+                this.myPosts = response.data.posts;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getLikedPosts() {
+            axios.get('/api/posts/liked/' + this.userProfileJSON.id).
+            then(response=>{
+                this.LikedPosts = response.data.posts;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getSavedPosts() {
+            axios.get('/api/posts/saved/' + this.userProfileJSON.id).
+            then(response => {
+                this.SavedPosts = response.data.posts;
+            }).catch(error=> {
+                console.info(error.response.data);
+            });
+        },
         follow(){
             axios.post(`/api/users/`+this.currentUser.id + `/` + this.userProfileJSON.id)
             .then(response =>{
@@ -244,6 +276,17 @@ export default {
             .catch(error => {
                 console.info(error.response.data)
             })
+        },
+        borrarCuenta() {
+            if(confirm("¿Estás seguro de querer eliminar tu cuenta?")) {
+                axios.delete('/api/users/' + this.currentUser.id)
+                .then(
+                    window.location.href="/"
+                )
+                .catch(error=>{
+                    console.info(error.response.data)
+                });
+            }
         }
     }
     // methods: {
@@ -450,5 +493,55 @@ $izq-column-width: 258px;
     50% {transform: translate(0,0) rotate(45deg);}
     75% {transform: translate(0,0) rotate(65deg);}
     100% {transform: translate(0,0) rotate(45deg);}
+}
+
+
+.btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid lighten(gray, 24%);
+  height: 48px;
+  padding: 0 24px 0 16px;
+  letter-spacing: .25px;
+  border-radius: 24px;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  .mdi {
+    margin-right: 8px;
+  }
+}
+
+$delete-red: red;
+
+.btn-delete {
+  font-size: 16px;
+  color: red;
+  
+  >.mdi-delete-empty {
+    display: none;
+  }
+  
+  &:hover {
+    background-color: lighten(red, 48%);
+    
+    >.mdi-delete-empty {
+      display: block;
+    }
+    
+    >.mdi-delete {
+      display: none;
+    }
+  }
+  
+
+  
+  &:focus {
+    box-shadow: 0 0 0 4px lighten(red, 40%);
+  }
 }
 </style>
