@@ -4,11 +4,21 @@
     <right-bar></right-bar>
     <filter-bar-horizontal></filter-bar-horizontal>
 
-    <div v-if="postsReady === true" class="posts">
+    <!-- <div v-if="postsReady === true" class="posts"> -->
       <!-- <div class="searcher">
-    <div class="posts">
-      <div class="searcher">
+    <div class="posts"> -->
+      
+      <!--
+      <rightBar @post-buscar="capturaBusqueda"/> -->
 
+      <!--<div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+        <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+      </div>-->
+
+    <!-- </div> -->
+
+    <div>
+      <div class="searcher">
         <b-field>
             <b-input placeholder="Buscar en el foro..."
                 type="search"
@@ -20,44 +30,36 @@
             </b-input>
         </b-field>
       </div>
-
-      <rightBar @post-buscar="capturaBusqueda"/> -->
-
-      <!--<div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
-        <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
-      </div>-->
-
-    </div>
-
-    <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
-        <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
-            <div v-if="postsReady === true" class="posts">
-              <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+      <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
+          <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
+              <div v-if="postsReady === true" class="posts">
+                <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+                  <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+                </div>
+              </div>
+          </b-tab-item>
+          <b-tab-item label="Siguiendo" icon="fa-solid fa-users" icon-pack="fa" >
+            <div v-if="followingPostsReady === true" class="posts">
+              <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
                 <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
               </div>
             </div>
-        </b-tab-item>
-        <b-tab-item label="Following" icon="fa-solid fa-users" icon-pack="fa" >
-          <div v-if="followingPostsReady === true" class="posts">
-            <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
-              <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+            <div v-if="buscarFollowing == false" class="pagina-vacia" > 
+              <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+              <br>
+              <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
+                <a href="/foro" style="color:#00309a;"> foro </a>
+              </label> 
             </div>
-          </div>
-          <div v-if="buscarFollowing == false" class="pagina-vacia" > 
+          </b-tab-item>
+          <div v-if="buscar == false" class="pagina-vacia" > 
             <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
             <br>
-            <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
-              <a href="/foro" style="color:#00309a;"> foro </a>
-            </label> 
-          </div>
-        </b-tab-item>
-        <div v-if="buscar == false" class="pagina-vacia" > 
-          <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
-          <br>
-          <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
-      </div>
+            <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+        </div>
 
-    </b-tabs>
+      </b-tabs>
+    </div>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
     </a>
@@ -164,6 +166,11 @@
 	margin-top: 22px;
   margin-left: 22px
 }
+
+.searcher {
+  margin-bottom: 1em;
+}
+
 @media(min-width: 1500px) {
   .float{
     display: none;

@@ -117,8 +117,18 @@ class PostController extends Controller
     public function filterByTag(Request $data) {
         $tag = Tag::findOrFail($data->tag);
         $posts = $tag->posts()->get();
+        $following = Auth::check() ? array_map(function($user) {
+            return $user['id'];
+        }, Auth::user()->following()->get()->toArray()) : [];
+        $postsFollowing = [];
 
-        return response()->json(['success' => true, 'posts' => $posts]);
+        for ($i = 0; $i < count($posts); $i++) {
+            if (in_array($posts[$i]->user_id, $following)) {
+                array_push($postsFollowing, $posts[$i]);
+            }
+        }
+
+        return response()->json(['success' => true, 'posts' => $posts, 'postsFollowing' => $postsFollowing]);
     }
 
     public function createComment(Post $post, Request $request) {
