@@ -8,7 +8,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/meet-us.jpg').default"
+                        :src="require('/images/landing/meet-us.jpg').default"
                         alt="conocenos"
                     ></b-image>
                     <div class="contenido-texto">
@@ -31,7 +31,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/foto-foro-2.jpg').default"
+                        :src="require('/images/landing/foto-foro-2.jpg').default"
                         alt="foro"
                     ></b-image>
                     <div class="contenido-2">
@@ -53,7 +53,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/alquiler.jpg').default"
+                        :src="require('/images/landing/alquiler.jpg').default"
                         alt="alquiler"
                     ></b-image>
                     <div class="contenido-2">
@@ -75,7 +75,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/fiesta-2.jpg').default"
+                        :src="require('/images/landing/fiesta-2.jpg').default"
                         alt="fiesta"
                     ></b-image>
                     <div class="contenido-2">

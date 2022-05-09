@@ -27,7 +27,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/foto-foro.png').default"
+                :src="require('/images/landing/foto-foro.png').default"
                 alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">
@@ -54,7 +54,7 @@
             </div>
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/alquileres.jpg').default"
+                :src="require('/images/landing/alquileres.jpg').default"
                 alt="Alquileres"
             ></b-image>
         </div>
@@ -65,7 +65,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/fiesta.png').default"
+                :src="require('/images/landing/fiesta.png').default"
                 alt="eventos"
             ></b-image>
             <div class="texto" id="texto-3">
@@ -139,7 +139,7 @@ strong {
 }
 .mapa::before{
     content: "";
-    background-image: url('~@../../../public/images/landing/carrousel/carrousel-1.jpg');
+    background-image: url('/images/landing/carrousel/carrousel-1.jpg');
     background-size: cover;
     position: absolute;
     top: 0px;
