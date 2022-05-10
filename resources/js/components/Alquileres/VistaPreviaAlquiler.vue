@@ -108,10 +108,10 @@ export default {
     display: block;
 }
 a {
-    color: revert;
+    color:#F2AF13;
 }
 a:hover {
-    color: revert;
+    color:#F2AF13;
 }
 .rate .rate-item.set-on .icon, .rate .rate-item.set-half .is-half{
     color: #F2AF13
