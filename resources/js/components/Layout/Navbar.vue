@@ -157,6 +157,7 @@
         resetSelected() {
             this.selected = -1;
             this.$root.city = this.selected;
+            this.$root.cityName = "";
             this.selectedCity = "Ciudad";
         },
         getCities() {

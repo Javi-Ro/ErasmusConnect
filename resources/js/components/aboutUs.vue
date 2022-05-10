@@ -138,7 +138,7 @@ export default {
 }
 
 @import url('https://fonts.googleapis.com/css?family=Roboto');
-body{
+/*body{
    margin:0;
    padding:0;
    font-family: 'Roboto', sans-serif;
@@ -151,7 +151,7 @@ nav{
    position:absolute;
    top:0;
    z-index:5;
-}
+}*/
 .header{
    width:100%;
    height:500px;

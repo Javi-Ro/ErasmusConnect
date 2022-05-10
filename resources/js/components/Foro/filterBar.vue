@@ -105,7 +105,7 @@ $yellow: #F2AF13;
 $radio: 10px;
 .clear-btn {
     display:flex;
-    justify-content: center;
+    margin-left: 80px;
 }
 // .btn-publicar {
 //     width: 90%;

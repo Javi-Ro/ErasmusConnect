@@ -42,13 +42,6 @@
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
-                class="column-item btn-start">
-                    Cambiar contraseña
-                </a>
-                <!-- <a class="column-item btn btn-delete">
-                    Eliminar cuenta
-                </a>                            -->
                 <button v-if="userJSON && userJSON.nickname == nickname" class="btn btn-delete" @click="borrarCuenta()">
                     <span class="mdi mdi-delete mdi-24px"></span>
                     <span class="mdi mdi-delete-empty mdi-24px"></span>
@@ -109,7 +102,7 @@
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones guardadas -->
-                        <b-tab-item label="Guardados">
+                        <b-tab-item label="Guardados" v-if="userJSON.nickname === nickname">
                             <div class="publicacion" v-for='post in SavedPosts' :key='post.id'>
                                 <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
@@ -185,6 +178,7 @@ export default {
         this.getPostsByUser();
         this.getLikedPosts();
         this.getSavedPosts();
+        console.log("peeeeee " + this.user.name==="")
     },
     methods:{
         getPostsByUser() {

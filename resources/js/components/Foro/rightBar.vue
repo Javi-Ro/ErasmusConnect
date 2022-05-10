@@ -3,7 +3,7 @@
         <div class="content">
             <div class="searcher">
                 <b-field>
-                    <b-input placeholder="Buscar en ErasmusConnect"
+                    <b-input placeholder="Buscar usuarios..."
                         type="search"
                         size="is-medium"
                         icon="magnify"
@@ -14,18 +14,27 @@
                 </b-field>
             </div>
             <div class="sugerencias-seguir" v-if="suggestionsReady === true">
-                <ul id="lista-sugerencias">
-                    <div v-for="(user, index) in suggestions" :key="index">
-                        <div class="user">
-                            <div class="img-user">
-                              <img :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
+                <div v-for="(user, index) in suggestions" :key="index">
+                    <a :href="'/' + user.nickname + '/profile'"><div class="user">
+                        <div class="sug-img-user">
+                            <img class="sug-img-user-img" :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
+                        </div>
+                        <div class="data-user">
+                            <div class="data-user-nombre" style="font-weight: bold; font-size: 16px">
+                            @{{ user.nickname }}
                             </div>
-                            <div class="nombre-user">
-                              {{ user.nickname }}
+                            <div class="data-nombre-real-user" v-if="selectedCity !== ''" style="font-size:12px; font-weight: light">
+                                {{ user.nameus }}
+                            </div>
+                            <div class="data-nombre-real-user" v-else style="font-size:12px; font-weight: light">
+                                {{ user.name }}
                             </div>
                         </div>
-                    </div>
-                </ul>
+                        <div class="data-posts-user">
+                            {{ user.posts }}
+                        </div>
+                    </div></a>
+                </div>
                 
             </div>
         </div>
@@ -44,22 +53,27 @@ import { faThList } from "@fortawesome/free-solid-svg-icons";
                 posts: [],
                 buscador: '',
                 suggestionsArray: [],
-                suggestionsReady: false
+                suggestionsReady: false,
+                selectedCity: ''
             }
         },
 
         computed: {
-            
             suggestions() {
-                let suggestionsArray = this.suggestionsArray.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
-        
-                return this.$root.city == -1 ? [] : suggestionsArray.filter((item) => item.city.name == this.$root.cityName);
+                if(this.$root.cityName === "") {
+                    this.selectedCity = "";
+                    return this.suggestionsArray.length > 10 ? this.suggestionsArray.slice(0,11) : this.suggestionsArray
+                }
+                this.selectedCity = this.$root.cityName;
+                return this.suggestionsArray.length > 10 ? this.suggestionsArray.filter((item) => item.name === this.$root.cityName).slice(0, 11) :
+                                                            this.suggestionsArray.filter((item) => item.name === this.$root.cityName);
             }
         },
 
         methods: {
             getSuggestions(){
-                axios.get('users/suggestions/' + this.$root.cityName).then(response=>{
+                this.suggestionsReady=false;
+                axios.get('users/suggestions').then(response=>{
                     this.suggestionsReady=true;
                     this.suggestionsArray = response.data.users;
                 }).catch(error => {
@@ -119,32 +133,36 @@ $yellow: #F2AF13;
     border-right: none;
     box-shadow: -5px 0 5px -5px rgb(0 0 0 / 24%);
 
-    .sugerencias-seguir{
-        background: red;
-    }
     .lista-useres{
     overflow-y:auto;
     height: 400px;
   }
 
   .user{
+    width: 100%;
+    padding: 10px 5px;
     display: flex;
-    height: 100px;
+    //height: 100px;
     align-items: center;
-    justify-content: center;
-    gap:50px;
     cursor: pointer;
+    flex-flow: row wrap;
 
-    .img-user{
-      border-radius: 40px;
-      height: 80px;
-      width: 80px;
+    .sug-img-user-img{
+        max-width: 50px !important;
+        border-radius: 9999px !important;
+        margin-right: 20px;
     }
 
-    .nombre-user{
-      font-size: 30px;
+    .data-user{
+        display: flex;
+        flex-flow: column wrap;
+        color: black;
+        margin-right: 40px;
     }
 
+    .data-posts-user{
+        color: black;
+    }
   }
 
   .user:hover {
