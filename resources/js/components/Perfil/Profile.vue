@@ -42,7 +42,14 @@
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <button class="btn btn-delete" @click="borrarCuenta()">
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
+                class="column-item btn-start">
+                    Cambiar contraseña
+                </a>
+                <!-- <a class="column-item btn btn-delete">
+                    Eliminar cuenta
+                </a>                            -->
+                <button v-if="userJSON && userJSON.nickname == nickname" class="btn btn-delete" @click="borrarCuenta()">
                     <span class="mdi mdi-delete mdi-24px"></span>
                     <span class="mdi mdi-delete-empty mdi-24px"></span>
                     <span>Eliminar cuenta</span>

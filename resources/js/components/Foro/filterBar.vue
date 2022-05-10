@@ -1,10 +1,10 @@
 <template>
     <div class="filter-bar">
-        <a href="/foro/crear" class="button btn-publicar" id="publicar">
+        <!-- <a href="/foro/crear" class="button btn-publicar" id="publicar">
             <p style="padding: 0 10px 0 10px; text-align: center;">
                 Publicar
             </p>
-        </a>
+        </a> -->
         <div class="clear-btn" v-if="this.selectedTags.length > 0">
             <b-button type="is-danger is-light" style="border-radius: 10px border: 1px solid #cc0f35"
             @click=clearFilter()>
@@ -48,6 +48,7 @@ export default {
             this.selectedTags = []
             // TODO: Falta llamada a la base de datos para obtener todos los post sin filtrar
             this.$parent.getPosts();
+            this.$parent.getPostsFollowing();
         },
         getTags() {
             axios.get(`/api/tags/posts`).then(response => {
@@ -59,15 +60,17 @@ export default {
         },
         // Evento on-click para cuando se pulse una etiqueta
         getPostsByTag(tag) {
+            this.$parent.posts = [];
+            this.$parent.postsFollowing = [];
             axios.get(`/api/posts/filter-by-tag`, {
                 params: {
                     tag: tag
                 }
             }).then(response => {
-                console.log(response.data.posts)
-                this.$parent.posts = response.data.posts;
+                this.$parent.posts.push(...response.data.posts);
+                this.$parent.postsFollowing.push(...response.data.postsFollowing);
             }).catch(error => {
-                console.info(error);
+                console.info(error.response.data);
             });
         },
         // Evento on-click para cuando se pulse una etiqueta
@@ -104,25 +107,25 @@ $radio: 10px;
     display:flex;
     justify-content: center;
 }
-.btn-publicar {
-    width: 90%;
-    padding: 10px 20px;
-    margin: 25px 0px;
+// .btn-publicar {
+//     width: 90%;
+//     padding: 10px 20px;
+//     margin: 25px 0px;
 
-    border: none;
-    border-radius: 30px;
+//     border: none;
+//     border-radius: 30px;
 
-    box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);
-    background-color: $blue;
-    background-size:cover;
-    background-repeat: no-repeat;
-    /* Modifica el texto de dentro */
-    color: $yellow;
-    font-weight: bold;
-    font-size: 1.5rem;
-    font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
-    letter-spacing: .15rem;
-}
+//     box-shadow: 0 0 0 0 rgba(0, 48, 154, 0.7);
+//     background-color: $blue;
+//     background-size:cover;
+//     background-repeat: no-repeat;
+//     /* Modifica el texto de dentro */
+//     color: $yellow;
+//     font-weight: bold;
+//     font-size: 1.5rem;
+//     font-family: Arial, Helvetica, sans-serif; /* TODO: Cambiar? */
+//     letter-spacing: .15rem;
+// }
 #publicar {
     margin-right: 0.5rem;
     background-color: $blue;
