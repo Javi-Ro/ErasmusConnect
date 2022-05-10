@@ -15,7 +15,7 @@
             </div>
             <div class="sugerencias-seguir" v-if="suggestionsReady === true">
                 <ul id="lista-sugerencias">
-                    <div v-for="(user, index) in suggestionsArray" :key="index">
+                    <div v-for="(user, index) in suggestions" :key="index">
                         <div class="user">
                             <div class="img-user">
                               <img :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
@@ -49,29 +49,23 @@ import { faThList } from "@fortawesome/free-solid-svg-icons";
         },
 
         computed: {
-            buscar() {
-                return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
-            },
+            
             suggestions() {
-                console.log("dd");
-                this.suggestionsReady = false;
-                axios.get('users/suggestions/' + this.$root.cityName).then(response=>{
-                    this.suggestionsArray = response.data.users;
-                    this.suggestionsReady = true;
-                }).catch(error => {
-                    console.info(error);
-                })
+                let suggestionsArray = this.suggestionsArray.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
+        
+                return this.$root.city == -1 ? [] : suggestionsArray.filter((item) => item.city.name == this.$root.cityName);
             }
         },
 
         methods: {
-            /* getSuggestions(){
+            getSuggestions(){
                 axios.get('users/suggestions/' + this.$root.cityName).then(response=>{
-                    this.suggestions = response.data.users;
+                    this.suggestionsReady=true;
+                    this.suggestionsArray = response.data.users;
                 }).catch(error => {
                     console.info(error);
                 })
-            }, */
+            },
             getPosts() {
                 axios.get(`/api/posts`).then(response => {
                 this.posts = response.data.posts;
