@@ -126,7 +126,8 @@ Vue.component('editar-perfil', require('./components/Perfil/editarPerfil.vue').d
 
 const app = new Vue({
     data: {
-        city: -1
+        city: -1,
+        cityName: ""
     },
     el: '#app',
 });

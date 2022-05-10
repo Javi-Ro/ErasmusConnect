@@ -106,13 +106,8 @@ class UserController extends Controller
             ->join('posts', 'users.id', '=', 'posts.user_id')
             ->join('cities', 'posts.city_id', '=', 'cities.id')
             ->groupBy('users.id', 'cities.name')
-            ->having('cities.name', '=', $data->city)
             ->orderBy('posts', 'DESC')
-            ->get();
-        if($users->count() > 5) {
-            $users = $users->toArray();
-            $users = array_slice($users, 0, 5, false);
-        } 
+            ->get(); 
         return response()->json(['success' => true, 'users' => $users]);
     }
 }

@@ -6,16 +6,16 @@
                     <b-input placeholder="Buscar en ErasmusConnect"
                         type="search"
                         size="is-medium"
-                        icon="magnify">
-                        v-model="buscador"
+                        icon="magnify"
+                        v-model="buscador">
                         <!-- icon-clickable 
                         @icon-click="searchIconClick"-->
                     </b-input>
                 </b-field>
             </div>
-            <div class="sugerencias-seguir">
+            <div class="sugerencias-seguir" v-if="suggestionsReady === true">
                 <ul id="lista-sugerencias">
-                    <div v-for="user in suggestions" :key="user">
+                    <div v-for="(user, index) in suggestionsArray" :key="index">
                         <div class="user">
                             <div class="img-user">
                               <img :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { faThList } from "@fortawesome/free-solid-svg-icons";
+
     export default {
         name: "rightBar",
         props: {},
@@ -41,7 +43,8 @@
             return {
                 posts: [],
                 buscador: '',
-                suggestions: {}
+                suggestionsArray: [],
+                suggestionsReady: false
             }
         },
 
@@ -49,16 +52,26 @@
             buscar() {
                 return this.posts.filter((item) => item.title.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 || item.text.toLowerCase().indexOf(this.buscador.toLowerCase()) >= 0 );
             },
+            suggestions() {
+                console.log("dd");
+                this.suggestionsReady = false;
+                axios.get('users/suggestions/' + this.$root.cityName).then(response=>{
+                    this.suggestionsArray = response.data.users;
+                    this.suggestionsReady = true;
+                }).catch(error => {
+                    console.info(error);
+                })
+            }
         },
 
         methods: {
-            getSuggestions(){
-                axios.get('users/suggestions').then(response=>{
+            /* getSuggestions(){
+                axios.get('users/suggestions/' + this.$root.cityName).then(response=>{
                     this.suggestions = response.data.users;
                 }).catch(error => {
                     console.info(error);
                 })
-            },
+            }, */
             getPosts() {
                 axios.get(`/api/posts`).then(response => {
                 this.posts = response.data.posts;
