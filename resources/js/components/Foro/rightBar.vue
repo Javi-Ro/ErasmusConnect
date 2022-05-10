@@ -13,6 +13,21 @@
                     </b-input>
                 </b-field>
             </div>
+            <div class="sugerencias-seguir">
+                <ul id="lista-sugerencias">
+                    <div v-for="user in suggestions" :key="user">
+                        <div class="user">
+                            <div class="img-user">
+                              <img :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
+                            </div>
+                            <div class="nombre-user">
+                              {{ user.nickname }}
+                            </div>
+                        </div>
+                    </div>
+                </ul>
+                
+            </div>
         </div>
     </div>
 </template>
@@ -26,6 +41,7 @@
             return {
                 posts: [],
                 buscador: '',
+                suggestions: {}
             }
         },
 
@@ -36,6 +52,13 @@
         },
 
         methods: {
+            getSuggestions(){
+                axios.get('users/suggestions').then(response=>{
+                    this.suggestions = response.data.users;
+                }).catch(error => {
+                    console.info(error);
+                })
+            },
             getPosts() {
                 axios.get(`/api/posts`).then(response => {
                 this.posts = response.data.posts;
@@ -53,6 +76,7 @@
         },
     
         created() {
+            this.getSuggestions();
             setTimeout(() => {
                 this.getPosts();
             }, 1000)
@@ -87,6 +111,38 @@ $yellow: #F2AF13;
     right: 70px;
     border-right: none;
     box-shadow: -5px 0 5px -5px rgb(0 0 0 / 24%);
+
+    .sugerencias-seguir{
+        background: red;
+    }
+    .lista-useres{
+    overflow-y:auto;
+    height: 400px;
+  }
+
+  .user{
+    display: flex;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    gap:50px;
+    cursor: pointer;
+
+    .img-user{
+      border-radius: 40px;
+      height: 80px;
+      width: 80px;
+    }
+
+    .nombre-user{
+      font-size: 30px;
+    }
+
+  }
+
+  .user:hover {
+    background: #ccc;
+  }
 }
 .content {
     padding: 30px 10px 10px 20px;
