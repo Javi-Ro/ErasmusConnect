@@ -118,6 +118,9 @@ Vue.component('profile', require('./components/Perfil/Profile.vue').default);
 Vue.component('editar-perfil', require('./components/Perfil/editarPerfil.vue').default);
 
 
+//ABOUT US
+Vue.component('about-us', require('./components/aboutUs.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
