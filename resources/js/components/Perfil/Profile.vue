@@ -31,8 +31,8 @@
                     <span>Editar perfil</span>
                 </a>
                 
-                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
-                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn seguir" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn dejar-seguir" type="is-danger" @click="unfollow()">Dejar de Seguir</b-button>
 
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
@@ -516,6 +516,24 @@ $izq-column-width: 258px;
     margin-right: 8px;
   }
 }
+.seguir{
+  color: gray;
+}
+.seguir:hover{
+  color: white; 
+  border-color: #48c78e;
+}
+.seguir:focus{
+  color: gray;
+  border-color: gray;
+}
+
+.dejar-seguir{
+  color: white;
+  background-color: #bdbdbd;
+}
+
+
 
 $delete-red: red;
 

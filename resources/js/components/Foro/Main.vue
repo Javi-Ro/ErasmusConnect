@@ -45,17 +45,17 @@
               </div>
             </div>
             <div v-if="buscarFollowing == false" class="pagina-vacia" > 
-              <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+              <label class="titulo-vacio" > Parece que no hay nada por aquí</label> 
               <br>
-              <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
+              <label class="subtitulo-vacio"> Visita el 
                 <a href="/foro" style="color:#00309a;"> foro </a>
               </label> 
             </div>
           </b-tab-item>
           <div v-if="buscar == false" class="pagina-vacia" > 
-            <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+            <label class="titulo-vacio"> Parece que no hay nada por aquí</label> 
             <br>
-            <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+            <label class="subtitulo-vacio"> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
         </div>
 
       </b-tabs>
@@ -142,9 +142,31 @@
   }
 </script>
 <style lang="scss">
-
+.titulo-vacio{
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+}
+.subtitulo-vacio{
+  font-size: 22px;
+  width: 100%;
+  text-align: center;
+}
+@media(max-width: 500px){
+  .titulo-vacio{
+    font-size: 1.8rem;
+  }
+  .subtitulo-vacio{
+    margin-top: 10px;
+    font-size: 18px;
+  }
+}
+.tabs{
+  height: fit-content !important;
+}
 .tabs ul{
   border-bottom: 1px solid #dbdbdb !important;
+  height: fit-content;
 }
 
 .b-tabs .tab-content{
@@ -196,6 +218,10 @@
   }
   .b-tabs .tabs{
     margin-top: 110px;
+  }
+
+  .pagina-vacia{
+
   }
 }
 
