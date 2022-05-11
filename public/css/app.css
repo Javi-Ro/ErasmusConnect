@@ -51154,6 +51154,7 @@ textarea.form-control-lg {
   font-size: 1.5rem;
   font-weight: 400;
   margin-bottom: 20px;
+  padding-top: 10px;
 }
 .main-vp-publicacion .centered-container .information .information-personal {
   min-height: 25%;
@@ -51339,6 +51340,7 @@ textarea.form-control-lg {
   position: fixed;
   background-color: whitesmoke;
   padding: 10px;
+  padding-top: 20px;
   z-index: 9;
   top: 88px;
   width: 100%;
