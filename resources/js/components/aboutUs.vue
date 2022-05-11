@@ -363,7 +363,11 @@ nav{
    nav{
       height:80px;
    }
+   .header {
+      display: none;
+   }
 }
+
 
 
 </style>

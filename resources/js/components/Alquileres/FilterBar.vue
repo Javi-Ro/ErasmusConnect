@@ -170,6 +170,7 @@
   hr{
     background-color: gray;
     height: 1px;
+    margin: 0.5rem 0;
   }
   .filter-header{
     font-size: 1.5rem;
