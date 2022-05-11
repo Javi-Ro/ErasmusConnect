@@ -142,9 +142,14 @@
   }
 </script>
 <style lang="scss">
+
+.tabs ul{
+  border-bottom: 1px solid #dbdbdb !important;
+}
+
 .b-tabs .tab-content{
   padding: 0;
-  padding-top: 3rem; 
+  padding-top: 3rem !important; 
 }
 .tabs ul {
   border-bottom-style: solid;

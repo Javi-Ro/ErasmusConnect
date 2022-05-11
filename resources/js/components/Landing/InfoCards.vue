@@ -138,7 +138,7 @@ img {
     margin: 220px 25px 0 25px;
 
     @media(min-width: 1024px){
-        margin-top: 100px;
+        margin-top: 140px;
     }
 }
 

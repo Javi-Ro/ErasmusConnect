@@ -43,7 +43,7 @@
                     <b-dropdown-item custom aria-role="listitem">
                         <input type="text" v-model="searchTerm" autocomplete="on" id="buscador" placeholder="Buscar..." class="input">
                         <!-- <b-input id="buscador" v-model="searchTerm" placeholder="Buscar..." expanded /> -->
-                    </b-dropdown-item>
+                    </b-dropdown-item>  
                     <b-dropdown-item
                     @click="resetSelected()">
                         Todas
@@ -127,6 +127,7 @@
                 { name: "Foro", link: "/foro"},
                 { name: "Alquileres", link: "/apartments"},
                 { name: "Eventos", link: "/events"},
+                { name: "Sobre Nosotros", link: "/aboutUs"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
                 { name: "Versión: 1.5.0", link: "#"},
             ]
@@ -156,6 +157,7 @@
         resetSelected() {
             this.selected = -1;
             this.$root.city = this.selected;
+            this.$root.cityName = "";
             this.selectedCity = "Ciudad";
         },
         getCities() {
@@ -177,6 +179,7 @@
                     .then(response => {
                         this.selected = response.data.city.id; // ID de la clase seleccionada
                         this.$root.city = this.selected;
+                        this.$root.cityName = response.data.city.name;
                         this.selectedCity = response.data.city.name;
                     }).catch(error => {
                         console.info(error)

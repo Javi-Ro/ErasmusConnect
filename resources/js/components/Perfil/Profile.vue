@@ -42,13 +42,6 @@
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
-                class="column-item btn-start">
-                    Cambiar contraseña
-                </a>
-                <!-- <a class="column-item btn btn-delete">
-                    Eliminar cuenta
-                </a>                            -->
                 <button v-if="userJSON && userJSON.nickname == nickname" class="btn btn-delete" @click="borrarCuenta()">
                     <span class="mdi mdi-delete mdi-24px"></span>
                     <span class="mdi mdi-delete-empty mdi-24px"></span>
@@ -70,7 +63,7 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
+                            <b-button class="seguidores" type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
                                 <b-modal v-model="showSeguidores">
                                     <modal-seguidores :userId="userProfileJSON.id"></modal-seguidores>
                                 </b-modal>
@@ -83,8 +76,9 @@
                             <template>
                                 <section>
                                     <b-field>
-                                        <b-tag rounded size="is-medium">
-                                            <strong>{{ this.city }}</strong>, {{ this.country }}</b-tag>
+                                        <b-tag rounded size="is-medium" v-if="this.userProfileJSON.city_id != null">
+                                            Actualmente en: <strong>{{ this.city.name }}</strong>, {{ this.country }}
+                                        </b-tag>
                                     </b-field>
                                 </section>
                             </template>
@@ -108,7 +102,7 @@
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones guardadas -->
-                        <b-tab-item label="Guardados">
+                        <b-tab-item label="Guardados" v-if="userJSON.nickname === nickname">
                             <div class="publicacion" v-for='post in SavedPosts' :key='post.id'>
                                 <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
@@ -138,6 +132,8 @@ export default {
     },
     data() {
         return {
+            postsSubidos: [],
+            postsMg: [],
             dataReady: false,
             siguiendo: null,
             // Nick del usuario que ha iniciado sesión
@@ -148,10 +144,10 @@ export default {
             },
             name: "",
             // nickname: "Willyrex",
-            city: "Madrid",
+            city: {},
             bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
             ,
-            country: "ESPAÑA",
+            country: "",
             activeTab: 0,
             // Lista con las distintas publicaciones
             myPosts: [],
@@ -175,12 +171,14 @@ export default {
         this.dataReady = true;
         this.name = this.userJSON.nickname;
         this.getCurrentUser();
+        this.getCity();
         //console.log(siguiendo); 
         console.log(this.userJSON.id); //ID del currentUser
         console.log(this.userProfileJSON.id); //ID del profile user
         this.getPostsByUser();
         this.getLikedPosts();
         this.getSavedPosts();
+        console.log("peeeeee " + this.user.name==="")
     },
     methods:{
         getPostsByUser() {
@@ -250,6 +248,36 @@ export default {
                 console.info(error.response.data)
             });
         },
+        getCity() {
+            axios.get(`/api/cities/` + this.userProfileJSON.city_id)
+            .then(response => {
+                this.city = response.data.city;
+            })
+            .then(() => {
+                this.getCountry();
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getCountry() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getPostsSubidos() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
         borrarCuenta() {
             if(confirm("¿Estás seguro de querer eliminar tu cuenta?")) {
                 axios.delete('/api/users/' + this.currentUser.id)
@@ -286,6 +314,10 @@ $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+
+.seguidores{
+    margin-right: 10px;
+}
 
 #perfil {
     display: flex;
@@ -365,7 +397,7 @@ $izq-column-width: 258px;
     flex-direction: column;
 }
 .amigos-ciudad {
-    margin: 10px 30px 0 30px;
+    margin: 10px 30px 0 00px;
     display: flex;
     justify-content: space-between;
     align-items: center;
