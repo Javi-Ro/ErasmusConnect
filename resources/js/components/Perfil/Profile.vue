@@ -1,6 +1,9 @@
 <template>
     <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
+        <div class="user-data">
+
+        </div>
         <div class="columna" id="izq">
             <div class="profile-img">
                 <img
@@ -88,7 +91,7 @@
                 </div>
                 <!-- Permite cambiar entre los distintos tipos de publicaciones -->
                 <section>
-                    <b-tabs v-model="activeTab" position="is-centered" size="is-medium">
+                    <b-tabs v-model="activeTab" position="is-centered" size="is-medium" id="tabs-perfil">
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
                         <b-tab-item label="Mis publicaciones">
                             <div class="publicacion" v-for='post in myPosts' :key='post.id'>
@@ -290,19 +293,24 @@ export default {
             }
         }
     }
-    // methods: {
-    //     getNickName(nickname) {
-    //         console.log("Perfil de: " + nickname);
-    //         this.nickname = nickname;
-    //     }
-    // },
-    // mounted() {
-    //     this.getNickName(this.$route);
-    // }
     
 }
 </script>
+<style>
+@media(max-width:500px) {
+    .b-tabs .tabs {
+        margin-top:0 !important;
+    }
+    .user-data {
+        display:flex;
+    }
+}
+</style>
 <style lang="scss">
+    .user-data {
+        display: none;
+
+    }
     .tabs li.is-active a {
     border-bottom-color: #00309a !important;
     color: #00309a !important;
@@ -416,6 +424,19 @@ $izq-column-width: 258px;
     justify-content: center;
     margin: 10px 0 20px 0;
 }
+
+@media(max-width:500px) {
+    #izq {
+        display:none;
+    }
+    #der {
+        width: 100%;
+    }
+    .right-column {
+        margin: 0;
+    }
+}
+
 // Mucho texto para el botón de editar perfil con animación: https://codepen.io/FluidOfInsanity/pen/RpgvGW
 *:before,
 *:after {

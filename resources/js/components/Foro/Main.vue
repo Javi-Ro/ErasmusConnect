@@ -176,7 +176,7 @@
 }
 
 .searcher {
-  margin-bottom: 1em;
+  margin-bottom: 100px;;
 }
 
 @media(min-width: 1500px) {
@@ -185,15 +185,15 @@
   }
 }
 @media(max-width: 1500px){
-  .b-tabs .tabs{
-    margin-top: 70px;
+  .searcher {
+    margin-bottom: 1em;
   }
 }
 
 @media(max-width: 500px){
-  .posts {
-    //margin-top: 128px;
-  }
+  // .posts {
+  //   //margin-top: 128px;
+  // }
   .b-tabs .tabs{
     margin-top: 110px;
   }
