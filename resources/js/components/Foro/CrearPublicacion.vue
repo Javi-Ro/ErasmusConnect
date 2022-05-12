@@ -242,18 +242,13 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
         -webkit-box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
         box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
         max-width: 100%;
-        width: 90%;
+        width: 100%;
         min-width:80%;
         align-self:center;
     }
 
-    .custom-input{
-      width:90%;
-    }
-
     .upload-draggable{
       height: 300px;
-      max-width:90vw;
       align-self: center;
     }
 
@@ -261,8 +256,6 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
       margin-top: 0px;
       width: 90%;
     }
-
-
 
   }
 </style>
@@ -272,15 +265,17 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
     height:100%;
     width:100%;
     background-color: whitesmoke;
+    overflow-x:hidden;
   }
 
   .titulo-pagina {
-    justify-content: center;
-    display: flex;
     margin: 20px 0 15px 0;
     font-size: x-large;
     color:#00309a;
     font-family: sans-serif;
+    display:flex;
+    justify-content: center;
+    align-self: center;
   }
 
   .contenedor-dropdown{
@@ -382,51 +377,39 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
 }
 
 @media(max-width: 500px){
+  
   .custom-input{
-    max-width: 90%;
+    width: 100%;
     min-width:0px;
   }
 
   .titulo-pagina {
-    justify-content: center;
+    display:flex;
     font-size: x-large;
     margin:0px 0px 0px 0px;
-    text-align: justify;
     color:#00309a;
     font-family: sans-serif;
     align-self: center;
+    width: 80vw;
   }
 
   .b-tabs .tab-content .tab-item{
     padding: 10px;
   }
 
-  .custom-input{
-    width:90%;
-  }
-
   .contenedor{
-    width:100%;
+    width:90vw;
     max-width:100%;
     overflow-x:hidden;
-        margin-inline: auto;
+    margin-inline: auto;
   }
 
   .taginput .taginput-container.is-focusable, .textarea, .input {
     -webkit-box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
     box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
-    max-width: 100%;
-    width: 90%;
+    width: 100%;
     min-width:80%;
     align-self:center;
-  }
-
-  .custom-input{
-    width:90%;
-  }
-
-  .b-field{
-      margin-left: 5%;
   }
   
   .icono-crear{
@@ -439,10 +422,19 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
   }
 
   .custom-section{
-    width: 90vw;
+    width: 80vw;
     height: 100%;
     margin-inline: auto;
-}
+  }
+
+  .contenedor-dropdown{
+    margin-bottom: 5%;
+    margin-top: 15%;
+  }
+
+  p {
+    text-align: center;
+  }
 }
 
 </style>
