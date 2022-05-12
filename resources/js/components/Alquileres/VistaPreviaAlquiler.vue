@@ -1,7 +1,7 @@
 <template>
     <div class="apartment-preview">
         <b-carousel :indicator-inside="false" :autoplay="false">
-            <b-carousel-item v-for="(item, i) in 5" :key="i">
+            <b-carousel-item v-for="(item, i) in 4" :key="i">
                 <!-- <img :src="getImgUrl(i)"> -->
                 <b-image class="image" :src="getImgUrl(i)"></b-image>
             </b-carousel-item>
@@ -31,13 +31,13 @@
                     <p> <strong>Dirección:</strong> {{apartment.address}} </p>  
                     <p> <strong>nº habitaciones:</strong> {{apartment.bedrooms}}</p>
                     <p> <strong>Superficie:</strong> {{apartment.surface}} m²</p>
-                    <p> <strong>Correo electrónico:</strong> <a href="#">{{apartment.email}}</a> </p>
+                    <p> <strong>Correo electrónico:</strong> <a :href="'mailto:'+apartment.email">{{apartment.email}}</a> </p>
                     <p> <strong>Teléfono:</strong> {{apartment.phone}} </p>   
                     
                 </div>
                 <div class="apartment-desc">
                     <h3 style="font-size: 25px; margin: 10px 0px;">Descripción</h3>
-                    <p>{{apartment.description}}}</p>
+                    <p>{{apartment.description}}</p>
                 </div>
             </div>
             <!-- Mostrar iframe de Google maps -->
@@ -85,8 +85,10 @@ export default {
             });
         },
         getImgUrl(value) {
-            value += 50
-            return `https://picsum.photos/id/10${value}/1230/500`
+            // value += 50
+            // return `https://picsum.photos/id/10${value}/1230/500`
+            //{user_id}_{apartment_id}_photo_number{value}
+            return `storage/images/apartments/userid_apartmentid_photo_number${value}.jpg`
         },
         getMap(address) {
             var map = this.base_URL + address + this.apiKey
