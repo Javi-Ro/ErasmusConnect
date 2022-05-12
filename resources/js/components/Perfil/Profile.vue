@@ -1,11 +1,12 @@
 <template>
     <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
+        <!-- Versión móvil -->
         <div class="user-data">
             <div class="user-data-top">
                 <div class="profile-img" style="padding: 10px; margin-bottom: 0">
                     <img
-                        src="/images/default-profile-img.jpeg"
+                        :src="imgProfile"
                         alt="Imagen de perfil"
                         style="border-radius: 100px; max-width: 60px"
                     >
@@ -17,23 +18,30 @@
                 </a>
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
                 <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
-                <div style="display:flex; margin: 0 10px 0 auto">
+                <div style="display:flex; margin: 0 10px 0 auto" v-if="userJSON && userJSON.nickname == nickname">
                 <b-dropdown aria-role="list">
                     <template #trigger>
                     <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/> -->
                     <font-awesome-icon icon="fa-solid fa-gear" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/>
                     </template>
                     <b-dropdown-item aria-role="listitem">
-                    <div style="display:flex; align-items: center" @click="reaction(3, false)">
-                        <font-awesome-icon icon="fa-solid fa-share-nodes" title="Compartir" style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
-                        Compartir
-                    </div>
+                        <a v-if="userJSON && userJSON.nickname == nickname"
+                        class="column-item btn-start" href="#">
+                            Gestionar amigos
+                        </a>
                     </b-dropdown-item>
                     <b-dropdown-item aria-role="listitem">
-                    <div style="display:flex; align-items: center" @click="reaction(4, false)">
-                        <font-awesome-icon icon="fa-regular fa-flag" title="Reportar"  style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
-                        Reportar
-                    </div>
+                        <a v-if="userJSON && userJSON.nickname == nickname"
+                        class="column-item btn-start" href="#">
+                            Privacidad y seguridad
+                        </a>
+                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">
+                        <button class="btn btn-delete" @click="borrarCuenta()">
+                            <span class="mdi mdi-delete mdi-24px"></span>
+                            <span class="mdi mdi-delete-empty mdi-24px"></span>
+                            <span>Eliminar cuenta</span>
+                        </button>
                     </b-dropdown-item>
                 </b-dropdown>
                 </div>
@@ -55,10 +63,11 @@
                 </div>
             </div>
         </div>
+        <!-- Versión para ordenador -->
         <div class="columna" id="izq">
             <div class="profile-img">
                 <img
-                    src="/images/default-profile-img.jpeg"
+                    :src="imgProfile"
                     alt="Imagen de perfil"
                     style="border-radius: 100px; max-width: 200px"
                 >
@@ -347,6 +356,11 @@ export default {
                     console.info(error.response.data)
                 });
             }
+        }
+    },
+    computed: {
+        imgProfile() {
+            return "/images/users/" + this.userProfileJSON.img_url;
         }
     }
     
