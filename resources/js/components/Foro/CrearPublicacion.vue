@@ -26,7 +26,7 @@
           </b-dropdown>
         </div>
 
-        <b-tabs v-model="activeTab">
+        <b-tabs v-model="activeTab" class="crear-tabs">
 
             <b-tab-item label="Texto">
               <b-field label="Título" >
@@ -34,7 +34,7 @@
               </b-field>
 
               <b-field label="Texto">
-                  <b-input minlength="0" style="width:550px;" type="textarea" class="custom-input" v-model="post.text"></b-input>
+                  <b-input minlength="0"  type="textarea" class="custom-input" v-model="post.text"></b-input>
               </b-field>   
               <b-field label="Selecciona algunas etiquetas para mejorar la búsqueda">
                 <b-taginput
@@ -55,11 +55,11 @@
             </b-tab-item>
 
             <b-tab-item label="Multimedia">
-                <b-field>
-                  <b-upload v-model="dropFiles" style="height:300px; width:550px;" multiple accept=".jpeg" validationMessage="Solo se permite el formato jpeg" drag-drop>
+                <b-field class="upload-custom">
+                  <b-upload v-model="dropFiles" multiple accept="image/*" drag-drop>
                       <section class="custom-section">
-                          <div class="content has-text-centered">
-                              <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" style="opacity:0.8; width:40px; margin-bottom: 20px; height:40px"/>
+                          <div class="content has-text-centered centrado">
+                              <font-awesome-icon id="upload-icon" icon="fa-solid fa-upload" class="icono-crear"/>
                               <p>Arrastra y suelta o selecciona</p>
                           </div>
                       </section>
@@ -78,12 +78,6 @@
               </div>
               
             </b-tab-item>
-            <!-- disabled -->
-            <!-- <b-tab-item label="Enlace">  
-              <b-field label="URL">
-                  <b-input style="width:550px;" maxlength="300" type="url"></b-input>
-              </b-field>
-            </b-tab-item> -->
         </b-tabs>
 
         <button class="btn" @click="createPost()">
@@ -233,32 +227,55 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
       -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
       box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
+
   .tag:not(body).is-primary{
     background-color: #00309a;
     color:white;
   }
 
+   .b-tabs .tabs {
+      margin-top: 0px !important;
+  }
+
+  @media(max-width: 500px){
+    .taginput .taginput-container.is-focusable, .textarea, .input {
+        -webkit-box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
+        box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
+        max-width: 100%;
+        width: 100%;
+        min-width:80%;
+        align-self:center;
+    }
+
+    .upload-draggable{
+      height: 300px;
+      align-self: center;
+    }
+
+    .custom-section{
+      margin-top: 0px;
+      width: 90%;
+    }
+
+  }
 </style>
 <style lang="scss" scoped>
 
+  html, body {
+    height:100%;
+    width:100%;
+    background-color: whitesmoke;
+    overflow-x:hidden;
+  }
+
   .titulo-pagina {
-      justify-content: center;
-      display: flex;
-      margin: 20px 0 15px 0;
-      font-size: x-large;
-      color:#00309a;
-      font-family: sans-serif;
-  }
-
-  .upload-draggable{
-    width: 550px;
-    height: 300px;
-
-  }
-
-  .custom-section{
-    width: 550px;
-    height: 300px;
+    margin: 20px 0 15px 0;
+    font-size: x-large;
+    color:#00309a;
+    font-family: sans-serif;
+    display:flex;
+    justify-content: center;
+    align-self: center;
   }
 
   .contenedor-dropdown{
@@ -269,23 +286,26 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
     color: #00309a;
     padding: 0px;
   }
+
   a.navbar-item:hover {
-      background-color: transparent;
+    background-color: transparent;
   }
+
   .dropdown-item:active {
-      background-color: transparent;
+    background-color: transparent;
   }
+
   // Para cambiarle el borde a los input text
   .input:focus{
-      border-color: #00309a !important;
-      -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
-      box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    border-color: #00309a !important;
+    -webkit-box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
+    box-shadow: 0 0 0 0.125em rgb(121 87 213 / 25%);
   }
 
   .contenedor{
-      display:flex;
-      flex-flow: column wrap;
-      // justify-content: space-between;
+    display:flex;
+    flex-flow: column wrap;
+    // justify-content: space-between;
   }
 
   .footer{
@@ -293,28 +313,15 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
   }
   
   section{
-        margin-top: 130px;
-        display:flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        height: auto;
-        justify-content: space-between;
-        height: calc(100vh - 130px);
+    margin-top: 130px;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    height: auto;
+    justify-content: space-between;
+    // height: calc(100vh - 130px);
   }
-
-@media (max-height: 550px) {
-  section{
-        margin-top: 130px;
-        display:flex;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        align-items: center;
-        height: auto;
-        justify-content: space-between;
-        height: calc(100% - 130px);
-  }
-}
 
   .input-size{
     width: 550px;
@@ -326,24 +333,108 @@ import filterBarHorizontal from './filterBarHorizontal.vue'
   }
 
   .btn {
-  justify-content: center;
-	width: 40%;
-  display:flex;
-  background-color: #00309a;
-  font-weight: bold;
-  font-size: 1.2rem;
-  font-family: Arial, Helvetica, sans-serif; 
-	padding: .6rem 5.5rem;
-	border-radius: 10rem;
-	position: relative;
-	overflow: hidden;
-  color:white;
-  align-self:center;
-  text-align: center;
-}
+    justify-content: center;
+    width: 40%;
+    display:flex;
+    background-color: #00309a;
+    font-weight: bold;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif; 
+    padding: .6rem 5.5rem;
+    border-radius: 10rem;
+    position: relative;
+    overflow: hidden;
+    color:white;
+    align-self:center;
+    text-align: center;
+  }
 
 .btn:hover {
   color: #F2AF13;
+}
+
+.custom-input{
+  width:550px;
+}
+
+.upload-draggable{
+  width: 550px;
+  height: 300px;
+}
+
+.custom-section{
+  margin-top: 0px;
+  width: 550px;
+  height: 300px;
+}
+
+.icono-crear{
+  opacity:0.8; 
+  width:40px; 
+  margin-bottom: 20px; 
+  height:40px;
+  margin-top: 90px;
+}
+
+@media(max-width: 500px){
+  
+  .custom-input{
+    width: 100%;
+    min-width:0px;
+  }
+
+  .titulo-pagina {
+    display:flex;
+    font-size: x-large;
+    margin:0px 0px 0px 0px;
+    color:#00309a;
+    font-family: sans-serif;
+    align-self: center;
+    width: 80vw;
+  }
+
+  .b-tabs .tab-content .tab-item{
+    padding: 10px;
+  }
+
+  .contenedor{
+    width:90vw;
+    max-width:100%;
+    overflow-x:hidden;
+    margin-inline: auto;
+  }
+
+  .taginput .taginput-container.is-focusable, .textarea, .input {
+    -webkit-box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
+    box-shadow: inset 0 0.0625em 0.125em rgb(10 10 10 / 5%);
+    width: 100%;
+    min-width:80%;
+    align-self:center;
+  }
+  
+  .icono-crear{
+    margin-bottom: 20%; 
+  }
+
+  .centrado{
+    left:5%;
+    bottom: 50vh;
+  }
+
+  .custom-section{
+    width: 80vw;
+    height: 100%;
+    margin-inline: auto;
+  }
+
+  .contenedor-dropdown{
+    margin-bottom: 5%;
+    margin-top: 15%;
+  }
+
+  p {
+    text-align: center;
+  }
 }
 
 </style>
