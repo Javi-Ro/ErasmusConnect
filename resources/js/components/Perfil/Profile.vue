@@ -2,7 +2,58 @@
     <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
         <div class="user-data">
-
+            <div class="user-data-top">
+                <div class="profile-img" style="padding: 10px; margin-bottom: 0">
+                    <img
+                        src="/images/default-profile-img.jpeg"
+                        alt="Imagen de perfil"
+                        style="border-radius: 100px; max-width: 60px"
+                    >
+                </div>
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + nickname + '/profile/edit'"
+                class="edit" type="button" style="margin: 0 10px 0 10px;">
+                    <span class="edit-icon"></span>
+                    <span>Editar perfil</span>
+                </a>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
+                <div style="display:flex; margin: 0 10px 0 auto">
+                <b-dropdown aria-role="list">
+                    <template #trigger>
+                    <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/> -->
+                    <font-awesome-icon icon="fa-solid fa-gear" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/>
+                    </template>
+                    <b-dropdown-item aria-role="listitem">
+                    <div style="display:flex; align-items: center" @click="reaction(3, false)">
+                        <font-awesome-icon icon="fa-solid fa-share-nodes" title="Compartir" style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
+                        Compartir
+                    </div>
+                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">
+                    <div style="display:flex; align-items: center" @click="reaction(4, false)">
+                        <font-awesome-icon icon="fa-regular fa-flag" title="Reportar"  style="cursor: pointer; font-size: 15px; padding: 10px 10px;"></font-awesome-icon>
+                        Reportar
+                    </div>
+                    </b-dropdown-item>
+                </b-dropdown>
+                </div>
+            </div>
+            <div class="user-data-bottom">
+                <div class="nickname column-item">
+                    <p style="
+                        font-weight: bold;
+                        font-size: 20px;
+                        margin-right: 10px;
+                    ">
+                    {{this.userProfileJSON.name}}
+                    </p>
+                    <p style="
+                        opacity: 0.5;
+                    ">
+                        @{{this.nickname}}
+                    </p>
+                </div>
+            </div>
         </div>
         <div class="columna" id="izq">
             <div class="profile-img">
@@ -93,7 +144,12 @@
                 <section>
                     <b-tabs v-model="activeTab" position="is-centered" size="is-medium" id="tabs-perfil">
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
-                        <b-tab-item label="Mis publicaciones">
+                        <b-tab-item label="Mis publicaciones" v-if="userJSON && userJSON.nickname == nickname">
+                            <div class="publicacion" v-for='post in myPosts' :key='post.id'>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
+                            </div>
+                        </b-tab-item>
+                        <b-tab-item label="Publicaciones" v-if="userJSON && userJSON.nickname != nickname">
                             <div class="publicacion" v-for='post in myPosts' :key='post.id'>
                                 <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
@@ -301,16 +357,9 @@ export default {
     .b-tabs .tabs {
         margin-top:0 !important;
     }
-    .user-data {
-        display:flex;
-    }
 }
 </style>
 <style lang="scss">
-    .user-data {
-        display: none;
-
-    }
     .tabs li.is-active a {
     border-bottom-color: #00309a !important;
     color: #00309a !important;
@@ -322,6 +371,24 @@ $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+// Barra horizontal de móvil
+.user-data {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    top: 88px;
+    width:100%;
+    background-color: white;
+    z-index: 1;
+}
+
+.user-data-top {
+    align-items: center;
+    display:flex;
+}
+.user-data-bottom {
+    display:flex;
+}
 
 .seguidores{
     margin-right: 10px;
@@ -433,7 +500,14 @@ $izq-column-width: 258px;
         width: 100%;
     }
     .right-column {
-        margin: 0;
+        margin: 140px 0 0 0;
+    }
+    .user-data {
+        display: flex;
+    }
+    .nickname {
+        flex-direction: row;
+        margin-bottom: 0;
     }
 }
 
