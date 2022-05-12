@@ -7,7 +7,7 @@
                 </div>
                 <div class="boton-foto">
                     <b-field class="file is-primary" :class="{'has-name': !!file}">
-                        <b-upload v-model="file" class="file-label" drag-drop type="is-info" accept=".jpeg">
+                        <b-upload v-model="file" class="file-label" drag-drop type="is-info" accept="image/*">
                             <section class="section">
                                 <div class="content has-text-centered" style="display:flex; align-items:center; justify-content:center;">
                                     <p style="margin:auto;">
