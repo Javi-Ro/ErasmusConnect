@@ -167,7 +167,7 @@ nav{
 
    filter: blur(1px);
       background-color:#00309a;
-   background-image:url('~@../../../public/images/about/AboutHead.png');
+   background-image:url('/images/about/AboutHead.png');
    
    background-size:cover;
    background-position:bottom;
@@ -180,7 +180,7 @@ nav{
       z-index: 2;
 
       height:500px;
-      background-image:url('~@../../../public/images/logo/logo.png');
+      background-image:url('/images/logo/logo.png');
       background-size: auto;
       background-repeat: no-repeat;
       background-position: center   ;
