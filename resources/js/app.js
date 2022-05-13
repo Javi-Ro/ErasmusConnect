@@ -35,14 +35,14 @@ import {faBookmark as faBookmarkSolid} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark as faBookmarkRegular} from '@fortawesome/free-regular-svg-icons';
 
 // Iconos generales
-import {faArrowLeft, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faPlus, faGear} from '@fortawesome/free-solid-svg-icons';
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
 
 // Añadimos iconos para navbar
 library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
 
 // Añadimos iconos generales
-library.add(faArrowLeft, faUpload, faPlus)
+library.add(faArrowLeft, faUpload, faPlus, faGear)
 
 // Añadimos iconos para publicaciones
 library.add(faEllipsisVertical, faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment, faCircleXmark,faThumbsDown,faFlag,faArrowAltCircleLeft)

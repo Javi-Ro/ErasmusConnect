@@ -3,7 +3,7 @@
         <div class="titulo-cartas">
             <p>¡Échale un vistazo a todo lo que ofrecemos!</p>
         </div>
-        <b-tabs position="is-centered" size="is-medium">
+        <b-tabs position="is-centered" size="is-medium" id="tabs-buefy-landing">
             <b-tab-item label="Conócenos">
                 <div class="contenido">
                     <b-image
@@ -140,6 +140,9 @@ img {
     @media(min-width: 1024px){
         margin-top: 140px;
     }
+    @media(max-width: 425px){
+        margin-top: 150px;
+    }
 }
 
 .contenido {
@@ -191,6 +194,11 @@ img {
     }
     .contenido-2 > .contenido-texto {
     margin-bottom: 0;
+}
+@media screen and (max-width: 500px) {
+    #tabs-buefy-landing {
+        display: none;
+    }
 }
 }
 </style>
