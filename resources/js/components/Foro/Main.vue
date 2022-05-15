@@ -30,35 +30,37 @@
             </b-input>
         </b-field>
       </div>
-      <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
-          <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
-              <div v-if="postsReady === true" class="posts">
-                <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+      <div id="div-tabs-main">
+        <b-tabs position="is-centered" style="display:block !important" animation="none" type="is-boxed">
+            <b-tab-item label="Descubrir" icon="fa-thin fa-globe" icon-pack="fa">
+                <div v-if="postsReady === true" class="posts">
+                  <div v-for="post in buscar" :key="post.id" class="post" id="postContainer">
+                    <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+                  </div>
+                </div>
+            </b-tab-item>
+            <b-tab-item label="Siguiendo" icon="fa-solid fa-users" icon-pack="fa" >
+              <div v-if="followingPostsReady === true" class="posts">
+                <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
                   <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
                 </div>
               </div>
-          </b-tab-item>
-          <b-tab-item label="Siguiendo" icon="fa-solid fa-users" icon-pack="fa" >
-            <div v-if="followingPostsReady === true" class="posts">
-              <div v-for="post in buscarFollowing" :key="post.id" class="post" id="postContainer">
-                <vista-previa-publicacion :post="post" :comment="false" view="">></vista-previa-publicacion>
+              <div v-if="buscarFollowing == false" class="pagina-vacia" > 
+                <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
+                <br>
+                <label style="font-size: 22px; width:100%; text-align:center; "> Visita el 
+                  <a href="/foro" style="color:#00309a;"> foro </a>
+                </label> 
               </div>
-            </div>
-            <div v-if="buscarFollowing == false" class="pagina-vacia" > 
-              <label class="titulo-vacio" > Parece que no hay nada por aquí</label> 
+            </b-tab-item>
+            <div v-if="buscar == false" class="pagina-vacia" > 
+              <label style="font-size: 2rem; font-weight:bold;"> Parece que no hay nada por aquí</label> 
               <br>
-              <label class="subtitulo-vacio"> Visita el 
-                <a href="/foro" style="color:#00309a;"> foro </a>
-              </label> 
-            </div>
-          </b-tab-item>
-          <div v-if="buscar == false" class="pagina-vacia" > 
-            <label class="titulo-vacio"> Parece que no hay nada por aquí</label> 
-            <br>
-            <label class="subtitulo-vacio"> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
-        </div>
+              <label style="font-size: 22px; width:100%; text-align:center; "> Sé el primero en <a href="/foro/crear" style="color:#00309a;"> publicar </a></label> 
+          </div>
+        </b-tabs>
+      </div>
 
-      </b-tabs>
     </div>
     <a href="/foro/crear" class="float" title="Publicar">
       <font-awesome-icon icon="fa-solid fa-plus" class="my-float" style="width:25px; height:25px"/>
@@ -169,10 +171,14 @@
   height: fit-content;
 }
 
-.b-tabs .tab-content{
+#div-tabs-main {
   padding: 0;
-  padding-top: 3rem !important; 
+  padding-top: 3rem; 
 }
+ .b-tabs .tab-content{
+   padding: 0;
+   padding-top: 3rem !important; 
+ }
 .tabs ul {
   border-bottom-style: solid;
 }
@@ -197,32 +203,34 @@
   margin-left: 22px
 }
 
-.searcher {
-  margin-bottom: 1em;
-}
-
 @media(min-width: 1500px) {
   .float{
     display: none;
   }
 }
 @media(max-width: 1500px){
-  .b-tabs .tabs{
-    margin-top: 70px;
+  .searcher {
+    margin-bottom: 1em;
   }
+  /* #div-tabs-main {
+    padding-top: 0;
+  } */
 }
 
 @media(max-width: 500px){
-  .posts {
-    //margin-top: 128px;
-  }
-  .b-tabs .tabs{
-    margin-top: 110px;
+  // .posts {
+  //   //margin-top: 128px;
+  // }
+  #div-tabs-main {
+    padding-top: 5rem;
   }
 
   .pagina-vacia{
-
+    text-align: center;
   }
+  // .b-tabs .tabs{
+  //   margin-top: 110px;
+  // }
 }
 
 .pagina-vacia{

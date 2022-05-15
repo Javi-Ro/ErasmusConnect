@@ -13,7 +13,7 @@
                     </b-input>
                 </b-field>
             </div>
-            <div class="sugerencias-seguir" v-if="suggestionsReady === true">
+            <div class="sugerencias-seguir" v-if="suggestionsReady === true" style="margin-top: 20px">
                 <div v-for="(user, index) in suggestions" :key="index">
                     <a :href="'/' + user.nickname + '/profile'"><div class="user">
                         <div class="sug-img-user">
