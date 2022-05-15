@@ -16,9 +16,6 @@
                     <p id="texto-1-pulse-btn" style="padding: 0 10px 0 10px; text-align: center;">
                         ¿No sabes dónde <span style="color: #F2AF13; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
                     </p>
-                    <p ud="texto-2-pulse-btn" style="padding: 0 10px 0 10px; text-align: center;">
-                        ¿No sabes dónde <span style="color: #F2AF13; font-weight: bold">viajar</span>? <br>¡Déjanos ayudarte!
-                    </p>
                 </button>
             </div>
         </div>

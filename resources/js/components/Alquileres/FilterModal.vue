@@ -179,9 +179,6 @@
       border-radius: 9999px !important;
     }
   }
-  // .rate .rate-item.set-on .icon{
-  //   color: #00309a !important;
-  // }
   .mdi-plus{
     color: #00309a !important;
   }

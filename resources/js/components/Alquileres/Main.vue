@@ -74,9 +74,6 @@ import VistaPreviaAlquiler from './VistaPreviaAlquiler.vue'
         margin-left: 200px;
         margin-top: 10px;
         width: 100%;
-        i{
-            color: #00309a !important;
-        }
         .carousel-arrow .icon:hover{
             border: 1px solid #00309a !important;
         }

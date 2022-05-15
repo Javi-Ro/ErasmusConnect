@@ -130,7 +130,7 @@ Vue.component('about-us', require('./components/aboutUs.vue').default);
 const app = new Vue({
     data: {
         city: -1,
-        cityName: ""
+        cityName: "",
     },
     el: '#app',
 });

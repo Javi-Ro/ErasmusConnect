@@ -52,6 +52,12 @@
   font-weight: 700;
 }
 
+@media(max-width: 500px){
+  .title-wrapper{
+    font-size: 40px;
+  }
+}
+
 .dot {
     color: #4FEBFE;
 }

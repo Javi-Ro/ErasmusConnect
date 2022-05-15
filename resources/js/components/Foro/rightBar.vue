@@ -13,13 +13,13 @@
                     </b-input>
                 </b-field>
             </div>
-            <div class="sugerencias-seguir" v-if="suggestionsReady === true">
+            <div class="sugerencias-seguir" v-if="suggestionsReady === true" style="margin-top: 20px">
                 <div v-for="(user, index) in suggestions" :key="index">
                     <a :href="'/' + user.nickname + '/profile'"><div class="user">
                         <div class="sug-img-user">
-                            <img class="sug-img-user-img" :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px">
+                            <img class="sug-img-user-img" :src="'/storage/images/users/' + user.img_url" alt="NOP" style="border-radius: 20px; max-width: 40px;">
                         </div>
-                        <div class="data-user">
+                        <div class="data-user" style="min-width: 150px">
                             <div class="data-user-nombre" style="font-weight: bold; font-size: 16px">
                             @{{ user.nickname }}
                             </div>
@@ -166,7 +166,8 @@ $yellow: #F2AF13;
   }
 
   .user:hover {
-    background: #ccc;
+    background: #dbdbdb;
+    border-radius: 20px;
   }
 }
 .content {

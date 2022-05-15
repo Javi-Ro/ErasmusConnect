@@ -205,7 +205,7 @@
           title: '',
           text: '',
           post_id: null,
-          user_id: null
+          user_id: null,
         },
 
         optionsData: [
@@ -277,6 +277,21 @@
               this.liked = false;
               this.notLikePost();
             }
+          }
+          else if(option == 3) {
+            this.$buefy.toast.open({
+                    message: 'Link copied correctly!',
+                    type: 'is-success',
+                    duration: 3000
+            })
+            var urlActual = window.location.href;
+            var nuevaUrl = urlActual.replace('foro', 'publicacion').concat('/' + this.post.id);
+            console.log(nuevaUrl);
+            navigator.clipboard.writeText(nuevaUrl).then(() => {
+              console.log('URL Copiada');
+            }).catch(() => {
+              console.log('error copiando url');
+            })
           }
           else if(option == 4) {
             this.showModal = 1;
@@ -603,7 +618,7 @@ $blue: #00309a;
   margin: 10px 0;
 }
 #unique {
-  max-width: 900px;
+  min-width: 100%;
 }
 
 .modal-vue .overlay {
