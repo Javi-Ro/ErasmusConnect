@@ -5,8 +5,8 @@
       <div class="titulo">
           <p>¡Regístrate! Es gratis</p>
       </div>
-      <div style="display:flex;">
-        <div style="display:flex; flex-direction: column; margin-right: 20px">
+      <div class="contenedor-columnas">
+        <div class="columna">
           <div class="elemento"> 
                 <b-field size="is-medium" label="Nombre">
                   <b-input
@@ -50,7 +50,7 @@
               </b-field>
           </div>
         </div>
-        <div style="display:flex; flex-direction: column; margin-left: 20px">
+        <div class="columna">
           <b-field size="is-medium" label="¿A qué país viajas?" style="margin-bottom: 5px;">
           </b-field>
           <div class="elemento">
@@ -111,14 +111,13 @@
       flex-flow: column wrap;
     }
 
-   
     .register-main{
         margin-top: 130px;
         display:flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
     }
 
     .elemento{
@@ -136,6 +135,23 @@
         margin-right: 0.5rem;
         background-color: #00309a;;
         color: #F2AF13;
+    }
+
+    .columna{
+      // display:flex; 
+      // flex-direction: column; 
+      margin-left: 20px
+    }
+
+    .contenedor-columnas{
+      display:flex;
+      flex-flow: row nowrap;
+    }
+
+    @media (max-width: 500px){
+    .contenedor-columnas{
+      flex-flow: column nowrap;
+    }
     }
 
 </style>

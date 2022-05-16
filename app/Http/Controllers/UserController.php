@@ -43,8 +43,6 @@ class UserController extends Controller
         return response()->json(['success' => false]);
     }
 
-
-
     public function update(Request $request, User $user)
     {
 
@@ -103,18 +101,13 @@ class UserController extends Controller
         }
     }
 
-    public function suggestions(Request $data) {
-        $users = User::selectRaw('users.id, cities.name, count(posts.id) as posts')
+    public function suggestions() {
+        $users = User::selectRaw('users.id, users.img_url, users.nickname, users.name as nameus, cities.name, count(posts.id) as posts')
             ->join('posts', 'users.id', '=', 'posts.user_id')
             ->join('cities', 'posts.city_id', '=', 'cities.id')
-            ->groupBy('users.id', 'cities.name')
-            ->having('cities.name', '=', $data->city)
+            ->groupBy('users.id', 'users.img_url', 'users.nickname', 'nameus', 'cities.name')
             ->orderBy('posts', 'DESC')
-            ->get();
-        if($users->count() > 5) {
-            $users = $users->toArray();
-            $users = array_slice($users, 0, 5, false);
-        } 
+            ->get(); 
         return response()->json(['success' => true, 'users' => $users]);
     }
 }

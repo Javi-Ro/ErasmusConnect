@@ -13,7 +13,7 @@
             </div>
             <div class="botonPrincipal">
                 <button class="btn pulse-button" @click="register()">
-                    <p style="padding: 0 10px 0 10px; text-align: center;">
+                    <p id="texto-1-pulse-btn" style="padding: 0 10px 0 10px; text-align: center;">
                         ¿No sabes dónde <span style="color: #F2AF13; font-weight: bold">viajar</span>? ¡Déjanos ayudarte!
                     </p>
                 </button>
@@ -21,13 +21,13 @@
         </div>
     </div>
     <!-- Fin de la primera parte -->
-    <InfoCards/>
+    <InfoCards id="info-cards"/>
     <!-- Tarjeta que explica los Reviews/Valoraciones -->
     <div class="tarjeta" id="foro">
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/foto-foro.png').default"
+                :src="require('/images/landing/foto-foro.png').default"
                 alt="Foto del foro"
             ></b-image>
             <div class="texto" id="texto-1">
@@ -54,7 +54,7 @@
             </div>
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/alquileres.jpg').default"
+                :src="require('/images/landing/alquileres.jpg').default"
                 alt="Alquileres"
             ></b-image>
         </div>
@@ -65,7 +65,7 @@
         <div class="contenido-tarjeta">
             <b-image
                 id="img-tarjeta"
-                :src="require('@../../../public/images/landing/fiesta.png').default"
+                :src="require('/images/landing/fiesta.png').default"
                 alt="eventos"
             ></b-image>
             <div class="texto" id="texto-3">
@@ -139,7 +139,7 @@ strong {
 }
 .mapa::before{
     content: "";
-    background-image: url('~@../../../public/images/landing/carrousel/carrousel-1.jpg');
+    background-image: url('/images/landing/carrousel/carrousel-1.jpg');
     background-size: cover;
     position: absolute;
     top: 0px;
@@ -182,6 +182,10 @@ strong {
     letter-spacing: .15rem;
     text-align: center;
     box-shadow: $blue 0px 5px 15px;
+}
+
+#texto-2-pulse-btn {
+    display: none;
 }
 
 // Se encarga de hacer la animación de pulsaciones
@@ -259,46 +263,46 @@ $color: #00309a;
     .eslogan {
         font-size: 2rem;
     }
-    /*.container-1 {
-        margin-top: 10%;
-        padding-top: 10%;
-        justify-content: flex-start;
-        background-image: url('/images.png'); 
-        height: 50vh
-    }*/
     .pulse-button {
         font-size: 0.75rem;
     }
     .landing {
         margin-top: 0;
     }
+    #texto-1-pulse-btn {
+        display:none;
+    }
+    #texto-2-pulse-btn {
+        display: flex;
+    }
 }
 @media screen and (max-width: 425px) {
+    .mapa::before{
+        // background-image: url('/images/landing/carrousel/carrousel-1-425.jpg');
+    }
     .eslogan {
+        margin-top: 40px;
         font-size: 0.5rem;
     }
-    /* .container-1 {
-        background-image: url('/images/mapa425.png'); 
-        height: 40vh;
-        margin-top: 15%;
-        padding-top: 20%;
-    } */
+    .botonPrincipal {
+        width:100%;
+    }
     .pulse-button {
+        margin-top: 60px;
         font-size: 0.45rem;
     }
 }
 @media screen and (max-width: 425px) {
     .eslogan {
-        font-size: 1rem;
+        font-size: 1.5rem;
     }
     .pulse-button {
-        font-size: 0.5rem;
+        font-size: 1rem;
     }
 }
 .botonPrincipal {
     z-index: 2;
     display: flex;
-    width: 70%;
     justify-content: center;
 }
 .imagenMapa {
@@ -371,9 +375,6 @@ $color: #00309a;
 }
 
 @media screen and (max-width: 1435px) {
-    // .tarjeta {
-    //     justify-content: center;
-    // }
     .contenido-tarjeta {
         flex-direction: column;
         justify-content: center;
@@ -387,6 +388,18 @@ $color: #00309a;
     }
     #alquiler > .contenido-tarjeta{
         flex-direction: column-reverse;
+    }
+}
+@media screen and (max-width: 500px) {
+    #img-tarjeta {
+        width: 100%;
+    }
+    .texto {
+        width: 100%;
+        max-width: none;
+    }
+    .titulo-cartas {
+        justify-content: center;
     }
 }
 </style>

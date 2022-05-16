@@ -1,10 +1,73 @@
 <template>
     <div id="perfil" v-if="dataReady==true">
         <!-- Columna en la que aparece la foto y el resto de opciones de editar -->
+        <!-- Versión móvil -->
+        <div class="user-data">
+            <div class="user-data-top">
+                <div class="profile-img" style="padding: 10px; margin-bottom: 0">
+                    <img
+                        :src="imgProfile"
+                        alt="Imagen de perfil"
+                        style="border-radius: 100px; max-width: 60px"
+                    >
+                </div>
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + nickname + '/profile/edit'"
+                class="edit" type="button" style="margin: 0 10px 0 10px;">
+                    <span class="edit-icon"></span>
+                    <span>Editar perfil</span>
+                </a>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
+                <div style="display:flex; margin: 0 10px 0 auto" v-if="userJSON && userJSON.nickname == nickname">
+                <b-dropdown aria-role="list">
+                    <template #trigger>
+                    <!-- <font-awesome-icon icon="fa-solid fa-ellipsis-vertical" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/> -->
+                    <font-awesome-icon icon="fa-solid fa-gear" title="Más opciones"  style="cursor: pointer; font-size: 25px; padding: 10px 10px;"/>
+                    </template>
+                    <b-dropdown-item aria-role="listitem">
+                        <a v-if="userJSON && userJSON.nickname == nickname"
+                        class="column-item btn-start" href="#">
+                            Gestionar amigos
+                        </a>
+                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">
+                        <a v-if="userJSON && userJSON.nickname == nickname"
+                        class="column-item btn-start" href="#">
+                            Privacidad y seguridad
+                        </a>
+                    </b-dropdown-item>
+                    <b-dropdown-item aria-role="listitem">
+                        <button class="btn btn-delete" @click="borrarCuenta()">
+                            <span class="mdi mdi-delete mdi-24px"></span>
+                            <span class="mdi mdi-delete-empty mdi-24px"></span>
+                            <span>Eliminar cuenta</span>
+                        </button>
+                    </b-dropdown-item>
+                </b-dropdown>
+                </div>
+            </div>
+            <div class="user-data-bottom">
+                <div class="nickname column-item">
+                    <p style="
+                        font-weight: bold;
+                        font-size: 20px;
+                        margin-right: 10px;
+                    ">
+                    {{this.userProfileJSON.name}}
+                    </p>
+                    <p style="
+                        opacity: 0.5;
+                    ">
+                        @{{this.nickname}}
+                    </p>
+                </div>
+            </div>
+        </div>
+        <!-- Versión para ordenador -->
         <div class="columna" id="izq">
             <div class="profile-img">
                 <img
-                    src="/images/default-profile-img.jpeg"
+                    :src="imgProfile"
                     alt="Imagen de perfil"
                     style="border-radius: 100px; max-width: 200px"
                 >
@@ -25,14 +88,14 @@
             <!-- Aparecen todas las opciones del perfil -->
             <div class="opciones">
                 <!-- Si el nickname coincide con el de la ruta entonces es su perfil -->
-                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + {nickname} + '/profile/edit'"
+                <a v-if="userJSON && userJSON.nickname == nickname" :href="'/' + nickname + '/profile/edit'"
                 class="edit" type="button" >
                     <span class="edit-icon"></span>
                     <span>Editar perfil</span>
                 </a>
                 
-                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn" type="is-success" @click="follow()" >Seguir</b-button>
-                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn" type="is-danger" @click="unfollow()" >Dejar de Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo!=1" class="btn seguir" type="is-success" @click="follow()" >Seguir</b-button>
+                <b-button v-if="(userJSON.id != userProfileJSON.id) && siguiendo==1" class="btn dejar-seguir" type="is-danger" @click="unfollow()">Dejar de Seguir</b-button>
 
                 <a v-if="userJSON && userJSON.nickname == nickname"
                 class="column-item btn-start" href="#">
@@ -42,10 +105,11 @@
                 class="column-item btn-start" href="#">
                     Privacidad y seguridad
                 </a>
-                <a v-if="userJSON && userJSON.nickname == nickname" 
-                class="column-item btn-start" href=# >
-                    Cambiar contraseña
-                </a>                                
+                <button v-if="userJSON && userJSON.nickname == nickname" class="btn btn-delete" @click="borrarCuenta()">
+                    <span class="mdi mdi-delete mdi-24px"></span>
+                    <span class="mdi mdi-delete-empty mdi-24px"></span>
+                    <span>Eliminar cuenta</span>
+                </button>
             </div>
         </div>
         <!-- Columna en la que aparece el nombre, la biografia y debajo las publicaciones  -->
@@ -62,7 +126,7 @@
                     </div>
                     <div class="amigos-ciudad">
                         <div class="amigos">
-                            <b-button type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
+                            <b-button class="seguidores" type="is-info is-light" @click="showSeguidores = true">{{ userProfileJSON.followers }} Seguidores</b-button>
                                 <b-modal v-model="showSeguidores">
                                     <modal-seguidores :userId="userProfileJSON.id"></modal-seguidores>
                                 </b-modal>
@@ -75,8 +139,9 @@
                             <template>
                                 <section>
                                     <b-field>
-                                        <b-tag rounded size="is-medium">
-                                            <strong>{{ this.city }}</strong>, {{ this.country }}</b-tag>
+                                        <b-tag rounded size="is-medium" v-if="this.userProfileJSON.city_id != null">
+                                            Actualmente en: <strong>{{ this.city.name }}</strong>, {{ this.country }}
+                                        </b-tag>
                                     </b-field>
                                 </section>
                             </template>
@@ -86,23 +151,28 @@
                 </div>
                 <!-- Permite cambiar entre los distintos tipos de publicaciones -->
                 <section>
-                    <b-tabs v-model="activeTab" position="is-centered" size="is-medium">
+                    <b-tabs v-model="activeTab" position="is-centered" size="is-medium" id="tabs-perfil">
                         <!-- Ver todas las publicaciones del usuario (incluido comentarios) -->
-                        <b-tab-item label="Mis publicaciones">
+                        <b-tab-item label="Mis publicaciones" v-if="userJSON && userJSON.nickname == nickname">
                             <div class="publicacion" v-for='post in myPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
+                            </div>
+                        </b-tab-item>
+                        <b-tab-item label="Publicaciones" v-if="userJSON && userJSON.nickname != nickname">
+                            <div class="publicacion" v-for='post in myPosts' :key='post.id'>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones a las que le has dado me gusta -->
                         <b-tab-item label="Me gusta">
                             <div class="publicacion" v-for='post in LikedPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                         <!-- Ver publicaciones guardadas -->
-                        <b-tab-item label="Guardados">
+                        <b-tab-item label="Guardados" v-if="userJSON.nickname === nickname">
                             <div class="publicacion" v-for='post in SavedPosts' :key='post.id'>
-                                <vista-previa-publicacion></vista-previa-publicacion>
+                                <vista-previa-publicacion :post="post" view=""></vista-previa-publicacion>
                             </div>
                         </b-tab-item>
                     </b-tabs>
@@ -130,6 +200,8 @@ export default {
     },
     data() {
         return {
+            postsSubidos: [],
+            postsMg: [],
             dataReady: false,
             siguiendo: null,
             // Nick del usuario que ha iniciado sesión
@@ -140,15 +212,15 @@ export default {
             },
             name: "",
             // nickname: "Willyrex",
-            city: "Madrid",
+            city: {},
             bio: "Curabitur nibh leo, venenatis at sodales ac, volutpat eget lectus. Donec ut est vel lorem sodales ultricies. Nullam a metus a odio rutrum posuere at a magna.Fusce neque nisl, vestibulum sed est vel, porta euismod dolor. Quisque egestas tristique leo pharetra bibendum. Praesent sit amet lacus risus. Duis non nisl a ligula tincidunt tincidunt. Morbi sed lorem dolor. Nullam dignissim tempus odio et egestas. Nunc nulla odio, congue a lorem non, eleifend accumsan lectus. Pellentesque habitant morbi tristique senectus et "
             ,
-            country: "ESPAÑA",
+            country: "",
             activeTab: 0,
             // Lista con las distintas publicaciones
-            myPosts: [1],
-            LikedPosts: [1, 2],
-            SavedPosts: [1, 3, 4],
+            myPosts: [],
+            LikedPosts: [],
+            SavedPosts: [],
             //SEGUIDORES Y SEGUIDOS
             showSeguidores: false,
             showSeguidos:false,
@@ -167,11 +239,40 @@ export default {
         this.dataReady = true;
         this.name = this.userJSON.nickname;
         this.getCurrentUser();
+        this.getCity();
         //console.log(siguiendo); 
         console.log(this.userJSON.id); //ID del currentUser
         console.log(this.userProfileJSON.id); //ID del profile user
+        this.getPostsByUser();
+        this.getLikedPosts();
+        this.getSavedPosts();
+        console.log("peeeeee " + this.user.name==="")
     },
     methods:{
+        getPostsByUser() {
+            axios.get('/api/posts/user/' + this.userProfileJSON.id).
+            then(response => {
+                this.myPosts = response.data.posts;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getLikedPosts() {
+            axios.get('/api/posts/liked/' + this.userProfileJSON.id).
+            then(response=>{
+                this.LikedPosts = response.data.posts;
+            }).catch(error=>{
+                console.info(error.response.data)
+            });
+        },
+        getSavedPosts() {
+            axios.get('/api/posts/saved/' + this.userProfileJSON.id).
+            then(response => {
+                this.SavedPosts = response.data.posts;
+            }).catch(error=> {
+                console.info(error.response.data);
+            });
+        },
         follow(){
             axios.post(`/api/users/`+this.currentUser.id + `/` + this.userProfileJSON.id)
             .then(response =>{
@@ -214,20 +315,64 @@ export default {
             }).catch(error=>{
                 console.info(error.response.data)
             });
+        },
+        getCity() {
+            axios.get(`/api/cities/` + this.userProfileJSON.city_id)
+            .then(response => {
+                this.city = response.data.city;
+            })
+            .then(() => {
+                this.getCountry();
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getCountry() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        getPostsSubidos() {
+            axios.get(`/api/countries/` + this.city.country_id)
+            .then(response => {
+                this.country = response.data.country.name;
+            })
+            .catch(error => {
+                console.info(error.response.data)
+            })
+        },
+        borrarCuenta() {
+            if(confirm("¿Estás seguro de querer eliminar tu cuenta?")) {
+                axios.delete('/api/users/' + this.currentUser.id)
+                .then(
+                    window.location.href="/"
+                )
+                .catch(error=>{
+                    console.info(error.response.data)
+                });
+            }
+        }
+    },
+    computed: {
+        imgProfile() {
+            return "/images/users/" + this.userProfileJSON.img_url;
         }
     }
-    // methods: {
-    //     getNickName(nickname) {
-    //         console.log("Perfil de: " + nickname);
-    //         this.nickname = nickname;
-    //     }
-    // },
-    // mounted() {
-    //     this.getNickName(this.$route);
-    // }
     
 }
 </script>
+<style>
+@media(max-width:500px) {
+    .b-tabs .tabs {
+        margin-top:0 !important;
+    }
+}
+</style>
 <style lang="scss">
     .tabs li.is-active a {
     border-bottom-color: #00309a !important;
@@ -240,6 +385,28 @@ $margen-column: 10%;
 // cc es column-content
 $padding-cc: 2%;
 $izq-column-width: 258px;
+// Barra horizontal de móvil
+.user-data {
+    display: none;
+    position: fixed;
+    flex-direction: column;
+    top: 88px;
+    width:100%;
+    background-color: white;
+    z-index: 1;
+}
+
+.user-data-top {
+    align-items: center;
+    display:flex;
+}
+.user-data-bottom {
+    display:flex;
+}
+
+.seguidores{
+    margin-right: 10px;
+}
 
 #perfil {
     display: flex;
@@ -319,7 +486,7 @@ $izq-column-width: 258px;
     flex-direction: column;
 }
 .amigos-ciudad {
-    margin: 10px 30px 0 30px;
+    margin: 10px 30px 0 00px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -338,6 +505,26 @@ $izq-column-width: 258px;
     justify-content: center;
     margin: 10px 0 20px 0;
 }
+
+@media(max-width:500px) {
+    #izq {
+        display:none;
+    }
+    #der {
+        width: 100%;
+    }
+    .right-column {
+        margin: 140px 0 0 0;
+    }
+    .user-data {
+        display: flex;
+    }
+    .nickname {
+        flex-direction: row;
+        margin-bottom: 0;
+    }
+}
+
 // Mucho texto para el botón de editar perfil con animación: https://codepen.io/FluidOfInsanity/pen/RpgvGW
 *:before,
 *:after {
@@ -416,5 +603,73 @@ $izq-column-width: 258px;
     50% {transform: translate(0,0) rotate(45deg);}
     75% {transform: translate(0,0) rotate(65deg);}
     100% {transform: translate(0,0) rotate(45deg);}
+}
+
+
+.btn {
+  display: flex;
+  align-items: center;
+  background: none;
+  border: 1px solid lighten(gray, 24%);
+  height: 48px;
+  padding: 0 24px 0 16px;
+  letter-spacing: .25px;
+  border-radius: 24px;
+  cursor: pointer;
+  
+  &:focus {
+    outline: none;
+  }
+  
+  .mdi {
+    margin-right: 8px;
+  }
+}
+.seguir{
+  color: gray;
+}
+.seguir:hover{
+  color: white; 
+  border-color: #48c78e;
+}
+.seguir:focus{
+  color: gray;
+  border-color: gray;
+}
+
+.dejar-seguir{
+  color: white;
+  background-color: #bdbdbd;
+}
+
+
+
+$delete-red: red;
+
+.btn-delete {
+  font-size: 16px;
+  color: red;
+  
+  >.mdi-delete-empty {
+    display: none;
+  }
+  
+  &:hover {
+    background-color: lighten(red, 48%);
+    
+    >.mdi-delete-empty {
+      display: block;
+    }
+    
+    >.mdi-delete {
+      display: none;
+    }
+  }
+  
+
+  
+  &:focus {
+    box-shadow: 0 0 0 4px lighten(red, 40%);
+  }
 }
 </style>

@@ -170,6 +170,7 @@
   hr{
     background-color: gray;
     height: 1px;
+    margin: 0.5rem 0;
   }
   .filter-header{
     font-size: 1.5rem;
@@ -209,9 +210,7 @@
       border-radius: 9999px !important;
     }
   }
-  .rate .rate-item.set-on .icon{
-    color: #00309a !important;
-  }
+  
   .mdi-plus{
     color: #00309a !important;
   }

@@ -35,14 +35,14 @@ import {faBookmark as faBookmarkSolid} from '@fortawesome/free-solid-svg-icons';
 import {faBookmark as faBookmarkRegular} from '@fortawesome/free-regular-svg-icons';
 
 // Iconos generales
-import {faArrowLeft, faPlus} from '@fortawesome/free-solid-svg-icons';
+import {faArrowLeft, faPlus, faGear} from '@fortawesome/free-solid-svg-icons';
 import { faUpload } from '@fortawesome/free-solid-svg-icons'
 
 // Añadimos iconos para navbar
 library.add(faCaretDown, faUser, faBars, faX, faArrowRightFromBracket)
 
 // Añadimos iconos generales
-library.add(faArrowLeft, faUpload, faPlus)
+library.add(faArrowLeft, faUpload, faPlus, faGear)
 
 // Añadimos iconos para publicaciones
 library.add(faEllipsisVertical, faHeartSolid, faHeartRegular, faBookmarkSolid, faBookmarkRegular, faShareNodes, faComment, faCircleXmark,faThumbsDown,faFlag,faArrowAltCircleLeft)
@@ -118,6 +118,9 @@ Vue.component('profile', require('./components/Perfil/Profile.vue').default);
 Vue.component('editar-perfil', require('./components/Perfil/editarPerfil.vue').default);
 
 
+//ABOUT US
+Vue.component('about-us', require('./components/aboutUs.vue').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -126,7 +129,8 @@ Vue.component('editar-perfil', require('./components/Perfil/editarPerfil.vue').d
 
 const app = new Vue({
     data: {
-        city: -1
+        city: -1,
+        cityName: "",
     },
     el: '#app',
 });

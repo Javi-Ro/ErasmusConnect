@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\City;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\Tag;
 use Auth;
 
@@ -116,8 +117,18 @@ class PostController extends Controller
     public function filterByTag(Request $data) {
         $tag = Tag::findOrFail($data->tag);
         $posts = $tag->posts()->get();
+        $following = Auth::check() ? array_map(function($user) {
+            return $user['id'];
+        }, Auth::user()->following()->get()->toArray()) : [];
+        $postsFollowing = [];
 
-        return response()->json(['success' => true, 'posts' => $posts]);
+        for ($i = 0; $i < count($posts); $i++) {
+            if (in_array($posts[$i]->user_id, $following)) {
+                array_push($postsFollowing, $posts[$i]);
+            }
+        }
+
+        return response()->json(['success' => true, 'posts' => $posts, 'postsFollowing' => $postsFollowing]);
     }
 
     public function createComment(Post $post, Request $request) {
@@ -225,5 +236,20 @@ class PostController extends Controller
 
         return response()->json(['success' => true, 'posts' => $posts]);
 
+    }
+
+    public function getPostsByUser(User $user) {
+        $posts = Post::where("user_id", $user->id)->get();
+        return response()->json(['posts' => $posts]);
+    }
+
+    public function getLikedPosts(User $user) {
+        $posts = $user->likes()->get();
+        return response()->json(['posts' => $posts]);
+    }
+
+    public function getSavedPosts(User $user) {
+        $posts = $user->saved_posts()->get();
+        return response()->json(['posts' => $posts]);
     }
 }

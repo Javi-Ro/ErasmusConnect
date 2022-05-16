@@ -3,12 +3,12 @@
         <div class="titulo-cartas">
             <p>¡Échale un vistazo a todo lo que ofrecemos!</p>
         </div>
-        <b-tabs position="is-centered" size="is-medium">
+        <b-tabs position="is-centered" size="is-medium" id="tabs-buefy-landing">
             <b-tab-item label="Conócenos">
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/meet-us.jpg').default"
+                        :src="require('/images/landing/meet-us.jpg').default"
                         alt="conocenos"
                     ></b-image>
                     <div class="contenido-texto">
@@ -31,7 +31,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/foto-foro-2.jpg').default"
+                        :src="require('/images/landing/foto-foro-2.jpg').default"
                         alt="foro"
                     ></b-image>
                     <div class="contenido-2">
@@ -53,7 +53,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/alquiler.jpg').default"
+                        :src="require('/images/landing/alquiler.jpg').default"
                         alt="alquiler"
                     ></b-image>
                     <div class="contenido-2">
@@ -75,7 +75,7 @@
                 <div class="contenido">
                     <b-image
                         id="img-tarjeta"
-                        :src="require('@../../../public/images/landing/fiesta-2.jpg').default"
+                        :src="require('/images/landing/fiesta-2.jpg').default"
                         alt="fiesta"
                     ></b-image>
                     <div class="contenido-2">
@@ -138,7 +138,10 @@ img {
     margin: 220px 25px 0 25px;
 
     @media(min-width: 1024px){
-        margin-top: 100px;
+        margin-top: 140px;
+    }
+    @media(max-width: 425px){
+        margin-top: 150px;
     }
 }
 
@@ -191,6 +194,11 @@ img {
     }
     .contenido-2 > .contenido-texto {
     margin-bottom: 0;
+}
+@media screen and (max-width: 500px) {
+    #tabs-buefy-landing {
+        display: none;
+    }
 }
 }
 </style>
