@@ -129,7 +129,7 @@
                 { name: "Eventos", link: "/events"},
                 { name: "Sobre Nosotros", link: "/aboutUs"},
                 //   { name: "Chats", link: "#"}, Esto en la vista privada
-                { name: "Versión: 1.5.0", link: "#"},
+                { name: "Versión: 2.0.0", link: "#"},
             ]
       }
     },
