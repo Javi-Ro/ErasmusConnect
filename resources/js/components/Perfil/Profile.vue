@@ -360,7 +360,7 @@ export default {
     },
     computed: {
         imgProfile() {
-            return "/images/users/" + this.userProfileJSON.img_url;
+            return "/storage/images/users/" + this.userProfileJSON.img_url;
         }
     }
     

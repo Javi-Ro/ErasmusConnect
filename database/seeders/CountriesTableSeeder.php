@@ -18,10 +18,10 @@ class CountriesTableSeeder extends Seeder
 
         DB::table('countries')->delete();
 
-        Country::create(['name' => 'Czech Republic']);
-        Country::create(['name' => 'Italy']);
-        Country::create(['name' => 'Hungary']);
-        Country::create(['name' => 'Germany']);
-        Country::create(['name' => 'Poland']);
+        Country::create(['name' => 'República Checa']);
+        Country::create(['name' => 'Polonia']);
+        Country::create(['name' => 'Hungría']);
+        Country::create(['name' => 'Noruega']);
+        Country::create(['name' => 'Eslovenia']);
     }
 }

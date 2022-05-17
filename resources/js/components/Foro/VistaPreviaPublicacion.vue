@@ -229,7 +229,7 @@
         return "/storage/images/posts/" + this.post.img_url;
       },
       imgProfile() {
-        return "/images/users/" + this.user.img_url;
+        return "/storage/images/users/" + this.user.img_url;
       }
     },
 

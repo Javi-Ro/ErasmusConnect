@@ -33,24 +33,65 @@ class UsersTableSeeder extends Seeder
         User::create(
             [
                 'id' => 2,
-                'name' => 'Adri el Grande',
-                'nickname' => 'dsg',
-                'email' => 'dsg@dsg.com',
-                'password' => Hash::make('dsg'),
+                'name' => 'Mario',
+                'nickname' => 'mario',
+                'email' => 'mario@gmail.com',
+                'password' => Hash::make('mario'),
                 'description' => 'Cuenta oficial de DSG+R^2',
-                'city_id' => null
+                'city_id' => null,
+                'img_url' => 'mario.jpg'
             ]
         );
 
         User::create(
             [
                 'id' => 3,
-                'name' => 'Madani el Moro',
-                'nickname' => 'moro',
-                'email' => 'moro@dsg.com',
-                'password' => Hash::make('moro'),
+                'name' => 'Madani',
+                'nickname' => 'madani',
+                'email' => 'madani@gmail.com',
+                'password' => Hash::make('madani'),
                 'description' => 'Cuenta oficial del moro hungaro',
-                'city_id' => null
+                'city_id' => null,
+                'img_url' => 'madani.jpg'
+            ]
+        );
+
+        User::create(
+            [
+                'id' => 4,
+                'name' => 'Ilyan Syusarchuk',
+                'nickname' => 'ilyan',
+                'email' => 'ilyan@dsg.com',
+                'password' => Hash::make('ilyan'),
+                'description' => 'Soy un estudiante de Ingeniería Informática en la universidad de Alicante. Actualmente estoy buscnado un piso en Gdansk, Polonia, donde pasar mi Erasmus el primer cuatrimestre del año que viene. Si tienes algo de información no dudes en hablarme :)',
+                'city_id' => null,
+                'img_url' => 'ilyan.jpg'
+            ]
+        );
+
+        User::create(
+            [
+                'id' => 5,
+                'name' => 'Rosa Rodriguez',
+                'nickname' => 'rosa',
+                'email' => 'rosa@gmail.com',
+                'password' => Hash::make('rosa'),
+                'description' => 'Estudio informática en Alicante y me fui de Erasmus a Praga el año pasado. Si tienes dudas habla conmigo',
+                'city_id' => null,
+                'img_url' => 'rosa.jpg'
+            ]
+        );
+
+        User::create(
+            [
+                'id' => 6,
+                'name' => 'Adri',
+                'nickname' => 'adri',
+                'email' => 'adri@gmail.com',
+                'password' => Hash::make('adri'),
+                'description' => 'Estudio informática en Alicante y me fui de Erasmus a Praga el año pasado. Si tienes dudas habla conmigo',
+                'city_id' => null,
+                'img_url' => 'adri.jpg'
             ]
         );
     }
