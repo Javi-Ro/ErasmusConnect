@@ -93,7 +93,7 @@
             <h1 style="color:#fff;">IS</h1>
          </div>
          <br>
-         <h4> Backend dev</h4>
+         <h4>Full-stack dev</h4>
       </div>
           
           
@@ -103,7 +103,7 @@
             <h1 style="color:#fff;">RMR</h1>
          </div>
          <br>
-         <h4> Frontend dev</h4>
+         <h4>Frontend dev</h4>
       </div>
 
       <div class="card">
